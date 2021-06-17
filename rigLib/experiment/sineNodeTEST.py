@@ -14,10 +14,9 @@ class sineNode( OpenMayaMPx.MPxNode ):
     def __init__( self ):
         OpenMayaMPx.MPxNode.__init__( self )
 
-    def __compute__( self, plug, dataBlock ):
+    def compute( self, plug, dataBlock ):
         if ( plug == sineNode.output ):
            dataHandle = dataBlock.inputValue( sineNode.input )
-
            inputFloat = dataHandle.asFloat()
            result = math.sin( inputFloat ) * 10.0
            outputHandle = dataBlock.outputValue( sineNode.output )
