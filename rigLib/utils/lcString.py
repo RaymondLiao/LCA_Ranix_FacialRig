@@ -19,6 +19,7 @@ def GetSPluginFileName( pluginModuleInfo ):
     :return: the scripted plug-in name string, e.g. sineNodeTEST.pyc,
              or None if the sub-string does not contain .py or .pyc
     '''
+
     res = str( pluginModuleInfo ).split( "from" )[-1].lstrip( " \'" ).rstrip( "\'>" )
     if '.py' not in res:
         return None

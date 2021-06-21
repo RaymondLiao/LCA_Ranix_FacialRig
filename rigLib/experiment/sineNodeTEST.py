@@ -59,5 +59,5 @@ def uninitializePlugin( mobject ):
     try:
         mplugin.deregisterNode( sineNodeId )
     except:
-        sys.stderr.write( "Failed to register node: %s" % kPluginNodeTypeName )
+        sys.stderr.write( "Failed to deregister node: %s" % kPluginNodeTypeName )
         raise

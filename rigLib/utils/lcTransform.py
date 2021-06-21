@@ -20,11 +20,11 @@ def ParentTo( objs, newParent ):
     :return: none
     '''
 
-    if (objs == None):
-        cmds.warning( "[lca_transform.ParentTo] Please pass valid object nodes to be re-parented." )
+    if None == objs:
+        cmds.warning( "[lcTransform.ParentTo] Please pass in valid object nodes to be re-parented." )
         return
-    if (newParent == None):
-        cmds.warning( "[lca_transform.ParentTo] Please pass a valid new parent node." )
+    if None == newParent:
+        cmds.warning( "[lcTransform.ParentTo] Please pass in a valid new parent node." )
 
     sels = OpenMaya.MSelectionList()
     cmds.select( objs, newParent )
@@ -41,7 +41,7 @@ def ParentTo( objs, newParent ):
         dagFn.reparentNode(child, parent)
         dagFn.doIt()
 
-def TransformCrv(curve, transformNode, name="transformedCrv"):
+def TransformCurve(curve, transformNode, newCurveName="transformedCrv"):
     '''
     Transform a curve from one space to another.
     :param curve: the NURBS curve to be transformed
@@ -50,8 +50,17 @@ def TransformCrv(curve, transformNode, name="transformedCrv"):
     :return: the transformed curve
     '''
 
-    if (curve == None):
-        cmds.warning( "[lca_transform.TransformCrv] Please pass a valid NURBS curve " )
+    if None == curve:
+        cmds.warning( "[lcTransform.TransformCrv] Please pass in a valid NURBS curve." )
+        return
+    if None == transformNode:
+        cmds.warning( "[lcTransform.TransformCrv] Please pass in a valid transform node." )
 
-    lastIdx = cmds.getAttr( transformNode + ".inputGeom", size=True )
-    cmds.connectAttr( curve + ".worldSpace[0]", transformNode + ".inputGeom[" + str(lastIdx) + "]" )
+    lastIdx = cmds.getAttr( transformNode + ".inputCurves", size=True )
+    cmds.connectAttr( curve + ".worldSpace[0]", transformNode + ".inputCurves[" + str(lastIdx) + "]" )
+    transformedCrvShape = cmds.createNode( "nurbsCurve" )
+    cmds.connectAttr( transformNode + ".outputCurves[" + str(lastIdx) + "]", transformedCrvShape + ".create")
+    transformedCrv = cmds.listRelatives( transformedCrvShape, p=1 )[0]
+    transformedCrv = cmds.rename( transformedCrv, newCurveName )
+
+    return transformedCrv
