@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
@@ -14,7 +14,6 @@ import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
 import math
-def getSurfaceFn( surface ):
 
 def isSurface( surface ):
     '''
@@ -34,6 +33,7 @@ def isSurface( surface ):
 
     return True
 
+def getSurfaceFn(surface):
     '''
     Create an MFnNurbsSurface class object from the specified nurbs surface.
     :param surface: The NURBS surface to create the function class for

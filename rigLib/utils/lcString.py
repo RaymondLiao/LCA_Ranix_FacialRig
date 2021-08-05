@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
@@ -11,7 +11,7 @@ module for dealing with strings such as retrieving useful information in sub-str
 
 import maya.cmds as cmds
 
-def GetSPluginFileName( pluginModuleInfo ):
+def GetSPluginFilePath(pluginModuleInfo):
     '''
 
     :param pluginModuleInfo: the module information printed in the Script Editor.
@@ -24,4 +24,5 @@ def GetSPluginFileName( pluginModuleInfo ):
     if '.py' not in res:
         return None
 
+    print "The scripted plug-in path: %s" % res
     return res
