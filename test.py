@@ -1,3 +1,4 @@
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 import sys
@@ -21,13 +22,13 @@ from LCA_Ranix_FacialRig.rigLib.experiment import helixCmdTEST;     reload( heli
 
 from LCA_Ranix_FacialRig.rigLib.dependencyNodes import lcCrv_ProjectToUVPlane; reload( lcCrv_ProjectToUVPlane )
 
-# ======================================================================================
+# ======================================================================================================================
 lcTransform.ParentTo( "nurbsCircle1", "nurbsCircleGroup1" )
 lcTransform.ParentTo( "nurbsCircleGroup1", "nurbsPlane1" )
 
 cmds.projectCurve( "nurbsCircle1", "nurbsPlane1" )
 
-# --------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
 # spRandomNode
 randomNodePlugin = cmds.loadPlugin( lcString.GetSPluginFilePath(randomNodeTEST) )[0]
 cmds.unloadPlugin( randomNodePlugin )
@@ -37,7 +38,7 @@ cmds.connectAttr( node + ".Cikti", sel[0] + ".ty" )
 cmds.connectAttr( sel[1] + ".tx", node + ".Girdi" )
 cmds.connectAttr( sel[1] + ".ty", node + ".Cikti" )
 
-# --------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
 # spSineNode
 sineNodePlugin = cmds.loadPlugin( lcString.GetSPluginFilePath(sineNodeTEST) )[0]
 cmds.unloadPlugin( sineNodePlugin )
@@ -46,13 +47,13 @@ node = cmds.createNode( "spSpineNode", n="spSpine_TEST" )
 cmds.connectAttr( sel[0] + ".ty", node + ".input"  )
 cmds.connectAttr( node + ".output", sel[1] + ".ty" )
 
-# --------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
 # spHelixCommand
 helixCmdPlugin = cmds.loadPlugin( lcString.GetSPluginFilePath(helixCmdTEST) )[0]
 cmds.unloadPlugin( helixCmdPlugin )
 OpenMaya.MGlobal.executeCommand( "spHelix -pitch 1 -radius 2" )
 
-# ======================================================================================
+# ======================================================================================================================
 # lcCrv_ProjectToUVPlane
 lcProjCrvPlugin = cmds.loadPlugin( lcString.GetSPluginFilePath(lcCrv_ProjectToUVPlane) )[0]
 projCrvsNode = cmds.createNode( "lcCrv_ProjectToUVPlane", n="lcCrv_ProjectToUVPlane_toPlane" )
@@ -64,7 +65,7 @@ lcTransform.TransformCurve( "nurbsCircle_original", projCrvsNode, "nurbsCircle_p
 cmds.file( newFile=True, force=True )
 cmds.unloadPlugin( lcProjCrvPlugin )
 
-# ======================================================================================
+# ======================================================================================================================
 # DAG relevant tests
 selection = OpenMaya.MSelectionList()
 OpenMaya.MGlobal.getSelectionListByName( "nurbsCircle_originalShape", selection )

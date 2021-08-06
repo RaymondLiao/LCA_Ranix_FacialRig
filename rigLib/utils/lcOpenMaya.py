@@ -9,9 +9,11 @@
 module for facilitating exploiting the Maya Python API functionalities.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
+# ----------------------------------------------------------------------------------------------------------------------
 def getMObjectName( mobject ):
     '''
     Retrieve its MDagPath from an MObject.

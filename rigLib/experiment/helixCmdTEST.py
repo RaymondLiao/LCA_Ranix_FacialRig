@@ -1,12 +1,15 @@
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 import sys, math
+
 kPluginCmdName = "spHelix"
 kPitchFlag = "-p"
 kPitchLongFlag = "-pitch"
 kRadiusFlag = "-r"
 kRadiusLongFlag = "-radius"
 
+# ----------------------------------------------------------------------------------------------------------------------
 # command
 class helixCommand( OpenMayaMPx.MPxCommand ):
     def __init__( self ):

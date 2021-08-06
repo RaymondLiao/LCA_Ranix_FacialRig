@@ -9,6 +9,7 @@
 custom node to map curves' CVs coordinates to a plane within U & V boundaries.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import math, sys
 import maya.OpenMaya as OpenMaya
@@ -16,6 +17,7 @@ import maya.OpenMayaMPx as OpenMayaMPx
 
 from LCA_Ranix_FacialRig.rigLib.utils import lcOpenMaya; reload( lcOpenMaya )
 
+# ----------------------------------------------------------------------------------------------------------------------
 class lcCrv_ProjectToUVPlaneNode(OpenMayaMPx.MPxNode):
     # member variables
     pluginNodeTypeName = "lcCrv_ProjectToUVPlane"

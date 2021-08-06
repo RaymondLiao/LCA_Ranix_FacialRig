@@ -9,9 +9,11 @@
 module for dealing with strings such as retrieving useful information in sub-strings.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 
-def GetSPluginFilePath(pluginModuleInfo):
+# ----------------------------------------------------------------------------------------------------------------------
+def GetSPluginFilePath( pluginModuleInfo ):
     '''
 
     :param pluginModuleInfo: the module information printed in the Script Editor.
@@ -25,4 +27,16 @@ def GetSPluginFilePath(pluginModuleInfo):
         return None
 
     print "The scripted plug-in path: %s" % res
+    return res
+
+def GetSPluginName( pluginFilePath ):
+    '''
+
+    :param pluginFilePath: the full path of the plugin whose name needs to be retrieved.
+    :return: the name of the plug-in, without postfix like .py or .pyc
+    '''
+
+    res = str( pluginFilePath ).split( '\\' )[-1].split( '.' )[0]
+
+    print "The scripted plug-in's name: %s" % res
     return res

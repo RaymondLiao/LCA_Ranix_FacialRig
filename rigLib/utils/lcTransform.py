@@ -9,9 +9,11 @@
 module for transforming objects from one space to another.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
+# ----------------------------------------------------------------------------------------------------------------------
 def ParentTo( objs, newParent ):
     '''
     Reparent objects.
