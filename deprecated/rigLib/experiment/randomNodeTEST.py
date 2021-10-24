@@ -1,8 +1,10 @@
+# ----------------------------------------------------------------------------------------------------------------------
 import math, sys
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 import random
 
+# ----------------------------------------------------------------------------------------------------------------------
 kPluginNodeTypeName = "spRandomNode"
 randomNodeId = OpenMaya.MTypeId( 0x87300 )
 

@@ -2,16 +2,18 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
 module for transforming objects from one space to another.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
+# ----------------------------------------------------------------------------------------------------------------------
 def ParentTo( objs, newParent ):
     '''
     Reparent objects.

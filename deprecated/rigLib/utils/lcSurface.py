@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
@@ -10,11 +10,13 @@ module for facilitating querying, calculating or manipulating NURBS surfaces' re
 Notate that some of the functions were copied or written through taking modules from the github repository "bungnoid/glTools" as references.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
 import math
 
+# ----------------------------------------------------------------------------------------------------------------------
 def isSurface( surface ):
     '''
     Check if the specified object is a nurbs surface or transform parent of a surface.
@@ -33,7 +35,7 @@ def isSurface( surface ):
 
     return True
 
-def getSurfaceFn(surface):
+def getSurfaceFn( surface ):
     '''
     Create an MFnNurbsSurface class object from the specified nurbs surface.
     :param surface: The NURBS surface to create the function class for

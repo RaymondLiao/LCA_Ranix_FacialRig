@@ -2,19 +2,21 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
 module for facilitating exploiting the Maya Python API functionalities.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 
+# ----------------------------------------------------------------------------------------------------------------------
 def getMObjectName( mobject ):
     '''
-    Retrieve its MDagPath from an MObject
+    Retrieve its MDagPath from an MObject.
     :param mobject: The object to get the DAG path from.
     :type mobject: OpenMaya.MObject
     '''
@@ -35,3 +37,23 @@ def getMObjectName( mobject ):
         name = fullName[0]
 
     return name
+
+def makeNodeInput( attr ):
+    '''
+    Set a node's some input plug's common states.
+    :param attr: Should be derived from the class MFnAttribute
+    '''
+    attr.setKeyable( True )
+    attr.setStorable( True )
+    attr.setReadable( True )
+    attr.setWritable( True )
+
+def makeNodeOutput( attr ):
+    '''
+    Set a node's some output plug's common states.
+    :param attr: Should be derived from the class MFnAttribute
+    '''
+    attr.setKeyable( False )
+    attr.setStorable( False )
+    attr.setReadable( True )
+    attr.setWritable( False )

@@ -1,7 +1,9 @@
+# ----------------------------------------------------------------------------------------------------------------------
 import math, sys
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
 
+# ----------------------------------------------------------------------------------------------------------------------
 kPluginNodeTypeName = "spSpineNode"
 sineNodeId = OpenMaya.MTypeId( 0x8700 )
 

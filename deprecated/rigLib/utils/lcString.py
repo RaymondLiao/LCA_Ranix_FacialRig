@@ -2,16 +2,18 @@
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
 # Author: Sheng (Raymond) Liao
-# Date: June 2021
+# Date: August 2021
 #
 
 '''
 module for dealing with strings such as retrieving useful information in sub-strings.
 '''
 
+# ----------------------------------------------------------------------------------------------------------------------
 import maya.cmds as cmds
 
-def GetSPluginFileName( pluginModuleInfo ):
+# ----------------------------------------------------------------------------------------------------------------------
+def GetSPluginFilePath( pluginModuleInfo ):
     '''
 
     :param pluginModuleInfo: the module information printed in the Script Editor.
@@ -24,4 +26,17 @@ def GetSPluginFileName( pluginModuleInfo ):
     if '.py' not in res:
         return None
 
+    print "The scripted plug-in path: %s" % res
+    return res
+
+def GetSPluginName( pluginFilePath ):
+    '''
+
+    :param pluginFilePath: the full path of the plugin whose name needs to be retrieved.
+    :return: the name of the plug-in, without postfix like .py or .pyc
+    '''
+
+    res = str( pluginFilePath ).split( '\\' )[-1].split( '.' )[0]
+
+    print "The scripted plug-in's name: %s" % res
     return res
