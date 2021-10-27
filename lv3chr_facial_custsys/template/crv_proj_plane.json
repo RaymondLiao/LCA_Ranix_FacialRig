@@ -1,0 +1,90 @@
+{
+  "translation plane": {
+    "degree": 1,
+    "patchesU": 4,
+    "patchesV": 6,
+
+    "right_up": {
+      "name": "fm_eyelidProjectPlane_RU_nbs",
+      "xform": {
+        "translation": [4.0, 16.0, 0.0],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [4.0, 1.0, 4.8]
+      }
+    },
+
+    "right_dn": {
+      "name": "fm_eyelidProjectPlane_RD_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      }
+    },
+
+    "left_up": {
+      "name": "fm_eyelidProjectPlane_LU_nbs",
+      "xform": {
+        "translation": [9.0, 16.0, 0.0],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [4.0, 1.0, 4.8]
+      }
+    },
+
+    "left_dn": {
+      "name": "fm_eyelidProjectPlane_LD_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      }
+    }
+  },
+
+  "projection plane": {
+    "right_up": {
+      "name": "fm_eyelidFaceMask_RU_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      },
+      "control_vtx": [
+
+      ]
+    },
+    "right_dn": {
+      "name": "fm_eyelidFaceMask_RD_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      },
+      "control_vtx": [
+
+      ]
+    },
+    "left_up": {
+      "name": "fm_eyelidFaceMask_LU_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      },
+      "control_vtx": [
+
+      ]
+    },
+    "left_dn": {
+      "name": "fm_eyelidFaceMask_LD_nbs",
+      "xform": {
+        "translation": [],
+        "rotation": [],
+        "scale": []
+      },
+      "control_vtx": [
+
+      ]
+    }
+  }
+}
