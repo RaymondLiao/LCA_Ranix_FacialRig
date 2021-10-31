@@ -54,6 +54,7 @@ def setup_proj_planes():
         cmds.error('Error thrown while setting up the data curve projection plane: {}'.format(
             sys.exc_info()[0]
         ))
+    crv_proj_plane_dir_list = ['right_up', 'right_dn', 'left_up', 'left_dn']
 
     # Create the controller translation planes
     crv_proj_transplane_data = crv_proj_plane_data['translation_plane']
@@ -61,62 +62,44 @@ def setup_proj_planes():
     crv_proj_transplane_patchesU = crv_proj_transplane_data['patchesU']
     crv_proj_transplane_patchesV = crv_proj_transplane_data['patchesV']
 
-    # translation plane right-up
-    eyelidctrl_transplane_RU_data = crv_proj_transplane_data['right_up']
+    for dir in crv_proj_plane_dir_list:
+        eyelidctrl_transplane_data = crv_proj_transplane_data[dir]
 
-    eyelidctrl_transplane_RU = curveTransPlane(eyelidctrl_transplane_RU_data['name'],
-                                               crv_proj_transplane_degree,
-                                               crv_proj_transplane_patchesU,
-                                               crv_proj_transplane_patchesV,
-                                               eyelidctrl_transplane_RU_data['xform']['translation'],
-                                               eyelidctrl_transplane_RU_data['xform']['rotation'],
-                                               eyelidctrl_transplane_RU_data['xform']['scale'],
-                                               [-1, 1, 1])
+        mirror = [1, 1, 1]
+        if 'right' in dir:
+            mirror = [-1, 1, 1]
 
-    # translation plane right-down
-    eyelidctrl_transplane_RD_data = crv_proj_transplane_data['right_dn']
+        eyelidctrl_transplane = curveTransPlane(name = eyelidctrl_transplane_data['name'],
+                                                degree = crv_proj_transplane_degree,
+                                                patchesU = crv_proj_transplane_patchesU,
+                                                patchesV = crv_proj_transplane_patchesV,
+                                                translation = eyelidctrl_transplane_data['xform']['translation'],
+                                                rotation = eyelidctrl_transplane_data['xform']['rotation'],
+                                                scale = eyelidctrl_transplane_data['xform']['scale'],
+                                                mirror = mirror)
 
-    eyelidctrl_transplane_RD = curveTransPlane(eyelidctrl_transplane_RD_data['name'],
-                                               crv_proj_transplane_degree,
-                                               crv_proj_transplane_patchesU,
-                                               crv_proj_transplane_patchesV,
-                                               eyelidctrl_transplane_RD_data['xform']['translation'],
-                                               eyelidctrl_transplane_RD_data['xform']['rotation'],
-                                               eyelidctrl_transplane_RD_data['xform']['scale'],
-                                               [-1, 1, 1])
+    # Create the controller projection planes
+    crv_proj_projplane_data = crv_proj_plane_data['projection_plane']
+    crv_proj_projplane_degree = crv_proj_projplane_data['degree']
+    crv_proj_projplane_patchesU = crv_proj_projplane_data['patchesU']
+    crv_proj_projplane_patchesV = crv_proj_projplane_data['patchesV']
 
-    # translation plane left-up
-    eyelidctrl_transplane_LU_data = crv_proj_transplane_data['left_up']
+    for dir in crv_proj_plane_dir_list:
+        eyelidctrl_projplane_data = crv_proj_projplane_data[dir]
 
-    eyelidctrl_transplane_LU = curveTransPlane(eyelidctrl_transplane_LU_data['name'],
-                                               crv_proj_transplane_degree,
-                                               crv_proj_transplane_patchesU,
-                                               crv_proj_transplane_patchesV,
-                                               eyelidctrl_transplane_LU_data['xform']['translation'],
-                                               eyelidctrl_transplane_LU_data['xform']['rotation'],
-                                               eyelidctrl_transplane_LU_data['xform']['scale'])
+        mirror = [1, 1, 1]
+        if 'right' in dir:
+            mirror = [-1, 1, 1]
 
-    # translation plane left-down
-    eyelidctrl_transplane_LD_data = crv_proj_transplane_data['left_dn']
-
-    eyelidctrl_transplane_LD = curveTransPlane(eyelidctrl_transplane_LD_data['name'],
-                                               crv_proj_transplane_degree,
-                                               crv_proj_transplane_patchesU,
-                                               crv_proj_transplane_patchesV,
-                                               eyelidctrl_transplane_LD_data['xform']['translation'],
-                                               eyelidctrl_transplane_LD_data['xform']['rotation'],
-                                               eyelidctrl_transplane_LD_data['xform']['scale'])
-
-    # # Create the controller projection planes
-    # eyelidctrl_projplane_RU = cmds.nurbsPlane()
-    #
-    # eyelidctrl_projplane_RU = cmds.rename(eyelidctrl_projplane_RU, 'fm_eyelidFaceMask_RU_nbs')
-    # eyelidctrl_projplane_RD = cmds.nurbsPlane()
-    # eyelidctrl_projplane_RD = cmds.rename(eyelidctrl_projplane_RD, 'fm_eyelidFaceMask_RD_nbs')
-    # eyelidctrl_projplane_LU = cmds.nurbsPlane()
-    # eyelidctrl_projplane_LU = cmds.rename(eyelidctrl_projplane_LU, 'fm_eyelidFaceMask_LU_nbs')
-    # eyelidctrl_projplane_LD = cmds.nurbsPlane()
-    # eyelidctrl_projplane_LD = cmds.rename(eyelidctrl_projplane_LD, 'fm_eyelidFaceMask_LD_nbs')
+        eyelidctrl_projplane = curveProjPlane(name = eyelidctrl_projplane_data['name'],
+                                              degree = crv_proj_projplane_degree,
+                                              patchesU = crv_proj_projplane_patchesU,
+                                              patchesV = crv_proj_projplane_patchesV,
+                                              translation = eyelidctrl_projplane_data['xform']['translation'],
+                                              rotation = eyelidctrl_projplane_data['xform']['rotation'],
+                                              scale = eyelidctrl_projplane_data['xform']['scale'],
+                                              cv_list = eyelidctrl_projplane_data['control_vtx'],
+                                              mirror = mirror)
 
     f_crv_proj_plane_data.close()
 
