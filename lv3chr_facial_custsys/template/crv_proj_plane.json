@@ -1,5 +1,5 @@
 {
-  "translation plane": {
+  "translation_plane": {
     "degree": 1,
     "patchesU": 4,
     "patchesV": 6,
@@ -8,17 +8,17 @@
       "name": "fm_eyelidProjectPlane_RU_nbs",
       "xform": {
         "translation": [4.0, 16.0, 0.0],
-        "rotation": [90.0, 0.0, 0.0],
-        "scale": [4.0, 1.0, 4.8]
+        "rotation": [0.0, -90.0, 0.0],
+        "scale": [1.0, 4.8, 4.0]
       }
     },
 
     "right_dn": {
       "name": "fm_eyelidProjectPlane_RD_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [4.0, 16.0, 0.0],
+        "rotation": [0.0, -90.0, 0.0],
+        "scale": [1.0, 4.8, 4.0]
       }
     },
 
@@ -26,28 +26,28 @@
       "name": "fm_eyelidProjectPlane_LU_nbs",
       "xform": {
         "translation": [9.0, 16.0, 0.0],
-        "rotation": [90.0, 0.0, 0.0],
-        "scale": [4.0, 1.0, 4.8]
+        "rotation": [0.0, -90.0, 0.0],
+        "scale": [1.0, 4.8, 4.0]
       }
     },
 
     "left_dn": {
       "name": "fm_eyelidProjectPlane_LD_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [9.0, 16.0, 0.0],
+        "rotation": [0.0, -90.0, 0.0],
+        "scale": [1.0, 4.8, 4.0]
       }
     }
   },
 
-  "projection plane": {
+  "projection_plane": {
     "right_up": {
       "name": "fm_eyelidFaceMask_RU_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [-0.45, 16.65, 1.6],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [0.65, 1.0, 0.65]
       },
       "control_vtx": [
 
@@ -56,9 +56,9 @@
     "right_dn": {
       "name": "fm_eyelidFaceMask_RD_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [-0.45, 16.65, 1.6],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [0.65, 1.0, 0.65]
       },
       "control_vtx": [
 
@@ -67,9 +67,9 @@
     "left_up": {
       "name": "fm_eyelidFaceMask_LU_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [0.45, 16.65, 1.6],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [0.65, 1.0, 0.65]
       },
       "control_vtx": [
 
@@ -78,9 +78,9 @@
     "left_dn": {
       "name": "fm_eyelidFaceMask_LD_nbs",
       "xform": {
-        "translation": [],
-        "rotation": [],
-        "scale": []
+        "translation": [0.45, 16.65, 1.6],
+        "rotation": [90.0, 0.0, 0.0],
+        "scale": [0.65, 1.0, 0.65]
       },
       "control_vtx": [
 
