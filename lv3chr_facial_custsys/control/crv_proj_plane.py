@@ -21,7 +21,7 @@ class curveTransPlane(object):
     _degree = 1
     _patchesU = 4
     _patchesV = 6
-    _curve = None
+    _nurbs_srf = None
 
     def __init__(self, name='curve_translation_plane', degree=1, patchesU=4, patchesV=6,
                translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0], scale=[1.0, 1.0, 1.0],
@@ -31,26 +31,26 @@ class curveTransPlane(object):
         self._patchesU = patchesU
         self._patchesV = patchesV
 
-        self._curve = cmds.nurbsPlane(degree=self._degree,
-                                      patchesU=self._patchesU,
-                                      patchesV=self._patchesV)[0]   # Note the [0] indexing
+        self._nurbs_srf = cmds.nurbsPlane(degree=self._degree,
+                                          patchesU=self._patchesU,
+                                          patchesV=self._patchesV)[0]   # Note the [0] indexing
 
-        cmds.xform(self._curve,
+        cmds.xform(self._nurbs_srf,
                    translation=translation,
                    rotation=rotation,
                    scale=scale)
-        cmds.makeIdentity(self._curve, apply=True)
-        cmds.xform(self._curve, scale=mirror)
+        cmds.makeIdentity(self._nurbs_srf, apply=True)
+        cmds.xform(self._nurbs_srf, scale=mirror)
 
-        self._curve = cmds.rename(self._curve, name)
-        cmds.toggle(self._curve, template=True)
+        self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
+        cmds.toggle(self._nurbs_srf, template=True)
 
     def __repr__(self):
         warnings.warn('No Implementation.')
         pass
 
     def name(self):
-        return str(self._curve)
+        return str(self._nurbs_srf)
 
 
 class curveProjPlane(object):
@@ -62,7 +62,7 @@ class curveProjPlane(object):
     _patchesU = 4
     _patchesV = 6
     _cv_coords = []
-    _curve = None
+    _nurbs_srf = None
 
     def __init__(self, name='curve_projection_plane',
                  degree=1, patchesU=4, patchesV=6, cv_list=[],
@@ -78,9 +78,9 @@ class curveProjPlane(object):
         self._patchesV = patchesV
         assert len(cv_list) <= (patchesU+1) * (patchesV+1)
 
-        self._curve = cmds.nurbsPlane(degree=self._degree,
-                                      patchesU=self._patchesU,
-                                      patchesV=self._patchesV)[0]   # Note the [0] indexing
+        self._nurbs_srf = cmds.nurbsPlane(degree=self._degree,
+                                          patchesU=self._patchesU,
+                                          patchesV=self._patchesV)[0]   # Note the [0] indexing
         if len(cv_list) > 0:
             for cv_coord_dict in cv_list:
                 cv_coord_idx = list(cv_coord_dict.keys())[0]
@@ -91,22 +91,22 @@ class curveProjPlane(object):
 
                 # print('cv_coord: ({},{}) : {}'.format(idx_u, idx_v, cv_coord))
                 assert len(cv_coord) == 3
-                cmds.setAttr(self._curve+'.cv[{}][{}]'.format(idx_u, idx_v),
+                cmds.setAttr(self._nurbs_srf + '.cv[{}][{}]'.format(idx_u, idx_v),
                              cv_coord[0], cv_coord[1], cv_coord[2])
 
-        cmds.xform(self._curve,
+        cmds.xform(self._nurbs_srf,
                    translation=translation,
                    rotation=rotation,
                    scale=scale)
-        cmds.makeIdentity(self._curve, apply=True)
-        cmds.xform(self._curve, scale=mirror)
+        cmds.makeIdentity(self._nurbs_srf, apply=True)
+        cmds.xform(self._nurbs_srf, scale=mirror)
 
-        self._curve = cmds.rename(self._curve, name)
-        cmds.toggle(self._curve, template=True, controlVertex=True)
+        self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
+        cmds.toggle(self._nurbs_srf, template=True, controlVertex=True)
 
     def __repr__(self):
         warnings.warn('No Implementation.')
         pass
 
     def name(self):
-        return str(self._curve)
+        return str(self._nurbs_srf)
