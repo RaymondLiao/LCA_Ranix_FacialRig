@@ -36,7 +36,7 @@ def lc3chr_facialsys_construct():
     setup_proj_planes()
     setup_ctrl_crvs()
     setup_ctrl_locs()
-    setup_ctrl_locs()
+    setup_ctrls()
     setup_ctrl_data_transfer()
 
 def setup_proj_planes():
@@ -48,7 +48,7 @@ def setup_proj_planes():
     try:
         root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
         # print('lv3 character facial module root path: {}'.format(root_path))
-        f_crv_proj_plane_data = open(root_path+'/template/crv_proj_plane.json', 'r')
+        f_crv_proj_plane_data = open(root_path+'/template/crv_proj_plane_data.json', 'r')
         crv_proj_plane_data = json.load(f_crv_proj_plane_data)
     except:
         cmds.error('Error thrown while setting up the data curve projection plane: {}'.format(
