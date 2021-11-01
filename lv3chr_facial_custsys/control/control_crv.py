@@ -9,3 +9,12 @@
 """
 A module containing the definitions of control curves.
 """
+
+import warnings
+import maya.cmds as cmds
+
+class controlCurve(object):
+    """ Control Curves are used to transit the translation of
+    locators binding joints on the projected surface.
+    """
+

@@ -107,7 +107,8 @@ def setup_ctrl_crvs():
     """ Create the facial controlling NURBS curves.
     :return: None
     """
-    # cmds.warning('[setup_ctrl_crvs] No Implementation')
+
+
     pass
 
     # Left Eyes
