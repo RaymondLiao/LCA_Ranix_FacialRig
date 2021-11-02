@@ -13,6 +13,8 @@ A module containing the definitions of control-curves projection plane classes
 import warnings
 import maya.cmds as cmds
 
+from general import lv3chr_facialsys_config
+
 class curveTransPlane(object):
     """ translation plane indicating the movement area of facial rig control
     data curves' CVs
@@ -102,7 +104,13 @@ class curveProjPlane(object):
         cmds.xform(self._nurbs_srf, scale=mirror)
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
-        cmds.toggle(self._nurbs_srf, template=True, controlVertex=True)
+
+        cmds.select(self._nurbs_srf)
+        # cmds.sets(name=lv3chr_facialsys_config.PROJ_PLANE_SET)
+        # cmds.sets(lv3chr_facialsys_config.PROJ_PLANE_SHADER+'_SG', edit=True,
+        #           forceElement=lv3chr_facialsys_config.PROJ_PLANE_SET)
+        # cmds.toggle(self._nurbs_srf, template=True, controlVertex=True)
+        cmds.toggle(self._nurbs_srf, controlVertex=True)
 
     def __repr__(self):
         warnings.warn('No Implementation.')

@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: lv3chr_facial_custsys_demo.py
+# File Name: lv3chr_facialsys_demo.py
 # Author: Sheng (Raymond) Liao
 # Date: October 2021
 #
@@ -15,6 +15,8 @@ import sys
 import json
 
 import maya.cmds as cmds
+
+from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
 
 from control import crv_proj_plane; reload(crv_proj_plane)
 from control.crv_proj_plane import curveTransPlane, curveProjPlane
@@ -47,6 +49,12 @@ def setup_proj_planes():
 
     :return: None
     """
+
+    proj_srf_shader = cmds.shadingNode('lambert', asShader=True, name=lv3chr_facialsys_config.PROJ_PLANE_SHADER)
+    cmds.setAttr(proj_srf_shader + '.transparency', 0.25, 0.25, 0.25, type='double3')
+    proj_srf_shader_SG = cmds.sets(name=proj_srf_shader+'_SG',
+                                   renderable=True, noSurfaceShader=True, empty=True,)
+    cmds.connectAttr(proj_srf_shader+'.outColor', proj_srf_shader_SG+'.surfaceShader', force=True)
 
     # Load the curve projection planes' data from the json document.
     try:
