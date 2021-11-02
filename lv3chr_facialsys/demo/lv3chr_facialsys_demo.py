@@ -26,6 +26,9 @@ from control.crv_proj_plane import curveTransPlane, curveProjPlane
 from control import ctrl_curve; reload(ctrl_curve)
 from control.ctrl_curve import controlCurve
 
+from control import controller; reload(controller)
+from control.controller import controller
+
 def lc3chr_facialsys_construct():
 
     setup_group_hierarchy()
@@ -40,19 +43,6 @@ def lc3chr_facialsys_construct():
 
 def setup_proj_planes():
     """ Create the projection planes containing locators and joints.
-
-    # controller translation planes' names:
-    # -- fm_eyelidProjectPlane_RU_nbs
-    # -- fm_eyelidProjectPlane_RD_nbs
-    # -- fm_eyelidProjectPlane_LU_nbs
-    # -- fm_eyelidProjectPlane_LD_nbs
-
-    # controller (translation) projection planes' names:
-    # -- fm_eyelidFaceMask_RU_nbs
-    # -- fm_eyelidFaceMask_RD_nbs
-    # -- fm_eyelidFaceMask_LU_nbs
-    # -- fm_eyelidFaceMask_LD_nbs
-
     :return: None
     """
 
@@ -63,9 +53,10 @@ def setup_proj_planes():
                                    renderable=True, empty=True,)
     cmds.connectAttr(proj_srf_shader+'.outColor', proj_srf_shader_SG+'.surfaceShader', force=True)
 
-    # Load the curve projection planes' data from the json document.
+    # Load the curve projection planes' data from the JSON document.
+    root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
+
     try:
-        root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
         # print('lv3 character facial module root path: {}'.format(root_path))
         f_crv_proj_plane_data = open(root_path+'/template/crv_proj_plane_data.json', 'r')
         crv_proj_plane_data = json.load(f_crv_proj_plane_data)
@@ -152,31 +143,10 @@ def setup_ctrl_crvs():
     :return: None
     """
 
-    # Control curves' names:
-    # -- fm_eyelidProject_RU_A_curve
-    # -- fm_eyelidProject_RU_B_curve
-    # -- fm_eyelidProject_RU_C_curve
-    # -- fm_eyelidProject_RU_D_curve
+    # Load the control curves' and controllers' data from the JSON document.
+    root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
 
-    # -- fm_eyelidProject_RD_A_curve
-    # -- fm_eyelidProject_RD_B_curve
-    # -- fm_eyelidProject_RD_C_curve
-    # -- fm_eyelidProject_RD_D_curve
-
-    # -- fm_eyelidProject_LU_A_curve
-    # -- fm_eyelidProject_LU_B_curve
-    # -- fm_eyelidProject_LU_D_curve
-    # -- fm_eyelidProject_LU_D_curve
-
-    # -- fm_eyelidProject_LD_A_curve
-    # -- fm_eyelidProject_LD_B_curve
-    # -- fm_eyelidProject_LD_C_curve
-    # -- fm_eyelidProject_LD_D_curve
-
-    # Load the control curves' data from the json document.
     try:
-        root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
-
         f_ctrl_crv_data = open(root_path+'/template/control_crv_data.json', 'r')
         ctrl_crv_data = json.load(f_ctrl_crv_data)
     except:
@@ -184,14 +154,15 @@ def setup_ctrl_crvs():
             sys.exc_info()[0]
         ))
 
-    ctrl_crv_dir_list = ['right_up', 'right_dn', 'left_up', 'left_dn']
+    ctrl_dir_list = ['right_up', 'right_dn', 'left_up', 'left_dn']
     ctrl_crv_id_list = ['A', 'B', 'C', 'D']
+    controller_id_list = ['A', 'B', 'C', 'D', 'E']
 
     # Create the control curves.
     eyelid_ctrlcrv_data = ctrl_crv_data['eyelid_control_curve']
     eyelid_ctrlcrv_degree = eyelid_ctrlcrv_data['degree']
 
-    for dir in ctrl_crv_dir_list:
+    for dir in ctrl_dir_list:
         for id in ctrl_crv_id_list:
             eyelid_dir_ctrlcrv_data = eyelid_ctrlcrv_data[dir+'_'+id]
             eyelid_ctrl_crv = controlCurve(name = eyelid_dir_ctrlcrv_data['name'],
@@ -211,6 +182,42 @@ def setup_ctrl_crvs():
             else:
                 cmds.parent(eyelid_ctrl_crv.get_name(),
                             lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
+
+    # Create the controllers.
+    eyelid_controller_data = ctrl_crv_data['eyelid_controller']
+    eyelid_controller_degree = eyelid_controller_data['degree']
+    eyelid_controller_points = []
+
+    for dir in ctrl_dir_list:
+        if 'up' in dir:
+            eyelid_controller_points = eyelid_controller_data['points_up']
+        elif 'dn' in dir:
+            eyelid_controller_points = eyelid_controller_data['points_dn']
+
+        for id in controller_id_list:
+            eyelid_dir_ctrl_data = eyelid_controller_data[dir+'_'+id]
+            eyelid_controller = controller(name = eyelid_dir_ctrl_data['name'],
+                                           degree = eyelid_controller_degree,
+                                           points = eyelid_controller_points,
+                                           translation_ofs = eyelid_dir_ctrl_data['xform']['translation_ofs'],
+                                           translation = eyelid_dir_ctrl_data['xform']['translation'])
+
+            if 'right_up' == dir:
+                cmds.parent(eyelid_controller.get_offset_group(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name(),
+                            relative=True)
+            elif 'right_dn' == dir:
+                cmds.parent(eyelid_controller.get_offset_group(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name(),
+                            relative=True)
+            elif 'left_up' == dir:
+                cmds.parent(eyelid_controller.get_offset_group(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name(),
+                            relative=True)
+            else:
+                cmds.parent(eyelid_controller.get_offset_group(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name(),
+                            relative=True)
 
 
 # def setup_ctrl_locs():

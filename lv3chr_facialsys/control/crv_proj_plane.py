@@ -126,3 +126,16 @@ class curveProjPlane(object):
 
     def get_name(self):
         return str(self._nurbs_srf)
+
+# ------------------------------------------------------------------
+    # eyelid control curves translation planes' names:
+    # -- fm_eyelidProjectPlane_RU_nbs
+    # -- fm_eyelidProjectPlane_RD_nbs
+    # -- fm_eyelidProjectPlane_LU_nbs
+    # -- fm_eyelidProjectPlane_LD_nbs
+
+    # eyelid control curves (translation) projection planes' names:
+    # -- fm_eyelidFaceMask_RU_nbs
+    # -- fm_eyelidFaceMask_RD_nbs
+    # -- fm_eyelidFaceMask_LU_nbs
+    # -- fm_eyelidFaceMask_LD_nbs
