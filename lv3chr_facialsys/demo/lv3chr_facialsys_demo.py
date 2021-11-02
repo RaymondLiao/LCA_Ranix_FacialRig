@@ -15,8 +15,10 @@ import sys
 import json
 
 import maya.cmds as cmds
+import maya.mel as mel
 
 from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
+from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
 
 from control import crv_proj_plane; reload(crv_proj_plane)
 from control.crv_proj_plane import curveTransPlane, curveProjPlane
@@ -26,11 +28,15 @@ from control.ctrl_curve import controlCurve
 
 def lc3chr_facialsys_construct():
 
+    setup_group_hierarchy()
+
     setup_proj_planes()
     setup_ctrl_crvs()
-    # setup_ctrl_locs()
-    # setup_ctrls()
     setup_ctrl_data_transfer()
+
+    # Do clean-up.
+    cmds.select(deselect=True)
+    mel.eval('hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes")')
 
 def setup_proj_planes():
     """ Create the projection planes containing locators and joints.
@@ -51,9 +57,10 @@ def setup_proj_planes():
     """
 
     proj_srf_shader = cmds.shadingNode('lambert', asShader=True, name=lv3chr_facialsys_config.PROJ_PLANE_SHADER)
-    cmds.setAttr(proj_srf_shader + '.transparency', 0.25, 0.25, 0.25, type='double3')
+    cmds.setAttr(proj_srf_shader+'.color', 0.0, 0.0, 0.0, type='double3')
+    cmds.setAttr(proj_srf_shader+'.transparency', 0.85, 0.85, 0.85, type='double3')
     proj_srf_shader_SG = cmds.sets(name=proj_srf_shader+'_SG',
-                                   renderable=True, noSurfaceShader=True, empty=True,)
+                                   renderable=True, empty=True,)
     cmds.connectAttr(proj_srf_shader+'.outColor', proj_srf_shader_SG+'.surfaceShader', force=True)
 
     # Load the curve projection planes' data from the json document.
@@ -89,6 +96,18 @@ def setup_proj_planes():
                                                     rotation = eyelid_dir_transplane_data['xform']['rotation'],
                                                     scale = eyelid_dir_transplane_data['xform']['scale'],
                                                     mirror = mirror)
+        if 'right_up' == dir:
+            cmds.parent(eyelid_crvproj_transplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
+        elif 'right_dn' == dir:
+            cmds.parent(eyelid_crvproj_transplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
+        elif 'left_up' == dir:
+            cmds.parent(eyelid_crvproj_transplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
+        else:
+            cmds.parent(eyelid_crvproj_transplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
 
     # Create the controller projection planes
     eyelid_crvproj_projplane_data = crv_proj_plane_data['eyelid_projection_plane']
@@ -112,6 +131,19 @@ def setup_proj_planes():
                                                   scale = eyelid_dir_projplane_data['xform']['scale'],
                                                   cv_list = eyelid_dir_projplane_data['control_vtx'],
                                                   mirror = mirror)
+
+        if 'right_up' == dir:
+            cmds.parent(eyelid_crvproj_projplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_projsrf_RU_grp.get_group_name())
+        elif 'right_dn' == dir:
+            cmds.parent(eyelid_crvproj_projplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_projsrf_RD_grp.get_group_name())
+        elif 'left_up' == dir:
+            cmds.parent(eyelid_crvproj_projplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_projsrf_LU_grp.get_group_name())
+        else:
+            cmds.parent(eyelid_crvproj_projplane.get_name(),
+                        lv3chr_facialsys_hierarchy.eyelid_projsrf_LD_grp.get_group_name())
 
     f_crv_proj_plane_data.close()
 
@@ -167,6 +199,19 @@ def setup_ctrl_crvs():
                                            points = eyelid_dir_ctrlcrv_data['points'],
                                            translation = eyelid_dir_ctrlcrv_data['xform']['translation'])
 
+            if 'right_up' == dir:
+                cmds.parent(eyelid_ctrl_crv.get_name(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
+            elif 'right_dn' == dir:
+                cmds.parent(eyelid_ctrl_crv.get_name(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
+            elif 'left_up' == dir:
+                cmds.parent(eyelid_ctrl_crv.get_name(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
+            else:
+                cmds.parent(eyelid_ctrl_crv.get_name(),
+                            lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
+
 
 # def setup_ctrl_locs():
 #     """ Create the locators on the controlling curves and the projection planes.
@@ -190,7 +235,13 @@ def setup_ctrl_data_transfer():
     # cmds.warning('[setup_ctrl_data_transfer] No Implementation')
     pass
 
+def setup_group_hierarchy():
+    """
+    :return: None
+    """
 
+    eyelid_grp = lv3chr_facialsys_hierarchy.eyelid_grp
+    eyelid_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
 lc3chr_facialsys_construct()

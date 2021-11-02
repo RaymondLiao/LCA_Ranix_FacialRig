@@ -42,7 +42,7 @@ class lcCrv_ProjectToUVPlaneNode(OpenMayaMPx.MPxNode):
         OpenMayaMPx.MPxNode.__init__( self )
 
     def compute( self, plug, dataBlock ):
-        print "Called lcCrv_ProjectToUVPlaneNode.compute(). The plug is %s" % plug.name()
+        print "Called lcCrv_ProjectToUVPlaneNode.compute(). The plug is %s" % plug.get_name()
         if plug != lcCrv_ProjectToUVPlaneNode.attr_outputCurves and plug.array() != lcCrv_ProjectToUVPlaneNode.attr_outputCurves:
             return
 

@@ -13,6 +13,8 @@ A module containing the definitions of control curves.
 import warnings
 import maya.cmds as cmds
 
+from general import lv3chr_facialsys_config
+
 class controlCurve(object):
     """ Control Curves are used to transit the translation of
     locators binding joints on the projected surface.
@@ -35,11 +37,14 @@ class controlCurve(object):
                    translation=translation)
 
         self._nurbs_crv = cmds.rename(self._nurbs_crv, name)
+
+        cmds.setAttr(self._nurbs_crv+'.overrideEnabled', True)
+        cmds.setAttr(self._nurbs_crv+'.overrideColor', lv3chr_facialsys_config.CTRL_CURVE_COLOR_INDEX)
         cmds.toggle(self._nurbs_crv, controlVertex=True)
 
     def __repr__(self):
         warnings.warn('No Implementation')
         pass
 
-    def name(self):
+    def get_name(self):
         return str(self._nurbs_crv)

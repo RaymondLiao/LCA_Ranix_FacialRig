@@ -1,1 +1,1 @@
-import lv3chr_facialsys_demo
+import lv3chr_facialsys_demo; reload(lv3chr_facialsys_demo)

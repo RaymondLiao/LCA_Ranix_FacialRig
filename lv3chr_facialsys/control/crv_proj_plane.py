@@ -43,6 +43,9 @@ class curveTransPlane(object):
                    scale=scale)
         cmds.makeIdentity(self._nurbs_srf, apply=True)
         cmds.xform(self._nurbs_srf, scale=mirror)
+        # Reverse the surface normals if mirroring along x-axis.
+        if mirror[0] < 0:
+            cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
         cmds.toggle(self._nurbs_srf, template=True)
@@ -51,7 +54,7 @@ class curveTransPlane(object):
         warnings.warn('No Implementation.')
         pass
 
-    def name(self):
+    def get_name(self):
         return str(self._nurbs_srf)
 
 
@@ -102,19 +105,24 @@ class curveProjPlane(object):
                    scale=scale)
         cmds.makeIdentity(self._nurbs_srf, apply=True)
         cmds.xform(self._nurbs_srf, scale=mirror)
+        # Reverse the surface normals if mirroring along x-axis.
+        if mirror[0] < 0:
+            cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
 
-        cmds.select(self._nurbs_srf)
-        # cmds.sets(name=lv3chr_facialsys_config.PROJ_PLANE_SET)
-        # cmds.sets(lv3chr_facialsys_config.PROJ_PLANE_SHADER+'_SG', edit=True,
-        #           forceElement=lv3chr_facialsys_config.PROJ_PLANE_SET)
-        # cmds.toggle(self._nurbs_srf, template=True, controlVertex=True)
+        # Set display attributes.
+        cmds.select(self._nurbs_srf, replace=True)
+        cmds.sets(edit=True, forceElement=lv3chr_facialsys_config.PROJ_PLANE_SHADER+'_SG')
+        cmds.select(deselect=True)
+
+        cmds.setAttr(self._nurbs_srf+'.overrideEnabled', True)
+        cmds.setAttr(self._nurbs_srf+'.overrideColor', lv3chr_facialsys_config.PROJ_SURFACE_COLOR_INDEX)
         cmds.toggle(self._nurbs_srf, controlVertex=True)
 
     def __repr__(self):
         warnings.warn('No Implementation.')
         pass
 
-    def name(self):
+    def get_name(self):
         return str(self._nurbs_srf)
