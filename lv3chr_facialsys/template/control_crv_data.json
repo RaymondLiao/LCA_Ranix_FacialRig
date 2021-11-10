@@ -1,9 +1,11 @@
 {
+  "eyelid_zone_prefix": "fm_eyelidProject",
+
   "eyelid_control_curve": {
     "degree": 1,
 
     "right_up_A": {
-      "name": "fm_eyelidProject_RU_A_curve",
+      "name": "RU_A_curve",
       "xform": {
         "translation": [4.0, 16.0, 1.0]
       },
@@ -13,11 +15,43 @@
         [0.0, 0.947, 0.0],
         [1.0, 0.768, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RU_A1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RU_A2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RU_A3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RU_A4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RU_A5_loc",
+            "pt_on_crv_param": 4.0
+         }
+        }
       ]
     },
 
     "right_up_B": {
-      "name": "fm_eyelidProject_RU_B_curve",
+      "name": "RU_B_curve",
       "xform": {
         "translation": [4.0, 16.8, 1.0]
       },
@@ -27,11 +61,43 @@
         [0.0, 0.663, 0.0],
         [1.0, 0.537, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RU_B1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RU_B2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RU_B3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RU_B4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RU_B5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_up_C": {
-      "name": "fm_eyelidProject_RU_C_curve",
+      "name": "RU_C_curve",
       "xform": {
         "translation": [4.0, 17.6, 1.0]
       },
@@ -41,11 +107,43 @@
         [0.0, 0.379, 0.0],
         [1.0, 0.307, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RU_C1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RU_C2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RU_C3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RU_C4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RU_C5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_up_D": {
-      "name": "fm_eyelidProject_RU_D_curve",
+      "name": "RU_D_curve",
       "xform": {
         "translation": [4.0, 18.4, 1.0]
       },
@@ -55,11 +153,43 @@
         [0.0, 0.0947, 0.0],
         [1.0, 0.0768, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RU_D1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RU_D2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RU_D3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RU_D4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RU_D5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_dn_A": {
-      "name": "fm_eyelidProject_RD_A_curve",
+      "name": "RD_A_curve",
       "xform": {
         "translation": [4.0, 16.0, 1.0]
       },
@@ -69,11 +199,43 @@
         [0.0, -0.596, 0.0],
         [1.0, -0.505, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RD_A1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RD_A2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RD_A3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RD_A4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RD_A5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_dn_B": {
-      "name": "fm_eyelidProject_RD_B_curve",
+      "name": "RD_B_curve",
       "xform": {
         "translation": [4.0, 15.2, 1.0]
       },
@@ -83,11 +245,43 @@
         [0.0, -0.417, 0.0],
         [1.0, -0.354, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RD_B1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RD_B2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RD_B3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RD_B4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RD_B5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_dn_C": {
-      "name": "fm_eyelidProject_RD_C_curve",
+      "name": "RD_C_curve",
       "xform": {
         "translation": [4.0, 14.4, 1.0]
       },
@@ -97,11 +291,43 @@
         [0.0, -0.238, 0.0],
         [1.0, -0.202, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RD_C1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RD_C2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RD_C3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RD_C4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RD_C5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "right_dn_D": {
-      "name": "fm_eyelidProject_RD_D_curve",
+      "name": "RD_D_curve",
       "xform": {
         "translation": [4.0, 13.6, 1.0]
       },
@@ -111,11 +337,43 @@
         [0.0, -0.0596, 0.0],
         [1.0, -0.0505, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "RD_D1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "RD_D2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "RD_D3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "RD_D4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "RD_D5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_up_A": {
-      "name": "fm_eyelidProject_LU_A_curve",
+      "name": "LU_A_curve",
       "xform": {
         "translation": [9.0, 16.0, 1.0]
       },
@@ -125,11 +383,43 @@
         [0.0, 0.877, 0.0],
         [1.0, 0.697, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LU_A1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LU_A2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LU_A3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LU_A4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LU_A5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_up_B": {
-      "name": "fm_eyelidProject_LU_B_curve",
+      "name": "LU_B_curve",
       "xform": {
         "translation": [9.0, 16.8, 1.0]
       },
@@ -139,11 +429,43 @@
         [0.0, 0.614, 0.0],
         [1.0, 0.488, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LU_B1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LU_B2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LU_B3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LU_B4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LU_B5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_up_C": {
-      "name": "fm_eyelidProject_LU_D_curve",
+      "name": "LU_C_curve",
       "xform": {
         "translation": [9.0, 17.6, 1.0]
       },
@@ -153,11 +475,43 @@
         [0.0, 0.351, 0.0],
         [1.0, 0.279, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LU_C1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LU_C2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LU_C3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LU_C4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LU_C5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_up_D": {
-      "name": "fm_eyelidProject_LU_D_curve",
+      "name": "LU_D_curve",
       "xform": {
         "translation": [9.0, 18.4, 1.0]
       },
@@ -167,11 +521,43 @@
         [0.0, 0.0877, 0.0],
         [1.0, 0.0697, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LU_D1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LU_D2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LU_D3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LU_D4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LU_D5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_dn_A": {
-      "name": "fm_eyelidProject_LD_A_curve",
+      "name": "LD_A_curve",
       "xform": {
         "translation": [9.0, 16.0, 1.0]
       },
@@ -181,11 +567,43 @@
         [0.0, -0.596, 0.0],
         [1.0, -0.505, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LD_A1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LD_A2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LD_A3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LD_A4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LD_A5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_dn_B": {
-      "name": "fm_eyelidProject_LD_B_curve",
+      "name": "LD_B_curve",
       "xform": {
         "translation": [9.0, 15.2, 1.0]
       },
@@ -195,11 +613,43 @@
         [0.0, -0.417, 0.0],
         [1.0, -0.354, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LD_B1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LD_B2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LD_B3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LD_B4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LD_B5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_dn_C": {
-      "name": "fm_eyelidProject_LD_C_curve",
+      "name": "LD_C_curve",
       "xform": {
         "translation": [9.0, 14.4, 1.0]
       },
@@ -209,11 +659,43 @@
         [0.0, -0.238, 0.0],
         [1.0, -0.202, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LD_C1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LD_C2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LD_C3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LD_C4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LD_C5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     },
 
     "left_dn_D": {
-      "name": "fm_eyelidProject_LD_D_curve",
+      "name": "LD_D_curve",
       "xform": {
         "translation": [9.0, 13.6, 1.0]
       },
@@ -223,6 +705,38 @@
         [0.0, -0.0596, 0.0],
         [1.0, -0.0505, 0.0],
         [2.0, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "1": {
+            "name": "LD_D1_loc",
+            "pt_on_crv_param": 0.0
+          }
+        },
+        {
+          "2": {
+            "name": "LD_D2_loc",
+            "pt_on_crv_param": 1.0
+          }
+        },
+        {
+          "3": {
+            "name": "LD_D3_loc",
+            "pt_on_crv_param": 2.0
+          }
+        },
+        {
+          "4": {
+            "name": "LD_D4_loc",
+            "pt_on_crv_param": 3.0
+          }
+        },
+        {
+          "5": {
+            "name": "LD_D5_loc",
+            "pt_on_crv_param": 4.0
+          }
+        }
       ]
     }
   },
@@ -248,8 +762,11 @@
       [0.0, 0.0, 0.0]
     ],
 
+    "joint_suffix": "jnt",
+    "joint_radius": 0.5,
+
     "right_up_A": {
-      "name": "fm_eyelidProject_RU_A_ctrl",
+      "name": "RU_A_ctrl",
       "xform": {
         "translation_ofs": [2.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -257,7 +774,7 @@
     },
 
     "right_up_B": {
-      "name": "fm_eyelidProject_RU_B_ctrl",
+      "name": "RU_B_ctrl",
       "xform": {
         "translation_ofs": [3.0, 16.0, 1.0],
         "translation": [0.0, 0.768, 0.0]
@@ -265,7 +782,7 @@
     },
 
     "right_up_C": {
-      "name": "fm_eyelidProject_RU_C_ctrl",
+      "name": "RU_C_ctrl",
       "xform": {
         "translation_ofs": [4.0, 16.0, 1.0],
         "translation": [0.0, 0.947, 0.0]
@@ -273,7 +790,7 @@
     },
 
     "right_up_D": {
-      "name": "fm_eyelidProject_RU_D_ctrl",
+      "name": "RU_D_ctrl",
       "xform": {
         "translation_ofs": [5.0, 16.0, 1.0],
         "translation": [0.0, 0.768, 0.0]
@@ -281,7 +798,7 @@
     },
 
     "right_up_E": {
-      "name": "fm_eyelidProject_RU_E_ctrl",
+      "name": "RU_E_ctrl",
       "xform": {
         "translation_ofs": [6.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -289,7 +806,7 @@
     },
 
     "right_dn_A": {
-      "name": "fm_eyelidProject_RD_A_ctrl",
+      "name": "RD_A_ctrl",
       "xform": {
         "translation_ofs": [2.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -297,7 +814,7 @@
     },
 
     "right_dn_B": {
-      "name": "fm_eyelidProject_RD_B_ctrl",
+      "name": "RD_B_ctrl",
       "xform": {
         "translation_ofs": [3.0, 16.0, 1.0],
         "translation": [0.0, -0.505, 0.0]
@@ -305,7 +822,7 @@
     },
 
     "right_dn_C": {
-      "name": "fm_eyelidProject_RD_C_ctrl",
+      "name": "RD_C_ctrl",
       "xform": {
         "translation_ofs": [4.0, 16.0, 1.0],
         "translation": [0.0, -0.596, 0.0]
@@ -313,7 +830,7 @@
     },
 
     "right_dn_D": {
-      "name": "fm_eyelidProject_RD_D_ctrl",
+      "name": "RD_D_ctrl",
       "xform": {
         "translation_ofs": [5.0, 16.0, 1.0],
         "translation": [0.0, -0.505, 0.0]
@@ -321,7 +838,7 @@
     },
 
     "right_dn_E": {
-      "name": "fm_eyelidProject_RD_E_ctrl",
+      "name": "RD_E_ctrl",
       "xform": {
         "translation_ofs": [6.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -329,7 +846,7 @@
     },
 
     "left_up_A": {
-      "name": "fm_eyelidProject_LU_A_ctrl",
+      "name": "LU_A_ctrl",
       "xform": {
         "translation_ofs": [7.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -337,7 +854,7 @@
     },
 
     "left_up_B": {
-      "name": "fm_eyelidProject_LU_B_ctrl",
+      "name": "LU_B_ctrl",
       "xform": {
         "translation_ofs": [8.0, 16.0, 1.0],
         "translation": [0.0, 0.697, 0.0]
@@ -345,7 +862,7 @@
     },
 
     "left_up_C": {
-      "name": "fm_eyelidProject_LU_C_ctrl",
+      "name": "LU_C_ctrl",
       "xform": {
         "translation_ofs": [9.0, 16.0, 1.0],
         "translation": [0.0, 0.877, 0.0]
@@ -353,7 +870,7 @@
     },
 
     "left_up_D": {
-      "name": "fm_eyelidProject_LU_D_ctrl",
+      "name": "LU_D_ctrl",
       "xform": {
         "translation_ofs": [10.0, 16.0, 1.0],
         "translation": [0.0, 0.697, 0.0]
@@ -361,7 +878,7 @@
     },
 
     "left_up_E": {
-      "name": "fm_eyelidProject_LU_E_ctrl",
+      "name": "LU_E_ctrl",
       "xform": {
         "translation_ofs": [11.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -369,7 +886,7 @@
     },
 
     "left_dn_A": {
-      "name": "fm_eyelidProject_LD_A_ctrl",
+      "name": "LD_A_ctrl",
       "xform": {
         "translation_ofs": [7.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -377,7 +894,7 @@
     },
 
     "left_dn_B": {
-      "name": "fm_eyelidProject_LD_B_ctrl",
+      "name": "LD_B_ctrl",
       "xform": {
         "translation_ofs": [8.0, 16.0, 1.0],
         "translation": [0.0, -0.505, 0.0]
@@ -385,7 +902,7 @@
     },
 
     "left_dn_C": {
-      "name": "fm_eyelidProject_LD_C_ctrl",
+      "name": "LD_C_ctrl",
       "xform": {
         "translation_ofs": [9.0, 16.0, 1.0],
         "translation": [0.0, -0.596, 0.0]
@@ -393,7 +910,7 @@
     },
 
     "left_dn_D": {
-      "name": "fm_eyelidProject_LD_D_ctrl",
+      "name": "LD_D_ctrl",
       "xform": {
         "translation_ofs": [10.0, 16.0, 1.0],
         "translation": [0.0, -0.505, 0.0]
@@ -401,7 +918,7 @@
     },
 
     "left_dn_E": {
-      "name": "fm_eyelidProject_LD_E_ctrl",
+      "name": "LD_E_ctrl",
       "xform": {
         "translation_ofs": [11.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
