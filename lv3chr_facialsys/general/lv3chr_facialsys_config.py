@@ -10,8 +10,25 @@
 A module containing global definitions for the LCA level three character facial system
 """
 
-PROJ_PLANE_SET = 'proj_plane_set'
-PROJ_PLANE_SHADER = 'proj_plane_shader'
+from enum import Enum, unique
+
+# control zones partitioned in directions ------------------------------------------------------------------------------
+@unique
+class controlZoneEnum(Enum):
+    eyelid = 1
+controlZoneList = [name for name, member in controlZoneEnum.__members__.items()]
+
+@unique
+class controlZoneDirEnum(Enum):
+    right_up = 1
+    right_dn = 2
+    left_up = 3
+    left_dn = 4
+controlZoneDirList = [name for name, member in controlZoneDirEnum.__members__.items()]
+
+# facial control display settings --------------------------------------------------------------------------------------
+PROJ_SRF_SET = 'proj_plane_set'
+PROJ_SRF_SHADER = 'proj_srf_shader'
 
 COLOR_INDEX_LIGHT_GRAY = 0
 COLOR_INDEX_BLACK = 1

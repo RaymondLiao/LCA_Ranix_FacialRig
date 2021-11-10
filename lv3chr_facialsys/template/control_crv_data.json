@@ -230,8 +230,8 @@
 
   "eyelid_controller": {
     "degree": 1,
-    "color_up": "yellow",
-    "color_dn": "red",
+    "color_up": 22,
+    "color_dn": 28,
 
     "points_up": [
       [0.0, 0.25, 0.0],

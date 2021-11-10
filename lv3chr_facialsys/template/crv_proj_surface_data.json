@@ -41,7 +41,7 @@
     }
   },
 
-  "eyelid_projection_plane": {
+  "eyelid_projection_surface": {
     "degree": 1,
     "patchesU": 4,
     "patchesV": 6,

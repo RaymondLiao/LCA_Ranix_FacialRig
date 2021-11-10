@@ -13,7 +13,8 @@ A module containing the definitions of control curves.
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config
+from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
+from general.lv3chr_facialsys_config import *
 
 class controlCurve(object):
     """ Control Curves are used to transit the translation of
@@ -40,12 +41,11 @@ class controlCurve(object):
 
         cmds.setAttr(self._nurbs_crv+'.overrideEnabled', True)
         cmds.setAttr(self._nurbs_crv+'.overrideColor',
-                     lv3chr_facialsys_config.CTRL_CURVE_COLOR_INDEX)
+                     CTRL_CURVE_COLOR_INDEX)
         cmds.toggle(self._nurbs_crv, controlVertex=True)
 
     def __repr__(self):
-        warnings.warn('No Implementation')
-        pass
+        return NotImplemented
 
     def get_name(self):
         return str(self._nurbs_crv)

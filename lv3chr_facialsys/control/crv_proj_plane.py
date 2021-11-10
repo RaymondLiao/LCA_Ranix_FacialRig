@@ -13,7 +13,8 @@ A module containing the definitions of control-curves projection plane classes
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config
+from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
+from general.lv3chr_facialsys_config import *
 
 class curveTransPlane(object):
     """ translation plane indicating the movement area of facial rig control
@@ -51,8 +52,7 @@ class curveTransPlane(object):
         cmds.toggle(self._nurbs_srf, template=True)
 
     def __repr__(self):
-        warnings.warn('No Implementation.')
-        pass
+        return NotImplemented
 
     def get_name(self):
         return str(self._nurbs_srf)
@@ -113,16 +113,15 @@ class curveProjPlane(object):
 
         # Set display attributes.
         cmds.select(self._nurbs_srf, replace=True)
-        cmds.sets(edit=True, forceElement=lv3chr_facialsys_config.PROJ_PLANE_SHADER+'_SG')
+        cmds.sets(edit=True, forceElement=PROJ_SRF_SHADER+'_SG')
         cmds.select(deselect=True)
 
         cmds.setAttr(self._nurbs_srf+'.overrideEnabled', True)
-        cmds.setAttr(self._nurbs_srf+'.overrideColor', lv3chr_facialsys_config.PROJ_SURFACE_COLOR_INDEX)
+        cmds.setAttr(self._nurbs_srf+'.overrideColor', PROJ_SURFACE_COLOR_INDEX)
         cmds.toggle(self._nurbs_srf, controlVertex=True)
 
     def __repr__(self):
-        warnings.warn('No Implementation.')
-        pass
+        return NotImplemented
 
     def get_name(self):
         return str(self._nurbs_srf)

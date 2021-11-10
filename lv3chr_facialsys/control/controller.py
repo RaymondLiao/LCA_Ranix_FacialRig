@@ -7,13 +7,14 @@
 #
 
 """
-A module containing the definitions of NURBS curve controller.
+A module containing the definitions of NURBS curve controller
 """
 
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config
+from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
+from general.lv3chr_facialsys_config import *
 
 class controller(object):
     """ Controllers are NURBS curves used by animators to key the rig.
@@ -25,15 +26,12 @@ class controller(object):
 
     def __init__(self, name='controller',
                  degree=1, points=[],
-                 color=lv3chr_facialsys_config.COLOR_INDEX_YELLOW,
+                 color=COLOR_INDEX_YELLOW,
                  translation_ofs=[0, 0, 0],
                  translation=[0, 0, 0]):
 
         self._degree = degree
         assert len(points) > 0
-
-        self._nurbs_crv = cmds.curve(degree=self._degree,
-                                     point=points)
 
         self._ofs_grp = cmds.group(name=name+'_ofs', empty=True)
         cmds.xform(self._ofs_grp, translation=translation_ofs)
@@ -49,8 +47,7 @@ class controller(object):
                      color)
 
     def __repr__(self):
-        warnings.warn('No Implementation')
-        pass
+        return NotImplemented
 
     def get_name(self):
         return str(self._nurbs_crv)
