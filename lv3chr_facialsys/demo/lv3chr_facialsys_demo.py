@@ -22,8 +22,8 @@ from general.lv3chr_facialsys_config import *
 
 from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
 
-from control import crv_proj_plane; reload(crv_proj_plane)
-from control.crv_proj_plane import curveTransPlane, curveProjPlane
+from control import crv_proj_surface; reload(crv_proj_surface)
+from control.crv_proj_surface import curveTransPlane, curveProjSurface
 
 from control import control_curve; reload(control_curve)
 from control.control_curve import controlCurve
@@ -138,15 +138,15 @@ def setup_proj_surface():
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_projsrf = curveProjPlane(name = eyelid_dir_projsrf_data['name'],
-                                                degree = eyelid_crvproj_projsrf_degree,
-                                                patchesU = eyelid_crvproj_projsrf_patchesU,
-                                                patchesV = eyelid_crvproj_projsrf_patchesV,
-                                                translation = eyelid_dir_projsrf_data['xform']['translation'],
-                                                rotation = eyelid_dir_projsrf_data['xform']['rotation'],
-                                                scale = eyelid_dir_projsrf_data['xform']['scale'],
-                                                cv_list = eyelid_dir_projsrf_data['control_vtx'],
-                                                mirror = mirror)
+        eyelid_crvproj_projsrf = curveProjSurface(name = eyelid_dir_projsrf_data['name'],
+                                                  degree = eyelid_crvproj_projsrf_degree,
+                                                  patchesU = eyelid_crvproj_projsrf_patchesU,
+                                                  patchesV = eyelid_crvproj_projsrf_patchesV,
+                                                  translation = eyelid_dir_projsrf_data['xform']['translation'],
+                                                  rotation = eyelid_dir_projsrf_data['xform']['rotation'],
+                                                  scale = eyelid_dir_projsrf_data['xform']['scale'],
+                                                  cv_list = eyelid_dir_projsrf_data['control_vtx'],
+                                                  mirror = mirror)
 
         if controlZoneDirEnum.right_up.name == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
