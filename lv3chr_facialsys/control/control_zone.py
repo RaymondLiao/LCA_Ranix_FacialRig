@@ -46,29 +46,29 @@ class controlZone(object):
     def get_controller_count(self):
         return len(self._controller_dict)
 
-    _crvproj_transplane = None
-    _crvproj_projsurface = None
+    _ctrlproj_transplane = None
+    _ctrlproj_projsurface = None
 
     def __init__(self,
                  zone=controlZoneEnum.eyelid,
                  direction=controlZoneDirEnum.right_up,
                  ctrl_crv_data = None,
-                 crvproj_transplane = None,
-                 crvproj_projsurface = None
+                 ctrlproj_transplane = None,
+                 ctrlproj_projsurface = None
                  ):
         """
         :param zone: the facial zone this control unit manages
         :param direction: the direction in which the controllers of this control unit move
         :param ctrl_crv_data: the control curves' and controllers' construction data
-        :param crvproj_transplane: the controllers translation plane this control unit belongs to
-        :param crvproj_projsurface: the controllers translation-projection surface this control unit belongs to
+        :param ctrlproj_transplane: the controllers translation plane this control unit belongs to
+        :param ctrlproj_projsurface: the controllers translation-projection surface this control unit belongs to
         """
         assert None != ctrl_crv_data
-        assert None != crvproj_transplane
-        assert None != crvproj_projsurface
+        assert None != ctrlproj_transplane
+        assert None != ctrlproj_projsurface
 
-        self._crvproj_transplane = crvproj_transplane
-        self._crvproj_projsurface = crvproj_projsurface
+        self._ctrlproj_transplane = ctrlproj_transplane
+        self._ctrlproj_projsurface = ctrlproj_projsurface
 
         ctrlcrv_data = {}
         ctrlcrv_degree = 1
@@ -82,28 +82,90 @@ class controlZone(object):
             eyelid_ctrlcrv_data = ctrl_crv_data['eyelid_control_curve']
             eyelid_ctrlcrv_degree = eyelid_ctrlcrv_data['degree']
 
-            for id in ctrl_crv_id_list:
-                eyelid_dir_ctrlcrv_data = eyelid_ctrlcrv_data[direction + '_' + id]
-                eyelid_ctrl_crv = controlCurve(name = ctrl_crv_data['eyelid_zone_prefix'] + '_' +
-                                                      eyelid_dir_ctrlcrv_data['name'],
+            for crv_id in ctrl_crv_id_list:
+                eyelid_dir_ctrlcrv_data = eyelid_ctrlcrv_data[direction + '_' + crv_id]
+                eyelid_ctrl_crv = controlCurve(name_prefix = ctrl_crv_data['eyelid_zone_prefix'],
+                                               name = eyelid_dir_ctrlcrv_data['name'],
                                                degree = eyelid_ctrlcrv_degree,
+                                               translation=eyelid_dir_ctrlcrv_data['xform']['translation'],
                                                points = eyelid_dir_ctrlcrv_data['points'],
-                                               translation = eyelid_dir_ctrlcrv_data['xform']['translation'])
+                                               locators = eyelid_dir_ctrlcrv_data['locators'],
+                                               locator_scale = eyelid_ctrlcrv_data['locator_scale'])
 
+                loc_count = eyelid_ctrl_crv.get_locator_count()
                 if controlZoneDirEnum.right_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
+
+                    for loc_idx in range(loc_count):
+                        if 'A' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_A_grp.get_group_name())
+                        elif 'B' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_B_grp.get_group_name())
+                        elif 'C' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_C_grp.get_group_name())
+                        elif 'D' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_D_grp.get_group_name())
+
                 elif controlZoneDirEnum.right_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
+
+                    for loc_idx in range(loc_count):
+                        if 'A' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_A_grp.get_group_name())
+                        elif 'B' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_B_grp.get_group_name())
+                        elif 'C' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_C_grp.get_group_name())
+                        elif 'D' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_D_grp.get_group_name())
+
                 elif controlZoneDirEnum.left_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
+
+                    for loc_idx in range(loc_count):
+                        if 'A' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_A_grp.get_group_name())
+                        elif 'B' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_B_grp.get_group_name())
+                        elif 'C' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_C_grp.get_group_name())
+                        elif 'D' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_D_grp.get_group_name())
+
                 elif controlZoneDirEnum.left_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
 
-                self._ctrl_crv_dict[id] = eyelid_ctrl_crv
+                    for loc_idx in range(loc_count):
+                        if 'A' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_A_grp.get_group_name())
+                        elif 'B' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_B_grp.get_group_name())
+                        elif 'C' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_C_grp.get_group_name())
+                        elif 'D' == crv_id:
+                            cmds.parent(eyelid_ctrl_crv.get_locator_info(id=loc_idx)[0],
+                                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_D_grp.get_group_name())
+
+                self._ctrl_crv_dict[crv_id] = eyelid_ctrl_crv
 
             # Create the controllers.
             eyelid_controller_data = ctrl_crv_data['eyelid_controller']
@@ -112,14 +174,14 @@ class controlZone(object):
             eyelid_controller_points = []
 
             if 'u' in direction:
-                eyelid_controller_color = eyelid_controller_data['color_up']
+                eyelid_controller_color = CONTROLLER_UP_COLOR
                 eyelid_controller_points = eyelid_controller_data['points_up']
             elif 'd' in direction:
-                eyelid_controller_color = eyelid_controller_data['color_dn']
+                eyelid_controller_color = CONTROLLER_DN_COLOR
                 eyelid_controller_points = eyelid_controller_data['points_dn']
 
-            for id in controller_id_list:
-                eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+id]
+            for crv_id in controller_id_list:
+                eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+crv_id]
                 eyelid_controller = controller(name = ctrl_crv_data['eyelid_zone_prefix'] + '_' +
                                                       eyelid_dir_ctrl_data['name'],
                                                degree = eyelid_controller_degree,

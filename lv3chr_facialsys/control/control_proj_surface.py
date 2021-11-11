@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: crv_proj_surface.py
+# File Name: control_proj_surface.py
 # Author: Sheng (Raymond) Liao
 # Date: October 2021
 #
@@ -16,7 +16,7 @@ import maya.cmds as cmds
 from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
 from general.lv3chr_facialsys_config import *
 
-class curveTransPlane(object):
+class controlTransPlane(object):
     """ translation plane indicating the movement area of facial rig control
     data curves' CVs
     """
@@ -26,7 +26,7 @@ class curveTransPlane(object):
     _patchesV = 6
     _nurbs_srf = None
 
-    def __init__(self, name='curve_translation_plane', degree=1, patchesU=4, patchesV=6,
+    def __init__(self, name='control_translation_plane', degree=1, patchesU=4, patchesV=6,
                translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0], scale=[1.0, 1.0, 1.0],
                mirror=[1, 1, 1]):
 
@@ -58,7 +58,7 @@ class curveTransPlane(object):
         return str(self._nurbs_srf)
 
 
-class curveProjSurface(object):
+class controlProjSurface(object):
     """ projection plane constraining on which the movement area of locators
     projected from the movement of joints on the control data curves
     """
@@ -69,7 +69,7 @@ class curveProjSurface(object):
     _cv_coords = []
     _nurbs_srf = None
 
-    def __init__(self, name='curve_projection_plane',
+    def __init__(self, name='control_projection_plane',
                  degree=1, patchesU=4, patchesV=6, cv_list=[],
                  translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0], scale=[1.0, 1.0, 1.0],
                  mirror=[1, 1, 1]):
@@ -125,16 +125,3 @@ class curveProjSurface(object):
 
     def get_name(self):
         return str(self._nurbs_srf)
-
-# ----------------------------------------------------------------------------------------------------------------------
-    # eyelid control curves translation planes' names:
-    # -- fm_eyelidProjectPlane_RU_nbs
-    # -- fm_eyelidProjectPlane_RD_nbs
-    # -- fm_eyelidProjectPlane_LU_nbs
-    # -- fm_eyelidProjectPlane_LD_nbs
-
-    # eyelid control curves (translation) projection planes' names:
-    # -- fm_eyelidFaceMask_RU_nbs
-    # -- fm_eyelidFaceMask_RD_nbs
-    # -- fm_eyelidFaceMask_LU_nbs
-    # -- fm_eyelidFaceMask_LD_nbs

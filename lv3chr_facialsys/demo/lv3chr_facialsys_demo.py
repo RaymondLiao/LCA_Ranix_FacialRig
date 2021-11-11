@@ -22,8 +22,8 @@ from general.lv3chr_facialsys_config import *
 
 from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
 
-from control import crv_proj_surface; reload(crv_proj_surface)
-from control.crv_proj_surface import curveTransPlane, curveProjSurface
+from control import control_proj_surface; reload(control_proj_surface)
+from control.control_proj_surface import controlTransPlane, controlProjSurface
 
 from control import control_curve; reload(control_curve)
 from control.control_curve import controlCurve
@@ -77,18 +77,18 @@ def setup_proj_surface():
     # Load the curve projection planes' data from the JSON document.
     root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
 
-    crv_proj_surface_data = {}
+    control_proj_surface_data = {}
     try:
         # print('lv3 character facial module root path: {}'.format(root_path))
-        f_crv_proj_surface_data = open(root_path+'/template/crv_proj_surface_data.json', 'r')
-        crv_proj_surface_data = json.load(f_crv_proj_surface_data)
+        f_control_proj_surface_data = open(root_path+'/template/control_proj_surface_data.json', 'r')
+        control_proj_surface_data = json.load(f_control_proj_surface_data)
     except:
         cmds.error('Error thrown while loading the data curve projection planes data: {}'.format(
             sys.exc_info()[0]
         ))
 
     # Create the controller translation planes.
-    eyelid_crvproj_transplane_data = crv_proj_surface_data['eyelid_translation_plane']
+    eyelid_crvproj_transplane_data = control_proj_surface_data['eyelid_translation_plane']
     eyelid_crvproj_transplane_degree = eyelid_crvproj_transplane_data['degree']
     eyelid_crvproj_transplane_patchesU = eyelid_crvproj_transplane_data['patchesU']
     eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
@@ -100,8 +100,8 @@ def setup_proj_surface():
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_transplane = curveTransPlane(name = eyelid_crvproj_transplane_data['name_prefix'] + '_' +
-                                                           eyelid_dir_transplane_data['name'],
+        eyelid_crvproj_transplane = controlTransPlane(name = eyelid_crvproj_transplane_data['name_prefix'] + '_' +
+                                                             eyelid_dir_transplane_data['name'],
                                                     degree = eyelid_crvproj_transplane_degree,
                                                     patchesU = eyelid_crvproj_transplane_patchesU,
                                                     patchesV = eyelid_crvproj_transplane_patchesV,
@@ -127,7 +127,7 @@ def setup_proj_surface():
             g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane.get_name()
 
     # Create the controller projection surfaces
-    eyelid_crvproj_projsrf_data = crv_proj_surface_data['eyelid_projection_surface']
+    eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
     eyelid_crvproj_projsrf_degree = eyelid_crvproj_projsrf_data['degree']
     eyelid_crvproj_projsrf_patchesU = eyelid_crvproj_projsrf_data['patchesU']
     eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
@@ -139,8 +139,8 @@ def setup_proj_surface():
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_projsrf = curveProjSurface(name = eyelid_crvproj_projsrf_data['name_prefix'] + '_' +
-                                                         eyelid_dir_projsrf_data['name'],
+        eyelid_crvproj_projsrf = controlProjSurface(name = eyelid_crvproj_projsrf_data['name_prefix'] + '_' +
+                                                           eyelid_dir_projsrf_data['name'],
                                                   degree = eyelid_crvproj_projsrf_degree,
                                                   patchesU = eyelid_crvproj_projsrf_patchesU,
                                                   patchesV = eyelid_crvproj_projsrf_patchesV,
@@ -167,7 +167,7 @@ def setup_proj_surface():
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_LD_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf.get_name()
 
-    f_crv_proj_surface_data.close()
+    f_control_proj_surface_data.close()
 
 def setup_ctrl_zones():
     """ Create the facial controlling NURBS curves.
@@ -189,37 +189,37 @@ def setup_ctrl_zones():
     # Create the control zones.
     for dir in control_zone_dir_list:
 
-        crvproj_transplane = None
+        ctrlproj_transplane = None
         if 'r' in dir:
             if 'u' in dir:
-                crvproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RU']
+                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RU']
             elif 'd' in dir:
-                crvproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RD']
+                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RD']
         elif 'l' in dir:
             if 'u' in dir:
-                crvproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LU']
+                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LU']
             elif 'd' in dir:
-                crvproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LD']
-        assert None != crvproj_transplane
+                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LD']
+        assert None != ctrlproj_transplane
 
-        crvproj_projsrf = None
+        ctrlproj_projsrf = None
         if 'r' in dir:
             if 'u' in dir:
-                crvproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RU']
+                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RU']
             elif 'd' in dir:
-                crvproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RD']
+                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RD']
         elif 'l' in dir:
             if 'u' in dir:
-                crvproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LU']
+                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LU']
             elif 'd' in dir:
-                crvproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
-        assert None != crvproj_projsrf
+                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
+        assert None != ctrlproj_projsrf
 
         eyelid_ctrl_zone = controlZone(zone=controlZoneEnum.eyelid,
                                        direction=dir,
                                        ctrl_crv_data=ctrl_crv_data,
-                                       crvproj_transplane=crvproj_transplane,
-                                       crvproj_projsurface=crvproj_projsrf)
+                                       ctrlproj_transplane=ctrlproj_transplane,
+                                       ctrlproj_projsurface=ctrlproj_projsrf)
 
 
 def setup_ctrl_locs():

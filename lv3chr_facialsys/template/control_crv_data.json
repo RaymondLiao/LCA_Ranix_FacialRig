@@ -3,6 +3,7 @@
 
   "eyelid_control_curve": {
     "degree": 1,
+    "locator_scale": [0, 0, 0.6],
 
     "right_up_A": {
       "name": "RU_A_curve",
@@ -744,8 +745,6 @@
 
   "eyelid_controller": {
     "degree": 1,
-    "color_up": 22,
-    "color_dn": 28,
 
     "points_up": [
       [0.0, 0.25, 0.0],
