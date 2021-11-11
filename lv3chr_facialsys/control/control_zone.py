@@ -93,82 +93,82 @@ class controlZone(object):
                                                locator_data = eyelid_dir_ctrlcrv_data['locators'],
                                                locator_scale = eyelid_ctrlcrv_data['locator_scale'])
 
-                loc_count = eyelid_ctrl_crv.get_locator_count()
+                loc_id_list = eyelid_ctrl_crv.get_locator_ids()
 
                 if controlZoneDirEnum.right_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
 
-                    for loc_idx in range(loc_count):
-                        loc_id = loc_idx + 1
+                    for loc_id in loc_id_list:
+                        loc_name = eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0]
                         if 'A' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_A_grp.get_group_name())
                         elif 'B' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_B_grp.get_group_name())
                         elif 'C' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_C_grp.get_group_name())
                         elif 'D' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RU_D_grp.get_group_name())
 
                 elif controlZoneDirEnum.right_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
 
-                    for loc_idx in range(loc_count):
-                        loc_id = loc_idx + 1
+                    for loc_id in loc_id_list:
+                        loc_name = eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0]
                         if 'A' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_A_grp.get_group_name())
                         elif 'B' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_B_grp.get_group_name())
                         elif 'C' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_C_grp.get_group_name())
                         elif 'D' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_RD_D_grp.get_group_name())
 
                 elif controlZoneDirEnum.left_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
 
-                    for loc_idx in range(loc_count):
-                        loc_id = loc_idx + 1
+                    for loc_id in loc_id_list:
+                        loc_name = eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0]
                         if 'A' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_A_grp.get_group_name())
                         elif 'B' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_B_grp.get_group_name())
                         elif 'C' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_C_grp.get_group_name())
                         elif 'D' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LU_D_grp.get_group_name())
 
                 elif controlZoneDirEnum.left_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
 
-                    for loc_idx in range(loc_count):
-                        loc_id = loc_idx + 1
+                    for loc_id in loc_id_list:
+                        loc_name = eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0]
                         if 'A' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_A_grp.get_group_name())
                         elif 'B' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_B_grp.get_group_name())
                         elif 'C' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_C_grp.get_group_name())
                         elif 'D' == crv_id:
-                            cmds.parent(eyelid_ctrl_crv.get_locator_info(locator_id=loc_id)[0],
+                            cmds.parent(loc_name,
                                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_loc_LD_D_grp.get_group_name())
 
                 self._ctrl_crv_dict[crv_id] = eyelid_ctrl_crv

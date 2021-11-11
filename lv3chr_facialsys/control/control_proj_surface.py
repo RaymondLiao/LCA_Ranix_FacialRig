@@ -82,16 +82,19 @@ class controlProjSurface(object):
     # The 2-dimensional dictionary format is {row_id: {col_id: (locator's name, pointOnSurfaceInfo node's name)}}
     # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
     _locator_dict = {}
-    def get_locator_row_count(self):
-        return len(self._locator_dict)
-    def get_locator_count_in_row(self, row_id):
+    def get_locator_row_ids(self):
+        """
+        :return: a list of all identity characters of rows of locators, e.g. ['A', 'B', 'C']
+        """
+        return self._locator_dict.keys()
+    def get_locator_col_ids(self, row_id):
+        """
+        :param row_id: the identity character of a locator row, e.g. 'A'
+        :return: a list of all identity numbers of locators belonging to this projection surface
+        """
         assert row_id in self._locator_dict.keys()
-        return len(self._locator_dict[row_id])
-    def get_locator_count(self):
-        loc_count = 0
-        for row_id in self._locator_dict.keys():
-            loc_count += self.get_locator_count_in_row(row_id)
-        return loc_count
+        return self._locator_dict[row_id].keys()
+
     def get_locator_info(self, row_id, col_id):
         """
         :param row_id: the locator row identity character, starts from 'A'
@@ -190,7 +193,10 @@ class controlProjSurface(object):
             cmds.connectAttr(self._nurbs_srf+'.worldSpace[0]', pt_on_srf_info_node+'.inputSurface')
             cmds.connectAttr(pt_on_srf_info_node+'.position', loc+'.translate')
 
-            # self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, pt_on_srf_info_node)
+            if loc_row_id in self._locator_dict.keys():
+                self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, pt_on_srf_info_node)
+            else:
+                self._locator_dict[str(loc_row_id)] = {int(loc_col_id): (loc, pt_on_srf_info_node)}
 
     def __repr__(self):
         return NotImplemented

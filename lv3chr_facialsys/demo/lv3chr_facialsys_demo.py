@@ -110,21 +110,21 @@ def setup_proj_surface():
                                                       scale = eyelid_dir_transplane_data['xform']['scale'],
                                                       mirror = mirror)
         if controlZoneDirEnum.right_up == dir:
+            g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane.get_name()
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane.get_name()
         elif controlZoneDirEnum.right_dn == dir:
+            g_crv_projsrf_dict['eyelid_transplane_RD'] = eyelid_crvproj_transplane.get_name()
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_transplane_RD'] = eyelid_crvproj_transplane.get_name()
         elif controlZoneDirEnum.left_up == dir:
+            g_crv_projsrf_dict['eyelid_transplane_LU'] = eyelid_crvproj_transplane.get_name()
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_transplane_LU'] = eyelid_crvproj_transplane.get_name()
         elif controlZoneDirEnum.left_dn == dir:
+            g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane.get_name()
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane.get_name()
 
     # Create the controller projection surfaces
     eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
@@ -152,22 +152,99 @@ def setup_proj_surface():
                                                     locator_data = eyelid_dir_projsrf_data['locators'],
                                                     locator_scale = eyelid_crvproj_projsrf_data['locator_scale'])
 
+        loc_row_id_list = eyelid_crvproj_projsrf.get_locator_row_ids()
+
         if controlZoneDirEnum.right_up == dir:
+            g_crv_projsrf_dict['eyelid_projsrf_RU'] = eyelid_crvproj_projsrf.get_name()
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_RU_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_projsrf_RU'] = eyelid_crvproj_projsrf.get_name()
+
+            for loc_row_id in loc_row_id_list:
+                if 'A' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_A_grp.get_group_name())
+                elif 'B' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_B_grp.get_group_name())
+                elif 'C' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_C_grp.get_group_name())
+                elif 'D' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_D_grp.get_group_name())
+
         elif controlZoneDirEnum.right_dn == dir:
+            g_crv_projsrf_dict['eyelid_projsrf_RD'] = eyelid_crvproj_projsrf.get_name()
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_RD_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_projsrf_RD'] = eyelid_crvproj_projsrf.get_name()
+
+            for loc_row_id in loc_row_id_list:
+                if 'A' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_A_grp.get_group_name())
+                elif 'B' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_B_grp.get_group_name())
+                elif 'C' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_C_grp.get_group_name())
+                elif 'D' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_D_grp.get_group_name())
+
         elif controlZoneDirEnum.left_up == dir:
+            g_crv_projsrf_dict['eyelid_projsrf_LU'] = eyelid_crvproj_projsrf.get_name()
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_LU_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_projsrf_LU'] = eyelid_crvproj_projsrf.get_name()
+
+            for loc_row_id in loc_row_id_list:
+                if 'A' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_A_grp.get_group_name())
+                elif 'B' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_B_grp.get_group_name())
+                elif 'C' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_C_grp.get_group_name())
+                elif 'D' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_D_grp.get_group_name())
+
         elif controlZoneDirEnum.left_dn == dir:
+            g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf.get_name()
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_LD_grp.get_group_name())
-            g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf.get_name()
+
+            for loc_row_id in loc_row_id_list:
+                if 'A' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_A_grp.get_group_name())
+                elif 'B' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_B_grp.get_group_name())
+                elif 'C' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_C_grp.get_group_name())
+                elif 'D' == loc_row_id:
+                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_D_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 

@@ -32,8 +32,11 @@ class controlCurve(object):
     # The dictionary format is {locator_id: (locator's name, pointOnCurveInfo node's name)}
     # e.g {1: ('fm_eyelidProject_RU_A1_loc', 'fm_eyelidProject_RU_A1_loc_ptOnCrv)}
     _locator_dict = {}
-    def get_locator_count(self):
-        return len(self._locator_dict)
+    def get_locator_ids(self):
+        """
+        :return: a list of all identity numbers of the locators belonging to this control curve, e.g. [1, 2, 3]
+        """
+        return self._locator_dict.keys()
     def get_locator_info(self, locator_id):
         """
         :param locator_id: the locator identity number, starts from 1
