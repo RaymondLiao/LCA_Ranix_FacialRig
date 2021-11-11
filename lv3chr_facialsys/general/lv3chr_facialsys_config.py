@@ -10,21 +10,31 @@
 A module containing global definitions for the LCA level three character facial system
 """
 
-from enum import Enum, unique
+# from enum import Enum, unique # WARNING: enum wasn't added to Python until 3.4
 
 # control zones partitioned in directions ------------------------------------------------------------------------------
-@unique
-class controlZoneEnum(Enum):
-    eyelid = 1
-controlZoneList = [name for name, member in controlZoneEnum.__members__.items()]
+# @unique
+# class controlZoneEnum(Enum):
+class controlZoneEnum(object):
+    eyelid = 'eyelid'
+# control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
+control_zone_list = [attr
+                     for attr in dir(controlZoneEnum)
+                     if not callable(getattr(controlZoneEnum, attr))
+                     and not attr.startswith('__')]
 
-@unique
-class controlZoneDirEnum(Enum):
-    right_up = 1
-    right_dn = 2
-    left_up = 3
-    left_dn = 4
-controlZoneDirList = [name for name, member in controlZoneDirEnum.__members__.items()]
+# @unique
+# class controlZoneDirEnum(Enum):
+class controlZoneDirEnum(object):
+    right_up = 'right_up'
+    right_dn = 'right_dn'
+    left_up = 'left_up'
+    left_dn = 'left_dn'
+# control_zone_dir_list = [name for name, member in controlZoneDirEnum.__members__.items()]
+control_zone_dir_list = [attr
+                         for attr in dir(controlZoneDirEnum)
+                         if not callable(getattr(controlZoneDirEnum, attr))
+                         and not attr.startswith('__')]
 
 # facial control display settings --------------------------------------------------------------------------------------
 PROJ_SRF_SET = 'proj_plane_set'

@@ -93,14 +93,15 @@ def setup_proj_surface():
     eyelid_crvproj_transplane_patchesU = eyelid_crvproj_transplane_data['patchesU']
     eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
 
-    for dir in controlZoneDirList:
+    for dir in control_zone_dir_list:
         eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[dir]
 
         mirror = [1, 1, 1]
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_transplane = curveTransPlane(name = eyelid_dir_transplane_data['name'],
+        eyelid_crvproj_transplane = curveTransPlane(name = eyelid_crvproj_transplane_data['name_prefix'] + '_' +
+                                                           eyelid_dir_transplane_data['name'],
                                                     degree = eyelid_crvproj_transplane_degree,
                                                     patchesU = eyelid_crvproj_transplane_patchesU,
                                                     patchesV = eyelid_crvproj_transplane_patchesV,
@@ -108,37 +109,38 @@ def setup_proj_surface():
                                                     rotation = eyelid_dir_transplane_data['xform']['rotation'],
                                                     scale = eyelid_dir_transplane_data['xform']['scale'],
                                                     mirror = mirror)
-        if controlZoneDirEnum.right_up.name == dir:
+        if controlZoneDirEnum.right_up == dir:
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane.get_name()
-        elif controlZoneDirEnum.right_dn.name == dir:
+        elif controlZoneDirEnum.right_dn == dir:
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_transplane_RD'] = eyelid_crvproj_transplane.get_name()
-        elif controlZoneDirEnum.left_up.name == dir:
+        elif controlZoneDirEnum.left_up == dir:
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_transplane_LU'] = eyelid_crvproj_transplane.get_name()
-        elif controlZoneDirEnum.left_dn.name == dir:
+        elif controlZoneDirEnum.left_dn == dir:
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane.get_name()
 
-    # Create the controller projection planes
+    # Create the controller projection surfaces
     eyelid_crvproj_projsrf_data = crv_proj_surface_data['eyelid_projection_surface']
     eyelid_crvproj_projsrf_degree = eyelid_crvproj_projsrf_data['degree']
     eyelid_crvproj_projsrf_patchesU = eyelid_crvproj_projsrf_data['patchesU']
     eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
 
-    for dir in controlZoneDirList:
+    for dir in control_zone_dir_list:
         eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[dir]
 
         mirror = [1, 1, 1]
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_projsrf = curveProjSurface(name = eyelid_dir_projsrf_data['name'],
+        eyelid_crvproj_projsrf = curveProjSurface(name = eyelid_crvproj_projsrf_data['name_prefix'] + '_' +
+                                                         eyelid_dir_projsrf_data['name'],
                                                   degree = eyelid_crvproj_projsrf_degree,
                                                   patchesU = eyelid_crvproj_projsrf_patchesU,
                                                   patchesV = eyelid_crvproj_projsrf_patchesV,
@@ -148,19 +150,19 @@ def setup_proj_surface():
                                                   cv_list = eyelid_dir_projsrf_data['control_vtx'],
                                                   mirror = mirror)
 
-        if controlZoneDirEnum.right_up.name == dir:
+        if controlZoneDirEnum.right_up == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_RU_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_projsrf_RU'] = eyelid_crvproj_projsrf.get_name()
-        elif controlZoneDirEnum.right_dn.name == dir:
+        elif controlZoneDirEnum.right_dn == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_RD_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_projsrf_RD'] = eyelid_crvproj_projsrf.get_name()
-        elif controlZoneDirEnum.left_up.name == dir:
+        elif controlZoneDirEnum.left_up == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_LU_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_projsrf_LU'] = eyelid_crvproj_projsrf.get_name()
-        elif controlZoneDirEnum.left_dn.name == dir:
+        elif controlZoneDirEnum.left_dn == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_projsrf_LD_grp.get_group_name())
             g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf.get_name()
@@ -185,7 +187,7 @@ def setup_ctrl_zones():
         ))
 
     # Create the control zones.
-    for dir in controlZoneDirList:
+    for dir in control_zone_dir_list:
 
         crvproj_transplane = None
         if 'r' in dir:
@@ -213,7 +215,7 @@ def setup_ctrl_zones():
                 crvproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
         assert None != crvproj_projsrf
 
-        eyelid_ctrl_zone = controlZone(zone=controlZoneEnum.eyelid.name,
+        eyelid_ctrl_zone = controlZone(zone=controlZoneEnum.eyelid,
                                        direction=dir,
                                        ctrl_crv_data=ctrl_crv_data,
                                        crvproj_transplane=crvproj_transplane,

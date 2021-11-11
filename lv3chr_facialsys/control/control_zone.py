@@ -50,8 +50,8 @@ class controlZone(object):
     _crvproj_projsurface = None
 
     def __init__(self,
-                 zone=controlZoneEnum.eyelid.name,
-                 direction=controlZoneDirEnum.right_up.name,
+                 zone=controlZoneEnum.eyelid,
+                 direction=controlZoneDirEnum.right_up,
                  ctrl_crv_data = None,
                  crvproj_transplane = None,
                  crvproj_projsurface = None
@@ -74,7 +74,7 @@ class controlZone(object):
         ctrlcrv_degree = 1
 
         # Eyelid Zone
-        if controlZoneEnum.eyelid.name == zone:
+        if controlZoneEnum.eyelid == zone:
             ctrl_crv_id_list = ['A', 'B', 'C', 'D']
             controller_id_list = ['A', 'B', 'C', 'D', 'E']
 
@@ -84,21 +84,22 @@ class controlZone(object):
 
             for id in ctrl_crv_id_list:
                 eyelid_dir_ctrlcrv_data = eyelid_ctrlcrv_data[direction + '_' + id]
-                eyelid_ctrl_crv = controlCurve(name = eyelid_dir_ctrlcrv_data['name'],
+                eyelid_ctrl_crv = controlCurve(name = ctrl_crv_data['eyelid_zone_prefix'] + '_' +
+                                                      eyelid_dir_ctrlcrv_data['name'],
                                                degree = eyelid_ctrlcrv_degree,
                                                points = eyelid_dir_ctrlcrv_data['points'],
                                                translation = eyelid_dir_ctrlcrv_data['xform']['translation'])
 
-                if controlZoneDirEnum.right_up.name == direction:
+                if controlZoneDirEnum.right_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
-                elif controlZoneDirEnum.right_dn.name == direction:
+                elif controlZoneDirEnum.right_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
-                elif controlZoneDirEnum.left_up.name == direction:
+                elif controlZoneDirEnum.left_up == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
-                elif controlZoneDirEnum.left_dn.name == direction:
+                elif controlZoneDirEnum.left_dn == direction:
                     cmds.parent(eyelid_ctrl_crv.get_name(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
 
@@ -119,26 +120,27 @@ class controlZone(object):
 
             for id in controller_id_list:
                 eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+id]
-                eyelid_controller = controller(name = eyelid_dir_ctrl_data['name'],
+                eyelid_controller = controller(name = ctrl_crv_data['eyelid_zone_prefix'] + '_' +
+                                                      eyelid_dir_ctrl_data['name'],
                                                degree = eyelid_controller_degree,
                                                color = eyelid_controller_color,
                                                points = eyelid_controller_points,
                                                translation_ofs=eyelid_dir_ctrl_data['xform']['translation_ofs'],
                                                translation = eyelid_dir_ctrl_data['xform']['translation'])
 
-                if controlZoneDirEnum.right_up.name == direction:
+                if controlZoneDirEnum.right_up == direction:
                     cmds.parent(eyelid_controller.get_offset_group(),
-                                lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name(),
+                                lv3chr_facialsys_hierarchy.eyelid_ctrl_RU_grp.get_group_name(),
                                 relative=True)
-                elif controlZoneDirEnum.right_dn.name == direction:
+                elif controlZoneDirEnum.right_dn == direction:
                     cmds.parent(eyelid_controller.get_offset_group(),
-                                lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name(),
+                                lv3chr_facialsys_hierarchy.eyelid_ctrl_RD_grp.get_group_name(),
                                 relative=True)
-                elif controlZoneDirEnum.left_up.name == direction:
+                elif controlZoneDirEnum.left_up == direction:
                     cmds.parent(eyelid_controller.get_offset_group(),
-                                lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name(),
+                                lv3chr_facialsys_hierarchy.eyelid_ctrl_LU_grp.get_group_name(),
                                 relative=True)
-                elif controlZoneDirEnum.left_dn.name == direction:
+                elif controlZoneDirEnum.left_dn == direction:
                     cmds.parent(eyelid_controller.get_offset_group(),
-                                lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name(),
+                                lv3chr_facialsys_hierarchy.eyelid_ctrl_LD_grp.get_group_name(),
                                 relative=True)
