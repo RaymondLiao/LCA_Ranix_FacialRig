@@ -63,7 +63,7 @@ def lc3chr_facialsys_construct():
     mel.eval('hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes")')
 
 def setup_proj_surface():
-    """ Create the projection planes containing locators and joints.
+    """ Create the projection planes containing locator_data and joints.
     :return: None
     """
 
@@ -100,15 +100,15 @@ def setup_proj_surface():
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_transplane = controlTransPlane(name = eyelid_crvproj_transplane_data['name_prefix'] + '_' +
-                                                             eyelid_dir_transplane_data['name'],
-                                                    degree = eyelid_crvproj_transplane_degree,
-                                                    patchesU = eyelid_crvproj_transplane_patchesU,
-                                                    patchesV = eyelid_crvproj_transplane_patchesV,
-                                                    translation = eyelid_dir_transplane_data['xform']['translation'],
-                                                    rotation = eyelid_dir_transplane_data['xform']['rotation'],
-                                                    scale = eyelid_dir_transplane_data['xform']['scale'],
-                                                    mirror = mirror)
+        eyelid_crvproj_transplane = controlTransPlane(name_prefix = eyelid_crvproj_transplane_data['name_prefix'],
+                                                      name = eyelid_dir_transplane_data['name'],
+                                                      degree = eyelid_crvproj_transplane_degree,
+                                                      patchesU = eyelid_crvproj_transplane_patchesU,
+                                                      patchesV = eyelid_crvproj_transplane_patchesV,
+                                                      translation = eyelid_dir_transplane_data['xform']['translation'],
+                                                      rotation = eyelid_dir_transplane_data['xform']['rotation'],
+                                                      scale = eyelid_dir_transplane_data['xform']['scale'],
+                                                      mirror = mirror)
         if controlZoneDirEnum.right_up == dir:
             cmds.parent(eyelid_crvproj_transplane.get_name(),
                         lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
@@ -139,16 +139,18 @@ def setup_proj_surface():
         if 'r' in dir:
             mirror = [-1, 1, 1]
 
-        eyelid_crvproj_projsrf = controlProjSurface(name = eyelid_crvproj_projsrf_data['name_prefix'] + '_' +
-                                                           eyelid_dir_projsrf_data['name'],
-                                                  degree = eyelid_crvproj_projsrf_degree,
-                                                  patchesU = eyelid_crvproj_projsrf_patchesU,
-                                                  patchesV = eyelid_crvproj_projsrf_patchesV,
-                                                  translation = eyelid_dir_projsrf_data['xform']['translation'],
-                                                  rotation = eyelid_dir_projsrf_data['xform']['rotation'],
-                                                  scale = eyelid_dir_projsrf_data['xform']['scale'],
-                                                  cv_list = eyelid_dir_projsrf_data['control_vtx'],
-                                                  mirror = mirror)
+        eyelid_crvproj_projsrf = controlProjSurface(name_prefix = eyelid_crvproj_projsrf_data['name_prefix'],
+                                                    name = eyelid_dir_projsrf_data['name'],
+                                                    degree = eyelid_crvproj_projsrf_degree,
+                                                    patchesU = eyelid_crvproj_projsrf_patchesU,
+                                                    patchesV = eyelid_crvproj_projsrf_patchesV,
+                                                    translation = eyelid_dir_projsrf_data['xform']['translation'],
+                                                    rotation = eyelid_dir_projsrf_data['xform']['rotation'],
+                                                    scale = eyelid_dir_projsrf_data['xform']['scale'],
+                                                    mirror = mirror,
+                                                    cv_list = eyelid_dir_projsrf_data['control_vtx'],
+                                                    locator_data = eyelid_dir_projsrf_data['locators'],
+                                                    locator_scale = eyelid_crvproj_projsrf_data['locator_scale'])
 
         if controlZoneDirEnum.right_up == dir:
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
@@ -223,7 +225,7 @@ def setup_ctrl_zones():
 
 
 def setup_ctrl_locs():
-    """ Create the locators on the controlling curves and the projection planes.
+    """ Create the locator_data on the controlling curves and the projection planes.
     :return: None
     """
     return NotImplemented

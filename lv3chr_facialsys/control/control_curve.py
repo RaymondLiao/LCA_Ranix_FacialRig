@@ -18,30 +18,32 @@ from general.lv3chr_facialsys_config import *
 
 from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
 
+# ======================================================================================================================
 class controlCurve(object):
     """ Control Curves are used to transit the translation of
-    locators binding joints on the projected surface.
+    locator_data binding joints on the projected surface.
     """
 
+    # NURBS curve construction parameters
     _degree = 1
     _nurbs_crv = None
 
-    # The dictionary format is "id: (name of the locator, point-on-curve parameter)"
-    # e.g 1: ('fm_eyelidProject_RU_A1_loc', 0.0)
-    _loc_dict = {}
+    # locator_data pinned on the curve
+    # The dictionary format is {locator_id: (locator's name, pointOnCurveInfo node's name)}
+    # e.g {1: ('fm_eyelidProject_RU_A1_loc', 'fm_eyelidProject_RU_A1_loc_ptOnCrv)}
+    _locator_dict = {}
     def get_locator_count(self):
-        return len(self._loc_dict)
-    def get_locator_info(self, id):
+        return len(self._locator_dict)
+    def get_locator_info(self, locator_id):
         """
-        :param id: the locator index
-        :return: the (name, point-on-curve param) tuple
+        :param locator_id: the locator identity number, starts from 1
+        :return: a tuple of the format (locator's name, pointOnCurveInfo node's name)
         """
-        if id > len(self._loc_dict) - 1:
-            cmds.warning('[controlCurve] Try to access the locator whose id is larger than \
-                         the greatest one of this control curve.')
+        if locator_id not in self._locator_dict.keys():
+            cmds.warning('[controlCurve] Try to access the locator whose locator_id does not exist.')
             return None
 
-        return self._loc_dict[id]
+        return self._locator_dict[locator_id]
 
     def __init__(self,
                  name_prefix = '',
@@ -49,7 +51,7 @@ class controlCurve(object):
                  degree=1,
                  translation=[0, 0, 0],
                  points=[],
-                 locators=[],
+                 locator_data=[],
                  locator_scale=[1, 1, 1]):
 
         # Create the NURBS curve as the control curve and move it into position.
@@ -69,11 +71,11 @@ class controlCurve(object):
                      CTRL_CURVE_COLOR_INDEX)
         cmds.toggle(self._nurbs_crv, controlVertex=True)
 
-        # Create the locators belongs to this curve, then use pointOnCurveInfo nodes to pin them onto it.
-        for loc_dict in locators:
-            loc_id = loc_dict.keys()[0]
-            loc_name = loc_dict[loc_id]['name']
-            loc_param = loc_dict[loc_id]['pt_on_crv_param']
+        # Create the locator_data belongs to this control curve, then use pointOnCurveInfo nodes to pin them onto it.
+        for loc_dict in locator_data:
+            loc_id = loc_dict['id']
+            loc_name = loc_dict['name']
+            loc_param = loc_dict['pt_on_crv_param']
 
             loc = cmds.spaceLocator(name=name_prefix+'_'+loc_name)[0]
             assert cmds.objExists(loc+'Shape')
@@ -81,14 +83,14 @@ class controlCurve(object):
                 cmds.setAttr(loc+'Shape.localScale'+axis, locator_scale[idx])
 
             cmds.setAttr(loc+'.overrideEnabled', True)
-            cmds.setAttr(loc+'.overrideColor', CTRL_DURVE_LOC_COLOR_INDEX)
+            cmds.setAttr(loc+'.overrideColor', CTRL_CURVE_LOC_COLOR_INDEX)
 
-            self._loc_dict[int(loc_id)-1] = (loc, loc_param)
-
-            pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=name_prefix+'_'+loc_name)
+            pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=name_prefix+'_'+loc_name+'_ptOnCrv')
             cmds.setAttr(pt_on_crv_info_node+'.parameter', loc_param)
             cmds.connectAttr(self._nurbs_crv+'.worldSpace[0]', pt_on_crv_info_node+'.inputCurve')
             cmds.connectAttr(pt_on_crv_info_node+'.position', loc+'.translate')
+
+            self._locator_dict[int(loc_id)] = (loc, pt_on_crv_info_node)
 
     def __repr__(self):
         return NotImplemented

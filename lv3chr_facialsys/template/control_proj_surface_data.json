@@ -45,9 +45,17 @@
 
   "eyelid_projection_surface": {
     "name_prefix": "fm_eyelidMask",
+
     "degree": 1,
     "patchesU": 4,
     "patchesV": 6,
+
+    "locator_scale": [0.03, 0.03, 0.03],
+
+    "locator_joint": {
+      "joint_suffix": "jnt",
+      "joint_radius": 0.2
+    },
 
     "right_up": {
       "name": "RU_nbs",
@@ -97,106 +105,110 @@
         {"4,5": [-0.0219, -0.502, 0.00934]},
         {"4,6": [-0.065, -0.681, -0.0633]}
       ],
+
       "locators": [
         {
-          "joint_suffix": "jnt",
-          "joint_radius": 0.2,
+          "id": "A1",
+          "name": "RU_A1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.5]
+        },
+        {
+          "id": "A2",
+          "name": "RU_A2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.66]
+        },
+        {
+          "id": "A3",
+          "name": "RU_A3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.697]
+        },
+        {
+          "id": "A4",
+          "name": "RU_A4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.66]
+        },
+        {
+          "id": "A5",
+          "name": "RU_A5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.5]
+        },
 
-          "A1": {
-            "name": "RU_A1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.5]
-          },
-          "A2": {
-            "name": "RU_A2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.66]
-          },
-          "A3": {
-            "name": "RU_A3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.697]
-          },
-          "A4": {
-            "name": "RU_A4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.66]
-          },
-          "A5": {
-            "name": "RU_A5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.5]
-          },
+        {
+          "id": "B1",
+          "name": "RU_B1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.667]
+        },
+        {
+          "id": "B2",
+          "name": "RU_B2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.779]
+        },
+        {
+          "id": "B3",
+          "name": "RU_B3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.805]
+        },
+        {
+          "id": "B4",
+          "name": "RU_B4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.779]
+        },
+        {
+          "id": "B5",
+          "name": "RU_B5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.667]
+        },
 
-          "B1": {
-            "name": "RU_B1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.667]
-          },
+        {
+          "id": "C1",
+          "name": "RU_C1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.833]
+        },
+        {
+          "id": "C2",
+          "name": "RU_C2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.897]
+        },
+        {
+          "id": "C3",
+          "name": "RU_C3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.912]
+        },
+        {
+          "id": "C4",
+          "name": "RU_C4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.897]
+        },
+        {
+          "id": "C5",
+          "name": "RU_C5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.833]
+        },
 
-          "B2": {
-            "name": "RU_B2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.779]
-          },
-
-          "B3": {
-            "name": "RU_B3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.805]
-          },
-
-          "B4": {
-            "name": "RU_B4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.779]
-          },
-
-          "B5": {
-            "name": "RU_B5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.667]
-          },
-
-          "C1": {
-            "name": "RU_C1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.833]
-          },
-
-          "C2": {
-            "name": "RU_C2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.897]
-          },
-
-          "C3": {
-            "name": "RU_C3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.912]
-          },
-
-          "C4": {
-            "name": "RU_C4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.897]
-          },
-
-          "C5": {
-            "name": "RU_C5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.833]
-          },
-
-          "D1": {
-            "name": "RU_D1_loc",
-            "pt_on_srf_param_UV": [1.0, 1.0]
-          },
-
-          "D2": {
-            "name": "RU_D2_loc",
-            "pt_on_srf_param_UV": [0.75, 1.0]
-          },
-
-          "D3": {
-            "name": "RU_D3_loc",
-            "pt_on_srf_param_UV": [0.5, 1.0]
-          },
-
-          "D4": {
-            "name": "RU_D4_loc",
-            "pt_on_srf_param_UV": [0.25, 1.0]
-          },
-
-          "D5": {
-            "name": "RU_D5_loc",
-            "pt_on_srf_param_UV": [0.0, 1.0]
-          }
+        {
+          "id": "D1",
+          "name": "RU_D1_loc",
+          "pt_on_srf_param_UV": [1.0, 1.0]
+        },
+        {
+          "id": "D2",
+          "name": "RU_D2_loc",
+          "pt_on_srf_param_UV": [0.75, 1.0]
+        },
+        {
+          "id": "D3",
+          "name": "RU_D3_loc",
+          "pt_on_srf_param_UV": [0.5, 1.0]
+        },
+        {
+          "id": "D4",
+          "name": "RU_D4_loc",
+          "pt_on_srf_param_UV": [0.25, 1.0]
+        },
+        {
+          "id": "D5",
+          "name": "RU_D5_loc",
+          "pt_on_srf_param_UV": [0.0, 1.0]
         }
       ]
     },
@@ -251,104 +263,107 @@
       ],
       "locators": [
         {
-          "joint_suffix": "jnt",
-          "joint_radius": 0.2,
+          "id": "A1",
+          "name": "RD_A1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.5]
+        },
+        {
+          "id": "A2",
+          "name": "RD_A2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.395]
+        },
+        {
+          "id": "A3",
+          "name": "RD_A3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.376]
+        },
+        {
+          "id": "A4",
+          "name": "RD_A4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.395]
+        },
+        {
+          "id": "A5",
+          "name": "RD_A5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.5]
+        },
 
-          "A1": {
-            "name": "RD_A1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.5]
-          },
-          "A2": {
-            "name": "RD_A2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.395]
-          },
-          "A3": {
-            "name": "RD_A3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.376]
-          },
-          "A4": {
-            "name": "RD_A4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.395]
-          },
-          "A5": {
-            "name": "RD_A5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.5]
-          },
+        {
+          "id": "B1",
+          "name": "RD_B1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.333]
+        },
+        {
+          "id": "B2",
+          "name": "RD_B2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.26]
+        },
+        {
+          "id": "B3",
+          "name": "RD_B3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.246]
+        },
+        {
+          "id": "B4",
+          "name": "RD_B4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.26]
+        },
+        {
+          "id": "B5",
+          "name": "RD_B5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.333]
+        },
 
-          "B1": {
-            "name": "RD_B1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.333]
-          },
+        {
+          "id": "C1",
+          "name": "RD_C1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.167]
+        },
+        {
+          "id": "C2",
+          "name": "RD_C2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.125]
+        },
+        {
+          "id": "C3",
+          "name": "RD_C3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.117]
+        },
+        {
+          "id": "C4",
+          "name": "RD_C4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.125]
+        },
+        {
+          "id": "C5",
+          "name": "RD_C5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.167]
+        },
 
-          "B2": {
-            "name": "RD_B2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.26]
-          },
-
-          "B3": {
-            "name": "RD_B3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.246]
-          },
-
-          "B4": {
-            "name": "RD_B4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.26]
-          },
-
-          "B5": {
-            "name": "RD_B5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.333]
-          },
-
-          "C1": {
-            "name": "RD_C1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.167]
-          },
-
-          "C2": {
-            "name": "RD_C2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.125]
-          },
-
-          "C3": {
-            "name": "RD_C3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.117]
-          },
-
-          "C4": {
-            "name": "RD_C4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.125]
-          },
-
-          "C5": {
-            "name": "RD_C5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.167]
-          },
-
-          "D1": {
-            "name": "RD_D1_loc",
-            "pt_on_srf_param_UV": [1.0, 0.0]
-          },
-
-          "D2": {
-            "name": "RD_D2_loc",
-            "pt_on_srf_param_UV": [0.75, 0.0]
-          },
-
-          "D3": {
-            "name": "RD_D3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.0]
-          },
-
-          "D4": {
-            "name": "RD_D4_loc",
-            "pt_on_srf_param_UV": [0.25, 0.0]
-          },
-
-          "D5": {
-            "name": "RD_D5_loc",
-            "pt_on_srf_param_UV": [0.0, 0.0]
-          }
+        {
+          "id": "D1",
+          "name": "RD_D1_loc",
+          "pt_on_srf_param_UV": [1.0, 0.0]
+        },
+        {
+          "id": "D2",
+          "name": "RD_D2_loc",
+          "pt_on_srf_param_UV": [0.75, 0.0]
+        },
+        {
+          "id": "D3",
+          "name": "RD_D3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.0]
+        },
+        {
+          "id": "D4",
+          "name": "RD_D4_loc",
+          "pt_on_srf_param_UV": [0.25, 0.0]
+        },
+        {
+          "id": "D5",
+          "name": "RD_D5_loc",
+          "pt_on_srf_param_UV": [0.0, 0.0]
         }
       ]
     },
@@ -403,104 +418,107 @@
       ],
       "locators": [
         {
-          "joint_suffix": "jnt",
-          "joint_radius": 0.2,
+          "id": "A1",
+          "name": "LU_A1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.5]
+        },
+        {
+          "id": "A2",
+          "name": "LU_A2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.645]
+        },
+        {
+          "id": "A3",
+          "name": "LU_A3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.683]
+        },
+        {
+          "id": "A4",
+          "name": "LU_A4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.645]
+        },
+        {
+          "id": "A5",
+          "name": "LU_A5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.5]
+        },
 
-          "A1": {
-            "name": "LU_A1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.5]
-          },
-          "A2": {
-            "name": "LU_A2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.645]
-          },
-          "A3": {
-            "name": "LU_A3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.683]
-          },
-          "A4": {
-            "name": "LU_A4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.645]
-          },
-          "A5": {
-            "name": "LU_A5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.5]
-          },
+        {
+          "id": "B1",
+          "name": "LU_B1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.667]
+        },
+        {
+          "id": "B2",
+          "name": "LU_B2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.768]
+        },
+        {
+          "id": "B3",
+          "name": "LU_B3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.795]
+        },
+        {
+          "id": "B4",
+          "name": "LU_B4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.768]
+        },
+        {
+          "id": "B5",
+          "name": "LU_B5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.667]
+        },
 
-          "B1": {
-            "name": "LU_B1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.667]
-          },
+        {
+          "id": "C1",
+          "name": "LU_C1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.833]
+        },
+        {
+          "id": "C2",
+          "name": "LU_C2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.891]
+        },
+        {
+          "id": "C3",
+          "name": "LU_C3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.906]
+        },
+        {
+          "id": "C4",
+          "name": "LU_C4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.891]
+        },
+        {
+          "id": "C5",
+          "name": "LU_C5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.833]
+        },
 
-          "B2": {
-            "name": "LU_B2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.768]
-          },
-
-          "B3": {
-            "name": "LU_B3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.795]
-          },
-
-          "B4": {
-            "name": "LU_B4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.768]
-          },
-
-          "B5": {
-            "name": "LU_B5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.667]
-          },
-
-          "C1": {
-            "name": "LU_C1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.833]
-          },
-
-          "C2": {
-            "name": "LU_C2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.891]
-          },
-
-          "C3": {
-            "name": "LU_C3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.906]
-          },
-
-          "C4": {
-            "name": "LU_C4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.891]
-          },
-
-          "C5": {
-            "name": "LU_C5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.833]
-          },
-
-          "D1": {
-            "name": "LU_D1_loc",
-            "pt_on_srf_param_UV": [0.0, 1.0]
-          },
-
-          "D2": {
-            "name": "LU_D2_loc",
-            "pt_on_srf_param_UV": [0.25, 1.0]
-          },
-
-          "D3": {
-            "name": "LU_D3_loc",
-            "pt_on_srf_param_UV": [0.5, 1.0]
-          },
-
-          "D4": {
-            "name": "LU_D4_loc",
-            "pt_on_srf_param_UV": [0.75, 1.0]
-          },
-
-          "D5": {
-            "name": "LU_D5_loc",
-            "pt_on_srf_param_UV": [1.0, 1.0]
-          }
+        {
+          "id": "D1",
+          "name": "LU_D1_loc",
+          "pt_on_srf_param_UV": [0.0, 1.0]
+        },
+        {
+          "id": "D2",
+          "name": "LU_D2_loc",
+          "pt_on_srf_param_UV": [0.25, 1.0]
+        },
+        {
+          "id": "D3",
+          "name": "LU_D3_loc",
+          "pt_on_srf_param_UV": [0.5, 1.0]
+        },
+        {
+          "id": "D4",
+          "name": "LU_D4_loc",
+          "pt_on_srf_param_UV": [0.75, 1.0]
+        },
+        {
+          "id": "D5",
+          "name": "LU_D5_loc",
+          "pt_on_srf_param_UV": [1.0, 1.0]
         }
       ]
     },
@@ -555,104 +573,107 @@
       ],
       "locators": [
         {
-          "joint_suffix": "jnt",
-          "joint_radius": 0.2,
+          "id": "A1",
+          "name": "LD_A1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.5]
+        },
+        {
+          "id": "A2",
+          "name": "LD_A2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.395]
+        },
+        {
+          "id": "A3",
+          "name": "LD_A3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.376]
+        },
+        {
+          "id": "A4",
+          "name": "LD_A4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.395]
+        },
+        {
+          "id": "A5",
+          "name": "LD_A5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.5]
+        },
 
-          "A1": {
-            "name": "LD_A1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.5]
-          },
-          "A2": {
-            "name": "LD_A2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.395]
-          },
-          "A3": {
-            "name": "LD_A3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.376]
-          },
-          "A4": {
-            "name": "LD_A4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.395]
-          },
-          "A5": {
-            "name": "LD_A5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.5]
-          },
+        {
+          "id": "B1",
+          "name": "LD_B1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.333]
+        },
+        {
+          "id": "B2",
+          "name": "LD_B2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.26]
+        },
+        {
+          "id": "B3",
+          "name": "LD_B3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.246]
+        },
+        {
+          "id": "B4",
+          "name": "LD_B4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.26]
+        },
+        {
+          "id": "B5",
+          "name": "LD_B5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.333]
+        },
 
-          "B1": {
-            "name": "LD_B1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.333]
-          },
+        {
+          "id": "C1",
+          "name": "LD_C1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.167]
+        },
+        {
+          "id": "C2",
+          "name": "LD_C2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.125]
+        },
+        {
+          "id": "C3",
+          "name": "LD_C3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.117]
+        },
+        {
+          "id": "C4",
+          "name": "LD_C4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.125]
+        },
+        {
+          "id": "C5",
+          "name": "LD_C5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.167]
+        },
 
-          "B2": {
-            "name": "LD_B2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.26]
-          },
-
-          "B3": {
-            "name": "LD_B3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.246]
-          },
-
-          "B4": {
-            "name": "LD_B4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.26]
-          },
-
-          "B5": {
-            "name": "LD_B5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.333]
-          },
-
-          "C1": {
-            "name": "LD_C1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.167]
-          },
-
-          "C2": {
-            "name": "LD_C2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.125]
-          },
-
-          "C3": {
-            "name": "LD_C3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.117]
-          },
-
-          "C4": {
-            "name": "LD_C4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.125]
-          },
-
-          "C5": {
-            "name": "LD_C5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.167]
-          },
-
-          "D1": {
-            "name": "LD_D1_loc",
-            "pt_on_srf_param_UV": [0.0, 0.0]
-          },
-
-          "D2": {
-            "name": "LD_D2_loc",
-            "pt_on_srf_param_UV": [0.25, 0.0]
-          },
-
-          "D3": {
-            "name": "LD_D3_loc",
-            "pt_on_srf_param_UV": [0.5, 0.0]
-          },
-
-          "D4": {
-            "name": "LD_D4_loc",
-            "pt_on_srf_param_UV": [0.75, 0.0]
-          },
-
-          "D5": {
-            "name": "LD_D5_loc",
-            "pt_on_srf_param_UV": [1.0, 0.0]
-          }
+        {
+          "id": "D1",
+          "name": "LD_D1_loc",
+          "pt_on_srf_param_UV": [0.0, 0.0]
+        },
+        {
+          "id": "D2",
+          "name": "LD_D2_loc",
+          "pt_on_srf_param_UV": [0.25, 0.0]
+        },
+        {
+          "id": "D3",
+          "name": "LD_D3_loc",
+          "pt_on_srf_param_UV": [0.5, 0.0]
+        },
+        {
+          "id": "D4",
+          "name": "LD_D4_loc",
+          "pt_on_srf_param_UV": [0.75, 0.0]
+        },
+        {
+          "id": "D5",
+          "name": "LD_D5_loc",
+          "pt_on_srf_param_UV": [1.0, 0.0]
         }
       ]
     }

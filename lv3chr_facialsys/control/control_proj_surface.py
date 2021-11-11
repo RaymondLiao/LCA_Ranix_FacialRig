@@ -16,6 +16,7 @@ import maya.cmds as cmds
 from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
 from general.lv3chr_facialsys_config import *
 
+# ======================================================================================================================
 class controlTransPlane(object):
     """ translation plane indicating the movement area of facial rig control
     data curves' CVs
@@ -26,9 +27,16 @@ class controlTransPlane(object):
     _patchesV = 6
     _nurbs_srf = None
 
-    def __init__(self, name='control_translation_plane', degree=1, patchesU=4, patchesV=6,
-               translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0], scale=[1.0, 1.0, 1.0],
-               mirror=[1, 1, 1]):
+    def __init__(self,
+                 name_prefix='',
+                 name='control_translation_plane',
+                 degree=1,
+                 patchesU=4,
+                 patchesV=6,
+                 translation=[0.0, 0.0, 0.0],
+                 rotation=[0.0, 0.0, 0.0],
+                 scale=[1.0, 1.0, 1.0],
+                 mirror=[1, 1, 1]):
 
         self._degree = degree
         self._patchesU = patchesU
@@ -48,7 +56,7 @@ class controlTransPlane(object):
         if mirror[0] < 0:
             cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
-        self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
+        self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
         cmds.toggle(self._nurbs_srf, template=True)
 
     def __repr__(self):
@@ -57,22 +65,61 @@ class controlTransPlane(object):
     def get_name(self):
         return str(self._nurbs_srf)
 
-
+# ======================================================================================================================
 class controlProjSurface(object):
-    """ projection plane constraining on which the movement area of locators
+    """ projection plane constraining on which the movement area of locator_data
     projected from the movement of joints on the control data curves
     """
 
+    # NURBS surface construction parameters
     _degree = 1
     _patchesU = 4
     _patchesV = 6
     _cv_coords = []
     _nurbs_srf = None
 
-    def __init__(self, name='control_projection_plane',
-                 degree=1, patchesU=4, patchesV=6, cv_list=[],
-                 translation=[0.0, 0.0, 0.0], rotation=[0.0, 0.0, 0.0], scale=[1.0, 1.0, 1.0],
-                 mirror=[1, 1, 1]):
+    # locator_data pinned on the projection surface
+    # The 2-dimensional dictionary format is {row_id: {col_id: (locator's name, pointOnSurfaceInfo node's name)}}
+    # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
+    _locator_dict = {}
+    def get_locator_row_count(self):
+        return len(self._locator_dict)
+    def get_locator_count_in_row(self, row_id):
+        assert row_id in self._locator_dict.keys()
+        return len(self._locator_dict[row_id])
+    def get_locator_count(self):
+        loc_count = 0
+        for row_id in self._locator_dict.keys():
+            loc_count += self.get_locator_count_in_row(row_id)
+        return loc_count
+    def get_locator_info(self, row_id, col_id):
+        """
+        :param row_id: the locator row identity character, starts from 'A'
+        :param col_id: the locator column identity number, starts from 1
+        :return: a tuple of the format (locator's name, pointOnSurfaceInfo node's name)
+        """
+        if row_id not in self._locator_dict.keys():
+            cmds.warning('[controlProjSurface] Try to access the locator of the row whose row_id does not exist.')
+            return None
+        if col_id not in self._locator_dict[row_id].keys():
+            cmds.warning('[controlProjSurface] Try to access the locator of the column whose col_id does not exist.')
+            return None
+
+        return self._locator_dict[row_id][col_id]
+
+    def __init__(self,
+                 name_prefix='',
+                 name='control_projection_plane',
+                 degree=1,
+                 patchesU=4,
+                 patchesV=6,
+                 translation=[0.0, 0.0, 0.0],
+                 rotation=[0.0, 0.0, 0.0],
+                 scale=[1.0, 1.0, 1.0],
+                 mirror=[1, 1, 1],
+                 cv_list=[],
+                 locator_data=[],
+                 locator_scale=[1, 1, 1]):
         """
         :param cv_list: A list of CV coordinates for the NURBS plane to construct;
                         Note that the maximum length of this list is (patchesU+1)*(patchesV+1).
@@ -109,7 +156,8 @@ class controlProjSurface(object):
         if mirror[0] < 0:
             cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
-        self._nurbs_srf = cmds.rename(self._nurbs_srf, name)
+        self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
+        cmds.toggle(self._nurbs_srf, template=True)
 
         # Set display attributes.
         cmds.select(self._nurbs_srf, replace=True)
@@ -119,6 +167,30 @@ class controlProjSurface(object):
         cmds.setAttr(self._nurbs_srf+'.overrideEnabled', True)
         cmds.setAttr(self._nurbs_srf+'.overrideColor', PROJ_SURFACE_COLOR_INDEX)
         cmds.toggle(self._nurbs_srf, controlVertex=True)
+
+        # Create the locator_data belongs to this projection surface, then use pointOnSurface
+        for loc_dict in locator_data:
+            loc_id = loc_dict['id']
+            loc_row_id = loc_id[0]
+            loc_col_id = loc_id[1]
+            loc_name = loc_dict['name']
+            loc_param_uv = loc_dict['pt_on_srf_param_UV']
+
+            loc = cmds.spaceLocator(name=name_prefix+'_'+loc_name)[0]
+            assert cmds.objExists(loc+'Shape')
+            for idx, axis in {0:'X', 1:'Y', 2:'Z'}.items():
+                cmds.setAttr(loc+'Shape.localScale'+axis, locator_scale[idx])
+
+            cmds.setAttr(loc+'.overrideEnabled', True)
+            cmds.setAttr(loc+'.overrideColor', PROJ_SURFACE_LOC_COLOR_INDEX)
+
+            pt_on_srf_info_node = cmds.createNode('pointOnSurfaceInfo', name=name_prefix+'_'+loc_name+'_ptOnSrf')
+            cmds.setAttr(pt_on_srf_info_node+'.parameterU', loc_param_uv[0])
+            cmds.setAttr(pt_on_srf_info_node+'.parameterV', loc_param_uv[1])
+            cmds.connectAttr(self._nurbs_srf+'.worldSpace[0]', pt_on_srf_info_node+'.inputSurface')
+            cmds.connectAttr(pt_on_srf_info_node+'.position', loc+'.translate')
+
+            # self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, pt_on_srf_info_node)
 
     def __repr__(self):
         return NotImplemented
