@@ -52,9 +52,9 @@
 
     "locator_scale": [0.03, 0.03, 0.03],
 
-    "locator_joint": {
-      "joint_suffix": "jnt",
-      "joint_radius": 0.2
+    "bind_joint": {
+      "suffix": "bind",
+      "radius": 2.0
     },
 
     "right_up": {

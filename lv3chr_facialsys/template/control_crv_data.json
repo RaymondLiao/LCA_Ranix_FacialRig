@@ -681,8 +681,11 @@
       [0.0, 0.0, 0.0]
     ],
 
-    "joint_suffix": "jnt",
-    "joint_radius": 0.5,
+    "bind_joint":
+    {
+      "suffix": "bind",
+      "radius": 4.0
+    },
 
     "right_up_A": {
       "name": "RU_A_ctrl",

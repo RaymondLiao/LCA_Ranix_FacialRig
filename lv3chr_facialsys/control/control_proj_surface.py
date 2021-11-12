@@ -80,8 +80,9 @@ class controlProjSurface(object):
     _nurbs_srf = None
 
     # locator_data pinned on the projection surface
-    # The 2-dimensional dictionary format is {row_id: {col_id: (locator's name, pointOnSurfaceInfo node's name)}}
-    # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
+    # The 2-dimensional dictionary format is:
+    # {row_id: {col_id: (locator's name, bind joint's name, pointOnSurfaceInfo node's name)}}
+    # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_bind', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
     _locator_dict = {}
     def get_locator_row_ids(self):
         """
@@ -123,7 +124,9 @@ class controlProjSurface(object):
                  mirror=[1, 1, 1],
                  cv_list=[],
                  locator_data=[],
-                 locator_scale=[1, 1, 1]):
+                 locator_scale=[1, 1, 1],
+                 bind_joint_data={},
+                 bind_joint_color=COLOR_INDEX_DARK_WHITE):
         """
         :param cv_list: A list of CV coordinates for the NURBS plane to construct;
                         Note that the maximum length of this list is (patchesU+1)*(patchesV+1).
@@ -173,7 +176,7 @@ class controlProjSurface(object):
         cmds.setAttr(self._nurbs_srf+'.overrideColor', PROJ_SURFACE_COLOR_INDEX)
         cmds.toggle(self._nurbs_srf, controlVertex=True)
 
-        # Create the locator_data belongs to this projection surface, then use pointOnSurface
+        # Create the locator belongs to this projection surface, then use pointOnSurface
         for loc_dict in locator_data:
             loc_id = loc_dict['id']
             loc_row_id = loc_id[0]
@@ -195,12 +198,26 @@ class controlProjSurface(object):
             cmds.connectAttr(self._nurbs_srf+'.worldSpace[0]', pt_on_srf_info_node+'.inputSurface')
             cmds.connectAttr(pt_on_srf_info_node+'.position', loc+'.translate')
 
-            if loc_row_id in self._locator_dict.keys():
-                self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, pt_on_srf_info_node)
-            else:
-                self._locator_dict[str(loc_row_id)] = {int(loc_col_id): (loc, pt_on_srf_info_node)}
-
             cmds.select(deselect=True)
+
+            # Create a joint to bind this locator onto the target skinning mesh.
+            bind_jnt_data_keys = bind_joint_data.keys()
+            assert 'suffix' in bind_jnt_data_keys
+            assert 'radius' in bind_jnt_data_keys
+
+            bind_jnt_name = name_prefix + '_' + loc_name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
+            bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_joint_data['radius'])
+
+            cmds.setAttr(bind_jnt+'.overrideEnabled', True)
+            cmds.setAttr(bind_jnt+'.overrideColor', bind_joint_color)
+
+            cmds.parent(bind_jnt, loc)
+            cmds.xform(bind_jnt, translation=[0, 0, 0])
+
+            if loc_row_id in self._locator_dict.keys():
+                self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, bind_jnt, pt_on_srf_info_node)
+            else:
+                self._locator_dict[str(loc_row_id)] = {int(loc_col_id): (loc, bind_jnt, pt_on_srf_info_node)}
 
     def __repr__(self):
         return NotImplemented

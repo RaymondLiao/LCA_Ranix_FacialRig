@@ -150,7 +150,9 @@ def setup_proj_surface():
                                                     mirror = mirror,
                                                     cv_list = eyelid_dir_projsrf_data['control_vtx'],
                                                     locator_data = eyelid_dir_projsrf_data['locators'],
-                                                    locator_scale = eyelid_crvproj_projsrf_data['locator_scale'])
+                                                    locator_scale = eyelid_crvproj_projsrf_data['locator_scale'],
+                                                    bind_joint_data = eyelid_crvproj_projsrf_data['bind_joint'],
+                                                    bind_joint_color=BIND_JOINT_COLOR_INDEX)
 
         loc_row_id_list = eyelid_crvproj_projsrf.get_locator_row_ids()
 

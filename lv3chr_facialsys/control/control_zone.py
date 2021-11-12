@@ -244,8 +244,10 @@ class controlZone(object):
                                                degree = eyelid_controller_degree,
                                                color = eyelid_controller_color,
                                                points = eyelid_controller_points,
-                                               translation_ofs=eyelid_dir_ctrl_data['xform']['translation_ofs'],
-                                               translation = eyelid_dir_ctrl_data['xform']['translation'])
+                                               translation_ofs = eyelid_dir_ctrl_data['xform']['translation_ofs'],
+                                               translation = eyelid_dir_ctrl_data['xform']['translation'],
+                                               bind_joint_data = eyelid_controller_data['bind_joint'],
+                                               bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
                 if controlZoneDirEnum.right_up == direction:
                     cmds.parent(eyelid_controller.get_offset_group(),
