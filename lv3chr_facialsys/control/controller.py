@@ -20,11 +20,10 @@ class controller(object):
     """ Controllers are NURBS curves used by animators to key the rig.
     """
 
-    _degree = 1
-    _nurbs_crv = None
-    _ofs_grp = None
-
-    _bind_jnt = None
+    # _bind_jnt = None
+    def get_bind_joint(self):
+        assert None != self._bind_jnt
+        return self._bind_jnt
 
     def __init__(self, name='controller',
                  degree=1, points=[],
@@ -34,8 +33,13 @@ class controller(object):
                  bind_joint_data={},
                  bind_joint_color=COLOR_INDEX_DARK_WHITE):
 
+        # Member Variable Definitions ----------------------------------------------------------------------------------
         # Create a NURBS curve object as the controller UI.
         self._degree = degree
+        self._nurbs_crv = None
+        self._ofs_grp = None
+        # ---------------------------------------------------------------------------------- Member Variable Definitions
+
         assert len(points) > 0
 
         self._ofs_grp = cmds.group(name=name+'_ofs', empty=True)

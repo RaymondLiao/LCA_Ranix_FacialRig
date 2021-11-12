@@ -22,11 +22,6 @@ class controlTransPlane(object):
     data curves' CVs
     """
 
-    _degree = 1
-    _patchesU = 4
-    _patchesV = 6
-    _nurbs_srf = None
-
     def __init__(self,
                  name_prefix='',
                  name='control_translation_plane',
@@ -38,6 +33,7 @@ class controlTransPlane(object):
                  scale=[1.0, 1.0, 1.0],
                  mirror=[1, 1, 1]):
 
+        # Member Variable Definitions ----------------------------------------------------------------------------------
         self._degree = degree
         self._patchesU = patchesU
         self._patchesV = patchesV
@@ -45,6 +41,7 @@ class controlTransPlane(object):
         self._nurbs_srf = cmds.nurbsPlane(degree=self._degree,
                                           patchesU=self._patchesU,
                                           patchesV=self._patchesV)[0]   # Note the [0] indexing
+        # ---------------------------------------------------------------------------------- Member Variable Definitions
 
         cmds.xform(self._nurbs_srf,
                    translation=translation,
@@ -72,18 +69,6 @@ class controlProjSurface(object):
     projected from the movement of joints on the control data curves
     """
 
-    # NURBS surface construction parameters
-    _degree = 1
-    _patchesU = 4
-    _patchesV = 6
-    _cv_coords = []
-    _nurbs_srf = None
-
-    # locator_data pinned on the projection surface
-    # The 2-dimensional dictionary format is:
-    # {row_id: {col_id: (locator's name, bind joint's name, pointOnSurfaceInfo node's name)}}
-    # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_bind', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
-    _locator_dict = {}
     def get_locator_row_ids(self):
         """
         :return: a list of all identity characters of rows of locators, e.g. ['A', 'B', 'C']
@@ -101,7 +86,7 @@ class controlProjSurface(object):
         """
         :param row_id: the locator row identity character, starts from 'A'
         :param col_id: the locator column identity number, starts from 1
-        :return: a tuple of the format (locator's name, pointOnSurfaceInfo node's name)
+        :return: a tuple of the format (locator's name, bind joint's name, pointOnSurfaceInfo node's name)
         """
         if row_id not in self._locator_dict.keys():
             cmds.warning('[controlProjSurface] Try to access the locator of the row whose row_id does not exist.')
@@ -132,9 +117,22 @@ class controlProjSurface(object):
                         Note that the maximum length of this list is (patchesU+1)*(patchesV+1).
         """
 
+        # Member Variable Definitions ----------------------------------------------------------------------------------
+        # NURBS surface construction parameters
         self._degree = degree
         self._patchesU = patchesU
         self._patchesV = patchesV
+
+        self._cv_coords = []
+        self._nurbs_srf = None
+
+        # locator_data pinned on the projection surface
+        # The 2-dimensional dictionary format is:
+        # {row_id: {col_id: (locator's name, bind joint's name, pointOnSurfaceInfo node's name)}}
+        # e.g. {'A': {1: ('fm_eyelidMask_RU_A1_loc', 'fm_eyelidMask_RU_A1_bind', 'fm_eyelidMask_RU_A1_loc_ptOnSrf')}}
+        self._locator_dict = {}
+        # ---------------------------------------------------------------------------------- Member Variable Definitions
+
         assert len(cv_list) <= (patchesU+1) * (patchesV+1)
 
         self._nurbs_srf = cmds.nurbsPlane(degree=self._degree,
@@ -200,7 +198,7 @@ class controlProjSurface(object):
 
             cmds.select(deselect=True)
 
-            # Create a joint to bind this locator onto the target skinning mesh.
+            # Create a joint to pin this locator onto the target skinning mesh.
             bind_jnt_data_keys = bind_joint_data.keys()
             assert 'suffix' in bind_jnt_data_keys
             assert 'radius' in bind_jnt_data_keys
@@ -218,6 +216,19 @@ class controlProjSurface(object):
                 self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, bind_jnt, pt_on_srf_info_node)
             else:
                 self._locator_dict[str(loc_row_id)] = {int(loc_col_id): (loc, bind_jnt, pt_on_srf_info_node)}
+
+        # # Bind the projection surface to the created joints.
+        # cmds.select(deselect=True)
+        # for loc_row_id in self._locator_dict.keys():
+        #     loc_col_id_list = self.get_locator_col_ids(loc_row_id)
+        #     for loc_col_id in loc_col_id_list:
+        #         loc_info = self.get_locator_info(loc_row_id, loc_col_id)
+        #         cmds.select(loc_info[1], add=True)
+        # cmds.select(self._nurbs_srf, add=True)
+        #
+        # skincluster_node = cmds.skinCluster(toSelectedBones=True)
+        # cmds.rename(skincluster_node, self._nurbs_srf+'_skinCluster')
+
 
     def __repr__(self):
         return NotImplemented

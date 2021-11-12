@@ -851,13 +851,13 @@
   "eyelid_follow_controller": {
     "follow_data":
     {
-      "eyelid_up_follow_B": 0.7,
-      "eyelid_up_follow_C": 0.4,
-      "eyelid_up_follow_D": 0.1,
+      "eyelid_up_follow_b": 0.7,
+      "eyelid_up_follow_c": 0.4,
+      "eyelid_up_follow_d": 0.1,
 
-      "eyelid_dn_follow_B": 0.7,
-      "eyelid_dn_follow_C": 0.4,
-      "eyelid_dn_follow_D": 0.1
+      "eyelid_dn_follow_b": 0.7,
+      "eyelid_dn_follow_c": 0.4,
+      "eyelid_dn_follow_d": 0.1
     },
 
     "R": {

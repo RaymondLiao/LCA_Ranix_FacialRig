@@ -24,19 +24,12 @@ class controlCurve(object):
     locator_data binding joints on the projected surface.
     """
 
-    # NURBS curve construction parameters
-    _degree = 1
-    _nurbs_crv = None
-
-    # locator_data pinned on the curve
-    # The dictionary format is {locator_id: (locator's name, pointOnCurveInfo node's name)}
-    # e.g {1: ('fm_eyelidProject_RU_A1_loc', 'fm_eyelidProject_RU_A1_loc_ptOnCrv)}
-    _locator_dict = {}
     def get_locator_ids(self):
         """
         :return: a list of all identity numbers of the locators belonging to this control curve, e.g. [1, 2, 3]
         """
         return self._locator_dict.keys()
+
     def get_locator_info(self, locator_id):
         """
         :param locator_id: the locator identity number, starts from 1
@@ -56,6 +49,16 @@ class controlCurve(object):
                  points=[],
                  locator_data=[],
                  locator_scale=[1, 1, 1]):
+
+        # Member Variable Definitions ----------------------------------------------------------------------------------
+        self._degree = 1
+        self._nurbs_crv = None
+
+        # locator_data pinned on the curve
+        # The dictionary format is {locator_id: (locator's name, pointOnCurveInfo node's name)}
+        # e.g {1: ('fm_eyelidProject_RU_A1_loc', 'fm_eyelidProject_RU_A1_loc_ptOnCrv)}
+        self._locator_dict = {}
+        # ---------------------------------------------------------------------------------- Member Variable Definitions
 
         # Create the NURBS curve as the control curve and move it into position.
         self._degree = degree

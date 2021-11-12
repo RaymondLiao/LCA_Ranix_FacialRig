@@ -33,28 +33,11 @@ class controlZone(object):
     5 joints as a unit to transfer the translations of controllers to the locator_data on a projection plane.
     """
 
-    # The keys of this dictionary are curves' IDs.
-    _ctrl_crv_dict = {
-        'A': None,
-    }
     def get_ctrlcrv_count(self):
         return len(self._ctrl_crv_dict)
 
-    # The keys of this dictionary are follow controller's IDs.
-    _follow_ctrl_dict = {
-        'ctrl_crv_R': None,
-        'ctrl_crv_L': None
-    }
-
-    # The keys of this dictionary are controllers' IDs.
-    _controller_dict = {
-        'A': None,
-    }
     def get_controller_count(self):
         return len(self._controller_dict)
-
-    _ctrlproj_transplane = None
-    _ctrlproj_projsurface = None
 
     def __init__(self,
                  zone=controlZoneEnum.eyelid,
@@ -70,6 +53,25 @@ class controlZone(object):
         :param ctrlproj_transplane: the controllers translation plane this control unit belongs to
         :param ctrlproj_projsurface: the controllers translation-projection surface this control unit belongs to
         """
+
+        # Member Variable Definitions ----------------------------------------------------------------------------------
+        # The keys of this dictionary are curves' IDs.
+        self._ctrl_crv_dict = {
+            'A': None,
+        }
+
+        # The keys of this dictionary are follow controller's IDs.
+        self._follow_ctrl = None
+
+        # The keys of this dictionary are controllers' IDs.
+        self._controller_dict = {
+            'A': None,
+        }
+
+        self._ctrlproj_transplane = None
+        self._ctrlproj_projsurface = None
+        # ---------------------------------------------------------------------------------- Member Variable Definitions
+
         assert None != ctrl_crv_data
         assert None != ctrlproj_transplane
         assert None != ctrlproj_projsurface
@@ -213,7 +215,7 @@ class controlZone(object):
 
                     cmds.select(deselect=True)
 
-                self._follow_ctrl_dict['ctrl_crv_' + dir] = eyelid_follow_ctrl
+                self._follow_ctrl = eyelid_follow_ctrl
 
             # Create the controllers.
             eyelid_controller_data = ctrl_crv_data['eyelid_controller']
@@ -237,8 +239,8 @@ class controlZone(object):
                 elif 'l' in direction:
                     eyelid_controller_color = CONTROLLER_LD_COLOR
 
-            for crv_id in controller_id_list:
-                eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+crv_id]
+            for ctrl_id in controller_id_list:
+                eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+ctrl_id]
                 eyelid_controller = controller(name = ctrl_crv_data['eyelid_zone_prefix'] + '_' +
                                                       eyelid_dir_ctrl_data['name'],
                                                degree = eyelid_controller_degree,
@@ -265,3 +267,81 @@ class controlZone(object):
                     cmds.parent(eyelid_controller.get_offset_group(),
                                 lv3chr_facialsys_hierarchy.eyelid_ctrl_LD_grp.get_group_name(),
                                 relative=True)
+
+                self._controller_dict[ctrl_id] = eyelid_controller
+
+            # ----------------------------------------------------------------------------------------------------------
+            # Bind the control curves to the corresponding controllers' joints.
+            cmds.select(deselect=True)
+            for ctrl_id, ctrl in self._controller_dict.items():
+                ctrl_bind_jnt = ctrl.get_bind_joint()
+                cmds.select(ctrl_bind_jnt, add=True)
+            cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
+
+            skincluster_node = cmds.skinCluster(toSelectedBones=True)
+            cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name()+'_skinCluster')
+
+            # Create blendshapes to control curves to transit the translations of controllers.
+            cmds.select(deselect=True)
+            eyelid_follow_B = 0.0
+            eyelid_follow_C = 0.0
+            eyelid_follow_D = 0.0
+
+            if 'u' in direction:
+                eyelid_follow_B = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_b')
+                eyelid_follow_C = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_c')
+                eyelid_follow_D = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_d')
+            elif 'd' in direction:
+                eyelid_follow_B = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_b')
+                eyelid_follow_C = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_c')
+                eyelid_follow_D = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_d')
+
+            for ctrl_crv_id in ctrl_crv_id_list[1:]:
+                ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+                follow_val = 0.0
+                if 'B' in ctrl_crv_id:
+                    follow_val = eyelid_follow_B
+                elif 'C' in ctrl_crv_id:
+                    follow_val = eyelid_follow_C
+                elif 'D' in ctrl_crv_id:
+                    follow_val = eyelid_follow_D
+
+                bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
+                                          ctrl_crv.get_name(),
+                                          weight=[0, follow_val])
+                cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
+
+            # Use "closestPointOnSurface" node to establish the projecting relationships between
+            # the locators on control curves and the locators on the projection surface.
+
+            # cmds.warning('The translationPlane of this controlZone: {}'.format(self._ctrlproj_transplane.get_name()))
+            # cmds.warning('The projectionSurface of this controlZone: {}'.format(self._ctrlproj_projsurface.get_name()))
+
+            for ctrl_crv_id in ctrl_crv_id_list:
+                ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+
+                for loc_id in ctrl_crv.get_locator_ids():
+                    ctrl_crv_loc_info = ctrl_crv.get_locator_info(loc_id)
+                    proj_srf_loc_info = self._ctrlproj_projsurface.get_locator_info(ctrl_crv_id, loc_id)
+
+                    # cmds.warning('--------------------------------------------------------------------')
+                    # cmds.warning('zone direction: {}'.format(direction))
+                    # cmds.warning('control curve: {}'.format(ctrl_crv.get_name()))
+                    # cmds.warning('project surface: {}'.format(self._ctrlproj_projsurface.get_name()))
+                    # cmds.warning('ctrl_crv_loc_info: {}'.format(ctrl_crv_loc_info))
+                    # cmds.warning('proj_srf_loc_info: {}'.format(proj_srf_loc_info))
+                    # cmds.warning('--------------------------------------------------------------------')
+
+                    cls_pt_on_srf_node = cmds.createNode('closestPointOnSurface')
+                    cls_pt_on_srf_node = cmds.rename(cls_pt_on_srf_node, ctrl_crv_loc_info[0]+'_clsPtOnSrf')
+
+                    cmds.connectAttr(self._ctrlproj_transplane.get_name()+'.worldSpace[0]',
+                                     cls_pt_on_srf_node+'.inputSurface')
+                    cmds.connectAttr(ctrl_crv_loc_info[0]+'Shape.worldPosition[0]',
+                                     cls_pt_on_srf_node+'.inPosition')
+
+                    pt_on_srf_node = proj_srf_loc_info[2]
+                    assert cmds.objExists(pt_on_srf_node)
+
+                    cmds.connectAttr(cls_pt_on_srf_node+'.parameterU', pt_on_srf_node+'.parameterU')
+                    cmds.connectAttr(cls_pt_on_srf_node+'.parameterV', pt_on_srf_node+'.parameterV')
