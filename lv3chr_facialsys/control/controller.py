@@ -42,9 +42,10 @@ class controller(object):
         cmds.xform(self._nurbs_crv, translation=translation)
         self._nurbs_crv = cmds.rename(self._nurbs_crv, name)
 
-        cmds.setAttr(self._nurbs_crv + '.overrideEnabled', True)
-        cmds.setAttr(self._nurbs_crv + '.overrideColor',
-                     color)
+        cmds.setAttr(self._nurbs_crv+'.overrideEnabled', True)
+        cmds.setAttr(self._nurbs_crv+'.overrideColor', color)
+
+        cmds.select(deselect=True)
 
     def __repr__(self):
         return NotImplemented

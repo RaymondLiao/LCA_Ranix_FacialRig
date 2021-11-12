@@ -58,6 +58,7 @@ class controlTransPlane(object):
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
         cmds.toggle(self._nurbs_srf, template=True)
+        cmds.select(deselect=True)
 
     def __repr__(self):
         return NotImplemented
@@ -161,6 +162,7 @@ class controlProjSurface(object):
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
         cmds.toggle(self._nurbs_srf, template=True)
+        cmds.select(deselect=True)
 
         # Set display attributes.
         cmds.select(self._nurbs_srf, replace=True)
@@ -197,6 +199,8 @@ class controlProjSurface(object):
                 self._locator_dict[str(loc_row_id)][int(loc_col_id)] = (loc, pt_on_srf_info_node)
             else:
                 self._locator_dict[str(loc_row_id)] = {int(loc_col_id): (loc, pt_on_srf_info_node)}
+
+            cmds.select(deselect=True)
 
     def __repr__(self):
         return NotImplemented

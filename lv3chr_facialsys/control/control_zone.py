@@ -40,6 +40,12 @@ class controlZone(object):
     def get_ctrlcrv_count(self):
         return len(self._ctrl_crv_dict)
 
+    # The keys of this dictionary are follow controller's IDs.
+    _follow_ctrl_dict = {
+        'ctrl_crv_R': None,
+        'ctrl_crv_L': None
+    }
+
     # The keys of this dictionary are controllers' IDs.
     _controller_dict = {
         'A': None,
@@ -173,6 +179,42 @@ class controlZone(object):
 
                 self._ctrl_crv_dict[crv_id] = eyelid_ctrl_crv
 
+                cmds.select(deselect=True)
+
+            # Create the control curve follow control locators.
+            eyelid_follow_ctrl_data = ctrl_crv_data['eyelid_follow_controller']
+
+            for dir in ['R', 'L']:
+                eyelid_follow_ctrl = eyelid_follow_ctrl_data[dir]['name']
+
+                # If the follow controller has not been created, make one.
+                if not cmds.objExists(eyelid_follow_ctrl):
+
+                    eyelid_follow_ctrl = cmds.spaceLocator(name=eyelid_follow_ctrl_data[dir]['name'])[0]
+                    cmds.xform(eyelid_follow_ctrl, translation=eyelid_follow_ctrl_data[dir]['xform']['translation'])
+
+                    assert cmds.objExists(eyelid_follow_ctrl + 'Shape')
+                    for idx, axis in {0:'X', 1:'Y', 2:'Z'}.items():
+                        cmds.setAttr(eyelid_follow_ctrl+'Shape.localScale'+axis,
+                                     eyelid_follow_ctrl_data[dir]['xform']['scale'][idx])
+
+                    follow_data_list = eyelid_follow_ctrl_data['follow_data']
+                    for follow_attr, val in follow_data_list.items():
+                        cmds.addAttr(eyelid_follow_ctrl, longName=follow_attr, attributeType='float',
+                                     defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
+
+                    cmds.setAttr(eyelid_follow_ctrl+'.overrideEnabled', True)
+                    if 'R' == dir:
+                        cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_RD_COLOR)
+                    elif 'L' == dir:
+                        cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_LD_COLOR)
+
+                    cmds.parent(eyelid_follow_ctrl, lv3chr_facialsys_hierarchy.eyelid_grp.get_group_name())
+
+                    cmds.select(deselect=True)
+
+                self._follow_ctrl_dict['ctrl_crv_' + dir] = eyelid_follow_ctrl
+
             # Create the controllers.
             eyelid_controller_data = ctrl_crv_data['eyelid_controller']
             eyelid_controller_degree = eyelid_controller_data['degree']
@@ -180,11 +222,20 @@ class controlZone(object):
             eyelid_controller_points = []
 
             if 'u' in direction:
-                eyelid_controller_color = CONTROLLER_UP_COLOR
                 eyelid_controller_points = eyelid_controller_data['points_up']
+
+                if 'r' in direction:
+                    eyelid_controller_color = CONTROLLER_RU_COLOR
+                elif 'l' in direction:
+                    eyelid_controller_color = CONTROLLER_LU_COLOR
+
             elif 'd' in direction:
-                eyelid_controller_color = CONTROLLER_DN_COLOR
                 eyelid_controller_points = eyelid_controller_data['points_dn']
+
+                if 'r' in direction:
+                    eyelid_controller_color = CONTROLLER_RD_COLOR
+                elif 'l' in direction:
+                    eyelid_controller_color = CONTROLLER_LD_COLOR
 
             for crv_id in controller_id_list:
                 eyelid_dir_ctrl_data = eyelid_controller_data[direction+'_'+crv_id]

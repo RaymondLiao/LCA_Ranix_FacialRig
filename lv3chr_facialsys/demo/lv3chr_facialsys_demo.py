@@ -300,19 +300,6 @@ def setup_ctrl_zones():
                                        ctrlproj_transplane=ctrlproj_transplane,
                                        ctrlproj_projsurface=ctrlproj_projsrf)
 
-
-def setup_ctrl_locs():
-    """ Create the locator_data on the controlling curves and the projection planes.
-    :return: None
-    """
-    return NotImplemented
-
-def setup_ctrls():
-    """ Create the NURBS primitives as the facial controllers.
-    :return: None
-    """
-    return NotImplemented
-
 def setup_ctrl_data_transfer():
     """ Create the joints, bind-skin on the controlling curves; \
     establish the blend-shapes among curves and pointOnXXX nodes for the controller translation data transfer network.

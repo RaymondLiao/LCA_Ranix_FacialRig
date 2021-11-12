@@ -843,5 +843,34 @@
         "translation": [0.0, 0.0, 0.0]
       }
     }
+  },
+
+  "eyelid_follow_controller": {
+    "follow_data":
+    {
+      "eyelid_up_follow_B": 0.7,
+      "eyelid_up_follow_C": 0.4,
+      "eyelid_up_follow_D": 0.1,
+
+      "eyelid_dn_follow_B": 0.7,
+      "eyelid_dn_follow_C": 0.4,
+      "eyelid_dn_follow_D": 0.1
+    },
+
+    "R": {
+      "name": "eyelidCtrl_R_loc",
+      "xform": {
+        "translation": [4.0, 20.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      }
+    },
+
+    "L": {
+      "name": "eyelidCtrl_L_loc",
+      "xform": {
+        "translation": [9.0, 20.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      }
+    }
   }
 }

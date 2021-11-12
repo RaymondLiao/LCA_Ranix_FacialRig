@@ -73,6 +73,7 @@ class controlCurve(object):
         cmds.setAttr(self._nurbs_crv+'.overrideColor',
                      CTRL_CURVE_COLOR_INDEX)
         cmds.toggle(self._nurbs_crv, controlVertex=True)
+        cmds.select(deselect=True)
 
         # Create the locator_data belongs to this control curve, then use pointOnCurveInfo nodes to pin them onto it.
         for loc_dict in locator_data:
@@ -94,6 +95,8 @@ class controlCurve(object):
             cmds.connectAttr(pt_on_crv_info_node+'.position', loc+'.translate')
 
             self._locator_dict[int(loc_id)] = (loc, pt_on_crv_info_node)
+
+            cmds.select(deselect=True)
 
     def __repr__(self):
         return NotImplemented
