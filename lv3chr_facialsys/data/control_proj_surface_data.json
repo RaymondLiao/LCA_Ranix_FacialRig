@@ -54,7 +54,7 @@
 
     "bind_joint": {
       "suffix": "bind",
-      "radius": 2.0
+      "radius": 0.25
     },
 
     "right_up": {

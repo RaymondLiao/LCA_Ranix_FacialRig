@@ -80,7 +80,7 @@ def setup_proj_surface():
     control_proj_surface_data = {}
     try:
         # print('lv3 character facial module root path: {}'.format(root_path))
-        f_control_proj_surface_data = open(root_path+'/template/control_proj_surface_data.json', 'r')
+        f_control_proj_surface_data = open(root_path+'/data/control_proj_surface_data.json', 'r')
         control_proj_surface_data = json.load(f_control_proj_surface_data)
     except:
         cmds.error('Error thrown while loading the data curve projection planes data: {}'.format(
@@ -260,7 +260,7 @@ def setup_ctrl_zones():
 
     ctrl_crv_data = {}
     try:
-        f_ctrl_crv_data = open(root_path+'/template/control_crv_data.json', 'r')
+        f_ctrl_crv_data = open(root_path+'/data/control_crv_data.json', 'r')
         ctrl_crv_data = json.load(f_ctrl_crv_data)
     except:
         cmds.error('Error thrown while loading the control curves data: {}'.format(
