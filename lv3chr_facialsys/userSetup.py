@@ -11,3 +11,4 @@ if lcrig_lv3chr_facialsys_dir not in sys.path:
     sys.path.append(lcrig_lv3chr_facialsys_dir)
 
 from demo import lv3chr_facialsys_demo; reload(lv3chr_facialsys_demo)
+lv3chr_facialsys_demo.lc3chr_facialsys_construct()

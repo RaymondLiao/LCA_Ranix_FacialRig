@@ -326,4 +326,4 @@ def setup_group_hierarchy():
     eyelid_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
-lc3chr_facialsys_construct()
+# lc3chr_facialsys_construct()
