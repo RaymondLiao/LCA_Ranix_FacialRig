@@ -185,37 +185,42 @@ class controlZone(object):
 
             # Create the control curve follow control locators.
             eyelid_follow_ctrl_data = ctrl_crv_data['eyelid_follow_controller']
+            follow_ctrl_dir = ''
+            if 'r' in direction:
+                follow_ctrl_dir = 'R'
+            elif 'l' in direction:
+                follow_ctrl_dir = 'L'
 
-            for dir in ['R', 'L']:
-                eyelid_follow_ctrl = eyelid_follow_ctrl_data[dir]['name']
+            eyelid_follow_ctrl = eyelid_follow_ctrl_data[follow_ctrl_dir]['name']
 
-                # If the follow controller has not been created, make one.
-                if not cmds.objExists(eyelid_follow_ctrl):
+            # If the follow controller has not been created, make one.
+            if not cmds.objExists(eyelid_follow_ctrl):
 
-                    eyelid_follow_ctrl = cmds.spaceLocator(name=eyelid_follow_ctrl_data[dir]['name'])[0]
-                    cmds.xform(eyelid_follow_ctrl, translation=eyelid_follow_ctrl_data[dir]['xform']['translation'])
+                eyelid_follow_ctrl = cmds.spaceLocator(name=eyelid_follow_ctrl_data[follow_ctrl_dir]['name'])[0]
+                cmds.xform(eyelid_follow_ctrl,
+                           translation=eyelid_follow_ctrl_data[follow_ctrl_dir]['xform']['translation'])
 
-                    assert cmds.objExists(eyelid_follow_ctrl + 'Shape')
-                    for idx, axis in {0:'X', 1:'Y', 2:'Z'}.items():
-                        cmds.setAttr(eyelid_follow_ctrl+'Shape.localScale'+axis,
-                                     eyelid_follow_ctrl_data[dir]['xform']['scale'][idx])
+                assert cmds.objExists(eyelid_follow_ctrl + 'Shape')
+                for idx, axis in {0:'X', 1:'Y', 2:'Z'}.items():
+                    cmds.setAttr(eyelid_follow_ctrl+'Shape.localScale'+axis,
+                                 eyelid_follow_ctrl_data[follow_ctrl_dir]['xform']['scale'][idx])
 
-                    follow_data_list = eyelid_follow_ctrl_data['follow_data']
-                    for follow_attr, val in follow_data_list.items():
-                        cmds.addAttr(eyelid_follow_ctrl, longName=follow_attr, attributeType='float',
-                                     defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
+                follow_data_list = eyelid_follow_ctrl_data['follow_data']
+                for follow_attr, val in follow_data_list.items():
+                    cmds.addAttr(eyelid_follow_ctrl, longName=follow_attr, attributeType='float',
+                                 defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-                    cmds.setAttr(eyelid_follow_ctrl+'.overrideEnabled', True)
-                    if 'R' == dir:
-                        cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_RD_COLOR)
-                    elif 'L' == dir:
-                        cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_LD_COLOR)
+                cmds.setAttr(eyelid_follow_ctrl+'.overrideEnabled', True)
+                if 'R' == follow_ctrl_dir:
+                    cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_RD_COLOR)
+                elif 'L' == follow_ctrl_dir:
+                    cmds.setAttr(eyelid_follow_ctrl+'.overrideColor', CONTROLLER_LD_COLOR)
 
-                    cmds.parent(eyelid_follow_ctrl, lv3chr_facialsys_hierarchy.eyelid_grp.get_group_name())
+                cmds.parent(eyelid_follow_ctrl, lv3chr_facialsys_hierarchy.eyelid_grp.get_group_name())
 
-                    cmds.select(deselect=True)
+                cmds.select(deselect=True)
 
-                self._follow_ctrl = eyelid_follow_ctrl
+            self._follow_ctrl = eyelid_follow_ctrl
 
             # Create the controllers.
             eyelid_controller_data = ctrl_crv_data['eyelid_controller']
@@ -283,33 +288,40 @@ class controlZone(object):
 
             # Create blendshapes to control curves to transit the translations of controllers.
             cmds.select(deselect=True)
-            eyelid_follow_B = 0.0
-            eyelid_follow_C = 0.0
-            eyelid_follow_D = 0.0
+            eyelid_follow_B_attr = ''
+            eyelid_follow_C_attr = ''
+            eyelid_follow_D_attr = ''
 
             if 'u' in direction:
-                eyelid_follow_B = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_b')
-                eyelid_follow_C = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_c')
-                eyelid_follow_D = cmds.getAttr(self._follow_ctrl+'.eyelid_up_follow_d')
+                eyelid_follow_B_attr = self._follow_ctrl+'.eyelid_up_follow_b'
+                eyelid_follow_C_attr = self._follow_ctrl+'.eyelid_up_follow_c'
+                eyelid_follow_D_attr = self._follow_ctrl+'.eyelid_up_follow_d'
             elif 'd' in direction:
-                eyelid_follow_B = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_b')
-                eyelid_follow_C = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_c')
-                eyelid_follow_D = cmds.getAttr(self._follow_ctrl+'.eyelid_dn_follow_d')
+                eyelid_follow_B_attr = self._follow_ctrl+'.eyelid_dn_follow_b'
+                eyelid_follow_C_attr = self._follow_ctrl+'.eyelid_dn_follow_c'
+                eyelid_follow_D_attr = self._follow_ctrl+'.eyelid_dn_follow_d'
 
             for ctrl_crv_id in ctrl_crv_id_list[1:]:
                 ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
-                follow_val = 0.0
-                if 'B' in ctrl_crv_id:
-                    follow_val = eyelid_follow_B
-                elif 'C' in ctrl_crv_id:
-                    follow_val = eyelid_follow_C
-                elif 'D' in ctrl_crv_id:
-                    follow_val = eyelid_follow_D
 
+                follow_attr = ''
+                follow_val = 0.0
+
+                if 'B' in ctrl_crv_id:
+                    follow_attr = eyelid_follow_B_attr
+                elif 'C' in ctrl_crv_id:
+                    follow_attr = eyelid_follow_C_attr
+                elif 'D' in ctrl_crv_id:
+                    follow_attr = eyelid_follow_D_attr
+
+                assert cmds.objExists(follow_attr)
+                follow_val = cmds.getAttr(follow_attr)
                 bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
                                           ctrl_crv.get_name(),
                                           weight=[0, follow_val])
-                cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
+                bs_node = cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
+
+                cmds.connectAttr(follow_attr, bs_node+'.weight[0]')
 
             # Use "closestPointOnSurface" node to establish the projecting relationships between
             # the locators on control curves and the locators on the projection surface.

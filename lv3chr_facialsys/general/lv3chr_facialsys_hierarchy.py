@@ -25,19 +25,34 @@ class groupTree:
         return self._group_name
 
     def get_child_nodes(self):
-        return _child_nodes.copy()
+        return self._child_nodes.copy()
 
     def setup_group_hierarchy(self):
 
-        cmds.group(name=self._group_name, empty=True)
+        # Sometimes, Maya will repetitively establish this group hierarchy,
+        # so we need to check if the group with the name already exists.
+        if not cmds.objExists(self._group_name):
+            cmds.group(name=self._group_name, empty=True)
 
         for child_node in self._child_nodes:
             # assert type(child_node) is groupTree
 
             # Recursively construct all child node's hierarchy
-            child_node.setup_group_hierarchy()
+            try:
+                child_node.setup_group_hierarchy()
 
-            cmds.parent(child_node.get_group_name(), self._group_name)
+                child_group_name = child_node.get_group_name()
+                child_group_parent_list = cmds.listRelatives(child_group_name,
+                                                             parent=True,
+                                                             type='transform',
+                                                             noIntermediate=True)
+
+                # Sometimes, Maya will repetitively establish this group hierarchy,
+                # so we need to check if the child groups have already been parented.
+                if not (None != child_group_parent_list and self._group_name in child_group_parent_list):
+                    cmds.parent(child_node.get_group_name(), self._group_name)
+            except Exception as e:
+                cmds.warning('Exception thrown during establishing the group hierarchy: {}'.format(str(e)))
 
 # eyelid rig group hierarchy ===========================================================================================
 eyelid_zone_prefix = 'fm_eyelidProject'

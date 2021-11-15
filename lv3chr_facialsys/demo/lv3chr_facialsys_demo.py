@@ -46,8 +46,16 @@ g_crv_projsrf_dict = {
     'eyelid_projsrf_LD'    : None,
 }
 
+# g_lv3chr_facialsys_demo_run = False
+
 # function definitions -------------------------------------------------------------------------------------------------
+
 def lc3chr_facialsys_construct():
+
+    # global g_lv3chr_facialsys_demo_run
+    # if g_lv3chr_facialsys_demo_run:
+    #     return
+    # g_lv3chr_facialsys_demo_run = True
 
     # We must establish the group hierarchy first,
     # in order to organize the rig elements that will be created later in the Outliner.
@@ -56,7 +64,6 @@ def lc3chr_facialsys_construct():
 
     setup_proj_surface()
     setup_ctrl_zones()
-    setup_ctrl_data_transfer()
 
     # Do clean-up.
     cmds.select(deselect=True)
@@ -66,6 +73,8 @@ def setup_proj_surface():
     """ Create the projection planes containing locator_data and joints.
     :return: None
     """
+
+    global g_crv_projsrf_dict
 
     proj_srf_shader = cmds.shadingNode('lambert', asShader=True, name=PROJ_SRF_SHADER)
     cmds.setAttr(proj_srf_shader+'.color', 0.0, 0.0, 0.0, type='double3')
@@ -77,12 +86,14 @@ def setup_proj_surface():
     # Load the curve projection planes' data from the JSON document.
     root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
 
+    f_control_proj_surface_data = None
     control_proj_surface_data = {}
     try:
         # print('lv3 character facial module root path: {}'.format(root_path))
         f_control_proj_surface_data = open(root_path+'/data/control_proj_surface_data.json', 'r')
         control_proj_surface_data = json.load(f_control_proj_surface_data)
     except:
+        f_control_proj_surface_data.close()
         cmds.error('Error thrown while loading the data curve projection planes data: {}'.format(
             sys.exc_info()[0]
         ))
@@ -258,11 +269,13 @@ def setup_ctrl_zones():
     # Load the control curves' and controllers' data from the JSON document.
     root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
 
+    f_ctrl_crv_data = None
     ctrl_crv_data = {}
     try:
         f_ctrl_crv_data = open(root_path+'/data/control_crv_data.json', 'r')
         ctrl_crv_data = json.load(f_ctrl_crv_data)
     except:
+        f_ctrl_crv_data.close()
         cmds.error('Error thrown while loading the control curves data: {}'.format(
             sys.exc_info()[0]
         ))
@@ -302,12 +315,7 @@ def setup_ctrl_zones():
                                        ctrlproj_transplane=ctrlproj_transplane,
                                        ctrlproj_projsurface=ctrlproj_projsrf)
 
-def setup_ctrl_data_transfer():
-    """ Create the joints, bind-skin on the controlling curves; \
-    establish the blend-shapes among curves and pointOnXXX nodes for the controller translation data transfer network.
-    :return: None
-    """
-    return NotImplemented
+    f_ctrl_crv_data.close()
 
 def setup_group_hierarchy():
     """
