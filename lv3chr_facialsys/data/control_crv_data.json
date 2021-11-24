@@ -1,5 +1,5 @@
 {
-  "eyelid_zone_prefix": "fm_eyelidProject",
+  "eyelid_ctrlzone_prefix": "fm_eyelidProject",
 
   "eyelid_control_curve": {
     "degree": 1,

@@ -123,19 +123,19 @@ def setup_proj_surface():
         if controlZoneDirEnum.right_up == dir:
             g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RU_grp.get_group_name())
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_RU_grp.get_group_name())
         elif controlZoneDirEnum.right_dn == dir:
             g_crv_projsrf_dict['eyelid_transplane_RD'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_RD_grp.get_group_name())
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_RD_grp.get_group_name())
         elif controlZoneDirEnum.left_up == dir:
             g_crv_projsrf_dict['eyelid_transplane_LU'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LU_grp.get_group_name())
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_LU_grp.get_group_name())
         elif controlZoneDirEnum.left_dn == dir:
             g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlcrv_LD_grp.get_group_name())
+                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_LD_grp.get_group_name())
 
     # Create the controller projection surfaces
     eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
@@ -324,6 +324,9 @@ def setup_group_hierarchy():
 
     eyelid_grp = lv3chr_facialsys_hierarchy.eyelid_grp
     eyelid_grp.setup_group_hierarchy()
+
+    eyebrow_grp = lv3chr_facialsys_hierarchy.eyebrow_grp
+    eyebrow_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
 # lc3chr_facialsys_construct()
