@@ -38,7 +38,7 @@ class groupTree:
 
             cmds.parent(child_node.get_group_name(), self._group_name)
 
-# eyelid rig group hierarchy ===========================================================================================
+# Eyelid Rig Group Hierarchy ===========================================================================================
 eyelid_ctrlzone_prefix = 'fm_eyelidProject'
 eyelid_projsrf_prefix = 'fm_eyelidMask'
 # translation plane ----------------------------------------------------------------------------------------------------
@@ -188,7 +188,7 @@ eyelid_grp = groupTree('eyelid_grp',
                            eyelid_projsrf_L_grp
                        ])
 
-# eyebrow rig group hierarchy ==========================================================================================
+# Eyebrow Rig Group Hierarchy ==========================================================================================
 eyebrow_ctrlzone_prefix = 'fm_eyebrowProject'
 eyebrow_projsrf_prefix = 'fm_eyebrowMask'
 # translation plane ----------------------------------------------------------------------------------------------------
