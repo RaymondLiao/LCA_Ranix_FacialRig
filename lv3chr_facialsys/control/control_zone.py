@@ -21,7 +21,7 @@ from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarch
 import control_curve; reload(control_curve)
 from control_curve import controlCurve
 
-import controller; reload(controller)
+import controller; reload( controller)
 from controller import controller
 
 # ======================================================================================================================
@@ -40,8 +40,8 @@ class controlZone(object):
         return len(self._controller_dict)
 
     def __init__(self,
-                 zone=controlZoneEnum.eyelid,
-                 direction=controlZoneDirEnum.right_up,
+                 zone = controlZoneEnum.eyelid,
+                 direction = controlZoneDirEnum.right_up,
                  ctrl_crv_data = None,
                  ctrlproj_transplane = None,
                  ctrlproj_projsurface = None

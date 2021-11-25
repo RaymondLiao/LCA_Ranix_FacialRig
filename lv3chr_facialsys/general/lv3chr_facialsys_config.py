@@ -7,34 +7,38 @@
 #
 
 """
-A module containing global definitions for the LCA level three character facial system
+A module containing global definitions for the LCA third level character facial system
 """
 
 # from enum import Enum, unique # WARNING: enum wasn't added to Python until 3.4
+
+from general import util; reload(util)
 
 # control zones partitioned in directions ------------------------------------------------------------------------------
 # @unique
 # class controlZoneEnum(Enum):
 class controlZoneEnum(object):
-    eyelid = 'eyelid'
+    eyelid = 'eyelid',
+    eyebrow = 'eyebrow'
 # control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
-control_zone_list = [attr
-                     for attr in dir(controlZoneEnum)
-                     if not callable(getattr(controlZoneEnum, attr))
-                     and not attr.startswith('__')]
+control_zone_list = util.get_enum_value_list(controlZoneEnum)
 
 # @unique
 # class controlZoneDirEnum(Enum):
 class controlZoneDirEnum(object):
+    middle = 'middle'
     right_up = 'right_up'
     right_dn = 'right_dn'
     left_up = 'left_up'
     left_dn = 'left_dn'
 # control_zone_dir_list = [name for name, member in controlZoneDirEnum.__members__.items()]
-control_zone_dir_list = [attr
-                         for attr in dir(controlZoneDirEnum)
-                         if not callable(getattr(controlZoneDirEnum, attr))
-                         and not attr.startswith('__')]
+control_zone_dir_list = util.get_enum_value_list(controlZoneDirEnum)
+
+CONTROL_ZONE_DIRECTION_DICT = {
+    controlZoneEnum.eyelid: [controlZoneDirEnum.right_up, controlZoneDirEnum.right_dn,
+                             controlZoneDirEnum.left_up, controlZoneDirEnum.left_dn],
+    controlZoneEnum.eyebrow: [controlZoneDirEnum.middle]
+}
 
 # facial control display settings --------------------------------------------------------------------------------------
 PROJ_SRF_SET = 'proj_plane_set'

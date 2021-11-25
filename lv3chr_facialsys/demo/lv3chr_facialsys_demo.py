@@ -7,7 +7,7 @@
 #
 
 """
-A module to procedurally rig LCA's level three characters' head model (demo).
+A module to procedurally rig LCA third level characters' head model (demo).
 """
 
 import os
@@ -31,8 +31,10 @@ from control.control_curve import controlCurve
 from control import controller; reload(controller)
 from control.controller import controller
 
-from control import control_zone; reload(control_zone)
-from control.control_zone import controlZone
+# from control import control_zone; reload(control_zone)
+# from control.control_zone import controlZone
+from control import control_zone_eyelid; reload(control_zone_eyelid)
+from control.control_zone_eyelid import eyelidControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
 g_crv_projsrf_dict = {
@@ -104,7 +106,7 @@ def setup_proj_surface():
     eyelid_crvproj_transplane_patchesU = eyelid_crvproj_transplane_data['patchesU']
     eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
 
-    for dir in control_zone_dir_list:
+    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[dir]
 
         mirror = [1, 1, 1]
@@ -143,7 +145,7 @@ def setup_proj_surface():
     eyelid_crvproj_projsrf_patchesU = eyelid_crvproj_projsrf_data['patchesU']
     eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
 
-    for dir in control_zone_dir_list:
+    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[dir]
 
         mirror = [1, 1, 1]
@@ -281,7 +283,7 @@ def setup_ctrl_zones():
         ))
 
     # Create the control zones.
-    for dir in control_zone_dir_list:
+    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
 
         ctrlproj_transplane = None
         if 'r' in dir:
@@ -309,11 +311,10 @@ def setup_ctrl_zones():
                 ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
         assert None != ctrlproj_projsrf
 
-        eyelid_ctrl_zone = controlZone(zone=controlZoneEnum.eyelid,
-                                       direction=dir,
-                                       ctrl_crv_data=ctrl_crv_data,
-                                       ctrlproj_transplane=ctrlproj_transplane,
-                                       ctrlproj_projsurface=ctrlproj_projsrf)
+        eyelid_ctrl_zone = eyelidControlZone(direction=dir,
+                                             ctrl_crv_data=ctrl_crv_data,
+                                             ctrlproj_transplane=ctrlproj_transplane,
+                                             ctrlproj_projsurface=ctrlproj_projsrf)
 
     f_ctrl_crv_data.close()
 

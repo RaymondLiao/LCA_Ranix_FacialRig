@@ -7,7 +7,7 @@
 #
 
 """
-A module containing group hierarchy information for the LCA level three character facial system
+A module containing group hierarchy information for the LCA third level character facial system
 """
 
 import maya.cmds as cmds

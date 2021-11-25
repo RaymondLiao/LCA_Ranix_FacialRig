@@ -14,6 +14,7 @@ import warnings
 import maya.cmds as cmds
 
 import control_zone; reload(control_zone)
+from control_zone import controlZone
 
 # ======================================================================================================================
 class eyebrowControlZone(controlZone):
@@ -21,3 +22,17 @@ class eyebrowControlZone(controlZone):
 
     [description of an eyebrow zone's composition here]
     """
+
+    def __init__(self,
+                 ctrl_crv_data = None,
+                 ctrlproj_transplane = None,
+                 ctrlproj_projsurface = None
+                 ):
+        """ An Eyebrow Control Zone instance's direction attribute have only one value "middle".
+        """
+        super(eyebrowControlZone, self).__int__(zone = controlZoneEnum.eyebrow,
+                                                direction = controlZoneDirEnum.middle,
+                                                ctrl_crv_data = ctrl_crv_data,
+                                                ctrlproj_transplane = ctrlproj_transplane,
+                                                ctrlproj_projsurface = ctrlproj_projsurface
+                                                )
