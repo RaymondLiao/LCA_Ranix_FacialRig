@@ -665,6 +665,8 @@
 
   "eyelid_controller": {
     "degree": 1,
+    "lock_trans_axes": ["z"],
+    "lock_rot_axes": ["x", "y", "z"],
 
     "points_up": [
       [0.0, 0.25, 0.0],

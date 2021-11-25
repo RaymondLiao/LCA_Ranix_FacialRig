@@ -23,15 +23,15 @@ class controlTransPlane(object):
     """
 
     def __init__(self,
-                 name_prefix='',
-                 name='control_translation_plane',
-                 degree=1,
-                 patchesU=4,
-                 patchesV=6,
-                 translation=[0.0, 0.0, 0.0],
-                 rotation=[0.0, 0.0, 0.0],
-                 scale=[1.0, 1.0, 1.0],
-                 mirror=[1, 1, 1]):
+                 name_prefix = '',
+                 name = 'control_translation_plane',
+                 degree = 1,
+                 patchesU = 4,
+                 patchesV = 6,
+                 translation = [0.0, 0.0, 0.0],
+                 rotation = [0.0, 0.0, 0.0],
+                 scale = [1.0, 1.0, 1.0],
+                 mirror = [1, 1, 1]):
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
         self._degree = degree
@@ -98,20 +98,20 @@ class controlProjSurface(object):
         return self._locator_dict[row_id][col_id]
 
     def __init__(self,
-                 name_prefix='',
-                 name='control_projection_plane',
-                 degree=1,
-                 patchesU=4,
-                 patchesV=6,
-                 translation=[0.0, 0.0, 0.0],
-                 rotation=[0.0, 0.0, 0.0],
-                 scale=[1.0, 1.0, 1.0],
-                 mirror=[1, 1, 1],
-                 cv_list=[],
-                 locator_data=[],
-                 locator_scale=[1, 1, 1],
-                 bind_joint_data={},
-                 bind_joint_color=COLOR_INDEX_DARK_WHITE):
+                 name_prefix = '',
+                 name = 'control_projection_plane',
+                 degree = 1,
+                 patchesU = 4,
+                 patchesV = 6,
+                 translation = [0.0, 0.0, 0.0],
+                 rotation = [0.0, 0.0, 0.0],
+                 scale = [1.0, 1.0, 1.0],
+                 mirror = [1, 1, 1],
+                 cv_list = [],
+                 locator_data = [],
+                 locator_scale = [1, 1, 1],
+                 bind_joint_data = {},
+                 bind_joint_color = COLOR_INDEX_DARK_WHITE):
         """
         :param cv_list: A list of CV coordinates for the NURBS plane to construct;
                         Note that the maximum length of this list is (patchesU+1)*(patchesV+1).

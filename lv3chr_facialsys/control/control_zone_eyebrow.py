@@ -36,3 +36,5 @@ class eyebrowControlZone(controlZone):
                                                 ctrlproj_transplane = ctrlproj_transplane,
                                                 ctrlproj_projsurface = ctrlproj_projsurface
                                                 )
+
+        warnings.warn('No Implementation')

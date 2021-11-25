@@ -25,13 +25,17 @@ class controller(object):
         assert None != self._bind_jnt
         return self._bind_jnt
 
-    def __init__(self, name='controller',
-                 degree=1, points=[],
-                 color=COLOR_INDEX_YELLOW,
-                 translation_ofs=[0, 0, 0],
-                 translation=[0, 0, 0],
-                 bind_joint_data={},
-                 bind_joint_color=COLOR_INDEX_DARK_WHITE):
+    def __init__(self,
+                 name = 'controller',
+                 degree = 1,
+                 points = [],
+                 color = COLOR_INDEX_YELLOW,
+                 translation_ofs = [0, 0, 0],
+                 translation = [0, 0, 0],
+                 lock_trans_axes = [],
+                 lock_rot_axes = [],
+                 bind_joint_data = {},
+                 bind_joint_color = COLOR_INDEX_DARK_WHITE):
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
         # Create a NURBS curve object as the controller UI.
@@ -49,6 +53,14 @@ class controller(object):
                                point=points)
         cmds.parent(nurbs_crv, self._ofs_grp)
         cmds.xform(nurbs_crv, translation=translation)
+
+        for axis in lock_trans_axes:
+            assert axis in ['x', 'y', 'z']
+            cmds.setAttr(nurbs_crv+'.t'+axis, lock=True)
+        for axis in lock_rot_axes:
+            assert axis in ['x', 'y', 'z']
+            cmds.setAttr(nurbs_crv+'.r'+axis, lock=True)
+
         nurbs_crv = cmds.rename(nurbs_crv, name)
 
         cmds.setAttr(nurbs_crv+'.overrideEnabled', True)

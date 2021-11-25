@@ -43,12 +43,12 @@ class controlCurve(object):
 
     def __init__(self,
                  name_prefix = '',
-                 name='control_curve',
-                 degree=1,
-                 translation=[0, 0, 0],
-                 points=[],
-                 locator_data=[],
-                 locator_scale=[1, 1, 1]):
+                 name = 'control_curve',
+                 degree = 1,
+                 translation = [0, 0, 0],
+                 points = [],
+                 locator_data = [],
+                 locator_scale = [1, 1, 1]):
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
         self._degree = 1
