@@ -32,14 +32,14 @@ class controlZoneDirEnum(object):
 
     Note that the left+right direction combination corresponds to the "middle" zone.
     """
-    right = 'right'     # abbr: r
-    left = 'left'       # abbr: l
+    left = 'left'       # abbr: L
+    right = 'right'     # abbr: R
 
-    up = 'up'           # abbr: u
-    down = 'dn'         # abbr: d
+    up = 'up'           # abbr: U
+    down = 'dn'         # abbr: D
 
-    front = 'front'     # abbr: fr
-    back = 'back'       # abbr: b
+    front = 'front'     # abbr: F
+    back = 'back'       # abbr: B
 
 # control_zone_dir_list = [name for name, member in controlZoneDirEnum.__members__.items()]
 control_zone_dir_list = util.get_enum_value_list(controlZoneDirEnum)
@@ -52,7 +52,8 @@ class dirDictKeyEnum(object):
     FB = 'FB'
 
 # dir_dict_key_list = [name for name, member in dirDictKeyEnum.__members__.items()]
-dir_dict_key_list = util.get_enum_value_list(dirDictKeyEnum)
+# dir_dict_key_list = util.get_enum_value_list(dirDictKeyEnum)
+dir_dict_key_list = ['LR', 'UD', 'FB']
 
 # Empty string means no motion of controllers in these direction for the control zone.
 CONTROL_ZONE_DIRECTION_DICT = {

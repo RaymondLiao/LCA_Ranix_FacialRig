@@ -35,8 +35,8 @@ from control.controller import controller
 
 # from control import control_zone; reload(control_zone)
 # from control.control_zone import controlZone
-from control import control_zone_eyelid; reload(control_zone_eyelid)
-from control.control_zone_eyelid import eyelidControlZone
+from control.zone import eyelid; reload(eyelid)
+from control.zone.eyelid import eyelidControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
 g_crv_projsrf_dict = {
@@ -48,6 +48,11 @@ g_crv_projsrf_dict = {
     'eyelid_projsrf_RD'    : None,
     'eyelid_projsrf_LU'    : None,
     'eyelid_projsrf_LD'    : None,
+
+    'eyebrow_transplane_LRUD' : None,
+    'eyebrow_transplane_LRF'  : None,
+    'eyebrow_projsrf_LRUD'    : None,
+    'eyebrow_projsrf_LRF'     : None
 }
 
 # g_lv3chr_facialsys_demo_run = False
@@ -111,7 +116,7 @@ def setup_proj_surfaces():
     eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
-        zone_dir = util.get_ctrl_zone_dir(dir_dict)
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[zone_dir]
 
         mirror = [1, 1, 1]
@@ -151,7 +156,7 @@ def setup_proj_surfaces():
     eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
-        zone_dir = util.get_ctrl_zone_dir(dir_dict)
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[zone_dir]
 
         mirror = [1, 1, 1]
@@ -274,7 +279,19 @@ def setup_proj_surfaces():
     eyebrow_crvproj_transplane_patchesU = eyebrow_crvproj_transplane_data['patchesU']
     eyebrow_crvproj_transplane_patchesV = eyebrow_crvproj_transplane_data['patchesV']
 
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        eyebrow_dir_transplane_data = eyebrow_crvproj_transplane_data[zone_dir]
 
+        eyebrow_crvproj_transplane = controlTransPlane(name_prefix = eyebrow_crvproj_transplane_data['name_prefix'],
+                                                       name = eyebrow_dir_transplane_data['name'],
+                                                       degree = eyebrow_crvproj_transplane_degree,
+                                                       patchesU = eyebrow_crvproj_transplane_patchesU,
+                                                       patchesV = eyebrow_crvproj_transplane_patchesV,
+                                                       translation = eyebrow_dir_transplane_data['xform']['translation'],
+                                                       rotation = eyebrow_dir_transplane_data['xform']['rotation'],
+                                                       scale = eyebrow_dir_transplane_data['xform']['scale'],
+                                                       cv_list = [])
 
     # Eyebrow Facial Zone - Projection Surfaces
 
@@ -301,7 +318,7 @@ def setup_ctrl_zones():
 
     # Create the control zones.
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
-        zone_dir = util.get_ctrl_zone_dir(dir_dict)
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
         ctrlproj_transplane = None
         if controlZoneDirEnum.right in zone_dir:

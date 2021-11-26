@@ -11,6 +11,7 @@ A module containing utility functions used by the LCA third level character faci
 """
 
 from general import config; reload(config)
+from general.config import *
 
 def get_class_name(obj_or_class):
     """
@@ -52,18 +53,33 @@ def get_ctrl_zone_dir(zone_dir_dict):
     Note that this function convert the direction combination of "left_right" into "middle".
 
     :param dir_dict: a sub-dictionary of the "CONTROL_ZONE_DIRECTION_DICT" keyed by
-    the name of the facial zone, e.g. {"LD":"right", "UD":"up", "FB":""}
-    :return: a string of the facial control zone direction, e.g. "right_up"
+    the name of the facial zone, e.g. {"LD":"left_right", "UD":"up_dn", "FB":""}
+    :return: a tuple of strings of the facial control zone direction and its abbreviation, e.g. ("middle_up_dn", "LRUD")
     """
 
-    dir = ''
-    for dir_key in config.dir_dict_key_list:
-        dir += ('_' + zone_dir_dict[dir_key])
+    dir_whole = ''
+    dir_abbr = ''
 
-    # Remove the leading and trailing '_'s.
-    dir = dir.strip('_')
+    for dir_key in config.dir_dict_key_list:
+        dir_whole += ('_' + zone_dir_dict[dir_key])
+
+    # Remove the leading and trailing '_'s, and those extra adjacent ones.
+    dir_whole = dir_whole.strip('_').replace('__', '_')
+
+    if controlZoneDirEnum.left in dir_whole:
+        dir_abbr += 'L'
+    if controlZoneDirEnum.right in dir_whole:
+        dir_abbr += 'R'
+    if controlZoneDirEnum.up in dir_whole:
+        dir_abbr += 'U'
+    if controlZoneDirEnum.down in dir_whole:
+        dir_abbr += 'D'
+    if controlZoneDirEnum.front in dir_whole:
+        dir_abbr += 'F'
+    if controlZoneDirEnum.back in dir_whole:
+        dir_abbr += 'B'
 
     # Replace the "left_right" or "right_left" with "middle".
-    dir = dir.replace('left_right', 'middle').replace('right_left', 'middle')
+    dir_whole = dir_whole.replace('left_right', 'middle').replace('right_left', 'middle')
 
-    return dir
+    return (dir_whole, dir_abbr)

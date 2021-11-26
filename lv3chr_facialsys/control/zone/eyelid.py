@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: control_zone_eyelid.py
+# File Name: eyelid.py
 # Author: Sheng (Raymond) Liao
 # Date: November 2021
 #
@@ -20,14 +20,14 @@ from general.config import *
 
 from general import hierarchy; reload(hierarchy)
 
-import control_zone; reload(control_zone)
-from control_zone import controlZone
+from .. import control_zone; reload(control_zone)
+from ..control_zone import controlZone
 
-import control_curve; reload(control_curve)
-from control_curve import controlCurve
+from .. import control_curve; reload(control_curve)
+from ..control_curve import controlCurve
 
-import controller; reload( controller)
-from controller import controller
+from .. import controller; reload( controller)
+from ..controller import controller
 
 # ======================================================================================================================
 class eyelidControlZone(controlZone):

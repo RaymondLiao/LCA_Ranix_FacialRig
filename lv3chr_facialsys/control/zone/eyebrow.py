@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: control_zone_eyebrow.py
+# File Name: eyebrow.py
 # Author: Sheng (Raymond) Liao
 # Date: November 2021
 #
@@ -13,8 +13,8 @@ A module organizing the control elements of the eyebrow zone
 import warnings
 import maya.cmds as cmds
 
-import control_zone; reload(control_zone)
-from control_zone import controlZone
+from .. import control_zone; reload(control_zone)
+from ..control_zone import controlZone
 
 # ======================================================================================================================
 class eyebrowControlZone(controlZone):
