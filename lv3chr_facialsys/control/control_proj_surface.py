@@ -13,8 +13,8 @@ A module containing the definitions of control-curves projection plane classes
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
-from general.lv3chr_facialsys_config import *
+from general import config; reload(config)
+from general.config import *
 
 # ======================================================================================================================
 class controlTransPlane(object):

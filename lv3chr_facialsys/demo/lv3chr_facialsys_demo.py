@@ -17,10 +17,12 @@ import json
 import maya.cmds as cmds
 import maya.mel as mel
 
-from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
-from general.lv3chr_facialsys_config import *
+from general import util; reload(util)
 
-from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
+from general import config; reload(config)
+from general.config import *
+
+from general import hierarchy; reload(hierarchy)
 
 from control import control_proj_surface; reload(control_proj_surface)
 from control.control_proj_surface import controlTransPlane, controlProjSurface
@@ -62,16 +64,16 @@ def lc3chr_facialsys_construct():
     # We must establish the group hierarchy first,
     # in order to organize the rig elements that will be created later in the Outliner.
     setup_group_hierarchy()
-    assert cmds.objExists(lv3chr_facialsys_hierarchy.eyelid_grp.get_group_name())
+    assert cmds.objExists(hierarchy.eyelid_grp.get_group_name())
 
-    setup_proj_surface()
+    setup_proj_surfaces()
     setup_ctrl_zones()
 
     # Do clean-up.
     cmds.select(deselect=True)
     mel.eval('hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes")')
 
-def setup_proj_surface():
+def setup_proj_surfaces():
     """ Create the projection planes containing locator_data and joints.
     :return: None
     """
@@ -100,17 +102,20 @@ def setup_proj_surface():
             sys.exc_info()[0]
         ))
 
-    # Create the controller translation planes.
+    # Create the controller Translation Planes and Projection Surfaces.
+    # ------------------------------------------------------------------------------------------------------------------
+    # Eyelid Facial Zone - Translation Planes
     eyelid_crvproj_transplane_data = control_proj_surface_data['eyelid_translation_plane']
     eyelid_crvproj_transplane_degree = eyelid_crvproj_transplane_data['degree']
     eyelid_crvproj_transplane_patchesU = eyelid_crvproj_transplane_data['patchesU']
     eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
 
-    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
-        eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[dir]
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)
+        eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[zone_dir]
 
         mirror = [1, 1, 1]
-        if 'r' in dir:
+        if controlZoneDirEnum.right in zone_dir:
             mirror = [-1, 1, 1]
 
         eyelid_crvproj_transplane = controlTransPlane(name_prefix = eyelid_crvproj_transplane_data['name_prefix'],
@@ -122,34 +127,35 @@ def setup_proj_surface():
                                                       rotation = eyelid_dir_transplane_data['xform']['rotation'],
                                                       scale = eyelid_dir_transplane_data['xform']['scale'],
                                                       mirror = mirror)
-        if controlZoneDirEnum.right_up == dir:
+        if controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_RU_grp.get_group_name())
-        elif controlZoneDirEnum.right_dn == dir:
+                        hierarchy.eyelid_ctrlzone_RU_grp.get_group_name())
+        elif controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_transplane_RD'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_RD_grp.get_group_name())
-        elif controlZoneDirEnum.left_up == dir:
+                        hierarchy.eyelid_ctrlzone_RD_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_transplane_LU'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_LU_grp.get_group_name())
-        elif controlZoneDirEnum.left_dn == dir:
+                        hierarchy.eyelid_ctrlzone_LU_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_transplane_LD'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_ctrlzone_LD_grp.get_group_name())
+                        hierarchy.eyelid_ctrlzone_LD_grp.get_group_name())
 
-    # Create the controller projection surfaces
+    # Eyelid Facial Zone - Projection Surfaces
     eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
     eyelid_crvproj_projsrf_degree = eyelid_crvproj_projsrf_data['degree']
     eyelid_crvproj_projsrf_patchesU = eyelid_crvproj_projsrf_data['patchesU']
     eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
 
-    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
-        eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[dir]
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)
+        eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[zone_dir]
 
         mirror = [1, 1, 1]
-        if 'r' in dir:
+        if controlZoneDirEnum.right in zone_dir:
             mirror = [-1, 1, 1]
 
         eyelid_crvproj_projsrf = controlProjSurface(name_prefix = eyelid_crvproj_projsrf_data['name_prefix'],
@@ -169,97 +175,108 @@ def setup_proj_surface():
 
         loc_row_id_list = eyelid_crvproj_projsrf.get_locator_row_ids()
 
-        if controlZoneDirEnum.right_up == dir:
+        if controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_RU'] = eyelid_crvproj_projsrf
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_projsrf_RU_grp.get_group_name())
+                        hierarchy.eyelid_projsrf_RU_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
                 if 'A' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_A_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RU_A_grp.get_group_name())
                 elif 'B' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_B_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RU_B_grp.get_group_name())
                 elif 'C' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_C_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RU_C_grp.get_group_name())
                 elif 'D' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RU_D_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RU_D_grp.get_group_name())
 
-        elif controlZoneDirEnum.right_dn == dir:
+        elif controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_RD'] = eyelid_crvproj_projsrf
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_projsrf_RD_grp.get_group_name())
+                        hierarchy.eyelid_projsrf_RD_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
                 if 'A' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_A_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RD_A_grp.get_group_name())
                 elif 'B' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_B_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RD_B_grp.get_group_name())
                 elif 'C' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_C_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RD_C_grp.get_group_name())
                 elif 'D' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_RD_D_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_RD_D_grp.get_group_name())
 
-        elif controlZoneDirEnum.left_up == dir:
+        elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_LU'] = eyelid_crvproj_projsrf
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_projsrf_LU_grp.get_group_name())
+                        hierarchy.eyelid_projsrf_LU_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
                 if 'A' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_A_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LU_A_grp.get_group_name())
                 elif 'B' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_B_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LU_B_grp.get_group_name())
                 elif 'C' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_C_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LU_C_grp.get_group_name())
                 elif 'D' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LU_D_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LU_D_grp.get_group_name())
 
-        elif controlZoneDirEnum.left_dn == dir:
+        elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf
             cmds.parent(eyelid_crvproj_projsrf.get_name(),
-                        lv3chr_facialsys_hierarchy.eyelid_projsrf_LD_grp.get_group_name())
+                        hierarchy.eyelid_projsrf_LD_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
                 if 'A' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_A_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LD_A_grp.get_group_name())
                 elif 'B' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_B_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LD_B_grp.get_group_name())
                 elif 'C' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_C_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LD_C_grp.get_group_name())
                 elif 'D' == loc_row_id:
                     for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    lv3chr_facialsys_hierarchy.eyelid_projsrf_loc_LD_D_grp.get_group_name())
+                                    hierarchy.eyelid_projsrf_loc_LD_D_grp.get_group_name())
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Eyebrow Facial Zone - Translation Planes
+    eyebrow_crvproj_transplane_data = control_proj_surface_data['eyebrow_translation_plane']
+    eyebrow_crvproj_transplane_degree = eyebrow_crvproj_transplane_data['degree']
+    eyebrow_crvproj_transplane_patchesU = eyebrow_crvproj_transplane_data['patchesU']
+    eyebrow_crvproj_transplane_patchesV = eyebrow_crvproj_transplane_data['patchesV']
+
+
+
+    # Eyebrow Facial Zone - Projection Surfaces
 
     f_control_proj_surface_data.close()
 
@@ -283,35 +300,36 @@ def setup_ctrl_zones():
         ))
 
     # Create the control zones.
-    for dir in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)
 
         ctrlproj_transplane = None
-        if 'r' in dir:
-            if 'u' in dir:
+        if controlZoneDirEnum.right in zone_dir:
+            if controlZoneDirEnum.up in zone_dir:
                 ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RU']
-            elif 'd' in dir:
+            elif controlZoneDirEnum.down in zone_dir:
                 ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RD']
-        elif 'l' in dir:
-            if 'u' in dir:
+        elif controlZoneDirEnum.left in zone_dir:
+            if controlZoneDirEnum.up in zone_dir:
                 ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LU']
-            elif 'd' in dir:
+            elif controlZoneDirEnum.down in zone_dir:
                 ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LD']
         assert None != ctrlproj_transplane
 
         ctrlproj_projsrf = None
-        if 'r' in dir:
-            if 'u' in dir:
+        if controlZoneDirEnum.right in zone_dir:
+            if controlZoneDirEnum.up in zone_dir:
                 ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RU']
-            elif 'd' in dir:
+            elif controlZoneDirEnum.down in zone_dir:
                 ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RD']
-        elif 'l' in dir:
-            if 'u' in dir:
+        elif controlZoneDirEnum.left in zone_dir:
+            if controlZoneDirEnum.up in zone_dir:
                 ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LU']
-            elif 'd' in dir:
+            elif controlZoneDirEnum.down in zone_dir:
                 ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
         assert None != ctrlproj_projsrf
 
-        eyelid_ctrl_zone = eyelidControlZone(direction=dir,
+        eyelid_ctrl_zone = eyelidControlZone(direction=zone_dir,
                                              ctrl_crv_data=ctrl_crv_data,
                                              ctrlproj_transplane=ctrlproj_transplane,
                                              ctrlproj_projsurface=ctrlproj_projsrf)
@@ -323,10 +341,10 @@ def setup_group_hierarchy():
     :return: None
     """
 
-    eyelid_grp = lv3chr_facialsys_hierarchy.eyelid_grp
+    eyelid_grp = hierarchy.eyelid_grp
     eyelid_grp.setup_group_hierarchy()
 
-    eyebrow_grp = lv3chr_facialsys_hierarchy.eyebrow_grp
+    eyebrow_grp = hierarchy.eyebrow_grp
     eyebrow_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================

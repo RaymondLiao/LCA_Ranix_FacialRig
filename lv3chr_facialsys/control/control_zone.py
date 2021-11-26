@@ -13,15 +13,15 @@ A module organizing the control elements
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
-from general.lv3chr_facialsys_config import *
+from general import config; reload(config)
+from general.config import *
 
-from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
+from general import hierarchy; reload(hierarchy)
 
 import control_curve; reload(control_curve)
 from control_curve import controlCurve
 
-import controller; reload( controller)
+import controller; reload(controller)
 from controller import controller
 
 # ======================================================================================================================
@@ -41,7 +41,7 @@ class controlZone(object):
 
     def __init__(self,
                  zone = controlZoneEnum.eyelid,
-                 direction = controlZoneDirEnum.right_up,
+                 direction = controlZoneDirEnum.right,
                  ctrl_crv_data = None,
                  ctrlproj_transplane = None,
                  ctrlproj_projsurface = None

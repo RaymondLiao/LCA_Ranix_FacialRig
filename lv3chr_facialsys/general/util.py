@@ -10,6 +10,8 @@
 A module containing utility functions used by the LCA third level character facial system
 """
 
+from general import config; reload(config)
+
 def get_class_name(obj_or_class):
     """
     :param obj_or_class: a class or a class's instance
@@ -33,7 +35,8 @@ def get_enum_value_list(enum_class):
     # Make sure the incoming argument is a name of the "enumeration" classes we defined in this module.
     enum_class_name = get_class_name(enum_class)
     assert 'controlZoneEnum' == enum_class_name or \
-            'controlZoneDirEnum' == enum_class_name
+            'controlZoneDirEnum' == enum_class_name or \
+            'dirDictKeyEnum' == enum_class_name
 
     res_list = [attr
                 for attr in dir(enum_class)
@@ -41,3 +44,26 @@ def get_enum_value_list(enum_class):
                 and not attr.startswith('__')]
 
     return res_list
+
+def get_ctrl_zone_dir(zone_dir_dict):
+    """ Retrieve the control zone direction components' values stored in the zone sub-dictionary of the
+    "CONTROL_ZONE_DIRECTION_DICT" dictionary, then use "_" separators to concatenate them into this zone's direction.
+
+    Note that this function convert the direction combination of "left_right" into "middle".
+
+    :param dir_dict: a sub-dictionary of the "CONTROL_ZONE_DIRECTION_DICT" keyed by
+    the name of the facial zone, e.g. {"LD":"right", "UD":"up", "FB":""}
+    :return: a string of the facial control zone direction, e.g. "right_up"
+    """
+
+    dir = ''
+    for dir_key in config.dir_dict_key_list:
+        dir += ('_' + zone_dir_dict[dir_key])
+
+    # Remove the leading and trailing '_'s.
+    dir = dir.strip('_')
+
+    # Replace the "left_right" or "right_left" with "middle".
+    dir = dir.replace('left_right', 'middle').replace('right_left', 'middle')
+
+    return dir

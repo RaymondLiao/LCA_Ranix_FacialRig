@@ -13,10 +13,10 @@ A module containing the definitions of control curves.
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
-from general.lv3chr_facialsys_config import *
+from general import config; reload(config)
+from general.config import *
 
-from general import lv3chr_facialsys_hierarchy; reload(lv3chr_facialsys_hierarchy)
+from general import hierarchy; reload(hierarchy)
 
 # ======================================================================================================================
 class controlCurve(object):

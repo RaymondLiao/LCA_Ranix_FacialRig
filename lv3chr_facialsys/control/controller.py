@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: contrl_crv.py
+# File Name: controller.py
 # Author: Sheng (Raymond) Liao
 # Date: October 2021
 #
@@ -13,8 +13,8 @@ A module containing the definitions of NURBS curve controller
 import warnings
 import maya.cmds as cmds
 
-from general import lv3chr_facialsys_config; reload(lv3chr_facialsys_config)
-from general.lv3chr_facialsys_config import *
+from general import config; reload(config)
+from general.config import *
 
 class controller(object):
     """ Controllers are NURBS curves used by animators to key the rig.
