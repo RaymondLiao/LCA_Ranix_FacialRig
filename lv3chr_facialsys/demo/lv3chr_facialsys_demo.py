@@ -111,13 +111,13 @@ def setup_proj_surfaces():
     # ------------------------------------------------------------------------------------------------------------------
     # Eyelid Facial Zone - Translation Planes
     eyelid_crvproj_transplane_data = control_proj_surface_data['eyelid_translation_plane']
-    eyelid_crvproj_transplane_degree = eyelid_crvproj_transplane_data['degree']
-    eyelid_crvproj_transplane_patchesU = eyelid_crvproj_transplane_data['patchesU']
-    eyelid_crvproj_transplane_patchesV = eyelid_crvproj_transplane_data['patchesV']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[zone_dir]
+        eyelid_dir_transplane_degree = eyelid_dir_transplane_data['degree']
+        eyelid_dir_transplane_patchesU = eyelid_dir_transplane_data['patchesU']
+        eyelid_dir_transplane_patchesV = eyelid_dir_transplane_data['patchesV']
 
         mirror = [1, 1, 1]
         if controlZoneDirEnum.right in zone_dir:
@@ -125,9 +125,9 @@ def setup_proj_surfaces():
 
         eyelid_crvproj_transplane = controlTransPlane(name_prefix = eyelid_crvproj_transplane_data['name_prefix'],
                                                       name = eyelid_dir_transplane_data['name'],
-                                                      degree = eyelid_crvproj_transplane_degree,
-                                                      patchesU = eyelid_crvproj_transplane_patchesU,
-                                                      patchesV = eyelid_crvproj_transplane_patchesV,
+                                                      degree = eyelid_dir_transplane_degree,
+                                                      patchesU = eyelid_dir_transplane_patchesU,
+                                                      patchesV = eyelid_dir_transplane_patchesV,
                                                       translation = eyelid_dir_transplane_data['xform']['translation'],
                                                       rotation = eyelid_dir_transplane_data['xform']['rotation'],
                                                       scale = eyelid_dir_transplane_data['xform']['scale'],
@@ -151,13 +151,13 @@ def setup_proj_surfaces():
 
     # Eyelid Facial Zone - Projection Surfaces
     eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
-    eyelid_crvproj_projsrf_degree = eyelid_crvproj_projsrf_data['degree']
-    eyelid_crvproj_projsrf_patchesU = eyelid_crvproj_projsrf_data['patchesU']
-    eyelid_crvproj_projsrf_patchesV = eyelid_crvproj_projsrf_data['patchesV']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[zone_dir]
+        eyelid_dir_projsrf_degree = eyelid_dir_projsrf_data['degree']
+        eyelid_dir_projsrf_patchesU = eyelid_dir_projsrf_data['patchesU']
+        eyelid_dir_projsrf_patchesV = eyelid_dir_projsrf_data['patchesV']
 
         mirror = [1, 1, 1]
         if controlZoneDirEnum.right in zone_dir:
@@ -165,9 +165,9 @@ def setup_proj_surfaces():
 
         eyelid_crvproj_projsrf = controlProjSurface(name_prefix = eyelid_crvproj_projsrf_data['name_prefix'],
                                                     name = eyelid_dir_projsrf_data['name'],
-                                                    degree = eyelid_crvproj_projsrf_degree,
-                                                    patchesU = eyelid_crvproj_projsrf_patchesU,
-                                                    patchesV = eyelid_crvproj_projsrf_patchesV,
+                                                    degree = eyelid_dir_projsrf_degree,
+                                                    patchesU = eyelid_dir_projsrf_patchesU,
+                                                    patchesV = eyelid_dir_projsrf_patchesV,
                                                     translation = eyelid_dir_projsrf_data['xform']['translation'],
                                                     rotation = eyelid_dir_projsrf_data['xform']['rotation'],
                                                     scale = eyelid_dir_projsrf_data['xform']['scale'],
@@ -275,23 +275,23 @@ def setup_proj_surfaces():
     # ------------------------------------------------------------------------------------------------------------------
     # Eyebrow Facial Zone - Translation Planes
     eyebrow_crvproj_transplane_data = control_proj_surface_data['eyebrow_translation_plane']
-    eyebrow_crvproj_transplane_degree = eyebrow_crvproj_transplane_data['degree']
-    eyebrow_crvproj_transplane_patchesU = eyebrow_crvproj_transplane_data['patchesU']
-    eyebrow_crvproj_transplane_patchesV = eyebrow_crvproj_transplane_data['patchesV']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyebrow_dir_transplane_data = eyebrow_crvproj_transplane_data[zone_dir]
+        eyebrow_dir_transplane_degree = eyebrow_dir_transplane_data['degree']
+        eyebrow_dir_transplane_patchesU = eyebrow_dir_transplane_data['patchesU']
+        eyebrow_dir_transplane_patchesV = eyebrow_dir_transplane_data['patchesV']
 
         eyebrow_crvproj_transplane = controlTransPlane(name_prefix = eyebrow_crvproj_transplane_data['name_prefix'],
                                                        name = eyebrow_dir_transplane_data['name'],
-                                                       degree = eyebrow_crvproj_transplane_degree,
-                                                       patchesU = eyebrow_crvproj_transplane_patchesU,
-                                                       patchesV = eyebrow_crvproj_transplane_patchesV,
+                                                       degree = eyebrow_dir_transplane_degree,
+                                                       patchesU = eyebrow_dir_transplane_patchesU,
+                                                       patchesV = eyebrow_dir_transplane_patchesV,
                                                        translation = eyebrow_dir_transplane_data['xform']['translation'],
                                                        rotation = eyebrow_dir_transplane_data['xform']['rotation'],
                                                        scale = eyebrow_dir_transplane_data['xform']['scale'],
-                                                       cv_list = [])
+                                                       cv_list = eyebrow_dir_transplane_data['control_vtx'])
 
     # Eyebrow Facial Zone - Projection Surfaces
 

@@ -54,7 +54,7 @@ class controlTransPlane(object):
                                           patchesV=self._patchesV)[0]   # Note the [0] indexing
 
         if len(cv_list) > 0:
-            _cv_coords = cv_list
+            self._cv_coords = cv_list
 
             for cv_coord_dict in cv_list:
                 cv_coord_idx = list(cv_coord_dict.keys())[0]
@@ -79,6 +79,9 @@ class controlTransPlane(object):
         #     cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
+
+        cmds.setAttr(self._nurbs_srf+'.overrideEnabled', True)
+        cmds.setAttr(self._nurbs_srf+'.overrideColor', COLOR_INDEX_BLACK)
         cmds.toggle(self._nurbs_srf, template=True)
         cmds.select(deselect=True)
 
@@ -189,7 +192,7 @@ class controlProjSurface(object):
             cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
-        cmds.toggle(self._nurbs_srf, template=True)
+        # cmds.toggle(self._nurbs_srf, template=True)
         cmds.select(deselect=True)
 
         # Set display attributes.

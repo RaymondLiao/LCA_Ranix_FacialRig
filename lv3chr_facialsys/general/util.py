@@ -10,9 +10,6 @@
 A module containing utility functions used by the LCA third level character facial system
 """
 
-from general import config; reload(config)
-from general.config import *
-
 def get_class_name(obj_or_class):
     """
     :param obj_or_class: a class or a class's instance
@@ -60,23 +57,23 @@ def get_ctrl_zone_dir(zone_dir_dict):
     dir_whole = ''
     dir_abbr = ''
 
-    for dir_key in config.dir_dict_key_list:
+    for dir_key in ['LR', 'UD', 'FB']:
         dir_whole += ('_' + zone_dir_dict[dir_key])
 
     # Remove the leading and trailing '_'s, and those extra adjacent ones.
     dir_whole = dir_whole.strip('_').replace('__', '_')
 
-    if controlZoneDirEnum.left in dir_whole:
+    if 'l' in dir_whole:
         dir_abbr += 'L'
-    if controlZoneDirEnum.right in dir_whole:
+    if 'r' in dir_whole:
         dir_abbr += 'R'
-    if controlZoneDirEnum.up in dir_whole:
+    if 'u' in dir_whole:
         dir_abbr += 'U'
-    if controlZoneDirEnum.down in dir_whole:
+    if 'd' in dir_whole:
         dir_abbr += 'D'
-    if controlZoneDirEnum.front in dir_whole:
+    if 'fr' in dir_whole:
         dir_abbr += 'F'
-    if controlZoneDirEnum.back in dir_whole:
+    if 'b' in dir_whole:
         dir_abbr += 'B'
 
     # Replace the "left_right" or "right_left" with "middle".

@@ -73,8 +73,7 @@ class controlCurve(object):
         self._nurbs_crv = cmds.rename(self._nurbs_crv, name_prefix+'_'+name)
 
         cmds.setAttr(self._nurbs_crv+'.overrideEnabled', True)
-        cmds.setAttr(self._nurbs_crv+'.overrideColor',
-                     CTRL_CURVE_COLOR_INDEX)
+        cmds.setAttr(self._nurbs_crv+'.overrideColor', CTRL_CURVE_COLOR_INDEX)
         cmds.toggle(self._nurbs_crv, controlVertex=True)
         cmds.select(deselect=True)
 
