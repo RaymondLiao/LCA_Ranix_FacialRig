@@ -74,6 +74,11 @@ def lc3chr_facialsys_construct():
     setup_proj_surfaces()
     setup_ctrl_zones()
 
+    # Toggle on the "wireframe on shaded" for the current model panel.
+    visible_panel_list = cmds.getPanel(visiblePanels=True)
+    active_viewport_list = [visible_panel for visible_panel in visible_panel_list if 'modelPanel' in visible_panel]
+    cmds.modelEditor(active_viewport_list[0], edit=True, wireframeOnShaded=True)
+
     # Do clean-up.
     cmds.select(deselect=True)
     mel.eval('hyperShadePanelMenuCommand("hyperShadePanel1", "deleteUnusedNodes")')
@@ -294,6 +299,25 @@ def setup_proj_surfaces():
                                                        cv_list = eyebrow_dir_transplane_data['control_vtx'])
 
     # Eyebrow Facial Zone - Projection Surfaces
+    eyebrow_crvproj_projsrf_data = control_proj_surface_data['eyebrow_projection_surface']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir]
+        eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
+        eyebrow_dir_projsrf_patchesU = eyebrow_dir_projsrf_data['patchesU']
+        eyebrow_dir_projsrf_pathcesV = eyebrow_dir_projsrf_data['patchesV']
+
+        eyebrow_crvproj_projsrf = controlProjSurface(name_prefix = eyebrow_crvproj_projsrf_data['name_prefix'],
+                                                     name = eyebrow_dir_projsrf_data['name'],
+                                                     degree = eyebrow_dir_projsrf_degree,
+                                                     patchesU = eyebrow_dir_projsrf_patchesU,
+                                                     patchesV = eyebrow_dir_projsrf_pathcesV,
+                                                     translation = eyebrow_dir_projsrf_data['xform']['translation'],
+                                                     rotation = eyebrow_dir_projsrf_data['xform']['rotation'],
+                                                     scale = eyebrow_dir_projsrf_data['xform']['scale'],
+                                                     cv_list = eyebrow_dir_projsrf_data['control_vtx'])
+
 
     f_control_proj_surface_data.close()
 
