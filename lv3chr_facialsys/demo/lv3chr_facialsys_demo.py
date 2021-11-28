@@ -37,6 +37,8 @@ from control.controller import controller
 # from control.control_zone import controlZone
 from control.zone import eyelid; reload(eyelid)
 from control.zone.eyelid import eyelidControlZone
+from control.zone import eyebrow; reload(eyebrow)
+from control.zone.eyebrow import eyebrowControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
 g_crv_projsrf_dict = {
@@ -298,6 +300,14 @@ def setup_proj_surfaces():
                                                        scale = eyebrow_dir_transplane_data['xform']['scale'],
                                                        cv_list = eyebrow_dir_transplane_data['control_vtx'])
 
+        if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
+            g_crv_projsrf_dict['eyebrow_transplane_LRUD'] = eyebrow_crvproj_transplane
+        elif controlZoneDirEnum.front in zone_dir:
+            g_crv_projsrf_dict['eyebrow_transplane_LRF'] = eyebrow_crvproj_transplane
+
+        cmds.parent(eyebrow_crvproj_transplane.get_name(),
+                    hierarchy.eyebrow_ctrl_M_grp.get_group_name())
+
     # Eyebrow Facial Zone - Projection Surfaces
     eyebrow_crvproj_projsrf_data = control_proj_surface_data['eyebrow_projection_surface']
 
@@ -318,6 +328,13 @@ def setup_proj_surfaces():
                                                      scale = eyebrow_dir_projsrf_data['xform']['scale'],
                                                      cv_list = eyebrow_dir_projsrf_data['control_vtx'])
 
+        if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
+            g_crv_projsrf_dict['eyebrow_projsrf_LRUD'] = eyebrow_crvproj_projsrf
+        elif controlZoneDirEnum.front in zone_dir:
+            g_crv_projsrf_dict['eyebrow_projsrf_LRF'] = eyebrow_crvproj_projsrf
+
+        cmds.parent(eyebrow_crvproj_projsrf.get_name(),
+                    hierarchy.eyebrow_projsrf_M_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 
@@ -340,40 +357,66 @@ def setup_ctrl_zones():
             sys.exc_info()[0]
         ))
 
-    # Create the control zones.
+    # ------------------------------------------------------------------------------------------------------------------
+    # Eyelid Control Zone
+
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
-        ctrlproj_transplane = None
+        ctrlproj_transplane_LRUD = None
+        ctrlproj_projsrf_LRUD = None
+
         if controlZoneDirEnum.right in zone_dir:
             if controlZoneDirEnum.up in zone_dir:
-                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RU']
+                ctrlproj_transplane_LRUD = g_crv_projsrf_dict['eyelid_transplane_RU']
+                ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['eyelid_projsrf_RU']
             elif controlZoneDirEnum.down in zone_dir:
-                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_RD']
+                ctrlproj_transplane_LRUD = g_crv_projsrf_dict['eyelid_transplane_RD']
+                ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['eyelid_projsrf_RD']
         elif controlZoneDirEnum.left in zone_dir:
             if controlZoneDirEnum.up in zone_dir:
-                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LU']
+                ctrlproj_transplane_LRUD = g_crv_projsrf_dict['eyelid_transplane_LU']
+                ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['eyelid_projsrf_LU']
             elif controlZoneDirEnum.down in zone_dir:
-                ctrlproj_transplane = g_crv_projsrf_dict['eyelid_transplane_LD']
-        assert None != ctrlproj_transplane
+                ctrlproj_transplane_LRUD = g_crv_projsrf_dict['eyelid_transplane_LD']
+                ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['eyelid_projsrf_LD']
 
-        ctrlproj_projsrf = None
-        if controlZoneDirEnum.right in zone_dir:
-            if controlZoneDirEnum.up in zone_dir:
-                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RU']
-            elif controlZoneDirEnum.down in zone_dir:
-                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_RD']
-        elif controlZoneDirEnum.left in zone_dir:
-            if controlZoneDirEnum.up in zone_dir:
-                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LU']
-            elif controlZoneDirEnum.down in zone_dir:
-                ctrlproj_projsrf = g_crv_projsrf_dict['eyelid_projsrf_LD']
-        assert None != ctrlproj_projsrf
+        assert None != ctrlproj_transplane_LRUD
+        assert None != ctrlproj_projsrf_LRUD
 
-        eyelid_ctrl_zone = eyelidControlZone(direction=zone_dir,
-                                             ctrl_crv_data=ctrl_crv_data,
-                                             ctrlproj_transplane=ctrlproj_transplane,
-                                             ctrlproj_projsurface=ctrlproj_projsrf)
+        eyelid_ctrl_zone = eyelidControlZone(direction = zone_dir,
+                                             ctrl_crv_data = ctrl_crv_data,
+                                             ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
+                                             ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Eyebrow Control Zone
+
+    ctrlproj_transplane_LRUD = None
+    ctrlproj_transplane_LRFB = None
+    ctrlproj_projsrf_LRUD = None
+    ctrlproj_projsrf_LRFB = None
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+
+        if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
+            ctrlproj_transplane_LRUD = g_crv_projsrf_dict['eyebrow_transplane_LRUD']
+            ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['eyebrow_projsrf_LRUD']
+            assert None != ctrlproj_transplane_LRUD
+            assert None != ctrlproj_projsrf_LRUD
+        elif controlZoneDirEnum.front in zone_dir:
+            ctrlproj_transplane_LRFB = g_crv_projsrf_dict['eyebrow_transplane_LRF']
+            ctrlproj_projsrf_LRFB = g_crv_projsrf_dict['eyebrow_projsrf_LRF']
+            assert None != ctrlproj_transplane_LRFB
+            assert None != ctrlproj_projsrf_LRFB
+
+    # Note that the eyebrow facial zone only have one Control Zone, combining the up-down and front directions.
+    eyebrow_ctrl_zone = eyebrowControlZone(ctrl_crv_data = ctrl_crv_data,
+                                           ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
+                                           ctrlproj_transplane_LRFB = ctrlproj_transplane_LRFB,
+                                           ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD,
+                                           ctrlproj_projsurface_LRFB = ctrlproj_projsrf_LRFB)
 
     f_ctrl_crv_data.close()
 

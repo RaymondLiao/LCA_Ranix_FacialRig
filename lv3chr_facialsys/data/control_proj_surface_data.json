@@ -714,6 +714,9 @@
     }
   },
 
+
+
+
   "eyebrow_translation_plane": {
     "name_prefix": "fm_eyebrowProjectPlane",
 
@@ -847,6 +850,7 @@
     }
   },
 
+
   "eyebrow_projection_surface": {
     "name_prefix": "fm_eyebrowMask",
     "locator_scale": [0.03, 0.03, 0.03],
@@ -976,6 +980,7 @@
         {"10,0": [-0.457, 1.049, -0.38]},
         {"10,1": [-0.457, 0.349, -0.38]}
       ],
+
       "xform": {
         "translation": [-4.0, 16.891, 1.863],
         "rotation": [-90.0, 0.0, 90.0],

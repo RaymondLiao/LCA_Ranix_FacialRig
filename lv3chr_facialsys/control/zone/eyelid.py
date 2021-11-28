@@ -13,8 +13,6 @@ A module organizing the control elements of the eyelid zone
 import warnings
 import maya.cmds as cmds
 
-from general import util; reload(util)
-
 from general import config; reload(config)
 from general.config import *
 
@@ -26,7 +24,7 @@ from ..control_zone import controlZone
 from .. import control_curve; reload(control_curve)
 from ..control_curve import controlCurve
 
-from .. import controller; reload( controller)
+from .. import controller; reload(controller)
 from ..controller import controller
 
 # ======================================================================================================================
@@ -40,8 +38,8 @@ class eyelidControlZone(controlZone):
     def __init__(self,
                  direction = controlZoneDirEnum.right + '_' + controlZoneDirEnum.up,
                  ctrl_crv_data = None,
-                 ctrlproj_transplane = None,
-                 ctrlproj_projsurface = None
+                 ctrlproj_transplane_LRUD = None,
+                 ctrlproj_projsurface_LRUD = None
                  ):
         """ An Eyelid Control Zone instance's direction attribute may have the value of
             "right_up/RU", "right_dn/RD", "left_up/LU" or "left_dn/LD".
@@ -50,21 +48,20 @@ class eyelidControlZone(controlZone):
         super(eyelidControlZone, self).__init__(zone = controlZoneEnum.eyelid,
                                                 direction = direction,
                                                 ctrl_crv_data = ctrl_crv_data,
-                                                ctrlproj_transplane = ctrlproj_transplane,
-                                                ctrlproj_projsurface = ctrlproj_projsurface
+                                                ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
+                                                ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
                                                 )
 
-        # Eyelid Zone control elements construction --------------------------------------------------------------------
         ctrl_crv_id_list = ['A', 'B', 'C', 'D']
         controller_id_list = ['A', 'B', 'C', 'D', 'E']
 
         # Create the control curves.
-        ctrlcrv_data = ctrl_crv_data['eyelid_control_curve']
+        ctrlcrv_data = self._ctrl_crv_data['eyelid_control_curve']
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
             dir_ctrlcrv_data = ctrlcrv_data[direction + '_' + crv_id]
-            ctrl_crv = controlCurve(name_prefix = ctrl_crv_data['eyelid_ctrlzone_prefix'],
+            ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['eyelid_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
                                     degree = ctrlcrv_degree,
                                     translation = dir_ctrlcrv_data['xform']['translation'],
@@ -155,7 +152,7 @@ class eyelidControlZone(controlZone):
         cmds.select(deselect=True)
 
         # Create the control curve follow control locators.
-        follow_ctrl_data = ctrl_crv_data['eyelid_follow_controller']
+        follow_ctrl_data = self._ctrl_crv_data['eyelid_follow_controller']
         follow_ctrl_dir = ''
         if controlZoneDirEnum.right in direction:
             follow_ctrl_dir = 'R'
@@ -194,7 +191,7 @@ class eyelidControlZone(controlZone):
         self._follow_ctrl = follow_ctrl
 
         # Create the controllers.
-        controller_data = ctrl_crv_data['eyelid_controller']
+        controller_data = self._ctrl_crv_data['eyelid_controller']
         controller_degree = controller_data['degree']
         controller_color = 0
         controller_points = []
@@ -217,7 +214,7 @@ class eyelidControlZone(controlZone):
 
         for ctrl_id in controller_id_list:
             dir_ctrl_data = controller_data[direction + '_' + ctrl_id]
-            rig_controller = controller(name = ctrl_crv_data['eyelid_ctrlzone_prefix'] + '_' +
+            rig_controller = controller(name = self._ctrl_crv_data['eyelid_ctrlzone_prefix'] + '_' +
                                                dir_ctrl_data['name'],
                                         degree = controller_degree,
                                         color = controller_color,
@@ -299,15 +296,15 @@ class eyelidControlZone(controlZone):
         # Use "closestPointOnSurface" node to establish the projecting relationships between
         # the locators on control curves and the locators on the projection surface.
 
-        # cmds.warning('The translationPlane of this controlZone: {}'.format(self._ctrlproj_transplane.get_name()))
-        # cmds.warning('The projectionSurface of this controlZone: {}'.format(self._ctrlproj_projsurface.get_name()))
+        # cmds.warning('The translationPlane of this controlZone: {}'.format(self._ctrlproj_transplane_LRUD.get_name()))
+        # cmds.warning('The projectionSurface of this controlZone: {}'.format(self._ctrlproj_projsurface_LRUD.get_name()))
 
         for ctrl_crv_id in ctrl_crv_id_list:
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
 
             for loc_id in ctrl_crv.get_locator_ids():
                 ctrl_crv_loc_info = ctrl_crv.get_locator_info(loc_id)
-                proj_srf_loc_info = self._ctrlproj_projsurface.get_locator_info(ctrl_crv_id, loc_id)
+                proj_srf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
 
                 # cmds.warning('--------------------------------------------------------------------')
                 # cmds.warning('zone direction: {}'.format(direction))
@@ -320,7 +317,7 @@ class eyelidControlZone(controlZone):
                 cls_pt_on_srf_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_srf_node = cmds.rename(cls_pt_on_srf_node, ctrl_crv_loc_info[0] + '_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane.get_name() + '.worldSpace[0]',
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
                                  cls_pt_on_srf_node + '.inputSurface')
                 cmds.connectAttr(ctrl_crv_loc_info[0] + 'Shape.worldPosition[0]',
                                  cls_pt_on_srf_node + '.inPosition')

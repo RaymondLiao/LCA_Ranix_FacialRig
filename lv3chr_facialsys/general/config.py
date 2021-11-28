@@ -34,6 +34,7 @@ class controlZoneDirEnum(object):
     """
     left = 'left'       # abbr: L
     right = 'right'     # abbr: R
+    middle = 'middle'   # abbr: M; Note that "middle" = "left_right"
 
     up = 'up'           # abbr: U
     down = 'dn'         # abbr: D
