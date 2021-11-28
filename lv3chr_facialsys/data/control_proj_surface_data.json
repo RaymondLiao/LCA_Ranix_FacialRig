@@ -60,7 +60,6 @@
     }
   },
 
-
   "eyelid_projection_surface": {
     "name_prefix": "fm_eyelidMask",
     "locator_scale": [0.03, 0.03, 0.03],
@@ -715,8 +714,6 @@
   },
 
 
-
-
   "eyebrow_translation_plane": {
     "name_prefix": "fm_eyebrowProjectPlane",
 
@@ -849,7 +846,6 @@
       }
     }
   },
-
 
   "eyebrow_projection_surface": {
     "name_prefix": "fm_eyebrowMask",

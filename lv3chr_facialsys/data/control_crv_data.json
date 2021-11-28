@@ -662,7 +662,6 @@
     }
   },
 
-
   "eyelid_controller": {
     "degree": 1,
     "lock_trans_axes": ["z"],
@@ -686,7 +685,7 @@
     "bind_joint":
     {
       "suffix": "bind",
-      "radius": 2.0
+      "radius": 1.5
     },
 
     "right_up_A": {
@@ -880,8 +879,6 @@
   },
 
 
-
-
   "eyebrow_ctrlzone_prefix": "fm_eyebrowProject",
 
   "eyebrow_control_curve": {
@@ -904,7 +901,53 @@
         [1.663, 0.0, 0.0],
         [2.379, 0.0, 0.0]
       ],
-      "locators": []
+      "locators": [
+        {
+          "id": 1,
+          "name": "R_A1_loc",
+          "pt_on_crv_param": 0.0
+        },
+        {
+          "id": 2,
+          "name": "R_A2_loc",
+          "pt_on_crv_param": 1.0
+        },
+        {
+          "id": 3,
+          "name": "R_A3_loc",
+          "pt_on_crv_param": 2.0
+        },
+        {
+          "id": 4,
+          "name": "R_A4_loc",
+          "pt_on_crv_param": 3.0
+        },
+        {
+          "id": 5,
+          "name": "M_A_loc",
+          "pt_on_crv_param": 4.0
+        },
+        {
+          "id": 6,
+          "name": "L_A4_loc",
+          "pt_on_crv_param": 5.0
+        },
+        {
+          "id": 7,
+          "name": "L_A3_loc",
+          "pt_on_crv_param": 6.0
+        },
+        {
+          "id": 8,
+          "name": "L_A2_loc",
+          "pt_on_crv_param": 7.0
+        },
+        {
+          "id": 9,
+          "name": "L_A1_loc",
+          "pt_on_crv_param": 8.0
+        }
+      ]
     },
 
     "middle_B": {
@@ -923,7 +966,53 @@
         [1.663, 0.0, 0.0],
         [2.379, 0.0, 0.0]
       ],
-      "locators": []
+      "locators": [
+        {
+          "id": 1,
+          "name": "R_B1_loc",
+          "pt_on_crv_param": 0.0
+        },
+        {
+          "id": 2,
+          "name": "R_B2_loc",
+          "pt_on_crv_param": 1.0
+        },
+        {
+          "id": 3,
+          "name": "R_B3_loc",
+          "pt_on_crv_param": 2.0
+        },
+        {
+          "id": 4,
+          "name": "R_B4_loc",
+          "pt_on_crv_param": 3.0
+        },
+        {
+          "id": 5,
+          "name": "M_B_loc",
+          "pt_on_crv_param": 4.0
+        },
+        {
+          "id": 6,
+          "name": "L_B4_loc",
+          "pt_on_crv_param": 5.0
+        },
+        {
+          "id": 7,
+          "name": "L_B3_loc",
+          "pt_on_crv_param": 6.0
+        },
+        {
+          "id": 8,
+          "name": "L_B2_loc",
+          "pt_on_crv_param": 7.0
+        },
+        {
+          "id": 9,
+          "name": "L_B1_loc",
+          "pt_on_crv_param": 8.0
+        }
+      ]
     },
 
     "middle_C": {
@@ -942,7 +1031,171 @@
         [1.663, 0.0, 0.0],
         [2.379, 0.0, 0.0]
       ],
-      "locators": []
+      "locators": [
+        {
+          "id": 1,
+          "name": "R_C4_loc",
+          "pt_on_crv_param": 0.0
+        },
+        {
+          "id": 2,
+          "name": "R_C3_loc",
+          "pt_on_crv_param": 1.0
+        },
+        {
+          "id": 3,
+          "name": "R_C2_loc",
+          "pt_on_crv_param": 2.0
+        },
+        {
+          "id": 4,
+          "name": "R_C1_loc",
+          "pt_on_crv_param": 3.0
+        },
+        {
+          "id": 5,
+          "name": "M_C_loc",
+          "pt_on_crv_param": 4.0
+        },
+        {
+          "id": 6,
+          "name": "L_C1_loc",
+          "pt_on_crv_param": 5.0
+        },
+        {
+          "id": 7,
+          "name": "L_C2_loc",
+          "pt_on_crv_param": 6.0
+        },
+        {
+          "id": 8,
+          "name": "L_C3_loc",
+          "pt_on_crv_param": 7.0
+        },
+        {
+          "id": 9,
+          "name": "L_C4_loc",
+          "pt_on_crv_param": 8.0
+        }
+      ]
+    }
+  },
+
+  "eyebrow_controller": {
+    "degree": 1,
+    "lock_trans_axes": [],
+    "lock_rot_axes": ["x", "y", "z"],
+
+    "points_right": [
+      [0.0, 0.2, 0.0],
+      [-0.141, 0.141, 0.0],
+      [-0.2, 0.0, 0.0],
+      [-0.141, -0.141, 0.0],
+      [0.0, -0.2, 0.0],
+      [0.0, -0.141, 0.0],
+      [0.0, 0.0, 0.0],
+      [0.0, 0.141, 0.0],
+      [0.0, 0.2, 0.0]
+    ],
+    "points_middle": [
+      [0.0, 0.2, 0.0],
+      [-0.141, 0.141, 0.0],
+      [-0.141, 0.0, 0.0],
+      [-0.141, -0.141, 0.0],
+      [0.0, -0.2, 0.0],
+      [0.141, -0.141, 0.0],
+      [0.141, 0.0, 0.0],
+      [0.141, 0.141, 0.0],
+      [0.0, 0.2, 0.0]
+    ],
+    "points_left": [
+      [0.0, 0.2, 0.0],
+      [0.0, 0.141, 0.0],
+      [0.0, 0.0, 0.0],
+      [0.0, -0.141, 0.0],
+      [0.0, -0.2, 0.0],
+      [0.141, -0.141, 0.0],
+      [0.2, 0.0, 0.0],
+      [0.141, 0.141, 0.0],
+      [0.0, 0.2, 0.0]
+    ],
+
+    "bind_joint":
+    {
+      "suffix": "bind",
+      "radius": 1.5
+    },
+
+    "right_D": {
+      "name": "R_D_ctrl",
+      "xform": {
+        "translation_ofs": [-2.379, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_C": {
+      "name": "R_C_ctrl",
+      "xform": {
+        "translation_ofs": [-1.663, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_B": {
+      "name": "R_B_ctrl",
+      "xform": {
+        "translation_ofs": [-0.931, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_A": {
+      "name": "R_A_ctrl",
+      "xform": {
+        "translation_ofs": [-0.329, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "middle_A": {
+      "name": "M_A_ctrl",
+      "xform": {
+        "translation_ofs": [0.0, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_A": {
+      "name": "L_A_ctrl",
+      "xform": {
+        "translation_ofs": [0.329, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_B": {
+      "name": "L_B_ctrl",
+      "xform": {
+        "translation_ofs": [0.931, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_C": {
+      "name": "L_C_ctrl",
+      "xform": {
+        "translation_ofs": [1.663, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_D": {
+      "name": "L_D_ctrl",
+      "xform": {
+        "translation_ofs": [2.379, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
     }
   }
 }

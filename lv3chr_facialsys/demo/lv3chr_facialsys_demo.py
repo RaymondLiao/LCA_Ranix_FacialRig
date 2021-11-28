@@ -93,8 +93,8 @@ def setup_proj_surfaces():
     global g_crv_projsrf_dict
 
     proj_srf_shader = cmds.shadingNode('lambert', asShader=True, name=PROJ_SRF_SHADER)
-    cmds.setAttr(proj_srf_shader+'.color', 0.0, 0.0, 0.0, type='double3')
-    cmds.setAttr(proj_srf_shader+'.transparency', 0.85, 0.85, 0.85, type='double3')
+    cmds.setAttr(proj_srf_shader+'.color', 1.0, 1.0, 0.5, type='double3')
+    # cmds.setAttr(proj_srf_shader+'.transparency', 0.85, 0.85, 0.85, type='double3')
     proj_srf_shader_SG = cmds.sets(name=proj_srf_shader+'_SG',
                                    renderable=True, empty=True,)
     cmds.connectAttr(proj_srf_shader+'.outColor', proj_srf_shader_SG+'.surfaceShader', force=True)

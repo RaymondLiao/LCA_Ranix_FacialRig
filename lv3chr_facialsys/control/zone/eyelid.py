@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: eyelid.py
+# File Name: control.zone.eyelid.py
 # Author: Sheng (Raymond) Liao
 # Date: November 2021
 #

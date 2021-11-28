@@ -61,7 +61,7 @@ class controlZone(object):
         # Member Variable Definitions ----------------------------------------------------------------------------------
         # The keys of this dictionary are curves' IDs.
         self._ctrl_crv_dict = {
-            'A': None,
+            # 'A': None,
         }
 
         # The keys of this dictionary are follow controller's IDs.
@@ -69,7 +69,7 @@ class controlZone(object):
 
         # The keys of this dictionary are controllers' IDs.
         self._controller_dict = {
-            'A': None,
+            # 'A': None,
         }
 
         self._ctrl_crv_data = ctrl_crv_data
