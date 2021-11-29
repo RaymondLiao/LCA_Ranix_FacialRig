@@ -33,7 +33,11 @@ from ..controller import controller
 class eyebrowControlZone(controlZone):
     """ Subclass of the controlZone, whose instances manage the control elements of the eyebrow zone
 
-    [description of an eyebrow zone's composition here]
+    An eyebrow control zone of a third-level character should contain 3 control curves,
+    3*9 locators, and 9 controllers (4 on the left, 1 in the middle, 4 on the right) binding to 9 joints.
+
+    Also, an eyebrow control zone composites 1 Translation Plane with 1 Projection Surface in the up-down direction,
+    and 1 Translation Plane with 1 Projection Surface in the front direction.
     """
 
     def __init__(self,
@@ -131,3 +135,71 @@ class eyebrowControlZone(controlZone):
                         relative=True)
 
             self._controller_dict[ctrl_id] = rig_controller
+
+        # --------------------------------------------------------------------------------------------------------------
+        # Bind the control curves to the corresponding controllers' joints.
+        cmds.select(deselect=True)
+        for ctrl_id, ctrl in self._controller_dict.items():
+            ctrl_bind_jnt = ctrl.get_bind_joint()
+            cmds.select(ctrl_bind_jnt, add=True)
+        cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
+
+        skincluster_node = cmds.skinCluster(toSelectedBones=True)
+        cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
+
+        # Create the blendshapes to control curves to transit the translations of controllers.
+        cmds.select(deselect=True)
+        follow_val = 0.5
+
+        for ctrl_crv_id in ctrl_crv_id_list[1:]:
+            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+            bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
+                                      ctrl_crv.get_name(),
+                                      weight=[0, follow_val])
+            bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+
+        # Use "closestPointOnSurface" node to establish the projecting relationships between
+        # the locators on the control curves and the locators on the projection surfaces.
+
+        for ctrl_crv_id in ctrl_crv_id_list:
+            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+
+            for loc_id in ctrl_crv.get_locator_ids():
+                ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
+
+                # Establish the projecting relationships in the up-down/UD directions.
+                UD_projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
+
+                cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
+                                                           ctrlcrv_loc_info[0] + '_srfUD_clsPtOnSrf')
+
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
+                                 cls_pt_on_UD_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_UD_transplane_node + '.inPosition')
+
+                pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_UD_projsrf_node)
+
+                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
+
+                if ctrl_crv_id_list[0] in ctrl_crv.get_name():
+                    # Establish the projecting relationships in the front/F direction.
+                    F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id)
+
+                    cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
+                    cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
+                                                              ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+
+                    cmds.connectAttr(self._ctrlproj_transplane_LRFB.get_name() + '.worldSpace[0]',
+                                     cls_pt_on_F_transplane_node + '.inputSurface')
+                    cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                     cls_pt_on_F_transplane_node + '.inPosition')
+
+                    pt_on_F_projsrf_node = F_projsrf_loc_info[2]
+                    assert cmds.objExists(pt_on_F_projsrf_node)
+
+                    cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
+                    cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')

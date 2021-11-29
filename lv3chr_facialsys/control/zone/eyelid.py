@@ -294,7 +294,7 @@ class eyelidControlZone(controlZone):
             cmds.connectAttr(follow_attr, bs_node + '.weight[0]')
 
         # Use "closestPointOnSurface" node to establish the projecting relationships between
-        # the locators on control curves and the locators on the projection surface.
+        # the locators on the control curves and the locators on the projection surface.
 
         # cmds.warning('The translationPlane of this controlZone: {}'.format(self._ctrlproj_transplane_LRUD.get_name()))
         # cmds.warning('The projectionSurface of this controlZone: {}'.format(self._ctrlproj_projsurface_LRUD.get_name()))
@@ -303,27 +303,27 @@ class eyelidControlZone(controlZone):
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
 
             for loc_id in ctrl_crv.get_locator_ids():
-                ctrl_crv_loc_info = ctrl_crv.get_locator_info(loc_id)
-                proj_srf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
+                ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
+                projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
 
                 # cmds.warning('--------------------------------------------------------------------')
                 # cmds.warning('zone direction: {}'.format(direction))
                 # cmds.warning('control curve: {}'.format(ctrl_crv.get_name()))
                 # cmds.warning('project surface: {}'.format(self._ctrlproj_projsurface.get_name()))
-                # cmds.warning('ctrl_crv_loc_info: {}'.format(ctrl_crv_loc_info))
-                # cmds.warning('proj_srf_loc_info: {}'.format(proj_srf_loc_info))
+                # cmds.warning('ctrlcrv_loc_info: {}'.format(ctrlcrv_loc_info))
+                # cmds.warning('projsrf_loc_info: {}'.format(projsrf_loc_info))
                 # cmds.warning('--------------------------------------------------------------------')
 
-                cls_pt_on_srf_node = cmds.createNode('closestPointOnSurface')
-                cls_pt_on_srf_node = cmds.rename(cls_pt_on_srf_node, ctrl_crv_loc_info[0] + '_clsPtOnSrf')
+                cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0] + '_clsPtOnSrf')
 
                 cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_srf_node + '.inputSurface')
-                cmds.connectAttr(ctrl_crv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_srf_node + '.inPosition')
+                                 cls_pt_on_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_transplane_node + '.inPosition')
 
-                pt_on_srf_node = proj_srf_loc_info[2]
-                assert cmds.objExists(pt_on_srf_node)
+                pt_on_projsrf_node = projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_srf_node + '.parameterU', pt_on_srf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_srf_node + '.parameterV', pt_on_srf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')

@@ -76,10 +76,15 @@ def lc3chr_facialsys_construct():
     setup_proj_surfaces()
     setup_ctrl_zones()
 
-    # Toggle on the "wireframe on shaded" for the current model panel.
+    # Toggle on the "Wireframe on Shaded" for the current model panel.
     visible_panel_list = cmds.getPanel(visiblePanels=True)
     active_viewport_list = [visible_panel for visible_panel in visible_panel_list if 'modelPanel' in visible_panel]
     cmds.modelEditor(active_viewport_list[0], edit=True, wireframeOnShaded=True)
+    cmds.warning('Turned on the "Wireframe on Shaded" shading mode in the "{}" viewport.'.format(active_viewport_list[0]))
+
+    # Toggle on the "Viewport 2.0" renderer
+    mel.eval('setRendererInModelPanel $gViewport2 {}'.format(active_viewport_list[0]))
+    cmds.warning('Turned on the "Viewport 2.0" renderer in the "{}" viewport.'.format(active_viewport_list[0]))
 
     # Do clean-up.
     cmds.select(deselect=True)
