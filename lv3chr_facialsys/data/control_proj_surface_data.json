@@ -933,7 +933,147 @@
         "translation": [-4.0, 16.827, 1.0],
         "rotation": [0.0, -90.0, 0.0],
         "scale": [1.0, 1.0, 1.0]
-      }
+      },
+
+      "locators": [
+        {
+          "id": "A1",
+          "name": "M_UD_A1_loc",
+          "pt_on_srf_param_UV": [0.1, 0.5]
+        },
+        {
+          "id": "A2",
+          "name": "M_UD_A2_loc",
+          "pt_on_srf_param_UV": [0.2, 0.5]
+        },
+        {
+          "id": "A3",
+          "name": "M_UD_A3_loc",
+          "pt_on_srf_param_UV": [0.3, 0.5]
+        },
+        {
+          "id": "A4",
+          "name": "M_UD_A4_loc",
+          "pt_on_srf_param_UV": [0.4, 0.5]
+        },
+        {
+          "id": "A5",
+          "name": "M_UD_A5_loc",
+          "pt_on_srf_param_UV": [0.5, 0.5]
+        },
+        {
+          "id": "A6",
+          "name": "M_UD_A6_loc",
+          "pt_on_srf_param_UV": [0.6, 0.5]
+        },
+        {
+          "id": "A7",
+          "name": "M_UD_A7_loc",
+          "pt_on_srf_param_UV": [0.7, 0.5]
+        },
+        {
+          "id": "A8",
+          "name": "M_UD_A8_loc",
+          "pt_on_srf_param_UV": [0.8, 0.5]
+        },
+        {
+          "id": "A9",
+          "name": "M_UD_A9_loc",
+          "pt_on_srf_param_UV": [0.9, 0.5]
+        },
+
+        {
+          "id": "B1",
+          "name": "M_UD_B1_loc",
+          "pt_on_srf_param_UV": [0.1, 0.75]
+        },
+        {
+          "id": "B2",
+          "name": "M_UD_B2_loc",
+          "pt_on_srf_param_UV": [0.2, 0.75]
+        },
+        {
+          "id": "B3",
+          "name": "M_UD_B3_loc",
+          "pt_on_srf_param_UV": [0.3, 0.75]
+        },
+        {
+          "id": "B4",
+          "name": "M_UD_B4_loc",
+          "pt_on_srf_param_UV": [0.4, 0.75]
+        },
+        {
+          "id": "B5",
+          "name": "M_UD_B5_loc",
+          "pt_on_srf_param_UV": [0.5, 0.75]
+        },
+        {
+          "id": "B6",
+          "name": "M_UD_B6_loc",
+          "pt_on_srf_param_UV": [0.6, 0.75]
+        },
+        {
+          "id": "B7",
+          "name": "M_UD_B7_loc",
+          "pt_on_srf_param_UV": [0.7, 0.75]
+        },
+        {
+          "id": "B8",
+          "name": "M_UD_B8_loc",
+          "pt_on_srf_param_UV": [0.8, 0.75]
+        },
+        {
+          "id": "B9",
+          "name": "M_UD_B9_loc",
+          "pt_on_srf_param_UV": [0.9, 0.75]
+        },
+
+        {
+          "id": "C1",
+          "name": "M_UD_C1_loc",
+          "pt_on_srf_param_UV": [0.1, 0.25]
+        },
+        {
+          "id": "C2",
+          "name": "M_UD_C2_loc",
+          "pt_on_srf_param_UV": [0.2, 0.25]
+        },
+        {
+          "id": "C3",
+          "name": "M_UD_C3_loc",
+          "pt_on_srf_param_UV": [0.3, 0.25]
+        },
+        {
+          "id": "C4",
+          "name": "M_UD_C4_loc",
+          "pt_on_srf_param_UV": [0.4, 0.25]
+        },
+        {
+          "id": "C5",
+          "name": "M_UD_C5_loc",
+          "pt_on_srf_param_UV": [0.5, 0.25]
+        },
+        {
+          "id": "C6",
+          "name": "M_UD_C6_loc",
+          "pt_on_srf_param_UV": [0.6, 0.25]
+        },
+        {
+          "id": "C7",
+          "name": "M_UD_C7_loc",
+          "pt_on_srf_param_UV": [0.7, 0.25]
+        },
+        {
+          "id": "C8",
+          "name": "M_UD_C8_loc",
+          "pt_on_srf_param_UV": [0.8, 0.25]
+        },
+        {
+          "id": "C9",
+          "name": "M_UD_C9_loc",
+          "pt_on_srf_param_UV": [0.9, 0.25]
+        }
+      ]
     },
 
     "middle_front": {
@@ -981,7 +1121,55 @@
         "translation": [-4.0, 16.891, 1.863],
         "rotation": [-90.0, 0.0, 90.0],
         "scale": [1.0, 1.0, 1.0]
-      }
+      },
+
+      "locators": [
+        {
+          "id": "A1",
+          "name": "M_FB_A1_loc",
+          "pt_on_srf_param_UV": [0.1, 1.0]
+        },
+        {
+          "id": "A2",
+          "name": "M_FB_A2_loc",
+          "pt_on_srf_param_UV": [0.2, 1.0]
+        },
+        {
+          "id": "A3",
+          "name": "M_FB_A3_loc",
+          "pt_on_srf_param_UV": [0.3, 1.0]
+        },
+        {
+          "id": "A4",
+          "name": "M_FB_A4_loc",
+          "pt_on_srf_param_UV": [0.4, 1.0]
+        },
+        {
+          "id": "A5",
+          "name": "M_FB_A5_loc",
+          "pt_on_srf_param_UV": [0.5, 1.0]
+        },
+        {
+          "id": "A6",
+          "name": "M_FB_A6_loc",
+          "pt_on_srf_param_UV": [0.6, 1.0]
+        },
+        {
+          "id": "A7",
+          "name": "M_FB_A7_loc",
+          "pt_on_srf_param_UV": [0.7, 1.0]
+        },
+        {
+          "id": "A8",
+          "name": "M_FB_A8_loc",
+          "pt_on_srf_param_UV": [0.8, 1.0]
+        },
+        {
+          "id": "A9",
+          "name": "M_FB_A9_loc",
+          "pt_on_srf_param_UV": [0.9, 1.0]
+        }
+      ]
     }
   }
 }

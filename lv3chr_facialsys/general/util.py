@@ -83,7 +83,7 @@ def get_ctrl_zone_dir(zone_dir_dict):
 
     return (dir_whole, dir_abbr)
 
-def get_nurbs_srf_cv():
+def get_nurbs_srf_CVs():
     """
     :return: a string containing the control vertices' coordinates of a selected NURBS surface
     stored in a list of dictionary, formatted in [{"u, v": [x, y, z]}], which will be used by

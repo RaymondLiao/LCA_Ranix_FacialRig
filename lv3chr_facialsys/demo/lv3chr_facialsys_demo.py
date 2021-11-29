@@ -183,7 +183,7 @@ def setup_proj_surfaces():
                                                     locator_data = eyelid_dir_projsrf_data['locators'],
                                                     locator_scale = eyelid_crvproj_projsrf_data['locator_scale'],
                                                     bind_joint_data = eyelid_crvproj_projsrf_data['bind_joint'],
-                                                    bind_joint_color=BIND_JOINT_COLOR_INDEX)
+                                                    bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
         loc_row_id_list = eyelid_crvproj_projsrf.get_locator_row_ids()
 
@@ -193,20 +193,17 @@ def setup_proj_surfaces():
                         hierarchy.eyelid_projsrf_RU_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
-                if 'A' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RU_A_grp.get_group_name())
-                elif 'B' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'B' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RU_B_grp.get_group_name())
-                elif 'C' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'C' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RU_C_grp.get_group_name())
-                elif 'D' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RU_D_grp.get_group_name())
 
@@ -216,20 +213,17 @@ def setup_proj_surfaces():
                         hierarchy.eyelid_projsrf_RD_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
-                if 'A' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RD_A_grp.get_group_name())
-                elif 'B' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'B' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RD_B_grp.get_group_name())
-                elif 'C' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'C' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RD_C_grp.get_group_name())
-                elif 'D' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RD_D_grp.get_group_name())
 
@@ -239,20 +233,17 @@ def setup_proj_surfaces():
                         hierarchy.eyelid_projsrf_LU_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
-                if 'A' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LU_A_grp.get_group_name())
-                elif 'B' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'B' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LU_B_grp.get_group_name())
-                elif 'C' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'C' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LU_C_grp.get_group_name())
-                elif 'D' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LU_D_grp.get_group_name())
 
@@ -262,20 +253,17 @@ def setup_proj_surfaces():
                         hierarchy.eyelid_projsrf_LD_grp.get_group_name())
 
             for loc_row_id in loc_row_id_list:
-                if 'A' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LD_A_grp.get_group_name())
-                elif 'B' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'B' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LD_B_grp.get_group_name())
-                elif 'C' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'C' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LD_C_grp.get_group_name())
-                elif 'D' == loc_row_id:
-                    for loc_col_id in eyelid_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LD_D_grp.get_group_name())
 
@@ -326,12 +314,37 @@ def setup_proj_surfaces():
                                                      translation = eyebrow_dir_projsrf_data['xform']['translation'],
                                                      rotation = eyebrow_dir_projsrf_data['xform']['rotation'],
                                                      scale = eyebrow_dir_projsrf_data['xform']['scale'],
-                                                     cv_list = eyebrow_dir_projsrf_data['control_vtx'])
+                                                     cv_list = eyebrow_dir_projsrf_data['control_vtx'],
+                                                     locator_data = eyebrow_dir_projsrf_data['locators'],
+                                                     locator_scale = eyebrow_crvproj_projsrf_data['locator_scale'],
+                                                     bind_joint_data = eyebrow_crvproj_projsrf_data['bind_joint'],
+                                                     bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
+        loc_row_id_list = eyebrow_crvproj_projsrf.get_locator_row_ids()
 
         if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyebrow_projsrf_LRUD'] = eyebrow_crvproj_projsrf
+
+            for loc_row_id in loc_row_id_list:
+                for loc_col_id in eyebrow_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
+                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyebrow_projsrf_loc_M_UD_A_grp.get_group_name())
+                    elif 'B' == loc_row_id:
+                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyebrow_projsrf_loc_M_UD_B_grp.get_group_name())
+                    elif 'C' == loc_row_id:
+                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyebrow_projsrf_loc_M_UD_C_grp.get_group_name())
+
         elif controlZoneDirEnum.front in zone_dir:
             g_crv_projsrf_dict['eyebrow_projsrf_LRF'] = eyebrow_crvproj_projsrf
+
+            for loc_row_id in loc_row_id_list:
+                for loc_col_id in eyebrow_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
+                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyebrow_projsrf_loc_M_FB_grp.get_group_name())
 
         cmds.parent(eyebrow_crvproj_projsrf.get_name(),
                     hierarchy.eyebrow_projsrf_M_grp.get_group_name())
