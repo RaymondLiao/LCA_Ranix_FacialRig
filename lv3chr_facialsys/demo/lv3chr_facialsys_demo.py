@@ -83,7 +83,7 @@ def lc3chr_facialsys_construct():
     cmds.warning('Turned on the "Wireframe on Shaded" shading mode in the "{}" viewport.'.format(active_viewport_list[0]))
 
     # Toggle on the "Viewport 2.0" renderer
-    mel.eval('setRendererInModelPanel $gViewport2 {}'.format(active_viewport_list[0]))
+    mel.eval('setRendererInModelPanel ogsRenderer {}'.format(active_viewport_list[0]))
     cmds.warning('Turned on the "Viewport 2.0" renderer in the "{}" viewport.'.format(active_viewport_list[0]))
 
     # Do clean-up.
