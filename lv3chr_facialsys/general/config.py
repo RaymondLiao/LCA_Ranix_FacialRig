@@ -20,6 +20,7 @@ from general import util; reload(util)
 class controlZoneEnum(object):
     eyelid = 'eyelid'
     eyebrow = 'eyebrow'
+    mouth_cheek = 'mouth_cheek'
 
 # control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
 control_zone_list = util.get_enum_value_list(controlZoneEnum)

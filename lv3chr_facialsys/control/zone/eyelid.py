@@ -293,7 +293,7 @@ class eyelidControlZone(controlZone):
 
             cmds.connectAttr(follow_attr, bs_node + '.weight[0]')
 
-        # Use "closestPointOnSurface" node to establish the projecting relationships between
+        # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
 
         # cmds.warning('The translationPlane of this controlZone: {}'.format(self._ctrlproj_transplane_LRUD.get_name()))

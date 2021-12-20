@@ -47,7 +47,7 @@ class eyebrowControlZone(controlZone):
                  ctrlproj_projsurface_LRUD = None,
                  ctrlproj_projsurface_LRFB = None
                  ):
-        """ An Eyebrow Control Zone instance's direction attribute have only one value "middle".
+        """ An Eyebrow Control Zone instance's direction attribute has only one valid value: the "middle".
         """
         super(eyebrowControlZone, self).__init__(zone = controlZoneEnum.eyebrow,
                                                  direction = controlZoneDirEnum.middle,
@@ -158,7 +158,7 @@ class eyebrowControlZone(controlZone):
                                       weight=[0, follow_val])
             bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
 
-        # Use "closestPointOnSurface" node to establish the projecting relationships between
+        # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.
 
         for ctrl_crv_id in ctrl_crv_id_list:
