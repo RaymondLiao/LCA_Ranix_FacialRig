@@ -47,6 +47,8 @@ eyelid_ctrlzone_loc_RU_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_A_gr
 eyelid_ctrlzone_loc_RU_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_B_grp')
 eyelid_ctrlzone_loc_RU_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_C_grp')
 eyelid_ctrlzone_loc_RU_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_D_grp')
+eyelid_ctrlzone_loc_RU_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_E_grp')
+eyelid_ctrlzone_loc_RU_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_F_grp')
 
 eyelid_ctrlzone_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_grp',
                                    [
@@ -54,7 +56,9 @@ eyelid_ctrlzone_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_grp',
                                        eyelid_ctrlzone_loc_RU_A_grp,
                                        eyelid_ctrlzone_loc_RU_B_grp,
                                        eyelid_ctrlzone_loc_RU_C_grp,
-                                       eyelid_ctrlzone_loc_RU_D_grp
+                                       eyelid_ctrlzone_loc_RU_D_grp,
+                                       eyelid_ctrlzone_loc_RU_E_grp,
+                                       eyelid_ctrlzone_loc_RU_F_grp
                                    ])
 
 eyelid_ctrl_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_ctrl_grp')
@@ -62,6 +66,8 @@ eyelid_ctrlzone_loc_RD_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_A_gr
 eyelid_ctrlzone_loc_RD_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_B_grp')
 eyelid_ctrlzone_loc_RD_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_C_grp')
 eyelid_ctrlzone_loc_RD_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_D_grp')
+eyelid_ctrlzone_loc_RD_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_E_grp')
+eyelid_ctrlzone_loc_RD_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_F_grp')
 
 eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_grp',
                                    [
@@ -69,7 +75,9 @@ eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_grp',
                                        eyelid_ctrlzone_loc_RD_A_grp,
                                        eyelid_ctrlzone_loc_RD_B_grp,
                                        eyelid_ctrlzone_loc_RD_C_grp,
-                                       eyelid_ctrlzone_loc_RD_D_grp
+                                       eyelid_ctrlzone_loc_RD_D_grp,
+                                       eyelid_ctrlzone_loc_RD_E_grp,
+                                       eyelid_ctrlzone_loc_RD_F_grp
                                    ])
 
 eyelid_ctrlzone_R_grp = groupTree(eyelid_ctrlzone_prefix + '_R_grp',
@@ -83,6 +91,9 @@ eyelid_ctrlzone_loc_LU_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_A_gr
 eyelid_ctrlzone_loc_LU_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_B_grp')
 eyelid_ctrlzone_loc_LU_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_C_grp')
 eyelid_ctrlzone_loc_LU_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_D_grp')
+eyelid_ctrlzone_loc_LU_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_E_grp')
+eyelid_ctrlzone_loc_LU_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_F_grp')
+
 
 eyelid_ctrlzone_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_grp',
                                    [
@@ -90,7 +101,9 @@ eyelid_ctrlzone_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_grp',
                                        eyelid_ctrlzone_loc_LU_A_grp,
                                        eyelid_ctrlzone_loc_LU_B_grp,
                                        eyelid_ctrlzone_loc_LU_C_grp,
-                                       eyelid_ctrlzone_loc_LU_D_grp
+                                       eyelid_ctrlzone_loc_LU_D_grp,
+                                       eyelid_ctrlzone_loc_LU_E_grp,
+                                       eyelid_ctrlzone_loc_LU_F_grp
                                    ])
 
 eyelid_ctrl_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_ctrl_grp')
@@ -98,6 +111,8 @@ eyelid_ctrlzone_loc_LD_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_A_gr
 eyelid_ctrlzone_loc_LD_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_B_grp')
 eyelid_ctrlzone_loc_LD_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_C_grp')
 eyelid_ctrlzone_loc_LD_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_D_grp')
+eyelid_ctrlzone_loc_LD_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_E_grp')
+eyelid_ctrlzone_loc_LD_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_F_grp')
 
 eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_grp',
                                    [
@@ -105,7 +120,9 @@ eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_grp',
                                        eyelid_ctrlzone_loc_LD_A_grp,
                                        eyelid_ctrlzone_loc_LD_B_grp,
                                        eyelid_ctrlzone_loc_LD_C_grp,
-                                       eyelid_ctrlzone_loc_LD_D_grp
+                                       eyelid_ctrlzone_loc_LD_D_grp,
+                                       eyelid_ctrlzone_loc_LD_E_grp,
+                                       eyelid_ctrlzone_loc_LD_F_grp
                                    ])
 
 eyelid_ctrlzone_L_grp = groupTree(eyelid_ctrlzone_prefix + '_L_grp',
@@ -119,26 +136,34 @@ eyelid_projsrf_loc_RU_A_grp = groupTree(eyelid_projsrf_prefix+'_RU_A_grp')
 eyelid_projsrf_loc_RU_B_grp = groupTree(eyelid_projsrf_prefix+'_RU_B_grp')
 eyelid_projsrf_loc_RU_C_grp = groupTree(eyelid_projsrf_prefix+'_RU_C_grp')
 eyelid_projsrf_loc_RU_D_grp = groupTree(eyelid_projsrf_prefix+'_RU_D_grp')
+eyelid_projsrf_loc_RU_E_grp = groupTree(eyelid_projsrf_prefix+'_RU_E_grp')
+eyelid_projsrf_loc_RU_F_grp = groupTree(eyelid_projsrf_prefix+'_RU_F_grp')
 
 eyelid_projsrf_RU_grp = groupTree(eyelid_projsrf_prefix+'_RU_grp',
                                   [
                                       eyelid_projsrf_loc_RU_A_grp,
                                       eyelid_projsrf_loc_RU_B_grp,
                                       eyelid_projsrf_loc_RU_C_grp,
-                                      eyelid_projsrf_loc_RU_D_grp
+                                      eyelid_projsrf_loc_RU_D_grp,
+                                      eyelid_projsrf_loc_RU_E_grp,
+                                      eyelid_projsrf_loc_RU_F_grp
                                   ])
 
 eyelid_projsrf_loc_RD_A_grp = groupTree(eyelid_projsrf_prefix+'_RD_A_grp')
 eyelid_projsrf_loc_RD_B_grp = groupTree(eyelid_projsrf_prefix+'_RD_B_grp')
 eyelid_projsrf_loc_RD_C_grp = groupTree(eyelid_projsrf_prefix+'_RD_C_grp')
 eyelid_projsrf_loc_RD_D_grp = groupTree(eyelid_projsrf_prefix+'_RD_D_grp')
+eyelid_projsrf_loc_RD_E_grp = groupTree(eyelid_projsrf_prefix+'_RD_E_grp')
+eyelid_projsrf_loc_RD_F_grp = groupTree(eyelid_projsrf_prefix+'_RD_F_grp')
 
 eyelid_projsrf_RD_grp = groupTree(eyelid_projsrf_prefix+'_RD_grp',
                                   [
                                       eyelid_projsrf_loc_RD_A_grp,
                                       eyelid_projsrf_loc_RD_B_grp,
                                       eyelid_projsrf_loc_RD_C_grp,
-                                      eyelid_projsrf_loc_RD_D_grp
+                                      eyelid_projsrf_loc_RD_D_grp,
+                                      eyelid_projsrf_loc_RD_E_grp,
+                                      eyelid_projsrf_loc_RD_F_grp
                                   ])
 
 eyelid_projsrf_R_grp = groupTree(eyelid_projsrf_prefix+'_R_grp',
@@ -151,26 +176,34 @@ eyelid_projsrf_loc_LU_A_grp = groupTree(eyelid_projsrf_prefix+'_LU_A_grp')
 eyelid_projsrf_loc_LU_B_grp = groupTree(eyelid_projsrf_prefix+'_LU_B_grp')
 eyelid_projsrf_loc_LU_C_grp = groupTree(eyelid_projsrf_prefix+'_LU_C_grp')
 eyelid_projsrf_loc_LU_D_grp = groupTree(eyelid_projsrf_prefix+'_LU_D_grp')
+eyelid_projsrf_loc_LU_E_grp = groupTree(eyelid_projsrf_prefix+'_LU_E_grp')
+eyelid_projsrf_loc_LU_F_grp = groupTree(eyelid_projsrf_prefix+'_LU_F_grp')
 
 eyelid_projsrf_LU_grp = groupTree(eyelid_projsrf_prefix+'_LU_grp',
                                   [
                                       eyelid_projsrf_loc_LU_A_grp,
                                       eyelid_projsrf_loc_LU_B_grp,
                                       eyelid_projsrf_loc_LU_C_grp,
-                                      eyelid_projsrf_loc_LU_D_grp
+                                      eyelid_projsrf_loc_LU_D_grp,
+                                      eyelid_projsrf_loc_LU_E_grp,
+                                      eyelid_projsrf_loc_LU_F_grp
                                   ])
 
 eyelid_projsrf_loc_LD_A_grp = groupTree(eyelid_projsrf_prefix+'_LD_A_grp')
 eyelid_projsrf_loc_LD_B_grp = groupTree(eyelid_projsrf_prefix+'_LD_B_grp')
 eyelid_projsrf_loc_LD_C_grp = groupTree(eyelid_projsrf_prefix+'_LD_C_grp')
 eyelid_projsrf_loc_LD_D_grp = groupTree(eyelid_projsrf_prefix+'_LD_D_grp')
+eyelid_projsrf_loc_LD_E_grp = groupTree(eyelid_projsrf_prefix+'_LD_E_grp')
+eyelid_projsrf_loc_LD_F_grp = groupTree(eyelid_projsrf_prefix+'_LD_F_grp')
 
 eyelid_projsrf_LD_grp = groupTree(eyelid_projsrf_prefix+'_LD_grp',
                                   [
                                       eyelid_projsrf_loc_LD_A_grp,
                                       eyelid_projsrf_loc_LD_B_grp,
                                       eyelid_projsrf_loc_LD_C_grp,
-                                      eyelid_projsrf_loc_LD_D_grp
+                                      eyelid_projsrf_loc_LD_D_grp,
+                                      eyelid_projsrf_loc_LD_E_grp,
+                                      eyelid_projsrf_loc_LD_F_grp
                                   ])
 
 eyelid_projsrf_L_grp = groupTree(eyelid_projsrf_prefix+'_L_grp',
@@ -343,4 +376,4 @@ cheek_projsrf_loc_R_C_grp = groupTree(cheek_projsrf_prefix + '_R_C_grp')
 cheek_projsrf_loc_R_D_grp = groupTree(cheek_projsrf_prefix + '_R_D_grp')
 cheek_projsrf_loc_R_E_grp = groupTree(cheek_projsrf_prefix + '_R_E_grp')
 
-cheek_projsrf_UDLR_grp = groupTree(cheek_projsrf_prefix + '_' + )
+# cheek_projsrf_UDLR_grp = groupTree(cheek_projsrf_prefix + '_' + )

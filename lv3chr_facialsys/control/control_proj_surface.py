@@ -188,8 +188,8 @@ class controlProjSurface(object):
         cmds.makeIdentity(self._nurbs_srf, apply=True)
         cmds.xform(self._nurbs_srf, scale=mirror)
         # Reverse the surface normals if mirroring along x-axis.
-        if mirror[0] < 0:
-            cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
+        # if mirror[0] < 0:
+        #     cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
         # cmds.toggle(self._nurbs_srf, template=True)
@@ -206,7 +206,7 @@ class controlProjSurface(object):
 
         # Create the locator belongs to this projection surface, then use pointOnSurface
         for loc_dict in locator_data:
-            loc_id = loc_dict['id']
+            loc_id = loc_dict['id'].split('_')
             loc_row_id = loc_id[0]
             loc_col_id = loc_id[1]
             loc_name = loc_dict['name']

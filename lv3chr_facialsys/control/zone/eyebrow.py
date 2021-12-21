@@ -59,7 +59,9 @@ class eyebrowControlZone(controlZone):
                                                 )
 
         ctrl_crv_id_list = ['A', 'B', 'C']
-        controller_id_list = ['R_D', 'R_C', 'R_B', 'R_A', 'M_A', 'L_A', 'L_B', 'L_C', 'L_D']
+        controller_id_list = ['R_G', 'R_F', 'R_E', 'R_D', 'R_C', 'R_B', 'R_A',
+                              'M_A',
+                              'L_A', 'L_B', 'L_C', 'L_D', 'L_E', 'L_F', 'L_G']
 
 
         # Create the control curves.
@@ -187,7 +189,13 @@ class eyebrowControlZone(controlZone):
 
                 if ctrl_crv_id_list[0] in ctrl_crv.get_name():
                     # Establish the projecting relationships in the front/F direction.
-                    F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id)
+                    # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
+                    if loc_id <= 2:
+                        continue
+                    F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
+                    cmds.warning('F_projsrf_loc_info: {}'.format(F_projsrf_loc_info))
+                    if None == F_projsrf_loc_info:
+                        continue
 
                     cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
                     cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
