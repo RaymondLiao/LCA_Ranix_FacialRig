@@ -101,7 +101,7 @@ def get_nurbs_srf_CVs():
             cv_coord_x = round(float(cv_coord[0]), 3)
             cv_coord_y = round(float(cv_coord[1]), 3)
             cv_coord_z = round(float(cv_coord[2]), 3)
-            nurbs_srf_CVs += '{{"{0},{1}": [{2:.3f},{3},{4}]}},\n'.format(idx_u, idx_v,
+            nurbs_srf_CVs += '{{"{0},{1}": [{2:.3f}, {3}, {4}]}},\n'.format(idx_u, idx_v,
                                                                           cv_coord_x, cv_coord_y, cv_coord_z)
         nurbs_srf_CVs += '\n'
 

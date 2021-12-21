@@ -1046,7 +1046,7 @@
     },
 
     "left_up_E": {
-      "name": "LU_D_curve",
+      "name": "LU_E_curve",
       "xform": {
         "translation": [9.0, 18.0, 1.0]
       },
@@ -1603,34 +1603,67 @@
     "right_up_B": {
       "name": "RU_B_ctrl",
       "xform": {
-        "translation_ofs": [3.0, 16.0, 1.0],
-        "translation": [0.0, 0.768, 0.0]
+        "translation_ofs": [2.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_up_C": {
       "name": "RU_C_ctrl",
       "xform": {
-        "translation_ofs": [4.0, 16.0, 1.0],
-        "translation": [0.0, 0.947, 0.0]
+        "translation_ofs": [3.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_up_D": {
       "name": "RU_D_ctrl",
       "xform": {
-        "translation_ofs": [5.0, 16.0, 1.0],
-        "translation": [0.0, 0.768, 0.0]
+        "translation_ofs": [3.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_up_E": {
       "name": "RU_E_ctrl",
       "xform": {
+        "translation_ofs": [4.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_up_F": {
+      "name": "RU_F_ctrl",
+      "xform": {
+        "translation_ofs": [4.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_up_G": {
+      "name": "RU_G_ctrl",
+      "xform": {
+        "translation_ofs": [5.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_up_H": {
+      "name": "RU_H_ctrl",
+      "xform": {
+        "translation_ofs": [5.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_up_I": {
+      "name": "RU_I_ctrl",
+      "xform": {
         "translation_ofs": [6.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
+
 
     "right_dn_A": {
       "name": "RD_A_ctrl",
@@ -1643,29 +1676,61 @@
     "right_dn_B": {
       "name": "RD_B_ctrl",
       "xform": {
-        "translation_ofs": [3.0, 16.0, 1.0],
-        "translation": [0.0, -0.505, 0.0]
+        "translation_ofs": [2.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_dn_C": {
       "name": "RD_C_ctrl",
       "xform": {
-        "translation_ofs": [4.0, 16.0, 1.0],
-        "translation": [0.0, -0.596, 0.0]
+        "translation_ofs": [3.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_dn_D": {
       "name": "RD_D_ctrl",
       "xform": {
-        "translation_ofs": [5.0, 16.0, 1.0],
-        "translation": [0.0, -0.505, 0.0]
+        "translation_ofs": [3.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "right_dn_E": {
       "name": "RD_E_ctrl",
+      "xform": {
+        "translation_ofs": [4.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_dn_F": {
+      "name": "RD_E_ctrl",
+      "xform": {
+        "translation_ofs": [4.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_dn_G": {
+      "name": "RD_G_ctrl",
+      "xform": {
+        "translation_ofs": [5.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_dn_H": {
+      "name": "RD_H_ctrl",
+      "xform": {
+        "translation_ofs": [5.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_dn_I": {
+      "name": "RD_I_ctrl",
       "xform": {
         "translation_ofs": [6.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -1683,29 +1748,61 @@
     "left_up_B": {
       "name": "LU_B_ctrl",
       "xform": {
-        "translation_ofs": [8.0, 16.0, 1.0],
-        "translation": [0.0, 0.697, 0.0]
+        "translation_ofs": [7.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_up_C": {
       "name": "LU_C_ctrl",
       "xform": {
-        "translation_ofs": [9.0, 16.0, 1.0],
-        "translation": [0.0, 0.877, 0.0]
+        "translation_ofs": [8.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_up_D": {
       "name": "LU_D_ctrl",
       "xform": {
-        "translation_ofs": [10.0, 16.0, 1.0],
-        "translation": [0.0, 0.697, 0.0]
+        "translation_ofs": [8.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_up_E": {
       "name": "LU_E_ctrl",
+      "xform": {
+        "translation_ofs": [9.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_up_F": {
+      "name": "LU_F_ctrl",
+      "xform": {
+        "translation_ofs": [9.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_up_G": {
+      "name": "LU_G_ctrl",
+      "xform": {
+        "translation_ofs": [10.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_up_H": {
+      "name": "LU_H_ctrl",
+      "xform": {
+        "translation_ofs": [10.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_up_I": {
+      "name": "LU_I_ctrl",
       "xform": {
         "translation_ofs": [11.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -1723,29 +1820,61 @@
     "left_dn_B": {
       "name": "LD_B_ctrl",
       "xform": {
-        "translation_ofs": [8.0, 16.0, 1.0],
-        "translation": [0.0, -0.505, 0.0]
+        "translation_ofs": [7.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_dn_C": {
       "name": "LD_C_ctrl",
       "xform": {
-        "translation_ofs": [9.0, 16.0, 1.0],
-        "translation": [0.0, -0.596, 0.0]
+        "translation_ofs": [8.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_dn_D": {
       "name": "LD_D_ctrl",
       "xform": {
-        "translation_ofs": [10.0, 16.0, 1.0],
-        "translation": [0.0, -0.505, 0.0]
+        "translation_ofs": [8.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
       }
     },
 
     "left_dn_E": {
       "name": "LD_E_ctrl",
+      "xform": {
+        "translation_ofs": [9.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_dn_F": {
+      "name": "LD_F_ctrl",
+      "xform": {
+        "translation_ofs": [9.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_dn_G": {
+      "name": "LD_G_ctrl",
+      "xform": {
+        "translation_ofs": [10.0, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_dn_H": {
+      "name": "LD_H_ctrl",
+      "xform": {
+        "translation_ofs": [10.5, 16.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_dn_I": {
+      "name": "LD_I_ctrl",
       "xform": {
         "translation_ofs": [11.0, 16.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
@@ -1757,12 +1886,16 @@
     "follow_data":
     {
       "eyelid_up_follow_b": 0.7,
-      "eyelid_up_follow_c": 0.4,
-      "eyelid_up_follow_d": 0.1,
+      "eyelid_up_follow_c": 0.5,
+      "eyelid_up_follow_d": 0.3,
+      "eyelid_up_follow_e": 0.2,
+      "eyelid_up_follow_f": 0.1,
 
       "eyelid_dn_follow_b": 0.7,
-      "eyelid_dn_follow_c": 0.4,
-      "eyelid_dn_follow_d": 0.1
+      "eyelid_dn_follow_c": 0.5,
+      "eyelid_dn_follow_d": 0.3,
+      "eyelid_dn_follow_e": 0.2,
+      "eyelid_dn_follow_f": 0.1
     },
 
     "R": {
@@ -1795,15 +1928,21 @@
         "translation": [0.0, 21.0, 1.0]
       },
       "points": [
-        [-2.379, 0.0, 0.0],
-        [-1.663, 0.0, 0.0],
-        [-0.931, 0.0, 0.0],
-        [-0.329, 0.0, 0.0],
+        [-2.705, 0.0, 0.0],
+        [-2.325, 0.0, 0.0],
+        [-1.935, 0.0, 0.0],
+        [-1.55, 0.0, 0.0],
+        [-1.165, 0.0, 0.0],
+        [-0.775, 0.0, 0.0],
+        [-0.385, 0.0, 0.0],
         [0.0, 0.0, 0.0],
-        [0.329, 0.0, 0.0],
-        [0.931, 0.0, 0.0],
-        [1.663, 0.0, 0.0],
-        [2.379, 0.0, 0.0]
+        [0.385, 0.0, 0.0],
+        [0.775, 0.0, 0.0],
+        [1.165, 0.0, 0.0],
+        [1.55, 0.0, 0.0],
+        [1.935, 0.0, 0.0],
+        [2.325, 0.0, 0.0],
+        [2.705, 0.0, 0.0]
       ],
       "locators": [
         {
@@ -1828,28 +1967,58 @@
         },
         {
           "id": 5,
-          "name": "M_A_loc",
+          "name": "R_A5_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "L_A4_loc",
+          "name": "R_A6_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "L_A3_loc",
+          "name": "R_A7_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "L_A2_loc",
+          "name": "M_A_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_A1_loc",
+          "name": "L_A7_loc",
           "pt_on_crv_param": 8.0
+        },
+        {
+          "id": 10,
+          "name": "L_A6_loc",
+          "pt_on_crv_param": 9.0
+        },
+        {
+          "id": 11,
+          "name": "L_A5_loc",
+          "pt_on_crv_param": 10.0
+        },
+        {
+          "id": 12,
+          "name": "L_A4_loc",
+          "pt_on_crv_param": 11.0
+        },
+        {
+          "id": 13,
+          "name": "L_A3_loc",
+          "pt_on_crv_param": 12.0
+        },
+        {
+          "id": 14,
+          "name": "L_A2_loc",
+          "pt_on_crv_param": 13.0
+        },
+        {
+          "id": 15,
+          "name": "L_A1_loc",
+          "pt_on_crv_param": 14.0
         }
       ]
     },
@@ -1860,15 +2029,21 @@
         "translation": [0.0, 21.626, 1.0]
       },
       "points": [
-        [-2.379, 0.0, 0.0],
-        [-1.663, 0.0, 0.0],
-        [-0.931, 0.0, 0.0],
-        [-0.329, 0.0, 0.0],
+        [-2.705, 0.0, 0.0],
+        [-2.325, 0.0, 0.0],
+        [-1.935, 0.0, 0.0],
+        [-1.55, 0.0, 0.0],
+        [-1.165, 0.0, 0.0],
+        [-0.775, 0.0, 0.0],
+        [-0.385, 0.0, 0.0],
         [0.0, 0.0, 0.0],
-        [0.329, 0.0, 0.0],
-        [0.931, 0.0, 0.0],
-        [1.663, 0.0, 0.0],
-        [2.379, 0.0, 0.0]
+        [0.385, 0.0, 0.0],
+        [0.775, 0.0, 0.0],
+        [1.165, 0.0, 0.0],
+        [1.55, 0.0, 0.0],
+        [1.935, 0.0, 0.0],
+        [2.325, 0.0, 0.0],
+        [2.705, 0.0, 0.0]
       ],
       "locators": [
         {
@@ -1893,28 +2068,58 @@
         },
         {
           "id": 5,
-          "name": "M_B_loc",
+          "name": "R_B5_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "L_B4_loc",
+          "name": "R_B6_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "L_B3_loc",
+          "name": "R_B7_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "L_B2_loc",
+          "name": "M_B_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_B1_loc",
+          "name": "L_B7_loc",
           "pt_on_crv_param": 8.0
+        },
+        {
+          "id": 10,
+          "name": "L_B6_loc",
+          "pt_on_crv_param": 9.0
+        },
+        {
+          "id": 11,
+          "name": "L_B5_loc",
+          "pt_on_crv_param": 10.0
+        },
+        {
+          "id": 12,
+          "name": "L_B4_loc",
+          "pt_on_crv_param": 11.0
+        },
+        {
+          "id": 13,
+          "name": "L_B3_loc",
+          "pt_on_crv_param": 12.0
+        },
+        {
+          "id": 14,
+          "name": "L_B2_loc",
+          "pt_on_crv_param": 13.0
+        },
+        {
+          "id": 15,
+          "name": "L_B1_loc",
+          "pt_on_crv_param": 14.0
         }
       ]
     },
@@ -1925,61 +2130,97 @@
         "translation": [0.0, 20.31, 1.0]
       },
       "points": [
-        [-2.379, 0.0, 0.0],
-        [-1.663, 0.0, 0.0],
-        [-0.931, 0.0, 0.0],
-        [-0.329, 0.0, 0.0],
+        [-2.705, 0.0, 0.0],
+        [-2.325, 0.0, 0.0],
+        [-1.935, 0.0, 0.0],
+        [-1.55, 0.0, 0.0],
+        [-1.165, 0.0, 0.0],
+        [-0.775, 0.0, 0.0],
+        [-0.385, 0.0, 0.0],
         [0.0, 0.0, 0.0],
-        [0.329, 0.0, 0.0],
-        [0.931, 0.0, 0.0],
-        [1.663, 0.0, 0.0],
-        [2.379, 0.0, 0.0]
+        [0.385, 0.0, 0.0],
+        [0.775, 0.0, 0.0],
+        [1.165, 0.0, 0.0],
+        [1.55, 0.0, 0.0],
+        [1.935, 0.0, 0.0],
+        [2.325, 0.0, 0.0],
+        [2.705, 0.0, 0.0]
       ],
       "locators": [
         {
           "id": 1,
-          "name": "R_C4_loc",
+          "name": "R_C1_loc",
           "pt_on_crv_param": 0.0
         },
         {
           "id": 2,
-          "name": "R_C3_loc",
+          "name": "R_C2_loc",
           "pt_on_crv_param": 1.0
         },
         {
           "id": 3,
-          "name": "R_C2_loc",
+          "name": "R_C3_loc",
           "pt_on_crv_param": 2.0
         },
         {
           "id": 4,
-          "name": "R_C1_loc",
+          "name": "R_C4_loc",
           "pt_on_crv_param": 3.0
         },
         {
           "id": 5,
-          "name": "M_C_loc",
+          "name": "R_C5_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "L_C1_loc",
+          "name": "R_C6_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "L_C2_loc",
+          "name": "R_C7_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "L_C3_loc",
+          "name": "M_C_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_C4_loc",
+          "name": "L_C7_loc",
           "pt_on_crv_param": 8.0
+        },
+        {
+          "id": 10,
+          "name": "L_C6_loc",
+          "pt_on_crv_param": 9.0
+        },
+        {
+          "id": 11,
+          "name": "L_C5_loc",
+          "pt_on_crv_param": 10.0
+        },
+        {
+          "id": 12,
+          "name": "L_C4_loc",
+          "pt_on_crv_param": 11.0
+        },
+        {
+          "id": 13,
+          "name": "L_C3_loc",
+          "pt_on_crv_param": 12.0
+        },
+        {
+          "id": 14,
+          "name": "L_C2_loc",
+          "pt_on_crv_param": 13.0
+        },
+        {
+          "id": 15,
+          "name": "L_C1_loc",
+          "pt_on_crv_param": 14.0
         }
       ]
     }
@@ -2030,10 +2271,34 @@
       "radius": 1.5
     },
 
+    "right_G": {
+      "name": "R_G_ctrl",
+      "xform": {
+        "translation_ofs": [-2.705, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_F": {
+      "name": "R_F_ctrl",
+      "xform": {
+        "translation_ofs": [-2.325, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "right_E": {
+      "name": "R_E_ctrl",
+      "xform": {
+        "translation_ofs": [-1.935, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
     "right_D": {
       "name": "R_D_ctrl",
       "xform": {
-        "translation_ofs": [-2.379, 21.0, 1.0],
+        "translation_ofs": [-1.55, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2041,7 +2306,7 @@
     "right_C": {
       "name": "R_C_ctrl",
       "xform": {
-        "translation_ofs": [-1.663, 21.0, 1.0],
+        "translation_ofs": [-1.165, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2049,7 +2314,7 @@
     "right_B": {
       "name": "R_B_ctrl",
       "xform": {
-        "translation_ofs": [-0.931, 21.0, 1.0],
+        "translation_ofs": [-0.775, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2057,7 +2322,7 @@
     "right_A": {
       "name": "R_A_ctrl",
       "xform": {
-        "translation_ofs": [-0.329, 21.0, 1.0],
+        "translation_ofs": [-0.385, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2073,7 +2338,7 @@
     "left_A": {
       "name": "L_A_ctrl",
       "xform": {
-        "translation_ofs": [0.329, 21.0, 1.0],
+        "translation_ofs": [0.385, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2081,7 +2346,7 @@
     "left_B": {
       "name": "L_B_ctrl",
       "xform": {
-        "translation_ofs": [0.931, 21.0, 1.0],
+        "translation_ofs": [0.775, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2089,7 +2354,7 @@
     "left_C": {
       "name": "L_C_ctrl",
       "xform": {
-        "translation_ofs": [1.663, 21.0, 1.0],
+        "translation_ofs": [1.165, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     },
@@ -2097,7 +2362,31 @@
     "left_D": {
       "name": "L_D_ctrl",
       "xform": {
-        "translation_ofs": [2.379, 21.0, 1.0],
+        "translation_ofs": [1.55, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_E": {
+      "name": "L_E_ctrl",
+      "xform": {
+        "translation_ofs": [1.935, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_F": {
+      "name": "L_F_ctrl",
+      "xform": {
+        "translation_ofs": [2.325, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_G": {
+      "name": "L_G_ctrl",
+      "xform": {
+        "translation_ofs": [2.705, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     }
