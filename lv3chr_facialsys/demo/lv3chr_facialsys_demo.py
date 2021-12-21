@@ -211,6 +211,12 @@ def setup_proj_surfaces():
                     elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RU_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_RU_E_grp.get_group_name())
+                    elif 'F' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_RU_F_grp.get_group_name())
 
         elif controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_RD'] = eyelid_crvproj_projsrf
@@ -231,6 +237,12 @@ def setup_proj_surfaces():
                     elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_RD_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_RD_E_grp.get_group_name())
+                    elif 'F' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_RD_F_grp.get_group_name())
 
         elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_LU'] = eyelid_crvproj_projsrf
@@ -251,6 +263,12 @@ def setup_proj_surfaces():
                     elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LU_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_LU_E_grp.get_group_name())
+                    elif 'F' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_LU_F_grp.get_group_name())
 
         elif controlZoneDirEnum.left in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyelid_projsrf_LD'] = eyelid_crvproj_projsrf
@@ -271,6 +289,12 @@ def setup_proj_surfaces():
                     elif 'D' == loc_row_id:
                         cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyelid_projsrf_loc_LD_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_LD_E_grp.get_group_name())
+                    elif 'F' == loc_row_id:
+                        cmds.parent(eyelid_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyelid_projsrf_loc_LD_F_grp.get_group_name())
 
     # ------------------------------------------------------------------------------------------------------------------
     # Eyebrow Facial Zone - Translation Planes
