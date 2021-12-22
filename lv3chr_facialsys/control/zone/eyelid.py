@@ -54,6 +54,8 @@ class eyelidControlZone(controlZone):
 
         ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E', 'F']
         controller_id_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+        if controlZoneDirEnum.right in direction:
+            controller_id_list.reverse()
 
         # Create the control curves.
         ctrlcrv_data = self._ctrl_crv_data['eyelid_control_curve']
