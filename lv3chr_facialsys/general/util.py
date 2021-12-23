@@ -110,6 +110,21 @@ def get_nurbs_srf_CVs():
 
     return nurbs_srf_CVs
 
+def get_nurbs_crv_CVs():
+    nurbs_crv = cmds.ls(selection=True)[0]
+    nurbs_crv_span = cmds.getAttr(nurbs_crv + '.spans')
+
+    nurbs_crv_CVs = ''
+
+    for idx in range(nurbs_crv_span + 1):
+        cv_coord = cmds.getAttr(nurbs_crv + '.cv[{}]'.format(idx))[0]
+        cv_coord_x = round(float(cv_coord[0]), 3)
+        cv_coord_y = round(float(cv_coord[1]), 3)
+        cv_coord_z = round(float(cv_coord[2]), 3)
+        nurbs_crv_CVs += '[{0}, {1}, {2}],\n'.format(cv_coord_x, cv_coord_y, cv_coord_z)
+
+    return nurbs_crv_CVs
+
 def ctrl_add_offset(ctrl_grp=None):
     if None == ctrl_grp:
         sel_list = cmds.ls(sl=True)

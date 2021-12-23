@@ -57,6 +57,11 @@ class dirDictKeyEnum(object):
 # dir_dict_key_list = util.get_enum_value_list(dirDictKeyEnum)
 dir_dict_key_list = ['LR', 'UD', 'FB']
 
+ctrl_crv_bs_dir_list = ['original',
+                        'right_side_up', 'middle_side_up', 'left_side_up',
+                        'right_side_left', 'middle_side_left', 'left_side_left',
+                        'right_side_front', 'middle_side_front', 'left_side_front']
+
 # Empty string means no motion of controllers in these direction for the control zone.
 CONTROL_ZONE_DIRECTION_DICT = {
     controlZoneEnum.eyelid: [

@@ -53,7 +53,6 @@ class mouthControlZone(controlZone):
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
-            cmds.warning('direction: {}'.format(direction))
             dir_ctrlcrv_data = ctrlcrv_data[direction + '_' + crv_id]
             ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['mouth_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
@@ -88,7 +87,30 @@ class mouthControlZone(controlZone):
         cmds.select(deselect=True)
 
         # Create the curves serving as blend-shape targets for the control curves.
+        ctrlcrv_bs_data = self._ctrl_crv_data['mouth_control_curve_bs']
+        ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
 
+        for ctrl_crv_bs_dir in ctrl_crv_bs_dir_list:
+            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[ctrl_crv_bs_dir]
+
+            bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
+                                      point=dir_ctrlcrv_bs_data['points'])
+            cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
+            bs_nurbs_crv = cmds.rename(bs_nurbs_crv, dir_ctrlcrv_bs_data['name'])
+
+            cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+            if 'left' in ctrl_crv_bs_dir:
+                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+            elif 'right' in ctrl_crv_bs_dir:
+                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+            else:
+                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_OLIVE)
+
+            cmds.toggle(bs_nurbs_crv, controlVertex=True)
+            cmds.select(deselect=True)
+
+            cmds.parent(bs_nurbs_crv,
+                        hierarchy.mouth_ctrlzone_curve_bs_grp.get_group_name())
 
         # Create the controllers
         controller_data = self._ctrl_crv_data['mouth_controller']
