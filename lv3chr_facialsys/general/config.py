@@ -20,7 +20,7 @@ from general import util; reload(util)
 class controlZoneEnum(object):
     eyelid = 'eyelid'
     eyebrow = 'eyebrow'
-    mouth_cheek = 'mouth_cheek'
+    mouth = 'mouth'
 
 # control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
 control_zone_list = util.get_enum_value_list(controlZoneEnum)
@@ -92,7 +92,19 @@ CONTROL_ZONE_DIRECTION_DICT = {
                                     dirDictKeyEnum.UD: '',
                                     dirDictKeyEnum.FB: controlZoneDirEnum.front
                                 }
-                             ]
+                             ],
+    controlZoneEnum.mouth:  [
+                                {
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
+                                    dirDictKeyEnum.UD: controlZoneDirEnum.up,
+                                    dirDictKeyEnum.FB: ''
+                                },
+                                {
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
+                                    dirDictKeyEnum.UD: controlZoneDirEnum.down,
+                                    dirDictKeyEnum.FB: ''
+                                }
+                            ]
 }
 
 # facial control display settings --------------------------------------------------------------------------------------

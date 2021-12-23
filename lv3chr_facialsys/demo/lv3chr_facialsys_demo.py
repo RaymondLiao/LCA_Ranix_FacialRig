@@ -54,7 +54,12 @@ g_crv_projsrf_dict = {
     'eyebrow_transplane_LRUD' : None,
     'eyebrow_transplane_LRF'  : None,
     'eyebrow_projsrf_LRUD'    : None,
-    'eyebrow_projsrf_LRF'     : None
+    'eyebrow_projsrf_LRF'     : None,
+
+    'mouth_transplane_LRU': None,
+    'mouth_transplane_LRD': None,
+    'mouth_projsrf_LRU': None,
+    'mouth_projsrf_LRD': None
 }
 
 # g_lv3chr_facialsys_demo_run = False
@@ -323,7 +328,7 @@ def setup_proj_surfaces():
             g_crv_projsrf_dict['eyebrow_transplane_LRF'] = eyebrow_crvproj_transplane
 
         cmds.parent(eyebrow_crvproj_transplane.get_name(),
-                    hierarchy.eyebrow_ctrl_M_grp.get_group_name())
+                    hierarchy.eyebrow_ctrlzone_M_grp.get_group_name())
 
     # Eyebrow Facial Zone - Projection Surfaces
     eyebrow_crvproj_projsrf_data = control_proj_surface_data['eyebrow_projection_surface']
@@ -377,6 +382,60 @@ def setup_proj_surfaces():
 
         cmds.parent(eyebrow_crvproj_projsrf.get_name(),
                     hierarchy.eyebrow_projsrf_M_grp.get_group_name())
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Mouth Facial Zone - Translation Planes
+    mouth_crvproj_transplane_data = control_proj_surface_data['mouth_translation_plane']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        mouth_dir_transplane_data = mouth_crvproj_transplane_data[zone_dir]
+        mouth_dir_transplane_degree = mouth_dir_transplane_data['degree']
+        mouth_dir_transplane_patchesU = mouth_dir_transplane_data['patchesU']
+        mouth_dir_transplane_patchesV = mouth_dir_transplane_data['patchesV']
+
+        mouth_crvproj_transplane = controlTransPlane(name_prefix=mouth_crvproj_transplane_data['name_prefix'],
+                                                     name=mouth_dir_transplane_data['name'],
+                                                     degree=mouth_dir_transplane_degree,
+                                                     patchesU=mouth_dir_transplane_patchesU,
+                                                     patchesV=mouth_dir_transplane_patchesV,
+                                                     translation=mouth_dir_transplane_data['xform']['translation'],
+                                                     rotation=mouth_dir_transplane_data['xform']['rotation'],
+                                                     scale=mouth_dir_transplane_data['xform']['scale'],
+                                                     cv_list=mouth_dir_transplane_data['control_vtx'])
+
+        if controlZoneDirEnum.up in zone_dir:
+            g_crv_projsrf_dict['mouth_transplane_LRU'] = mouth_crvproj_transplane
+            cmds.parent(mouth_crvproj_transplane.get_name(),
+                        hierarchy.mouth_ctrlzone_MU_grp.get_group_name())
+        elif controlZoneDirEnum.down in zone_dir:
+            g_crv_projsrf_dict['mouth_transplane_LRD'] = mouth_crvproj_transplane
+            cmds.parent(mouth_crvproj_transplane.get_name(),
+                        hierarchy.mouth_ctrlzone_MD_grp.get_group_name())
+
+    # Mouth Facial Zone - Projection Surfaces
+    mouth_crvproj_projsrf_data = control_proj_surface_data['mouth_projection_surface']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        mouth_dir_projsrf_data = mouth_crvproj_projsrf_data[zone_dir]
+        mouth_dir_projsrf_degree = mouth_dir_projsrf_data['degree']
+        mouth_dir_projsrf_patchesU = mouth_dir_projsrf_data['patchesU']
+        mouth_dir_projsrf_pathcesV = mouth_dir_projsrf_data['patchesV']
+
+        mouth_crvproj_projsrf = controlProjSurface(name_prefix=mouth_crvproj_projsrf_data['name_prefix'],
+                                                   name=mouth_dir_projsrf_data['name'],
+                                                   degree=mouth_dir_projsrf_degree,
+                                                   patchesU=mouth_dir_projsrf_patchesU,
+                                                   patchesV=mouth_dir_projsrf_pathcesV,
+                                                   translation=mouth_dir_projsrf_data['xform']['translation'],
+                                                   rotation=mouth_dir_projsrf_data['xform']['rotation'],
+                                                   scale=mouth_dir_projsrf_data['xform']['scale'],
+                                                   cv_list=mouth_dir_projsrf_data['control_vtx'],
+                                                   locator_data=mouth_dir_projsrf_data['locators'],
+                                                   locator_scale=mouth_crvproj_projsrf_data['locator_scale'],
+                                                   bind_joint_data=mouth_crvproj_projsrf_data['bind_joint'],
+                                                   bind_joint_color=BIND_JOINT_COLOR_INDEX)
 
     f_control_proj_surface_data.close()
 
@@ -472,6 +531,9 @@ def setup_group_hierarchy():
 
     eyebrow_grp = hierarchy.eyebrow_grp
     eyebrow_grp.setup_group_hierarchy()
+
+    mouth_grp = hierarchy.mouth_grp
+    mouth_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
 # lc3chr_facialsys_construct()

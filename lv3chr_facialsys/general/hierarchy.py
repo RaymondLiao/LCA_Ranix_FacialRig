@@ -132,12 +132,12 @@ eyelid_ctrlzone_L_grp = groupTree(eyelid_ctrlzone_prefix + '_L_grp',
                                   ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-eyelid_projsrf_loc_RU_A_grp = groupTree(eyelid_projsrf_prefix+'_RU_A_grp')
-eyelid_projsrf_loc_RU_B_grp = groupTree(eyelid_projsrf_prefix+'_RU_B_grp')
-eyelid_projsrf_loc_RU_C_grp = groupTree(eyelid_projsrf_prefix+'_RU_C_grp')
-eyelid_projsrf_loc_RU_D_grp = groupTree(eyelid_projsrf_prefix+'_RU_D_grp')
-eyelid_projsrf_loc_RU_E_grp = groupTree(eyelid_projsrf_prefix+'_RU_E_grp')
-eyelid_projsrf_loc_RU_F_grp = groupTree(eyelid_projsrf_prefix+'_RU_F_grp')
+eyelid_projsrf_loc_RU_A_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_A_grp')
+eyelid_projsrf_loc_RU_B_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_B_grp')
+eyelid_projsrf_loc_RU_C_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_C_grp')
+eyelid_projsrf_loc_RU_D_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_D_grp')
+eyelid_projsrf_loc_RU_E_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_E_grp')
+eyelid_projsrf_loc_RU_F_grp = groupTree(eyelid_projsrf_prefix+'_loc_RU_F_grp')
 
 eyelid_projsrf_RU_grp = groupTree(eyelid_projsrf_prefix+'_RU_grp',
                                   [
@@ -149,12 +149,12 @@ eyelid_projsrf_RU_grp = groupTree(eyelid_projsrf_prefix+'_RU_grp',
                                       eyelid_projsrf_loc_RU_F_grp
                                   ])
 
-eyelid_projsrf_loc_RD_A_grp = groupTree(eyelid_projsrf_prefix+'_RD_A_grp')
-eyelid_projsrf_loc_RD_B_grp = groupTree(eyelid_projsrf_prefix+'_RD_B_grp')
-eyelid_projsrf_loc_RD_C_grp = groupTree(eyelid_projsrf_prefix+'_RD_C_grp')
-eyelid_projsrf_loc_RD_D_grp = groupTree(eyelid_projsrf_prefix+'_RD_D_grp')
-eyelid_projsrf_loc_RD_E_grp = groupTree(eyelid_projsrf_prefix+'_RD_E_grp')
-eyelid_projsrf_loc_RD_F_grp = groupTree(eyelid_projsrf_prefix+'_RD_F_grp')
+eyelid_projsrf_loc_RD_A_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_A_grp')
+eyelid_projsrf_loc_RD_B_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_B_grp')
+eyelid_projsrf_loc_RD_C_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_C_grp')
+eyelid_projsrf_loc_RD_D_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_D_grp')
+eyelid_projsrf_loc_RD_E_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_E_grp')
+eyelid_projsrf_loc_RD_F_grp = groupTree(eyelid_projsrf_prefix+'_loc_RD_F_grp')
 
 eyelid_projsrf_RD_grp = groupTree(eyelid_projsrf_prefix+'_RD_grp',
                                   [
@@ -172,12 +172,12 @@ eyelid_projsrf_R_grp = groupTree(eyelid_projsrf_prefix+'_R_grp',
                                      eyelid_projsrf_RD_grp
                                  ])
 
-eyelid_projsrf_loc_LU_A_grp = groupTree(eyelid_projsrf_prefix+'_LU_A_grp')
-eyelid_projsrf_loc_LU_B_grp = groupTree(eyelid_projsrf_prefix+'_LU_B_grp')
-eyelid_projsrf_loc_LU_C_grp = groupTree(eyelid_projsrf_prefix+'_LU_C_grp')
-eyelid_projsrf_loc_LU_D_grp = groupTree(eyelid_projsrf_prefix+'_LU_D_grp')
-eyelid_projsrf_loc_LU_E_grp = groupTree(eyelid_projsrf_prefix+'_LU_E_grp')
-eyelid_projsrf_loc_LU_F_grp = groupTree(eyelid_projsrf_prefix+'_LU_F_grp')
+eyelid_projsrf_loc_LU_A_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_A_grp')
+eyelid_projsrf_loc_LU_B_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_B_grp')
+eyelid_projsrf_loc_LU_C_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_C_grp')
+eyelid_projsrf_loc_LU_D_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_D_grp')
+eyelid_projsrf_loc_LU_E_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_E_grp')
+eyelid_projsrf_loc_LU_F_grp = groupTree(eyelid_projsrf_prefix+'_loc_LU_F_grp')
 
 eyelid_projsrf_LU_grp = groupTree(eyelid_projsrf_prefix+'_LU_grp',
                                   [
@@ -189,12 +189,12 @@ eyelid_projsrf_LU_grp = groupTree(eyelid_projsrf_prefix+'_LU_grp',
                                       eyelid_projsrf_loc_LU_F_grp
                                   ])
 
-eyelid_projsrf_loc_LD_A_grp = groupTree(eyelid_projsrf_prefix+'_LD_A_grp')
-eyelid_projsrf_loc_LD_B_grp = groupTree(eyelid_projsrf_prefix+'_LD_B_grp')
-eyelid_projsrf_loc_LD_C_grp = groupTree(eyelid_projsrf_prefix+'_LD_C_grp')
-eyelid_projsrf_loc_LD_D_grp = groupTree(eyelid_projsrf_prefix+'_LD_D_grp')
-eyelid_projsrf_loc_LD_E_grp = groupTree(eyelid_projsrf_prefix+'_LD_E_grp')
-eyelid_projsrf_loc_LD_F_grp = groupTree(eyelid_projsrf_prefix+'_LD_F_grp')
+eyelid_projsrf_loc_LD_A_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_A_grp')
+eyelid_projsrf_loc_LD_B_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_B_grp')
+eyelid_projsrf_loc_LD_C_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_C_grp')
+eyelid_projsrf_loc_LD_D_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_D_grp')
+eyelid_projsrf_loc_LD_E_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_E_grp')
+eyelid_projsrf_loc_LD_F_grp = groupTree(eyelid_projsrf_prefix+'_loc_LD_F_grp')
 
 eyelid_projsrf_LD_grp = groupTree(eyelid_projsrf_prefix+'_LD_grp',
                                   [
@@ -239,9 +239,9 @@ eyebrow_ctrlzone_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_grp',
                                    ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-eyebrow_projsrf_loc_M_UD_A_grp = groupTree(eyebrow_projsrf_prefix+'_M_UD_A_grp')
-eyebrow_projsrf_loc_M_UD_B_grp = groupTree(eyebrow_projsrf_prefix+'_M_UD_B_grp')
-eyebrow_projsrf_loc_M_UD_C_grp = groupTree(eyebrow_projsrf_prefix+'_M_UD_C_grp')
+eyebrow_projsrf_loc_M_UD_A_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_A_grp')
+eyebrow_projsrf_loc_M_UD_B_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_B_grp')
+eyebrow_projsrf_loc_M_UD_C_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_C_grp')
 
 eyebrow_projsrf_loc_M_FB_grp = groupTree(eyebrow_projsrf_prefix+'_M_FB_grp')
 
@@ -260,120 +260,46 @@ eyebrow_grp = groupTree('eyebrow_grp',
                             eyebrow_projsrf_M_grp
                         ])
 
-# Mouth and Cheek Rig Group Hierarchy ====== ===========================================================================
+# Mouth Rig Group Hierarchy ============================================================================================
 mouth_ctrlzone_prefix = 'fm_mouthProject'
 mouth_projsrf_prefix = 'fm_mouthMask'
-cheek_ctrlzone_prefix = 'fm_cheekProject'
-cheek_projsrf_prefix = 'fm_cheekMask'
 # translation plane ----------------------------------------------------------------------------------------------------
-# Mouth Control Zone
 mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_ctrl_grp')
 mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_A_grp')
-mouth_ctrlzone_loc_MU_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_B_grp')
-mouth_ctrlzone_loc_MU_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_C_grp')
-mouth_ctrlzone_loc_MU_D_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_D_grp')
-mouth_ctrlzone_loc_MU_E_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_E_grp')
 
 mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_grp',
                                   [
                                      mouth_ctrl_MU_grp,
-                                     mouth_ctrlzone_loc_MU_A_grp,
-                                     mouth_ctrlzone_loc_MU_B_grp,
-                                     mouth_ctrlzone_loc_MU_C_grp,
-                                     mouth_ctrlzone_loc_MU_D_grp,
-                                     mouth_ctrlzone_loc_MU_E_grp
+                                     mouth_ctrlzone_loc_MU_A_grp
                                  ])
 
 mouth_ctrl_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_ctrl_grp')
 mouth_ctrlzone_loc_MD_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_A_grp')
-mouth_ctrlzone_loc_MD_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_B_grp')
-mouth_ctrlzone_loc_MD_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_C_grp')
-mouth_ctrlzone_loc_MD_D_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_D_grp')
-mouth_ctrlzone_loc_MD_E_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_E_grp')
 
 mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_grp',
-                                 [
-                                     mouth_ctrl_MD_grp,
-                                     mouth_ctrlzone_loc_MD_A_grp,
-                                     mouth_ctrlzone_loc_MD_B_grp,
-                                     mouth_ctrlzone_loc_MD_C_grp,
-                                     mouth_ctrlzone_loc_MD_E_grp,
-                                     mouth_ctrlzone_loc_MD_E_grp
-                                 ])
+                                  [
+                                      mouth_ctrl_MD_grp,
+                                      mouth_ctrlzone_loc_MD_A_grp
+                                  ])
 
-# Cheek Control Zone
-cheek_ctrl_L_grp = groupTree(cheek_ctrlzone_prefix + '_L_ctrl_grp')
-cheek_ctrlzone_loc_L_A_grp = groupTree(cheek_ctrlzone_prefix + '.Point_L_A_grp')
-cheek_ctrlzone_loc_L_B_grp = groupTree(cheek_ctrlzone_prefix + '.Point_L_B_grp')
-cheek_ctrlzone_loc_L_C_grp = groupTree(cheek_ctrlzone_prefix + '.Point_L_C_grp')
-cheek_ctrlzone_loc_L_D_grp = groupTree(cheek_ctrlzone_prefix + '.Point_L_D_grp')
-cheek_ctrlzone_loc_L_E_grp = groupTree(cheek_ctrlzone_prefix + '.Point_L_E_grp')
+mouth_ctrlzone_curve_bs_grp = groupTree(mouth_ctrlzone_prefix + '_curve_bs_grp')
 
-cheek_ctrlzone_L_grp = groupTree(cheek_ctrlzone_prefix + '_L_grp',
-                                 [
-                                     cheek_ctrl_L_grp,
-                                     cheek_ctrlzone_loc_L_A_grp,
-                                     cheek_ctrlzone_loc_L_B_grp,
-                                     cheek_ctrlzone_loc_L_C_grp,
-                                     cheek_ctrlzone_loc_L_D_grp,
-                                     cheek_ctrlzone_loc_L_E_grp
-                                 ])
-
-cheek_ctrl_R_grp = groupTree(cheek_ctrlzone_prefix + '_R_ctrl_grp')
-cheek_ctrlzone_loc_R_A_grp = groupTree(cheek_ctrlzone_prefix + '.Point_R_A_grp')
-cheek_ctrlzone_loc_R_B_grp = groupTree(cheek_ctrlzone_prefix + '.Point_R_B_grp')
-cheek_ctrlzone_loc_R_C_grp = groupTree(cheek_ctrlzone_prefix + '.Point_R_C_grp')
-cheek_ctrlzone_loc_R_D_grp = groupTree(cheek_ctrlzone_prefix + '.Point_R_D_grp')
-cheek_ctrlzone_loc_R_E_grp = groupTree(cheek_ctrlzone_prefix + '.Point_R_E_grp')
-
-cheek_ctrlzone_R_grp = groupTree(cheek_ctrlzone_prefix + '_R_grp',
-                                 [
-                                     cheek_ctrlzone_loc_R_A_grp,
-                                     cheek_ctrlzone_loc_R_B_grp,
-                                     cheek_ctrlzone_loc_R_C_grp,
-                                     cheek_ctrlzone_loc_R_D_grp,
-                                     cheek_ctrlzone_loc_R_E_grp
-                                 ])
+mouth_ctrlzone_grp = groupTree(mouth_ctrlzone_prefix + '_M_grp',
+                               [
+                                   mouth_ctrlzone_MU_grp,
+                                   mouth_ctrlzone_MD_grp,
+                                   mouth_ctrlzone_curve_bs_grp
+                               ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-# Mouth Control Zone
-mouth_projsrf_loc_MU_A_grp = groupTree(mouth_projsrf_prefix + '_MU_A_grp')
-mouth_projsrf_loc_MU_B_grp = groupTree(mouth_projsrf_prefix + '_MU_B_grp')
-mouth_projsrf_loc_MU_C_grp = groupTree(mouth_projsrf_prefix + '_MU_C_grp')
-mouth_projsrf_loc_MU_D_grp = groupTree(mouth_projsrf_prefix + '_MU_D_grp')
-mouth_projsrf_loc_MU_E_grp = groupTree(mouth_projsrf_prefix + '_MU_E_grp')
-mouth_projsrf_loc_MD_A_grp = groupTree(mouth_projsrf_prefix + '_MD_A_grp')
-mouth_projsrf_loc_MD_B_grp = groupTree(mouth_projsrf_prefix + '_MD_B_grp')
-mouth_projsrf_loc_MD_C_grp = groupTree(mouth_projsrf_prefix + '_MD_C_grp')
-mouth_projsrf_loc_MD_D_grp = groupTree(mouth_projsrf_prefix + '_MD_D_grp')
-mouth_projsrf_loc_MD_E_grp = groupTree(mouth_projsrf_prefix + '_MD_E_grp')
-mouth_projsrf_loc_MD_F_grp = groupTree(mouth_projsrf_prefix + '_MD_F_grp')
+mouth_projsrf_loc_MU_A_grp = groupTree(mouth_projsrf_prefix + '_loc_MU_A_grp')
+mouth_projsrf_loc_MD_A_grp = groupTree(mouth_projsrf_prefix + '_loc_MD_A_grp')
 
-mouth_projsrf_UDLR_grp = groupTree(mouth_projsrf_prefix + '_UDLR_grp',
-                                   [
-                                       mouth_projsrf_loc_MU_A_grp,
-                                       mouth_projsrf_loc_MU_B_grp,
-                                       mouth_projsrf_loc_MU_C_grp,
-                                       mouth_projsrf_loc_MU_D_grp,
-                                       mouth_projsrf_loc_MU_E_grp,
-                                       mouth_projsrf_loc_MD_A_grp,
-                                       mouth_projsrf_loc_MD_B_grp,
-                                       mouth_projsrf_loc_MD_C_grp,
-                                       mouth_projsrf_loc_MD_D_grp,
-                                       mouth_projsrf_loc_MD_E_grp,
-                                       mouth_projsrf_loc_MD_F_grp
-                                   ])
+mouth_projsrf_M_grp = groupTree(mouth_projsrf_prefix + '_M_grp')
 
-# Cheek Control Zone
-cheek_projsrf_loc_L_A_grp = groupTree(cheek_projsrf_prefix + '_L_A_grp')
-cheek_projsrf_loc_L_B_grp = groupTree(cheek_projsrf_prefix + '_L_B_grp')
-cheek_projsrf_loc_L_C_grp = groupTree(cheek_projsrf_prefix + '_L_C_grp')
-cheek_projsrf_loc_L_D_grp = groupTree(cheek_projsrf_prefix + '_L_D_grp')
-cheek_projsrf_loc_L_E_grp = groupTree(cheek_projsrf_prefix + '_L_E_grp')
-cheek_projsrf_loc_R_A_grp = groupTree(cheek_projsrf_prefix + '_R_A_grp')
-cheek_projsrf_loc_R_B_grp = groupTree(cheek_projsrf_prefix + '_R_B_grp')
-cheek_projsrf_loc_R_C_grp = groupTree(cheek_projsrf_prefix + '_R_C_grp')
-cheek_projsrf_loc_R_D_grp = groupTree(cheek_projsrf_prefix + '_R_D_grp')
-cheek_projsrf_loc_R_E_grp = groupTree(cheek_projsrf_prefix + '_R_E_grp')
-
-# cheek_projsrf_UDLR_grp = groupTree(cheek_projsrf_prefix + '_' + )
+# mouth zone sub-master group ------------------------------------------------------------------------------------------
+mouth_grp = groupTree('mouth_grp',
+                      [
+                          mouth_ctrlzone_MU_grp,
+                          mouth_ctrlzone_MD_grp
+                      ])

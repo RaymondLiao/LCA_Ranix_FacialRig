@@ -7,7 +7,7 @@
 #
 
 """
-A module organizing the control elements of the mouth and cheek zones of the lower face
+A module organizing the control elements of the mouth zone
 """
 
 import warnings
@@ -29,11 +29,7 @@ from ..controller import controller
 
 # ======================================================================================================================
 class mouthCheekControlZone(controlZone):
-    """ Subclass of the controlZone, whose instances manage the control elements of the mouth and cheek lower-face zones
-
-    The control curves of the cheek control zone each contains a straight curve as the blendShape base shape
-    which is driven by the motion of controllers, a curve originally shaped along with the face topological edge,
-    and a curve as the final projection curve using the first two as the BS targets, functioning as a whole.
+    """ Subclass of the controlZone, whose instances manage the control elements of the mouth zone
     """
 
     def __init__(self,
@@ -42,7 +38,7 @@ class mouthCheekControlZone(controlZone):
                  ctrlproj_projsurface_LRUD = None):
         """ A Mouth-Cheek Control Zone instance's direction attribute has only one valid value: the "middle".
         """
-        super(mouthCheekControlZone, self).__init__(zone = controlZoneEnum.mouth_cheek,
+        super(mouthCheekControlZone, self).__init__(zone = controlZoneEnum.mouth,
                                                     direction = controlZoneDirection.middle,
                                                     ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
                                                     ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD)

@@ -193,7 +193,6 @@ class eyebrowControlZone(controlZone):
                     if loc_id <= 2:
                         continue
                     F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
-                    cmds.warning('F_projsrf_loc_info: {}'.format(F_projsrf_loc_info))
                     if None == F_projsrf_loc_info:
                         continue
 
