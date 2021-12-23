@@ -93,7 +93,7 @@ class controlTransPlane(object):
 
 # ======================================================================================================================
 class controlProjSurface(object):
-    """ projection plane constraining on which the movement area of locator_data
+    """ projection surface constraining on which the movement area of locator_data
     projected from the movement of joints on the control data curves
     """
 

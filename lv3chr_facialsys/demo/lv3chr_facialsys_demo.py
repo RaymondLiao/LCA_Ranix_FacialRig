@@ -81,6 +81,30 @@ def lc3chr_facialsys_construct():
     setup_proj_surfaces()
     setup_ctrl_zones()
 
+    # Create Display Layers for the translation planes, the projection surfaces and the control curves.
+    cmds.createDisplayLayer(name='translation_planes', empty=True, noRecurse=True)
+    cmds.createDisplayLayer(name='projection_surfaces', empty=True, noRecurse=True)
+    cmds.createDisplayLayer(name='control_curves', empty=True, noRecurse=True)
+
+    cmds.editDisplayLayerMembers('translation_planes',
+                                 g_crv_projsrf_dict['eyelid_transplane_RU'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_transplane_RD'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_transplane_LU'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_transplane_LD'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_transplane_LRUD'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_transplane_LRF'].get_name(),
+                                 g_crv_projsrf_dict['mouth_transplane_LRU'].get_name(),
+                                 g_crv_projsrf_dict['mouth_transplane_LRD'].get_name())
+    cmds.editDisplayLayerMembers('projection_surfaces',
+                                 g_crv_projsrf_dict['eyelid_projsrf_RU'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_projsrf_RD'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_projsrf_LU'].get_name(),
+                                 g_crv_projsrf_dict['eyelid_projsrf_LD'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRUD'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF'].get_name(),
+                                 g_crv_projsrf_dict['mouth_projsrf_LRU'].get_name(),
+                                 g_crv_projsrf_dict['mouth_projsrf_LRD'].get_name())
+
     # Toggle on the "Wireframe on Shaded" for the current model panel.
     visible_panel_list = cmds.getPanel(visiblePanels=True)
     active_viewport_list = [visible_panel for visible_panel in visible_panel_list if 'modelPanel' in visible_panel]
@@ -436,6 +460,13 @@ def setup_proj_surfaces():
                                                    locator_scale=mouth_crvproj_projsrf_data['locator_scale'],
                                                    bind_joint_data=mouth_crvproj_projsrf_data['bind_joint'],
                                                    bind_joint_color=BIND_JOINT_COLOR_INDEX)
+
+        if controlZoneDirEnum.up in zone_dir:
+            g_crv_projsrf_dict['mouth_projsrf_LRU'] = mouth_crvproj_projsrf
+        elif controlZoneDirEnum.down in zone_dir:
+            g_crv_projsrf_dict['mouth_projsrf_LRD'] = mouth_crvproj_projsrf
+
+        cmds.parent(mouth_crvproj_projsrf.get_name(), hierarchy.mouth_projsrf_M_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 
