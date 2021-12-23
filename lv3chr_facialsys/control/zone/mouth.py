@@ -91,7 +91,14 @@ class mouthControlZone(controlZone):
         ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
 
         for ctrl_crv_bs_dir in ctrl_crv_bs_dir_list:
-            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[ctrl_crv_bs_dir]
+            dir_ctrlcrv_bs_data = None
+            if 'original' == ctrl_crv_bs_dir:
+                if controlZoneDirEnum.up in direction:
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['original_up']
+                elif controlZoneDirEnum.down in direction:
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['original_dn']
+            else:
+                dir_ctrlcrv_bs_data = ctrlcrv_bs_data[ctrl_crv_bs_dir]
 
             bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
                                       point=dir_ctrlcrv_bs_data['points'])
@@ -179,25 +186,72 @@ class mouthControlZone(controlZone):
                         self._ctrl_crv_dict['A'].get_name(),
                         name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
                         )[0]
+        cmds.setAttr(ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['original'], 1)
         cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
 
+        R_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                   name=self._controller_dict['R'].get_name() + '_trans_multiplyDivide')
+        cmds.setAttr(R_ctrl_trans_divide_node+'.operation', 2)  # divide
+        cmds.setAttr(R_ctrl_trans_divide_node+'.input2',
+                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+
         cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
+                         R_ctrl_trans_divide_node + '.input1Y')
+        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputY',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
+
         cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateX',
+                         R_ctrl_trans_divide_node + '.input1X')
+        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputX',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
+
         cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
+                         R_ctrl_trans_divide_node + '.input1Z')
+        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputZ',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
+
+
+        M_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                   name=self._controller_dict['M'].get_name() + '_trans_multiplyDivide')
+        cmds.setAttr(M_ctrl_trans_divide_node+'.operation', 2)  # divide
+        cmds.setAttr(M_ctrl_trans_divide_node+'.input2',
+                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+
         cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
+                         M_ctrl_trans_divide_node + '.input1Y')
+        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputY',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_up'])
+
         cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateX',
+                         M_ctrl_trans_divide_node + '.input1X')
+        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputX',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_left'])
+
         cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateZ',
+                         M_ctrl_trans_divide_node + '.input1Z')
+        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputZ',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_front'])
+
+        L_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                   name=self._controller_dict['L'].get_name() + '_trans_multiplyDivide')
+        cmds.setAttr(L_ctrl_trans_divide_node+'.operation', 2)  # divide
+        cmds.setAttr(L_ctrl_trans_divide_node+'.input2',
+                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+
+
         cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',
+                         L_ctrl_trans_divide_node + '.input1Y')
+        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputY',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+
         cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateX',
+                         L_ctrl_trans_divide_node + '.input1X')
+        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputX',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
+
         cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
+                         L_ctrl_trans_divide_node + '.input1Z')
+        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputZ',
                          ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between

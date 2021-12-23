@@ -61,6 +61,7 @@ ctrl_crv_bs_dir_list = ['original',
                         'right_side_up', 'middle_side_up', 'left_side_up',
                         'right_side_left', 'middle_side_left', 'left_side_left',
                         'right_side_front', 'middle_side_front', 'left_side_front']
+ctrl_crv_bs_drving_gain = 1.2
 
 # Empty string means no motion of controllers in these direction for the control zone.
 CONTROL_ZONE_DIRECTION_DICT = {
