@@ -304,7 +304,6 @@ mouth_projsrf_M_grp = groupTree(mouth_projsrf_prefix + '_M_grp',
 # mouth zone sub-master group ------------------------------------------------------------------------------------------
 mouth_grp = groupTree('mouth_grp',
                       [
-                          mouth_ctrlzone_MU_grp,
-                          mouth_ctrlzone_MD_grp,
+                          mouth_ctrlzone_M_grp,
                           mouth_projsrf_M_grp
                       ])

@@ -39,6 +39,8 @@ from control.zone import eyelid; reload(eyelid)
 from control.zone.eyelid import eyelidControlZone
 from control.zone import eyebrow; reload(eyebrow)
 from control.zone.eyebrow import eyebrowControlZone
+from control.zone import mouth; reload(mouth)
+from control.zone.mouth import mouthControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
 g_crv_projsrf_dict = {
@@ -549,6 +551,27 @@ def setup_ctrl_zones():
                                            ctrlproj_transplane_LRFB = ctrlproj_transplane_LRFB,
                                            ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD,
                                            ctrlproj_projsurface_LRFB = ctrlproj_projsrf_LRFB)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Mouth Control Zone
+
+    ctrlproj_transplane_LRUD = None
+    ctrlproj_projsrf_LRUD = None
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+
+        if controlZoneDirEnum.up in zone_dir:
+            ctrlproj_transplane_LRUD = g_crv_projsrf_dict['mouth_transplane_LRU']
+            ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['mouth_projsrf_LRU']
+            assert None != ctrlproj_transplane_LRUD
+            assert None != ctrlproj_projsrf_LRUD
+
+        # Note that the eyebrow facial zone only have one Control Zone, combining the up-down and front directions.
+        eyebrow_ctrl_zone = mouthControlZone(direction = zone_dir,
+                                             ctrl_crv_data = ctrl_crv_data,
+                                             ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
+                                             ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD)
 
     f_ctrl_crv_data.close()
 
