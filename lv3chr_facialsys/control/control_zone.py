@@ -63,6 +63,14 @@ class controlZone(object):
         self._ctrl_crv_dict = {
             # 'A': None,
         }
+        # The keys of this dictionary are:
+        #   'original'
+        #   'right_side_up', 'middle_side_up', 'left_side_up'
+        #   'right_side_left, 'middle_side_left', 'left_side_left',
+        #   'right_side_front', 'middle_side_front', 'left_side_front'
+        self._ctrl_crv_bs_dict = {
+            # 'original': None,
+        }
 
         # The keys of this dictionary are follow controller's IDs.
         self._follow_ctrl = None

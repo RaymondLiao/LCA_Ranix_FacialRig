@@ -577,8 +577,12 @@ def setup_ctrl_zones():
         if controlZoneDirEnum.up in zone_dir:
             ctrlproj_transplane_LRUD = g_crv_projsrf_dict['mouth_transplane_LRU']
             ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['mouth_projsrf_LRU']
-            assert None != ctrlproj_transplane_LRUD
-            assert None != ctrlproj_projsrf_LRUD
+        elif controlZoneDirEnum.down in zone_dir:
+            ctrlproj_transplane_LRUD = g_crv_projsrf_dict['mouth_transplane_LRD']
+            ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['mouth_projsrf_LRD']
+
+        assert None != ctrlproj_transplane_LRUD
+        assert None != ctrlproj_projsrf_LRUD
 
         # Note that the eyebrow facial zone only have one Control Zone, combining the up-down and front directions.
         eyebrow_ctrl_zone = mouthControlZone(direction = zone_dir,

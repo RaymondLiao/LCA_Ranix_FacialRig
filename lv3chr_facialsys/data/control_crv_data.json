@@ -2566,7 +2566,7 @@
     "degree": 1,
 
     "original": {
-      "name": "MU_curve_orig",
+      "name": "curve_orig",
       "xform": {
         "translation": [6.543, 9.983, 0.0]
       },

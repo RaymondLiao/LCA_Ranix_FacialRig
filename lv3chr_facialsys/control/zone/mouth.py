@@ -96,7 +96,12 @@ class mouthControlZone(controlZone):
             bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
                                       point=dir_ctrlcrv_bs_data['points'])
             cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
-            bs_nurbs_crv = cmds.rename(bs_nurbs_crv, dir_ctrlcrv_bs_data['name'])
+            direction_abbr = 'MU'
+            if controlZoneDirEnum.down in direction:
+                direction_abbr = 'MD'
+            bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
+                                       self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
+                                       direction_abbr + '_' + dir_ctrlcrv_bs_data['name'])
 
             cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
             if 'left' in ctrl_crv_bs_dir:
@@ -109,8 +114,14 @@ class mouthControlZone(controlZone):
             cmds.toggle(bs_nurbs_crv, controlVertex=True)
             cmds.select(deselect=True)
 
-            cmds.parent(bs_nurbs_crv,
-                        hierarchy.mouth_ctrlzone_curve_bs_grp.get_group_name())
+            if controlZoneDirEnum.up in direction:
+                cmds.parent(bs_nurbs_crv,
+                            hierarchy.mouth_ctrlcrv_bs_MU_grp.get_group_name())
+            elif controlZoneDirEnum.down in direction:
+                cmds.parent(bs_nurbs_crv,
+                            hierarchy.mouth_ctrlcrv_bs_MD_grp.get_group_name())
+
+            self._ctrl_crv_bs_dict[ctrl_crv_bs_dir] = bs_nurbs_crv
 
         # Create the controllers
         controller_data = self._ctrl_crv_data['mouth_controller']
@@ -153,7 +164,62 @@ class mouthControlZone(controlZone):
             self._controller_dict[ctrl_dir] = rig_controller
 
         # --------------------------------------------------------------------------------------------------------------
-        # Bind the control curves to the corresponding controllers' joints
+        # Drive the control curves using blend-shape and
+        # three-curves each in the LR, UD and FB directions, as the targets.
+        ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict['original'],
+                        self._ctrl_crv_bs_dict['right_side_up'],
+                        self._ctrl_crv_bs_dict['middle_side_up'],
+                        self._ctrl_crv_bs_dict['left_side_up'],
+                        self._ctrl_crv_bs_dict['right_side_left'],
+                        self._ctrl_crv_bs_dict['middle_side_left'],
+                        self._ctrl_crv_bs_dict['left_side_left'],
+                        self._ctrl_crv_bs_dict['right_side_front'],
+                        self._ctrl_crv_bs_dict['middle_side_front'],
+                        self._ctrl_crv_bs_dict['left_side_front'],
+                        self._ctrl_crv_dict['A'].get_name(),
+                        name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
+                        )[0]
+        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+
+        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
+        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
+        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
+        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_up'])
+        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_left'])
+        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_front'])
+        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
+        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.
+
+        for ctrl_crv_id in ctrl_crv_id_list:
+            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+
+            for loc_id in ctrl_crv.get_locator_ids():
+                ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
+                projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
+
+                cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0] + '_clsPtOnSrf')
+
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
+                                 cls_pt_on_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_transplane_node + '.inPosition')
+
+                pt_on_projsrf_node = projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_projsrf_node)
+
+                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')

@@ -266,29 +266,30 @@ mouth_projsrf_prefix = 'fm_mouthMask'
 # translation plane ----------------------------------------------------------------------------------------------------
 mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_ctrl_grp')
 mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_A_grp')
+mouth_ctrlcrv_bs_MU_grp = groupTree(mouth_ctrlzone_prefix + '_curve_bs_MU_grp')
 
 mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_grp',
                                   [
                                      mouth_ctrl_MU_grp,
-                                     mouth_ctrlzone_loc_MU_A_grp
+                                     mouth_ctrlzone_loc_MU_A_grp,
+                                     mouth_ctrlcrv_bs_MU_grp
                                  ])
 
 mouth_ctrl_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_ctrl_grp')
 mouth_ctrlzone_loc_MD_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_A_grp')
+mouth_ctrlcrv_bs_MD_grp = groupTree(mouth_ctrlzone_prefix + '_curve_bs_MD_grp')
 
 mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_grp',
                                   [
                                       mouth_ctrl_MD_grp,
-                                      mouth_ctrlzone_loc_MD_A_grp
+                                      mouth_ctrlzone_loc_MD_A_grp,
+                                      mouth_ctrlcrv_bs_MD_grp
                                   ])
-
-mouth_ctrlzone_curve_bs_grp = groupTree(mouth_ctrlzone_prefix + '_curve_bs_grp')
 
 mouth_ctrlzone_M_grp = groupTree(mouth_ctrlzone_prefix + '_M_grp',
                                  [
                                    mouth_ctrlzone_MU_grp,
                                    mouth_ctrlzone_MD_grp,
-                                   mouth_ctrlzone_curve_bs_grp
                                  ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
