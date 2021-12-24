@@ -188,8 +188,8 @@ class controlProjSurface(object):
         cmds.makeIdentity(self._nurbs_srf, apply=True)
         cmds.xform(self._nurbs_srf, scale=mirror)
         # Reverse the surface normals if mirroring along x-axis.
-        # if mirror[0] < 0:
-        #     cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
+        if mirror[0] < 0:
+            cmds.reverseSurface(self._nurbs_srf, direction=0) # "0" means "U"
 
         self._nurbs_srf = cmds.rename(self._nurbs_srf, name_prefix+'_'+name)
         # cmds.toggle(self._nurbs_srf, template=True)
