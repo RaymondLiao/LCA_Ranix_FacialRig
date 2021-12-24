@@ -1932,6 +1932,7 @@
         "translation": [0.0, 21.0, 1.0]
       },
       "points": [
+        [-3.085, 0.0, 0.0],
         [-2.705, 0.0, 0.0],
         [-2.325, 0.0, 0.0],
         [-1.935, 0.0, 0.0],
@@ -1946,83 +1947,94 @@
         [1.55, 0.0, 0.0],
         [1.935, 0.0, 0.0],
         [2.325, 0.0, 0.0],
-        [2.705, 0.0, 0.0]
+        [2.705, 0.0, 0.0],
+        [3.085, 0.0, 0.0]
       ],
       "locators": [
         {
           "id": 1,
-          "name": "R_A7_loc",
+          "name": "R_A8_loc",
           "pt_on_crv_param": 0.0
         },
         {
           "id": 2,
-          "name": "R_A6_loc",
+          "name": "R_A7_loc",
           "pt_on_crv_param": 1.0
         },
         {
           "id": 3,
-          "name": "R_A5_loc",
+          "name": "R_A6_loc",
           "pt_on_crv_param": 2.0
         },
         {
           "id": 4,
-          "name": "R_A4_loc",
+          "name": "R_A5_loc",
           "pt_on_crv_param": 3.0
         },
         {
           "id": 5,
-          "name": "R_A3_loc",
+          "name": "R_A4_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "R_A2_loc",
+          "name": "R_A3_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "R_A1_loc",
+          "name": "R_A2_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "M_A1_loc",
+          "name": "R_A1_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_A1_loc",
+          "name": "M_A1_loc",
           "pt_on_crv_param": 8.0
         },
         {
           "id": 10,
-          "name": "L_A2_loc",
+          "name": "L_A1_loc",
           "pt_on_crv_param": 9.0
         },
         {
           "id": 11,
-          "name": "L_A3_loc",
+          "name": "L_A2_loc",
           "pt_on_crv_param": 10.0
         },
         {
           "id": 12,
-          "name": "L_A4_loc",
+          "name": "L_A3_loc",
           "pt_on_crv_param": 11.0
         },
         {
           "id": 13,
-          "name": "L_A5_loc",
+          "name": "L_A4_loc",
           "pt_on_crv_param": 12.0
         },
         {
           "id": 14,
-          "name": "L_A6_loc",
+          "name": "L_A5_loc",
           "pt_on_crv_param": 13.0
         },
         {
           "id": 15,
-          "name": "L_A7_loc",
+          "name": "L_A6_loc",
           "pt_on_crv_param": 14.0
+        },
+        {
+          "id": 16,
+          "name": "L_A7_loc",
+          "pt_on_crv_param": 15.0
+        },
+        {
+          "id": 17,
+          "name": "L_A8_loc",
+          "pt_on_crv_param": 16.0
         }
       ]
     },
@@ -2033,6 +2045,7 @@
         "translation": [0.0, 21.626, 1.0]
       },
       "points": [
+        [-3.085, 0.0, 0.0],
         [-2.705, 0.0, 0.0],
         [-2.325, 0.0, 0.0],
         [-1.935, 0.0, 0.0],
@@ -2047,83 +2060,94 @@
         [1.55, 0.0, 0.0],
         [1.935, 0.0, 0.0],
         [2.325, 0.0, 0.0],
-        [2.705, 0.0, 0.0]
+        [2.705, 0.0, 0.0],
+        [3.085, 0.0, 0.0]
       ],
       "locators": [
         {
           "id": 1,
-          "name": "R_B7_loc",
+          "name": "R_B8_loc",
           "pt_on_crv_param": 0.0
         },
         {
           "id": 2,
-          "name": "R_B6_loc",
+          "name": "R_B7_loc",
           "pt_on_crv_param": 1.0
         },
         {
           "id": 3,
-          "name": "R_B5_loc",
+          "name": "R_B6_loc",
           "pt_on_crv_param": 2.0
         },
         {
           "id": 4,
-          "name": "R_B4_loc",
+          "name": "R_B5_loc",
           "pt_on_crv_param": 3.0
         },
         {
           "id": 5,
-          "name": "R_B3_loc",
+          "name": "R_B4_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "R_B2_loc",
+          "name": "R_B3_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "R_B1_loc",
+          "name": "R_B2_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "M_B1_loc",
+          "name": "R_B1_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_B1_loc",
+          "name": "M_B1_loc",
           "pt_on_crv_param": 8.0
         },
         {
           "id": 10,
-          "name": "L_B2_loc",
+          "name": "L_B1_loc",
           "pt_on_crv_param": 9.0
         },
         {
           "id": 11,
-          "name": "L_B3_loc",
+          "name": "L_B2_loc",
           "pt_on_crv_param": 10.0
         },
         {
           "id": 12,
-          "name": "L_B4_loc",
+          "name": "L_B3_loc",
           "pt_on_crv_param": 11.0
         },
         {
           "id": 13,
-          "name": "L_B5_loc",
+          "name": "L_B4_loc",
           "pt_on_crv_param": 12.0
         },
         {
           "id": 14,
-          "name": "L_B6_loc",
+          "name": "L_B5_loc",
           "pt_on_crv_param": 13.0
         },
         {
           "id": 15,
-          "name": "L_B7_loc",
+          "name": "L_B6_loc",
           "pt_on_crv_param": 14.0
+        },
+        {
+          "id": 16,
+          "name": "L_B7_loc",
+          "pt_on_crv_param": 15.0
+        },
+        {
+          "id": 17,
+          "name": "L_B8_loc",
+          "pt_on_crv_param": 16.0
         }
       ]
     },
@@ -2131,9 +2155,10 @@
     "middle_C": {
       "name": "M_C_curve",
       "xform": {
-        "translation": [0.0, 20.31, 1.0]
+        "translation": [0.0, 22.252, 1.0]
       },
       "points": [
+        [-3.085, 0.0, 0.0],
         [-2.705, 0.0, 0.0],
         [-2.325, 0.0, 0.0],
         [-1.935, 0.0, 0.0],
@@ -2148,83 +2173,207 @@
         [1.55, 0.0, 0.0],
         [1.935, 0.0, 0.0],
         [2.325, 0.0, 0.0],
-        [2.705, 0.0, 0.0]
+        [2.705, 0.0, 0.0],
+        [3.085, 0.0, 0.0]
       ],
       "locators": [
         {
           "id": 1,
-          "name": "R_C7_loc",
+          "name": "R_C8_loc",
           "pt_on_crv_param": 0.0
         },
         {
           "id": 2,
-          "name": "R_C6_loc",
+          "name": "R_C7_loc",
           "pt_on_crv_param": 1.0
         },
         {
           "id": 3,
-          "name": "R_C5_loc",
+          "name": "R_C6_loc",
           "pt_on_crv_param": 2.0
         },
         {
           "id": 4,
-          "name": "R_C4_loc",
+          "name": "R_C5_loc",
           "pt_on_crv_param": 3.0
         },
         {
           "id": 5,
-          "name": "R_C3_loc",
+          "name": "R_C4_loc",
           "pt_on_crv_param": 4.0
         },
         {
           "id": 6,
-          "name": "R_C2_loc",
+          "name": "R_C3_loc",
           "pt_on_crv_param": 5.0
         },
         {
           "id": 7,
-          "name": "R_C1_loc",
+          "name": "R_C2_loc",
           "pt_on_crv_param": 6.0
         },
         {
           "id": 8,
-          "name": "M_C1_loc",
+          "name": "R_C1_loc",
           "pt_on_crv_param": 7.0
         },
         {
           "id": 9,
-          "name": "L_C1_loc",
+          "name": "M_C1_loc",
           "pt_on_crv_param": 8.0
         },
         {
           "id": 10,
-          "name": "L_C2_loc",
+          "name": "L_C1_loc",
           "pt_on_crv_param": 9.0
         },
         {
           "id": 11,
-          "name": "L_C3_loc",
+          "name": "L_C2_loc",
           "pt_on_crv_param": 10.0
         },
         {
           "id": 12,
-          "name": "L_C4_loc",
+          "name": "L_C3_loc",
           "pt_on_crv_param": 11.0
         },
         {
           "id": 13,
-          "name": "L_C5_loc",
+          "name": "L_C4_loc",
           "pt_on_crv_param": 12.0
         },
         {
           "id": 14,
-          "name": "L_C6_loc",
+          "name": "L_C5_loc",
           "pt_on_crv_param": 13.0
         },
         {
           "id": 15,
-          "name": "L_C7_loc",
+          "name": "L_C6_loc",
           "pt_on_crv_param": 14.0
+        },
+        {
+          "id": 16,
+          "name": "L_C7_loc",
+          "pt_on_crv_param": 15.0
+        },
+        {
+          "id": 17,
+          "name": "L_C8_loc",
+          "pt_on_crv_param": 16.0
+        }
+      ]
+    },
+
+    "middle_D": {
+      "name": "M_D_curve",
+      "xform": {
+        "translation": [0.0, 20.31, 1.0]
+      },
+      "points": [
+        [-3.085, 0.0, 0.0],
+        [-2.705, 0.0, 0.0],
+        [-2.325, 0.0, 0.0],
+        [-1.935, 0.0, 0.0],
+        [-1.55, 0.0, 0.0],
+        [-1.165, 0.0, 0.0],
+        [-0.775, 0.0, 0.0],
+        [-0.385, 0.0, 0.0],
+        [0.0, 0.0, 0.0],
+        [0.385, 0.0, 0.0],
+        [0.775, 0.0, 0.0],
+        [1.165, 0.0, 0.0],
+        [1.55, 0.0, 0.0],
+        [1.935, 0.0, 0.0],
+        [2.325, 0.0, 0.0],
+        [2.705, 0.0, 0.0],
+        [3.085, 0.0, 0.0]
+      ],
+      "locators": [
+        {
+          "id": 1,
+          "name": "R_D8_loc",
+          "pt_on_crv_param": 0.0
+        },
+        {
+          "id": 2,
+          "name": "R_D7_loc",
+          "pt_on_crv_param": 1.0
+        },
+        {
+          "id": 3,
+          "name": "R_D6_loc",
+          "pt_on_crv_param": 2.0
+        },
+        {
+          "id": 4,
+          "name": "R_D5_loc",
+          "pt_on_crv_param": 3.0
+        },
+        {
+          "id": 5,
+          "name": "R_D4_loc",
+          "pt_on_crv_param": 4.0
+        },
+        {
+          "id": 6,
+          "name": "R_D3_loc",
+          "pt_on_crv_param": 5.0
+        },
+        {
+          "id": 7,
+          "name": "R_D2_loc",
+          "pt_on_crv_param": 6.0
+        },
+        {
+          "id": 8,
+          "name": "R_D1_loc",
+          "pt_on_crv_param": 7.0
+        },
+        {
+          "id": 9,
+          "name": "M_D1_loc",
+          "pt_on_crv_param": 8.0
+        },
+        {
+          "id": 10,
+          "name": "L_D1_loc",
+          "pt_on_crv_param": 9.0
+        },
+        {
+          "id": 11,
+          "name": "L_D2_loc",
+          "pt_on_crv_param": 10.0
+        },
+        {
+          "id": 12,
+          "name": "L_D3_loc",
+          "pt_on_crv_param": 11.0
+        },
+        {
+          "id": 13,
+          "name": "L_D4_loc",
+          "pt_on_crv_param": 12.0
+        },
+        {
+          "id": 14,
+          "name": "L_D5_loc",
+          "pt_on_crv_param": 13.0
+        },
+        {
+          "id": 15,
+          "name": "L_D6_loc",
+          "pt_on_crv_param": 14.0
+        },
+        {
+          "id": 16,
+          "name": "L_D7_loc",
+          "pt_on_crv_param": 15.0
+        },
+        {
+          "id": 17,
+          "name": "L_D8_loc",
+          "pt_on_crv_param": 16.0
         }
       ]
     }
@@ -2277,6 +2426,14 @@
     {
       "suffix": "bind",
       "radius": 1.5
+    },
+
+    "right_H": {
+      "name": "R_H_ctrl",
+      "xform": {
+        "translation_ofs": [-3.085, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
     },
 
     "right_G": {
@@ -2395,6 +2552,14 @@
       "name": "L_G_ctrl",
       "xform": {
         "translation_ofs": [2.705, 21.0, 1.0],
+        "translation": [0.0, 0.0, 0.0]
+      }
+    },
+
+    "left_H": {
+      "name": "L_H_ctrl",
+      "xform": {
+        "translation_ofs": [3.085, 21.0, 1.0],
         "translation": [0.0, 0.0, 0.0]
       }
     }

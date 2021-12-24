@@ -229,19 +229,22 @@ eyebrow_ctrl_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_ctrl_grp')
 eyebrow_ctrlzone_loc_M_A_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_A_grp')
 eyebrow_ctrlzone_loc_M_B_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_B_grp')
 eyebrow_ctrlzone_loc_M_C_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_C_grp')
+eyebrow_ctrlzone_loc_M_D_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_D_grp')
 
 eyebrow_ctrlzone_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_grp',
                                    [
                                        eyebrow_ctrl_M_grp,
                                        eyebrow_ctrlzone_loc_M_A_grp,
                                        eyebrow_ctrlzone_loc_M_B_grp,
-                                       eyebrow_ctrlzone_loc_M_C_grp
+                                       eyebrow_ctrlzone_loc_M_C_grp,
+                                       eyebrow_ctrlzone_loc_M_D_grp
                                    ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
 eyebrow_projsrf_loc_M_UD_A_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_A_grp')
 eyebrow_projsrf_loc_M_UD_B_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_B_grp')
 eyebrow_projsrf_loc_M_UD_C_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_C_grp')
+eyebrow_projsrf_loc_M_UD_D_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_D_grp')
 
 eyebrow_projsrf_loc_M_FB_grp = groupTree(eyebrow_projsrf_prefix+'_M_FB_grp')
 
@@ -250,6 +253,7 @@ eyebrow_projsrf_M_grp = groupTree(eyebrow_projsrf_prefix+'_M_grp',
                                       eyebrow_projsrf_loc_M_UD_A_grp,
                                       eyebrow_projsrf_loc_M_UD_B_grp,
                                       eyebrow_projsrf_loc_M_UD_C_grp,
+                                      eyebrow_projsrf_loc_M_UD_D_grp,
                                       eyebrow_projsrf_loc_M_FB_grp
                                   ])
 

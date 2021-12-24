@@ -396,6 +396,9 @@ def setup_proj_surfaces():
                     elif 'C' == loc_row_id:
                         cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyebrow_projsrf_loc_M_UD_C_grp.get_group_name())
+                    elif 'D' == loc_row_id:
+                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.eyebrow_projsrf_loc_M_UD_D_grp.get_group_name())
 
         elif controlZoneDirEnum.front in zone_dir:
             g_crv_projsrf_dict['eyebrow_projsrf_LRF'] = eyebrow_crvproj_projsrf

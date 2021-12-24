@@ -58,10 +58,10 @@ class eyebrowControlZone(controlZone):
                                                  ctrlproj_projsurface_LRFB = ctrlproj_projsurface_LRFB,
                                                 )
 
-        ctrl_crv_id_list = ['A', 'B', 'C']
-        controller_id_list = ['R_G', 'R_F', 'R_E', 'R_D', 'R_C', 'R_B', 'R_A',
+        ctrl_crv_id_list = ['A', 'B', 'C', 'D']
+        controller_id_list = ['R_H', 'R_G', 'R_F', 'R_E', 'R_D', 'R_C', 'R_B', 'R_A',
                               'M_A',
-                              'L_A', 'L_B', 'L_C', 'L_D', 'L_E', 'L_F', 'L_G']
+                              'L_H', 'L_A', 'L_B', 'L_C', 'L_D', 'L_E', 'L_F', 'L_G']
 
 
         # Create the control curves.
@@ -93,6 +93,9 @@ class eyebrowControlZone(controlZone):
                 elif 'C' == crv_id:
                     cmds.parent(loc_name,
                                 hierarchy.eyebrow_ctrlzone_loc_M_C_grp.get_group_name())
+                elif 'D' == crv_id:
+                    cmds.parent(loc_name,
+                                hierarchy.eyebrow_ctrlzone_loc_M_D_grp.get_group_name())
 
             self._ctrl_crv_dict[crv_id] = ctrl_crv
 
