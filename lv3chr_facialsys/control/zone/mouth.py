@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: control.zone.mouth_cheek.py
+# File Name: control.zone.mouth.py
 # Author: Sheng (Raymond) Liao
 # Date: December 2021
 #

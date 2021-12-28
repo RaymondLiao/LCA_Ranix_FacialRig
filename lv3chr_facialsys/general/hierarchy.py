@@ -38,9 +38,10 @@ class groupTree:
 
             cmds.parent(child_node.get_group_name(), self._group_name)
 
-# Eyelid Rig Group Hierarchy ====== ====================================================================================
+# Eyelid Rig Group Hierarchy ===========================================================================================
 eyelid_ctrlzone_prefix = 'fm_eyelidProject'
 eyelid_projsrf_prefix = 'fm_eyelidMask'
+
 # translation plane ----------------------------------------------------------------------------------------------------
 eyelid_ctrl_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_ctrl_grp')
 eyelid_ctrlzone_loc_RU_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_A_grp')
@@ -224,6 +225,7 @@ eyelid_grp = groupTree('eyelid_grp',
 # Eyebrow Rig Group Hierarchy ==========================================================================================
 eyebrow_ctrlzone_prefix = 'fm_eyebrowProject'
 eyebrow_projsrf_prefix = 'fm_eyebrowMask'
+
 # translation plane ----------------------------------------------------------------------------------------------------
 eyebrow_ctrl_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_ctrl_grp')
 eyebrow_ctrlzone_loc_M_A_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_A_grp')
@@ -267,6 +269,7 @@ eyebrow_grp = groupTree('eyebrow_grp',
 # Mouth Rig Group Hierarchy ============================================================================================
 mouth_ctrlzone_prefix = 'fm_mouthProject'
 mouth_projsrf_prefix = 'fm_mouthMask'
+
 # translation plane ----------------------------------------------------------------------------------------------------
 mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_ctrl_grp')
 mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_A_grp')
@@ -312,3 +315,24 @@ mouth_grp = groupTree('mouth_grp',
                           mouth_ctrlzone_M_grp,
                           mouth_projsrf_M_grp
                       ])
+
+# Nasolabial Rig Group Hierarchy ====== ================================================================================
+nasolabial_ctrlzone_prefix = 'fm_nasolabialProject'
+nasolabial_projsrf_prefix = 'fm_nasolabialMask'
+
+# translation plane ----------------------------------------------------------------------------------------------------
+nasolabial_ctrlzone_R_grp = groupTree(nasolabial_ctrlzone_prefix + '_R_grp')
+nasolabial_ctrlzone_L_grp = groupTree(nasolabial_ctrlzone_prefix + '_L_grp')
+
+# projection surface ---------------------------------------------------------------------------------------------------
+nasolabial_projsrf_R_grp = groupTree(nasolabial_projsrf_prefix + '_R_grp')
+nasolabial_projsrf_L_grp = groupTree(nasolabial_projsrf_prefix + '_L_grp')
+
+# nasolabial zone sub-master group -------------------------------------------------------------------------------------
+nasolabial_grp = groupTree('nasolabial_grp',
+                           [
+                               nasolabial_ctrlzone_R_grp,
+                               nasolabial_ctrlzone_L_grp,
+                               nasolabial_projsrf_R_grp,
+                               nasolabial_projsrf_L_grp
+                           ])

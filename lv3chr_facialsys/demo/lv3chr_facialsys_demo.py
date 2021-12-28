@@ -43,6 +43,10 @@ from control.zone import mouth; reload(mouth)
 from control.zone.mouth import mouthControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
+g_displayer_transplane = 'translation_plane'
+g_displayer_projsrf = 'projection_surface'
+g_displayer_ctrlcrv = 'control_curve'
+
 g_crv_projsrf_dict = {
     'eyelid_transplane_RU' : None,
     'eyelid_transplane_RD' : None,
@@ -61,7 +65,12 @@ g_crv_projsrf_dict = {
     'mouth_transplane_LRU': None,
     'mouth_transplane_LRD': None,
     'mouth_projsrf_LRU': None,
-    'mouth_projsrf_LRD': None
+    'mouth_projsrf_LRD': None,
+
+    'nasolabial_transplane_RUD' : None,
+    'nasolabial_transplane_LUD' : None,
+    'nasolabial_projsrf_RUD' : None,
+    'nasolabial_projsrf_LUD' : None
 }
 
 # g_lv3chr_facialsys_demo_run = False
@@ -83,12 +92,16 @@ def lc3chr_facialsys_construct():
     setup_proj_surfaces()
     setup_ctrl_zones()
 
-    # Create Display Layers for the translation planes, the projection surfaces and the control curves.
-    cmds.createDisplayLayer(name='translation_planes', empty=True, noRecurse=True)
-    cmds.createDisplayLayer(name='projection_surfaces', empty=True, noRecurse=True)
-    cmds.createDisplayLayer(name='control_curves', empty=True, noRecurse=True)
+    # Create Display Layers for the translation planes, the projection surfaces and the control curves, if there are not.
+    display_layer_list = cmds.ls(type='displayLayer')
+    if g_displayer_transplane not in display_layer_list:
+        cmds.createDisplayLayer(name=g_displayer_transplane, empty=True, noRecurse=True)
+    if g_displayer_projsrf not in display_layer_list:
+        cmds.createDisplayLayer(name=g_displayer_projsrf, empty=True, noRecurse=True)
+    if g_displayer_ctrlcrv not in display_layer_list:
+        cmds.createDisplayLayer(name=g_displayer_ctrlcrv, empty=True, noRecurse=True)
 
-    cmds.editDisplayLayerMembers('translation_planes',
+    cmds.editDisplayLayerMembers(g_displayer_transplane,
                                  g_crv_projsrf_dict['eyelid_transplane_RU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_transplane_RD'].get_name(),
                                  g_crv_projsrf_dict['eyelid_transplane_LU'].get_name(),
@@ -97,7 +110,7 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['eyebrow_transplane_LRF'].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRU'].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRD'].get_name())
-    cmds.editDisplayLayerMembers('projection_surfaces',
+    cmds.editDisplayLayerMembers(g_displayer_projsrf,
                                  g_crv_projsrf_dict['eyelid_projsrf_RU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_projsrf_RD'].get_name(),
                                  g_crv_projsrf_dict['eyelid_projsrf_LU'].get_name(),
@@ -423,15 +436,15 @@ def setup_proj_surfaces():
         mouth_dir_transplane_patchesU = mouth_dir_transplane_data['patchesU']
         mouth_dir_transplane_patchesV = mouth_dir_transplane_data['patchesV']
 
-        mouth_crvproj_transplane = controlTransPlane(name_prefix=mouth_crvproj_transplane_data['name_prefix'],
-                                                     name=mouth_dir_transplane_data['name'],
-                                                     degree=mouth_dir_transplane_degree,
-                                                     patchesU=mouth_dir_transplane_patchesU,
-                                                     patchesV=mouth_dir_transplane_patchesV,
-                                                     translation=mouth_dir_transplane_data['xform']['translation'],
-                                                     rotation=mouth_dir_transplane_data['xform']['rotation'],
-                                                     scale=mouth_dir_transplane_data['xform']['scale'],
-                                                     cv_list=mouth_dir_transplane_data['control_vtx'])
+        mouth_crvproj_transplane = controlTransPlane(name_prefix = mouth_crvproj_transplane_data['name_prefix'],
+                                                     name = mouth_dir_transplane_data['name'],
+                                                     degree = mouth_dir_transplane_degree,
+                                                     patchesU = mouth_dir_transplane_patchesU,
+                                                     patchesV = mouth_dir_transplane_patchesV,
+                                                     translation = mouth_dir_transplane_data['xform']['translation'],
+                                                     rotation = mouth_dir_transplane_data['xform']['rotation'],
+                                                     scale = mouth_dir_transplane_data['xform']['scale'],
+                                                     cv_list = mouth_dir_transplane_data['control_vtx'])
 
         if controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['mouth_transplane_LRU'] = mouth_crvproj_transplane
@@ -452,19 +465,19 @@ def setup_proj_surfaces():
         mouth_dir_projsrf_patchesU = mouth_dir_projsrf_data['patchesU']
         mouth_dir_projsrf_pathcesV = mouth_dir_projsrf_data['patchesV']
 
-        mouth_crvproj_projsrf = controlProjSurface(name_prefix=mouth_crvproj_projsrf_data['name_prefix'],
-                                                   name=mouth_dir_projsrf_data['name'],
-                                                   degree=mouth_dir_projsrf_degree,
-                                                   patchesU=mouth_dir_projsrf_patchesU,
-                                                   patchesV=mouth_dir_projsrf_pathcesV,
-                                                   translation=mouth_dir_projsrf_data['xform']['translation'],
-                                                   rotation=mouth_dir_projsrf_data['xform']['rotation'],
-                                                   scale=mouth_dir_projsrf_data['xform']['scale'],
-                                                   cv_list=mouth_dir_projsrf_data['control_vtx'],
-                                                   locator_data=mouth_dir_projsrf_data['locators'],
-                                                   locator_scale=mouth_crvproj_projsrf_data['locator_scale'],
-                                                   bind_joint_data=mouth_crvproj_projsrf_data['bind_joint'],
-                                                   bind_joint_color=BIND_JOINT_COLOR_INDEX)
+        mouth_crvproj_projsrf = controlProjSurface(name_prefix = mouth_crvproj_projsrf_data['name_prefix'],
+                                                   name = mouth_dir_projsrf_data['name'],
+                                                   degree = mouth_dir_projsrf_degree,
+                                                   patchesU = mouth_dir_projsrf_patchesU,
+                                                   patchesV = mouth_dir_projsrf_pathcesV,
+                                                   translation = mouth_dir_projsrf_data['xform']['translation'],
+                                                   rotation = mouth_dir_projsrf_data['xform']['rotation'],
+                                                   scale = mouth_dir_projsrf_data['xform']['scale'],
+                                                   cv_list = mouth_dir_projsrf_data['control_vtx'],
+                                                   locator_data = mouth_dir_projsrf_data['locators'],
+                                                   locator_scale = mouth_crvproj_projsrf_data['locator_scale'],
+                                                   bind_joint_data = mouth_crvproj_projsrf_data['bind_joint'],
+                                                   bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
         loc_row_id_list = mouth_crvproj_projsrf.get_locator_row_ids()
 
@@ -485,6 +498,44 @@ def setup_proj_surfaces():
                                 hierarchy.mouth_projsrf_loc_MD_A_grp.get_group_name())
 
         cmds.parent(mouth_crvproj_projsrf.get_name(), hierarchy.mouth_projsrf_M_grp.get_group_name())
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Nasolabial Facial Zone - Translation Planes
+    nasolabial_projcrv_transplane_data = control_proj_surface_data['nasolabial_translation_plane']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        nasolabial_dir_transplane_data = nasolabial_projcrv_transplane_data[zone_dir]
+        nasolabial_dir_transplane_degree = nasolabial_dir_transplane_data['degree']
+        nasolabial_dir_transplane_patchesU = nasolabial_dir_transplane_data['patchesU']
+        nasolabial_dir_transplane_patchesV = nasolabial_dir_transplane_data['patchesV']
+
+        mirror = [1, 1, 1]
+        if controlZoneDirEnum.right in zone_dir:
+            mirror = [-1, 1, 1]
+
+        nasolabial_crvproj_transplane = controlTransPlane(name_prefix = nasolabial_projcrv_transplane_data['name_prefix'],
+                                                          name = nasolabial_dir_transplane_data['name'],
+                                                          degree = nasolabial_dir_transplane_degree,
+                                                          patchesU = nasolabial_dir_transplane_patchesU,
+                                                          patchesV = nasolabial_dir_transplane_patchesV,
+                                                          translation = nasolabial_dir_transplane_data['xform']['translation'],
+                                                          rotation = nasolabial_dir_transplane_data['xform']['rotation'],
+                                                          scale = nasolabial_dir_transplane_data['xform']['scale'],
+                                                          mirror = mirror,
+                                                          cv_list = nasolabial_dir_transplane_data['control_vtx'])
+
+        if controlZoneDirEnum.right in zone_dir:
+            g_crv_projsrf_dict['nasolabial_transplane_RUD'] = nasolabial_crvproj_transplane
+            cmds.parent(nasolabial_crvproj_transplane.get_name(),
+                        hierarchy.nasolabial_ctrlzone_R_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir:
+            g_crv_projsrf_dict['nasolabial_transplane_LUD'] = nasolabial_crvproj_transplane
+            cmds.parent(nasolabial_crvproj_transplane.get_name(),
+                        hierarchy.nasolabial_ctrlzone_L_grp.get_group_name())
+
+    # Nasolabial Facial Zone - Projection Surfaces
+
 
     f_control_proj_surface_data.close()
 
@@ -608,6 +659,9 @@ def setup_group_hierarchy():
 
     mouth_grp = hierarchy.mouth_grp
     mouth_grp.setup_group_hierarchy()
+
+    nasolabial_grp = hierarchy.nasolabial_grp
+    nasolabial_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
 # lc3chr_facialsys_construct()
