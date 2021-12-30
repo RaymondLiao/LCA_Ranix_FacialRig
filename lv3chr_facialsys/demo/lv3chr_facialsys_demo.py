@@ -70,7 +70,12 @@ g_crv_projsrf_dict = {
     'nasolabial_transplane_RUD' : None,
     'nasolabial_transplane_LUD' : None,
     'nasolabial_projsrf_RUD' : None,
-    'nasolabial_projsrf_LUD' : None
+    'nasolabial_projsrf_LUD' : None,
+
+    'cheek_transplane_RUD' : None,
+    'cheek_transplane_LUD' : None,
+    'cheek_projsrf_RUD' : None,
+    'cheek_projsrf_LUD' : None
 }
 
 # g_lv3chr_facialsys_demo_run = False
@@ -563,7 +568,7 @@ def setup_proj_surfaces():
                                                         translation = nasolabial_dir_projsrf_data['xform']['translation'],
                                                         rotation = nasolabial_dir_projsrf_data['xform']['rotation'],
                                                         scale = nasolabial_dir_projsrf_data['xform']['scale'],
-                                                        mirror=mirror,
+                                                        mirror = mirror,
                                                         cv_list = nasolabial_dir_projsrf_data['control_vtx'],
                                                         locator_data = nasolabial_dir_projsrf_data['locators'],
                                                         locator_scale = nasolabial_crvproj_projsrf_data['locator_scale'],
@@ -578,6 +583,80 @@ def setup_proj_surfaces():
             g_crv_projsrf_dict['nasolabial_projsrf_LUD'] = nasolabial_crvproj_projsrf
             cmds.parent(nasolabial_crvproj_projsrf.get_name(),
                         hierarchy.nasolabial_projsrf_L_grp.get_group_name())
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Cheek Facial Zone - Translation Planes
+    cheek_crvproj_transplane_data = control_proj_surface_data['cheek_translation_plane']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        cheek_dir_transplane_data = cheek_crvproj_transplane_data[zone_dir]
+        cheek_dir_transplane_degree = cheek_dir_transplane_data['degree']
+        cheek_dir_transplane_patchesU = cheek_dir_transplane_data['patchesU']
+        cheek_dir_transplane_patchesV = cheek_dir_transplane_data['patchesV']
+
+        mirror = [1, 1, 1]
+        if controlZoneDirEnum.right in zone_dir:
+            mirror = [-1, 1, 1]
+
+        cheek_crvproj_transplane = controlTransPlane(name_prefix=cheek_crvproj_transplane_data['name_prefix'],
+                                                     name=cheek_dir_transplane_data['name'],
+                                                     degree=cheek_dir_transplane_degree,
+                                                     patchesU=cheek_dir_transplane_patchesU,
+                                                     patchesV=cheek_dir_transplane_patchesV,
+                                                     translation=cheek_dir_transplane_data['xform']['translation'],
+                                                     rotation=cheek_dir_transplane_data['xform']['rotation'],
+                                                     scale=cheek_dir_transplane_data['xform']['scale'],
+                                                     mirror=mirror,
+                                                     cv_list=cheek_dir_transplane_data['control_vtx'])
+
+        if controlZoneDirEnum.right in zone_dir:
+            g_crv_projsrf_dict['cheek_transplane_RUD'] = cheek_crvproj_transplane
+            cmds.parent(cheek_crvproj_transplane.get_name(),
+                        hierarchy.cheek_ctrlzone_R_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir:
+            g_crv_projsrf_dict['cheek_transplane_LUD'] = cheek_crvproj_transplane
+            cmds.parent(cheek_crvproj_transplane.get_name(),
+                        hierarchy.cheek_ctrlzone_L_grp.get_group_name())
+
+    # Cheek Facial Zone - Projection Surfaces
+    cheek_crvproj_projsrf_data = control_proj_surface_data['cheek_projection_surface']
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        cheek_dir_projsrf_data = cheek_crvproj_projsrf_data[zone_dir]
+        cheek_dir_projsrf_degree = cheek_dir_projsrf_data['degree']
+        cheek_dir_projsrf_patchesU = cheek_dir_projsrf_data['patchesU']
+        cheek_dir_projsrf_patchesV = cheek_dir_projsrf_data['patchesV']
+
+        mirror = [1, 1, 1]
+        if controlZoneDirEnum.right in zone_dir:
+            mirror = [-1, 1, 1]
+
+        cheek_crvproj_projsrf = controlProjSurface(name_prefix = cheek_crvproj_projsrf_data['name_prefix'],
+                                                   name = cheek_dir_projsrf_data['name'],
+                                                   degree = cheek_dir_projsrf_degree,
+                                                   patchesU = cheek_dir_projsrf_patchesU,
+                                                   patchesV = cheek_dir_projsrf_patchesV,
+                                                   translation = cheek_dir_projsrf_data['xform']['translation'],
+                                                   rotation = cheek_dir_projsrf_data['xform']['rotation'],
+                                                   scale = cheek_dir_projsrf_data['xform']['scale'],
+                                                   mirror = mirror,
+                                                   cv_list = cheek_dir_projsrf_data['control_vtx'],
+                                                   locator_data = cheek_dir_projsrf_data['locators'],
+                                                   locator_scale = cheek_crvproj_projsrf_data['locator_scale'],
+                                                   bind_joint_data = cheek_crvproj_projsrf_data['bind_joint'],
+                                                   bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
+        if controlZoneDirEnum.right in zone_dir:
+            g_crv_projsrf_dict['cheek_projsrf_RUD'] = cheek_crvproj_projsrf
+            cmds.parent(cheek_crvproj_projsrf.get_name(),
+                        hierarchy.cheek_projsrf_R_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir:
+            g_crv_projsrf_dict['cheek_projsrf_LUD'] = cheek_crvproj_projsrf
+            cmds.parent(cheek_crvproj_projsrf.get_name(),
+                        hierarchy.cheek_projsrf_L_grp.get_group_name())
+
 
     f_control_proj_surface_data.close()
 
@@ -704,6 +783,9 @@ def setup_group_hierarchy():
 
     nasolabial_grp = hierarchy.nasolabial_grp
     nasolabial_grp.setup_group_hierarchy()
+
+    cheek_grp = hierarchy.cheek_grp
+    cheek_grp.setup_group_hierarchy()
 
 # Entry point ==========================================================================================================
 # lc3chr_facialsys_construct()

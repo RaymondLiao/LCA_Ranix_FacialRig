@@ -126,7 +126,16 @@ CONTROL_ZONE_DIRECTION_DICT = {
                                     }
                                 ],
     controlZoneEnum.cheek: [
-
+                                {
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.right,
+                                    dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                                    dirDictKeyEnum.FB: ''
+                                },
+                                {
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left,
+                                    dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                                    dirDictKeyEnum.FB: ''
+                                }
                            ]
 }
 
