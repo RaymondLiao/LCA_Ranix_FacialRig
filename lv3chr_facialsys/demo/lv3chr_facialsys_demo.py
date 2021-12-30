@@ -109,7 +109,9 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['eyebrow_transplane_LRUD'].get_name(),
                                  g_crv_projsrf_dict['eyebrow_transplane_LRF'].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRU'].get_name(),
-                                 g_crv_projsrf_dict['mouth_transplane_LRD'].get_name())
+                                 g_crv_projsrf_dict['mouth_transplane_LRD'].get_name(),
+                                 g_crv_projsrf_dict['nasolabial_transplane_RUD'].get_name(),
+                                 g_crv_projsrf_dict['nasolabial_transplane_LUD'].get_name())
     cmds.editDisplayLayerMembers(g_displayer_projsrf,
                                  g_crv_projsrf_dict['eyelid_projsrf_RU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_projsrf_RD'].get_name(),
@@ -118,7 +120,12 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['eyebrow_projsrf_LRUD'].get_name(),
                                  g_crv_projsrf_dict['eyebrow_projsrf_LRF'].get_name(),
                                  g_crv_projsrf_dict['mouth_projsrf_LRU'].get_name(),
-                                 g_crv_projsrf_dict['mouth_projsrf_LRD'].get_name())
+                                 g_crv_projsrf_dict['mouth_projsrf_LRD'].get_name(),
+                                 g_crv_projsrf_dict['nasolabial_projsrf_RUD'].get_name(),
+                                 g_crv_projsrf_dict['nasolabial_projsrf_LUD'].get_name())
+
+    cmds.setAttr(g_displayer_transplane + '.displayType', 1)    # 1 means Template
+    cmds.setAttr(g_displayer_projsrf + '.displayType', 2)       # 2 means Reference
 
     # Toggle on the "Wireframe on Shaded" for the current model panel.
     visible_panel_list = cmds.getPanel(visiblePanels=True)
@@ -501,11 +508,11 @@ def setup_proj_surfaces():
 
     # ------------------------------------------------------------------------------------------------------------------
     # Nasolabial Facial Zone - Translation Planes
-    nasolabial_projcrv_transplane_data = control_proj_surface_data['nasolabial_translation_plane']
+    nasolabial_crvproj_transplane_data = control_proj_surface_data['nasolabial_translation_plane']
 
     for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
-        nasolabial_dir_transplane_data = nasolabial_projcrv_transplane_data[zone_dir]
+        nasolabial_dir_transplane_data = nasolabial_crvproj_transplane_data[zone_dir]
         nasolabial_dir_transplane_degree = nasolabial_dir_transplane_data['degree']
         nasolabial_dir_transplane_patchesU = nasolabial_dir_transplane_data['patchesU']
         nasolabial_dir_transplane_patchesV = nasolabial_dir_transplane_data['patchesV']
@@ -514,7 +521,7 @@ def setup_proj_surfaces():
         if controlZoneDirEnum.right in zone_dir:
             mirror = [-1, 1, 1]
 
-        nasolabial_crvproj_transplane = controlTransPlane(name_prefix = nasolabial_projcrv_transplane_data['name_prefix'],
+        nasolabial_crvproj_transplane = controlTransPlane(name_prefix = nasolabial_crvproj_transplane_data['name_prefix'],
                                                           name = nasolabial_dir_transplane_data['name'],
                                                           degree = nasolabial_dir_transplane_degree,
                                                           patchesU = nasolabial_dir_transplane_patchesU,
@@ -535,7 +542,42 @@ def setup_proj_surfaces():
                         hierarchy.nasolabial_ctrlzone_L_grp.get_group_name())
 
     # Nasolabial Facial Zone - Projection Surfaces
+    nasolabial_crvproj_projsrf_data = control_proj_surface_data['nasolabial_projection_surface']
 
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+        nasolabial_dir_projsrf_data = nasolabial_crvproj_projsrf_data[zone_dir]
+        nasolabial_dir_projsrf_degree = nasolabial_dir_projsrf_data['degree']
+        nasolabial_dir_projsrf_patchesU = nasolabial_dir_projsrf_data['patchesU']
+        nasolabial_dir_projsrf_patchesV = nasolabial_dir_projsrf_data['patchesV']
+
+        mirror = [1, 1, 1]
+        if controlZoneDirEnum.right in zone_dir:
+            mirror = [-1, 1, 1]
+
+        nasolabial_crvproj_projsrf = controlProjSurface(name_prefix = nasolabial_crvproj_projsrf_data['name_prefix'],
+                                                        name = nasolabial_dir_projsrf_data['name'],
+                                                        degree = nasolabial_dir_projsrf_degree,
+                                                        patchesU = nasolabial_dir_projsrf_patchesU,
+                                                        patchesV = nasolabial_dir_projsrf_patchesV,
+                                                        translation = nasolabial_dir_projsrf_data['xform']['translation'],
+                                                        rotation = nasolabial_dir_projsrf_data['xform']['rotation'],
+                                                        scale = nasolabial_dir_projsrf_data['xform']['scale'],
+                                                        mirror=mirror,
+                                                        cv_list = nasolabial_dir_projsrf_data['control_vtx'],
+                                                        locator_data = nasolabial_dir_projsrf_data['locators'],
+                                                        locator_scale = nasolabial_crvproj_projsrf_data['locator_scale'],
+                                                        bind_joint_data = nasolabial_crvproj_projsrf_data['bind_joint'],
+                                                        bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
+        if controlZoneDirEnum.right in zone_dir:
+            g_crv_projsrf_dict['nasolabial_projsrf_RUD'] = nasolabial_crvproj_projsrf
+            cmds.parent(nasolabial_crvproj_projsrf.get_name(),
+                        hierarchy.nasolabial_projsrf_R_grp.get_group_name())
+        elif controlZoneDirEnum.left in zone_dir:
+            g_crv_projsrf_dict['nasolabial_projsrf_LUD'] = nasolabial_crvproj_projsrf
+            cmds.parent(nasolabial_crvproj_projsrf.get_name(),
+                        hierarchy.nasolabial_projsrf_L_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 
