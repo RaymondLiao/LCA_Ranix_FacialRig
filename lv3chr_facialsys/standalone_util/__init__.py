@@ -1,1 +1,1 @@
-import connect_locators; reload(connect_locators)
+import locator; reload(locator)

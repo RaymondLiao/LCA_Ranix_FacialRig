@@ -117,9 +117,13 @@ class controlProjSurface(object):
         :return: a tuple of the format (locator's name, bind joint's name, pointOnSurfaceInfo node's name)
         """
         if row_id not in self._locator_dict.keys():
+            cmds.warning('projection surface name: {}'.format(self._nurbs_srf))
+            cmds.warning('row_id: {}\tcol_id: {}'.format(row_id, col_id))
             cmds.warning('[controlProjSurface] Try to access the locator of the row whose row_id does not exist.')
             return None
         if col_id not in self._locator_dict[row_id].keys():
+            cmds.warning('projection surface name: {}'.format(self._nurbs_srf))
+            cmds.warning('row_id: {}\tcol_id: {}'.format(row_id, col_id))
             cmds.warning('[controlProjSurface] Try to access the locator of the column whose col_id does not exist.')
             return None
 

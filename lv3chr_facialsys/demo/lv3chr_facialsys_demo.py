@@ -116,7 +116,10 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['mouth_transplane_LRU'].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRD'].get_name(),
                                  g_crv_projsrf_dict['nasolabial_transplane_RUD'].get_name(),
-                                 g_crv_projsrf_dict['nasolabial_transplane_LUD'].get_name())
+                                 g_crv_projsrf_dict['nasolabial_transplane_LUD'].get_name(),
+                                 g_crv_projsrf_dict['cheek_transplane_RUD'].get_name(),
+                                 g_crv_projsrf_dict['cheek_transplane_LUD'].get_name()
+                                 )
     cmds.editDisplayLayerMembers(g_displayer_projsrf,
                                  g_crv_projsrf_dict['eyelid_projsrf_RU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_projsrf_RD'].get_name(),
@@ -127,7 +130,9 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['mouth_projsrf_LRU'].get_name(),
                                  g_crv_projsrf_dict['mouth_projsrf_LRD'].get_name(),
                                  g_crv_projsrf_dict['nasolabial_projsrf_RUD'].get_name(),
-                                 g_crv_projsrf_dict['nasolabial_projsrf_LUD'].get_name())
+                                 g_crv_projsrf_dict['nasolabial_projsrf_LUD'].get_name(),
+                                 g_crv_projsrf_dict['cheek_projsrf_RUD'].get_name(),
+                                 g_crv_projsrf_dict['cheek_projsrf_LUD'].get_name())
 
     cmds.setAttr(g_displayer_transplane + '.displayType', 1)    # 1 means Template
     cmds.setAttr(g_displayer_projsrf + '.displayType', 2)       # 2 means Reference

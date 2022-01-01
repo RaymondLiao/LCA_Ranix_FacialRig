@@ -164,9 +164,12 @@ class mouthControlZone(controlZone):
                                         bind_joint_data=controller_data['bind_joint'],
                                         bind_joint_color=BIND_JOINT_COLOR_INDEX)
 
-            cmds.parent(rig_controller.get_offset_group(),
-                        hierarchy.eyebrow_ctrl_M_grp.get_group_name(),
-                        relative=True)
+            if controlZoneDirEnum.up in direction:
+                cmds.parent(rig_controller.get_offset_group(),
+                            hierarchy.mouth_ctrl_MU_grp.get_group_name())
+            elif controlZoneDirEnum.down in direction:
+                cmds.parent(rig_controller.get_offset_group(),
+                            hierarchy.mouth_ctrl_MD_grp.get_group_name())
 
             self._controller_dict[ctrl_dir] = rig_controller
 

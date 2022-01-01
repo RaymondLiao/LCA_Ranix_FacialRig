@@ -2273,52 +2273,62 @@
         {
           "id": "A_2",
           "name": "M_FB_A2_loc",
-          "pt_on_srf_param_UV": [0.9, 0.0]
+          "pt_on_srf_param_UV": [0.917, 0.0]
         },
         {
           "id": "A_3",
           "name": "M_FB_A3_loc",
-          "pt_on_srf_param_UV": [0.8, 0.0]
+          "pt_on_srf_param_UV": [0.833, 0.0]
         },
         {
           "id": "A_4",
           "name": "M_FB_A4_loc",
-          "pt_on_srf_param_UV": [0.7, 0.0]
+          "pt_on_srf_param_UV": [0.750, 0.0]
         },
         {
           "id": "A_5",
           "name": "M_FB_A5_loc",
-          "pt_on_srf_param_UV": [0.6, 0.0]
+          "pt_on_srf_param_UV": [0.667, 0.0]
         },
         {
           "id": "A_6",
           "name": "M_FB_A6_loc",
-          "pt_on_srf_param_UV": [0.5, 0.0]
+          "pt_on_srf_param_UV": [0.583, 0.0]
         },
         {
           "id": "A_7",
           "name": "M_FB_A7_loc",
-          "pt_on_srf_param_UV": [0.4, 0.0]
+          "pt_on_srf_param_UV": [0.500, 0.0]
         },
         {
           "id": "A_8",
           "name": "M_FB_A8_loc",
-          "pt_on_srf_param_UV": [0.3, 0.0]
+          "pt_on_srf_param_UV": [0.417, 0.0]
         },
         {
           "id": "A_9",
           "name": "M_FB_A9_loc",
-          "pt_on_srf_param_UV": [0.2, 0.0]
+          "pt_on_srf_param_UV": [0.333, 0.0]
         },
         {
           "id": "A_10",
           "name": "M_FB_A10_loc",
-          "pt_on_srf_param_UV": [0.1, 0.0]
+          "pt_on_srf_param_UV": [0.250, 0.0]
         },
         {
           "id": "A_11",
           "name": "M_FB_A11_loc",
-          "pt_on_srf_param_UV": [0.0, 0.0]
+          "pt_on_srf_param_UV": [0.167, 0.0]
+        },
+        {
+          "id": "A_12",
+          "name": "M_FB_A12_loc",
+          "pt_on_srf_param_UV": [0.083, 0.0]
+        },
+        {
+          "id": "A_13",
+          "name": "M_FB_A13_loc",
+          "pt_on_srf_param_UV": [0.000, 0.0]
         }
       ]
     }

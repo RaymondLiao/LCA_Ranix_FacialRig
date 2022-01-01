@@ -169,7 +169,8 @@ class eyebrowControlZone(controlZone):
         for ctrl_crv_id in ctrl_crv_id_list:
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
 
-            for loc_id in ctrl_crv.get_locator_ids():
+            loc_id_list = ctrl_crv.get_locator_ids()
+            for loc_id in loc_id_list:
                 ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
 
                 # Establish the projecting relationships in the up-down/UD directions.
@@ -195,6 +196,8 @@ class eyebrowControlZone(controlZone):
                     # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
                     if loc_id <= 2:
                         continue
+                    if loc_id > len(loc_id_list)-2:
+                        break
                     F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
                     if None == F_projsrf_loc_info:
                         continue

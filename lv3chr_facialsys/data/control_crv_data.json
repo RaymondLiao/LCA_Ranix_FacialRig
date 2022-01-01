@@ -2733,7 +2733,7 @@
     "original_up": {
       "name": "curve_orig",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2753,7 +2753,7 @@
     "original_dn": {
       "name": "curve_orig",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2773,7 +2773,7 @@
     "right_side_up": {
       "name": "RSide_ctrl_U_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -0.625, 0.0],
@@ -2793,7 +2793,7 @@
     "middle_side_up": {
       "name": "MSide_ctrl_U_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2813,7 +2813,7 @@
     "left_side_up": {
       "name": "LSide_ctrl_U_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2833,7 +2833,7 @@
     "right_side_left": {
       "name": "RSide_ctrl_L_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [0.192, -1.825, 0.0],
@@ -2853,7 +2853,7 @@
     "middle_side_left": {
       "name": "MSide_ctrl_L_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2873,7 +2873,7 @@
     "left_side_left": {
       "name": "LSide_ctrl_L_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2893,7 +2893,7 @@
     "right_side_front": {
       "name": "RSide_ctrl_F_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 1.2],
@@ -2913,7 +2913,7 @@
     "middle_side_front": {
       "name": "MSide_ctrl_F_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
@@ -2933,7 +2933,7 @@
     "left_side_front": {
       "name": "LSide_ctrl_F_curve_bs",
       "xform": {
-        "translation": [6.543, 9.983, 0.0]
+        "translation": [6.543, 9.983, 0.01]
       },
       "points": [
         [-0.826, -1.825, 0.0],
