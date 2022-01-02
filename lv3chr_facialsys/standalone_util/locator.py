@@ -1,6 +1,16 @@
+#
+# Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
+#
+# File Name: locator.py
+# Author: Sheng (Raymond) Liao
+# Date: January 2022
+#
+
 """
 A module to connect the locators on the control curve to the locators on the projection surface
 """
+
+import string
 
 import maya.cmds as cmds
 import maya.api.OpenMaya as OpenMaya2
@@ -13,7 +23,7 @@ def get_type_and_id(sel_list, single_indexed=True):
     '''
 
     compo_dag_path, component = sel_list.getComponent(0)
-    compo_fn_type = component.apiType()
+    compo_fn_type_id = component.apiType()
     id_compo_fn = None
     if single_indexed:
         id_compo_fn = OpenMaya2.MFnSingleIndexedComponent(component)
@@ -21,31 +31,33 @@ def get_type_and_id(sel_list, single_indexed=True):
         id_compo_fn = OpenMaya2.MFnDoubleIndexedComponent(component)
     compo_id_list = id_compo_fn.getElements()
 
-    return compo_fn_type, compo_id_list
+    return compo_fn_type_id, compo_id_list
 
-def create_locator(name_prefix, id, local_scale, MDagMod):
+def create_locator(name_prefix, id, local_scale, color_id, modifier):
     '''
     :param name_prefix: the prefix of the locator, e.g. fm_eyelidMask_LU
     :param id: the identifier of the locator, e.g. A1
-    :param MDagMod: instance of the MDagModifier class
+    :param modifier: instance of the MDagModifier class
     :return: a MObjectHandle to the locator created
     '''
 
     assert isinstance(local_scale, list)
     assert len(local_scale) == 3
 
-    loc_obj = MDagMod.createNode('locator')
+    loc_obj = modifier.createNode('locator')
     loc_handle = OpenMaya2.MObjectHandle(loc_obj)
-    loc_name = '{}_()_loc'.format(name_prefix, id)
-    MDagMod.renameNode(loc_obj, loc_name)
-    MDagMod.doIt()
+    loc_name = '{}_{}_loc'.format(name_prefix, id)
+    modifier.renameNode(loc_obj, loc_name)
+    modifier.doIt()
 
     dag_path = OpenMaya2.MDagPath()
-    loc_dag_path = MDagMod.getAPathTo(loc_obj)
+    loc_dag_path = dag_path.getAPathTo(loc_obj)
     loc_shape_dag_path = loc_dag_path.extendToShape()
     loc_shape_obj = loc_shape_dag_path.node()
-    loc_shape_fn = OpenMaya2.MFnDependencyNode(loc_shape_obj)
+    modifier.renameNode(loc_shape_obj, loc_name+'Shape')
+    modifier.doIt()
 
+    loc_shape_fn = OpenMaya2.MFnDependencyNode(loc_shape_obj)
     loc_shape_local_sclx = loc_shape_fn.findPlug('localScaleX', False)
     loc_shape_local_scly = loc_shape_fn.findPlug('localScaleY', False)
     loc_shape_local_sclz = loc_shape_fn.findPlug('localScaleZ', False)
@@ -53,27 +65,130 @@ def create_locator(name_prefix, id, local_scale, MDagMod):
     loc_shape_local_scly.setFloat(local_scale[1])
     loc_shape_local_sclz.setFloat(local_scale[2])
 
+    cmds.setAttr(loc_name+'Shape.overrideEnabled', True)
+    cmds.setAttr(loc_name+'Shape.overrideColor', color_id)
+
     return loc_handle
 
-def create_locator_at_vertex(sel_list, compo_fn_type, vtx_id_list, MDagMod):
+def create_locator_at_vertex(sel_list, compo_fn_type_id, vtx_id_list, loc_scale, modifier):
     '''
     Create locators each on a selected mesh's vertex or a NURBS object's control vertex
     :param sel_list: an instance of the MSelectionList class
     :param compo_fn_type: the selected components' MFn function set type
     :param vtx_id_list: the indices of the selected CVs
-    :param MDagMod: an instance of the MDagModifier class
+    :param modifier: an instance of the MDagModifier class
     :return: None
     '''
 
-    return NotImplemented
+    vtx_pos = [0, 0, 0]
+    loc_id = ''
 
-    if OpenMaya2.MFn.kMeshVertComponent == compo_fn_type:
-        for vtx_id in vtx_id_list:
+    loc_trans = [0, 0, 0]
+    loc_handle = None
+
+    for vtx_id in vtx_id_list:
+
+        if OpenMaya2.MFn.kMeshVertComponent == compo_fn_type_id:
             # Get vertex's position
-            nbs_dag_path = sel_list.getDagPath(0)
-            nbs_fn = OpenMaya2.MFnNurbsSurface(nbs_dag_path)
+            mesh_dag_path = sel_list.getDagPath(0)
+            mesh_fn = OpenMaya2.MFnMesh(mesh_dag_path)
+            vtx_pt = mesh_fn.getPoint(vtx_id, OpenMaya2.MSpace.kObject)
 
+            vtx_pos = vtx_pt
+            loc_id = str(vtx_id + 1)
 
+        elif OpenMaya2.MFn.kSurfaceCVComponent == compo_fn_type_id:
+            # Get control vertex's position
+            nbs_srf_dag_path = sel_list.getDagPath(0)
+            nbs_srf_fn = OpenMaya2.MFnNurbsSurface(nbs_srf_dag_path)
+            cv_pos = nbs_srf_fn.cvPosition(vtx_id[0], vtx_id[1], OpenMaya2.MSpace.kObject)
+
+            # Compose the locator's ID
+            loc_id_row_list = list(string.ascii_uppercase)
+            loc_id_row = loc_id_row_list[vtx_id[0]]
+            loc_id_col = str(vtx_id[1] + 1)
+
+            vtx_pos = cv_pos
+            loc_id = loc_id_row + loc_id_col
+
+        elif OpenMaya2.MFn.kCurveCVComponent == compo_fn_type_id:
+            # Get control vertex's position
+            nbs_crv_dag_path = sel_list.getDagPath(0)
+            nbs_crv_fn = OpenMaya2.MFnNurbsCurve(nbs_crv_dag_path)
+            cv_pos = nbs_crv_fn.cvPosition(vtx_id, OpenMaya2.MSpace.kObject)
+
+            vtx_pos = cv_pos
+            loc_id = str(vtx_id + 1)
+
+        geo_node = sel_list.getDependNode(0)
+        geo_node_fn = OpenMaya2.MFnDependencyNode(geo_node)
+
+        geo_wmat_plug_arr = geo_node_fn.findPlug('worldMatrix', False)
+        geo_wmat_plug = geo_wmat_plug_arr.elementByLogicalIndex(0)
+        geo_wmat_obj = geo_wmat_plug.asMObject()
+
+        geo_wmat_data_fn = OpenMaya2.MFnMatrixData(geo_wmat_obj)
+        geo_wmat = geo_wmat_data_fn.matrix()
+
+        # Construct the transformation matrix for the locator
+        loc_mat_data = [
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            vtx_pos.x, vtx_pos.y, vtx_pos.z, vtx_pos.w
+        ]
+
+        loc_mat = OpenMaya2.MMatrix(loc_mat_data) * geo_wmat
+        loc_trans_mat = OpenMaya2.MTransformationMatrix(loc_mat)
+        loc_trans = loc_trans_mat.translation(OpenMaya2.MSpace.kWorld)
+
+        loc_handle = create_locator('fm_mask', loc_id, loc_scale, 1, modifier)
+
+        if loc_handle.isValid():
+            loc_node = loc_handle.object()
+            loc_node_fn = OpenMaya2.MFnDependencyNode(loc_node)
+
+            loc_transx_plug = loc_node_fn.findPlug('translateX', False)
+            loc_transy_plug = loc_node_fn.findPlug('translateY', False)
+            loc_transz_plug = loc_node_fn.findPlug('translateZ', False)
+            loc_transx_plug.setFloat(loc_trans.x)
+            loc_transy_plug.setFloat(loc_trans.y)
+            loc_transz_plug.setFloat(loc_trans.z)
+
+# Test codes for creating locators at mesh's vertices
+sel_list = OpenMaya2.MGlobal.getActiveSelectionList()
+compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=True)
+modifier = OpenMaya2.MDagModifier()
+
+if compo_fn_type_id == OpenMaya2.MFn.kMeshVertComponent:
+    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    print("Done! Vertex locator/s created and placed!")
+else:
+    print("Please select a vertex")
+
+# Test codes for creating locators at NURBS surface's CVs
+sel_list = OpenMaya2.MGlobal.getActiveSelectionList()
+compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=False)
+modifier = OpenMaya2.MDagModifier()
+
+if compo_fn_type_id == OpenMaya2.MFn.kSurfaceCVComponent:
+    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    print("Done! CV locator/s created and placed!")
+else:
+    print("Please select a control vertex")
+
+# Test codes for creating locators at NURBS curve's CVs
+sel_list = OpenMaya2.MGlobal.getActiveSelectionList()
+compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=True)
+modifier = OpenMaya2.MDagModifier()
+
+if compo_fn_type_id == OpenMaya2.MFn.kCurveCVComponent:
+    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    print("Done! CV locator/s created and placed!")
+else:
+    print("Please select a control vertex")
+
+# ----------------------------------------------------------------------------------------------------------------------
 def create_joint_at_locator():
     loc_grp = cmds.ls(sl=True)[0]
     loc_list = cmds.listRelatives(loc_grp, children=True, fullPath=True)
