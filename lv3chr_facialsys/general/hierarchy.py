@@ -316,44 +316,65 @@ mouth_grp = groupTree('mouth_grp',
                           mouth_projsrf_M_grp
                       ])
 
-# Nasolabial Rig Group Hierarchy =======================================================================================
-nasolabial_ctrlzone_prefix = 'fm_nasolabialProject'
-nasolabial_projsrf_prefix = 'fm_nasolabialMask'
+# # Nasolabial Rig Group Hierarchy =======================================================================================
+# nasolabial_ctrlzone_prefix = 'fm_nasolabialProject'
+# nasolabial_projsrf_prefix = 'fm_nasolabialMask'
+#
+# # translation plane ----------------------------------------------------------------------------------------------------
+# nasolabial_ctrlzone_R_grp = groupTree(nasolabial_ctrlzone_prefix + '_R_grp')
+# nasolabial_ctrlzone_L_grp = groupTree(nasolabial_ctrlzone_prefix + '_L_grp')
+#
+# # projection surface ---------------------------------------------------------------------------------------------------
+# nasolabial_projsrf_R_grp = groupTree(nasolabial_projsrf_prefix + '_R_grp')
+# nasolabial_projsrf_L_grp = groupTree(nasolabial_projsrf_prefix + '_L_grp')
+#
+# # nasolabial zone sub-master group -------------------------------------------------------------------------------------
+# nasolabial_grp = groupTree('nasolabial_grp',
+#                            [
+#                                nasolabial_ctrlzone_R_grp,
+#                                nasolabial_ctrlzone_L_grp,
+#                                nasolabial_projsrf_R_grp,
+#                                nasolabial_projsrf_L_grp
+#                            ])
+#
+# # Cheek Rig Group Hierarchy ============================================================================================
+# cheek_ctrlzone_prefix = 'fm_cheekProject'
+# cheek_projsrf_prefix = 'fm_cheekMask'
+#
+# # translation plane ----------------------------------------------------------------------------------------------------
+# cheek_ctrlzone_R_grp = groupTree(cheek_ctrlzone_prefix + '_R_grp')
+# cheek_ctrlzone_L_grp = groupTree(cheek_ctrlzone_prefix + '_L_grp')
+#
+# # projection surface ---------------------------------------------------------------------------------------------------
+# cheek_projsrf_R_grp = groupTree(cheek_projsrf_prefix + '_R_grp')
+# cheek_projsrf_L_grp = groupTree(cheek_projsrf_prefix + '_L_grp')
+#
+# # cheek zone sub-master group ------------------------------------------------------------------------------------------
+# cheek_grp = groupTree('cheek_grp',
+#                       [
+#                           cheek_ctrlzone_R_grp,
+#                           cheek_ctrlzone_L_grp,
+#                           cheek_projsrf_R_grp,
+#                           cheek_projsrf_L_grp
+#                       ])
+
+# Nasolabial-Cheek Group Hierarchy =====================================================================================
+nasocheek_ctrlzone_prefix = 'fm_nasoCheekProject'
+nasocheek_projsrf_prefix = 'fm_nasoCheekMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
-nasolabial_ctrlzone_R_grp = groupTree(nasolabial_ctrlzone_prefix + '_R_grp')
-nasolabial_ctrlzone_L_grp = groupTree(nasolabial_ctrlzone_prefix + '_L_grp')
+nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp')
+nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp')
 
 # projection surface ---------------------------------------------------------------------------------------------------
-nasolabial_projsrf_R_grp = groupTree(nasolabial_projsrf_prefix + '_R_grp')
-nasolabial_projsrf_L_grp = groupTree(nasolabial_projsrf_prefix + '_L_grp')
+nasocheek_projsrf_R_grp = groupTree(nasocheek_projsrf_prefix + '_R_grp')
+nasocheek_projsrf_L_grp = groupTree(nasocheek_projsrf_prefix + '_L_grp')
 
-# nasolabial zone sub-master group -------------------------------------------------------------------------------------
-nasolabial_grp = groupTree('nasolabial_grp',
-                           [
-                               nasolabial_ctrlzone_R_grp,
-                               nasolabial_ctrlzone_L_grp,
-                               nasolabial_projsrf_R_grp,
-                               nasolabial_projsrf_L_grp
-                           ])
-
-# Cheek Rig Group Hierarchy ============================================================================================
-cheek_ctrlzone_prefix = 'fm_cheekProject'
-cheek_projsrf_prefix = 'fm_cheekMask'
-
-# translation plane ----------------------------------------------------------------------------------------------------
-cheek_ctrlzone_R_grp = groupTree(cheek_ctrlzone_prefix + '_R_grp')
-cheek_ctrlzone_L_grp = groupTree(cheek_ctrlzone_prefix + '_L_grp')
-
-# projection surface ---------------------------------------------------------------------------------------------------
-cheek_projsrf_R_grp = groupTree(cheek_projsrf_prefix + '_R_grp')
-cheek_projsrf_L_grp = groupTree(cheek_projsrf_prefix + '_L_grp')
-
-# cheek zone sub-master group ------------------------------------------------------------------------------------------
-cheek_grp = groupTree('cheek_grp',
-                      [
-                          cheek_ctrlzone_R_grp,
-                          cheek_ctrlzone_L_grp,
-                          cheek_projsrf_R_grp,
-                          cheek_projsrf_L_grp
-                      ])
+# nasolabial-cheek zone sub-master group -------------------------------------------------------------------------------
+nasocheek_grp = groupTree('nasocheek_grp',
+                          [
+                              nasocheek_ctrlzone_R_grp,
+                              nasocheek_ctrlzone_L_grp,
+                              nasocheek_projsrf_R_grp,
+                              nasocheek_projsrf_L_grp
+                          ])

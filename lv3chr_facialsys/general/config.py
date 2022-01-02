@@ -21,8 +21,9 @@ class controlZoneEnum(object):
     eyelid = 'eyelid'
     eyebrow = 'eyebrow'
     mouth = 'mouth'
-    nasolabial = 'nasolabial'
-    cheek = 'cheek'
+    # nasolabial = 'nasolabial'
+    # cheek = 'cheek'
+    nasocheek = 'nasoCheek'
 
 # control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
 control_zone_list = util.get_enum_value_list(controlZoneEnum)
@@ -113,7 +114,31 @@ CONTROL_ZONE_DIRECTION_DICT = {
                                     dirDictKeyEnum.FB: ''
                                 }
                             ],
-    controlZoneEnum.nasolabial: [
+    # controlZoneEnum.nasolabial: [
+    #                                 {
+    #                                     dirDictKeyEnum.LR: controlZoneDirEnum.right,
+    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                     dirDictKeyEnum.FB: ''
+    #                                 },
+    #                                 {
+    #                                     dirDictKeyEnum.LR: controlZoneDirEnum.left,
+    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                     dirDictKeyEnum.FB: ''
+    #                                 }
+    #                             ],
+    # controlZoneEnum.cheek: [
+    #                             {
+    #                                 dirDictKeyEnum.LR: controlZoneDirEnum.right,
+    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                 dirDictKeyEnum.FB: ''
+    #                             },
+    #                             {
+    #                                 dirDictKeyEnum.LR: controlZoneDirEnum.left,
+    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                 dirDictKeyEnum.FB: ''
+    #                             }
+    #                        ]
+    controlZoneEnum.nasocheek: [
                                     {
                                         dirDictKeyEnum.LR: controlZoneDirEnum.right,
                                         dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
@@ -124,19 +149,7 @@ CONTROL_ZONE_DIRECTION_DICT = {
                                         dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
                                         dirDictKeyEnum.FB: ''
                                     }
-                                ],
-    controlZoneEnum.cheek: [
-                                {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.right,
-                                    dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
-                                    dirDictKeyEnum.FB: ''
-                                },
-                                {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.left,
-                                    dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
-                                    dirDictKeyEnum.FB: ''
-                                }
-                           ]
+                               ]
 }
 
 # facial control display settings --------------------------------------------------------------------------------------

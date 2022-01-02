@@ -7,7 +7,7 @@
 #
 
 """
-A module organizing the control elements of the cheek zone
+A module organizing the control elements of the nasolabial and the cheek zones
 """
 
 import warnings
@@ -28,7 +28,7 @@ from .. import controller; reload(controller)
 from ..controller import controller
 
 # ======================================================================================================================
-class cheekControlZone(controlZone):
+class nasoCheekControlZone(controlZone):
     """ Subclass of the controlZone, whose instances manage the control elements of the cheek zone
     """
 

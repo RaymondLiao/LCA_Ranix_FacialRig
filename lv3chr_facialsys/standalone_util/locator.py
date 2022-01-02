@@ -1,13 +1,13 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: locator.py
+# File Name: standalone_util.locator.py
 # Author: Sheng (Raymond) Liao
 # Date: January 2022
 #
 
 """
-A module to connect the locators on the control curve to the locators on the projection surface
+A module to generate and manipulate locators
 """
 
 import string
