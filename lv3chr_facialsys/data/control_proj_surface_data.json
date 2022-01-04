@@ -193,278 +193,224 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "RU_A1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.5]
+          "name": "RU_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "RU_A2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.5]
+          "name": "RU_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "RU_A3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.5]
+          "name": "RU_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "RU_A4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.5]
+          "name": "RU_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "RU_A5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.5]
+          "name": "RU_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "RU_A6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.5]
+          "name": "RU_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "RU_A7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.5]
+          "name": "RU_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "RU_A8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.5]
+          "name": "RU_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "RU_A9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.5]
+          "name": "RU_A9_loc"
         },
 
         {
           "id": "B_1",
-          "name": "RU_B1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.6]
+          "name": "RU_B1_loc"
         },
         {
           "id": "B_2",
-          "name": "RU_B2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.6]
+          "name": "RU_B2_loc"
         },
         {
           "id": "B_3",
-          "name": "RU_B3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.6]
+          "name": "RU_B3_loc"
         },
         {
           "id": "B_4",
-          "name": "RU_B4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.6]
+          "name": "RU_B4_loc"
         },
         {
           "id": "B_5",
-          "name": "RU_B5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.6]
+          "name": "RU_B5_loc"
         },
         {
           "id": "B_6",
-          "name": "RU_B6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.6]
+          "name": "RU_B6_loc"
         },
         {
           "id": "B_7",
-          "name": "RU_B7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.6]
+          "name": "RU_B7_loc"
         },
         {
           "id": "B_8",
-          "name": "RU_B8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.6]
+          "name": "RU_B8_loc"
         },
         {
           "id": "B_9",
-          "name": "RU_B9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.6]
+          "name": "RU_B9_loc"
         },
 
         {
           "id": "C_1",
-          "name": "RU_C1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.7]
+          "name": "RU_C1_loc"
         },
         {
           "id": "C_2",
-          "name": "RU_C2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.7]
+          "name": "RU_C2_loc"
         },
         {
           "id": "C_3",
-          "name": "RU_C3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.7]
+          "name": "RU_C3_loc"
         },
         {
           "id": "C_4",
-          "name": "RU_C4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.7]
+          "name": "RU_C4_loc"
         },
         {
           "id": "C_5",
-          "name": "RU_C5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.7]
+          "name": "RU_C5_loc"
         },
         {
           "id": "C_6",
-          "name": "RU_C6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.7]
+          "name": "RU_C6_loc"
         },
         {
           "id": "C_7",
-          "name": "RU_C7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.7]
+          "name": "RU_C7_loc"
         },
         {
           "id": "C_8",
-          "name": "RU_C8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.7]
+          "name": "RU_C8_loc"
         },
         {
           "id": "C_9",
-          "name": "RU_C9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.7]
+          "name": "RU_C9_loc"
         },
 
         {
           "id": "D_1",
-          "name": "RU_D1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.8]
+          "name": "RU_D1_loc"
         },
         {
           "id": "D_2",
-          "name": "RU_D2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.8]
+          "name": "RU_D2_loc"
         },
         {
           "id": "D_3",
-          "name": "RU_D3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.8]
+          "name": "RU_D3_loc"
         },
         {
           "id": "D_4",
-          "name": "RU_D4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.8]
+          "name": "RU_D4_loc"
         },
         {
           "id": "D_5",
-          "name": "RU_D5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.8]
+          "name": "RU_D5_loc"
         },
         {
           "id": "D_6",
-          "name": "RU_D6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.8]
+          "name": "RU_D6_loc"
         },
         {
           "id": "D_7",
-          "name": "RU_D7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.8]
+          "name": "RU_D7_loc"
         },
         {
           "id": "D_8",
-          "name": "RU_D8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.8]
+          "name": "RU_D8_loc"
         },
         {
           "id": "D_9",
-          "name": "RU_D9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.8]
+          "name": "RU_D9_loc"
         },
 
         {
           "id": "E_1",
-          "name": "RU_E1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.9]
+          "name": "RU_E1_loc"
         },
         {
           "id": "E_2",
-          "name": "RU_E2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.9]
+          "name": "RU_E2_loc"
         },
         {
           "id": "E_3",
-          "name": "RU_E3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.9]
+          "name": "RU_E3_loc"
         },
         {
           "id": "E_4",
-          "name": "RU_E4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.9]
+          "name": "RU_E4_loc"
         },
         {
           "id": "E_5",
-          "name": "RU_E5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.9]
+          "name": "RU_E5_loc"
         },
         {
           "id": "E_6",
-          "name": "RU_E6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.9]
+          "name": "RU_E6_loc"
         },
         {
           "id": "E_7",
-          "name": "RU_E7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.9]
+          "name": "RU_E7_loc"
         },
         {
           "id": "E_8",
-          "name": "RU_E8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.9]
+          "name": "RU_E8_loc"
         },
         {
           "id": "E_9",
-          "name": "RU_E9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.9]
+          "name": "RU_E9_loc"
         },
 
         {
           "id": "F_1",
-          "name": "RU_F1_loc",
-          "pt_on_srf_param_UV": [1.0, 1.0]
+          "name": "RU_F1_loc"
         },
         {
           "id": "F_2",
-          "name": "RU_F2_loc",
-          "pt_on_srf_param_UV": [0.875, 1.0]
+          "name": "RU_F2_loc"
         },
         {
           "id": "F_3",
-          "name": "RU_F3_loc",
-          "pt_on_srf_param_UV": [0.75, 1.0]
+          "name": "RU_F3_loc"
         },
         {
           "id": "F_4",
-          "name": "RU_F4_loc",
-          "pt_on_srf_param_UV": [0.625, 1.0]
+          "name": "RU_F4_loc"
         },
         {
           "id": "F_5",
-          "name": "RU_F5_loc",
-          "pt_on_srf_param_UV": [0.5, 1.0]
+          "name": "RU_F5_loc"
         },
         {
           "id": "F_6",
-          "name": "RU_F6_loc",
-          "pt_on_srf_param_UV": [0.375, 1.0]
+          "name": "RU_F6_loc"
         },
         {
           "id": "F_7",
-          "name": "RU_F7_loc",
-          "pt_on_srf_param_UV": [0.25, 1.0]
+          "name": "RU_F7_loc"
         },
         {
           "id": "F_8",
-          "name": "RU_F8_loc",
-          "pt_on_srf_param_UV": [0.125, 1.0]
+          "name": "RU_F8_loc"
         },
         {
           "id": "F_9",
-          "name": "RU_F9_loc",
-          "pt_on_srf_param_UV": [0.0, 1.0]
+          "name": "RU_F9_loc"
         }
       ]
     },
@@ -594,278 +540,224 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "RD_A1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.5]
+          "name": "RD_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "RD_A2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.5]
+          "name": "RD_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "RD_A3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.5]
+          "name": "RD_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "RD_A4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.5]
+          "name": "RD_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "RD_A5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.5]
+          "name": "RD_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "RD_A6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.5]
+          "name": "RD_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "RD_A7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.5]
+          "name": "RD_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "RD_A8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.5]
+          "name": "RD_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "RD_A9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.5]
+          "name": "RD_A9_loc"
         },
 
         {
           "id": "B_1",
-          "name": "RD_B1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.4]
+          "name": "RD_B1_loc"
         },
         {
           "id": "B_2",
-          "name": "RD_B2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.4]
+          "name": "RD_B2_loc"
         },
         {
           "id": "B_3",
-          "name": "RD_B3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.4]
+          "name": "RD_B3_loc"
         },
         {
           "id": "B_4",
-          "name": "RD_B4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.4]
+          "name": "RD_B4_loc"
         },
         {
           "id": "B_5",
-          "name": "RD_B5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.4]
+          "name": "RD_B5_loc"
         },
         {
           "id": "B_6",
-          "name": "RD_B6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.4]
+          "name": "RD_B6_loc"
         },
         {
           "id": "B_7",
-          "name": "RD_B7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.4]
+          "name": "RD_B7_loc"
         },
         {
           "id": "B_8",
-          "name": "RD_B8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.4]
+          "name": "RD_B8_loc"
         },
         {
           "id": "B_9",
-          "name": "RD_B9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.4]
+          "name": "RD_B9_loc"
         },
 
         {
           "id": "C_1",
-          "name": "RD_C1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.3]
+          "name": "RD_C1_loc"
         },
         {
           "id": "C_2",
-          "name": "RD_C2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.3]
+          "name": "RD_C2_loc"
         },
         {
           "id": "C_3",
-          "name": "RD_C3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.3]
+          "name": "RD_C3_loc"
         },
         {
           "id": "C_4",
-          "name": "RD_C4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.3]
+          "name": "RD_C4_loc"
         },
         {
           "id": "C_5",
-          "name": "RD_C5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.3]
+          "name": "RD_C5_loc"
         },
         {
           "id": "C_6",
-          "name": "RD_C6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.3]
+          "name": "RD_C6_loc"
         },
         {
           "id": "C_7",
-          "name": "RD_C7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.3]
+          "name": "RD_C7_loc"
         },
         {
           "id": "C_8",
-          "name": "RD_C8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.3]
+          "name": "RD_C8_loc"
         },
         {
           "id": "C_9",
-          "name": "RD_C9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.3]
+          "name": "RD_C9_loc"
         },
 
         {
           "id": "D_1",
-          "name": "RD_D1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.2]
+          "name": "RD_D1_loc"
         },
         {
           "id": "D_2",
-          "name": "RD_D2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.2]
+          "name": "RD_D2_loc"
         },
         {
           "id": "D_3",
-          "name": "RD_D3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.2]
+          "name": "RD_D3_loc"
         },
         {
           "id": "D_4",
-          "name": "RD_D4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.2]
+          "name": "RD_D4_loc"
         },
         {
           "id": "D_5",
-          "name": "RD_D5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.2]
+          "name": "RD_D5_loc"
         },
         {
           "id": "D_6",
-          "name": "RD_D6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.2]
+          "name": "RD_D6_loc"
         },
         {
           "id": "D_7",
-          "name": "RD_D7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.2]
+          "name": "RD_D7_loc"
         },
         {
           "id": "D_8",
-          "name": "RD_D8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.2]
+          "name": "RD_D8_loc"
         },
         {
           "id": "D_9",
-          "name": "RD_D9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.2]
+          "name": "RD_D9_loc"
         },
 
         {
           "id": "E_1",
-          "name": "RD_E1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.1]
+          "name": "RD_E1_loc"
         },
         {
           "id": "E_2",
-          "name": "RD_E2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.1]
+          "name": "RD_E2_loc"
         },
         {
           "id": "E_3",
-          "name": "RD_E3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.1]
+          "name": "RD_E3_loc"
         },
         {
           "id": "E_4",
-          "name": "RD_E4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.1]
+          "name": "RD_E4_loc"
         },
         {
           "id": "E_5",
-          "name": "RD_E5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.1]
+          "name": "RD_E5_loc"
         },
         {
           "id": "E_6",
-          "name": "RD_E6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.1]
+          "name": "RD_E6_loc"
         },
         {
           "id": "E_7",
-          "name": "RD_E7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.0]
+          "name": "RD_E7_loc"
         },
         {
           "id": "E_8",
-          "name": "RD_E8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.0]
+          "name": "RD_E8_loc"
         },
         {
           "id": "E_9",
-          "name": "RD_E9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.0]
+          "name": "RD_E9_loc"
         },
 
         {
           "id": "F_1",
-          "name": "RD_F1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.0]
+          "name": "RD_F1_loc"
         },
         {
           "id": "F_2",
-          "name": "RD_F2_loc",
-          "pt_on_srf_param_UV": [0.875, 0.0]
+          "name": "RD_F2_loc"
         },
         {
           "id": "F_3",
-          "name": "RD_F3_loc",
-          "pt_on_srf_param_UV": [0.75, 0.0]
+          "name": "RD_F3_loc"
         },
         {
           "id": "F_4",
-          "name": "RD_F4_loc",
-          "pt_on_srf_param_UV": [0.625, 0.0]
+          "name": "RD_F4_loc"
         },
         {
           "id": "F_5",
-          "name": "RD_F5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.0]
+          "name": "RD_F5_loc"
         },
         {
           "id": "F_6",
-          "name": "RD_F6_loc",
-          "pt_on_srf_param_UV": [0.375, 0.0]
+          "name": "RD_F6_loc"
         },
         {
           "id": "F_7",
-          "name": "RD_F7_loc",
-          "pt_on_srf_param_UV": [0.25, 0.0]
+          "name": "RD_F7_loc"
         },
         {
           "id": "F_8",
-          "name": "RD_F8_loc",
-          "pt_on_srf_param_UV": [0.125, 0.0]
+          "name": "RD_F8_loc"
         },
         {
           "id": "F_9",
-          "name": "RD_F9_loc",
-          "pt_on_srf_param_UV": [0.0, 0.0]
+          "name": "RD_F9_loc"
         }
       ]
     },
@@ -995,278 +887,224 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "LU_A1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.5]
+          "name": "LU_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "LU_A2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.5]
+          "name": "LU_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "LU_A3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.5]
+          "name": "LU_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "LU_A4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.5]
+          "name": "LU_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "LU_A5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.5]
+          "name": "LU_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "LU_A6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.5]
+          "name": "LU_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "LU_A7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.5]
+          "name": "LU_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "LU_A8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.5]
+          "name": "LU_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "LU_A9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.5]
+          "name": "LU_A9_loc"
         },
 
         {
           "id": "B_1",
-          "name": "LU_B1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.6]
+          "name": "LU_B1_loc"
         },
         {
           "id": "B_2",
-          "name": "LU_B2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.6]
+          "name": "LU_B2_loc"
         },
         {
           "id": "B_3",
-          "name": "LU_B3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.6]
+          "name": "LU_B3_loc"
         },
         {
           "id": "B_4",
-          "name": "LU_B4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.6]
+          "name": "LU_B4_loc"
         },
         {
           "id": "B_5",
-          "name": "LU_B5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.6]
+          "name": "LU_B5_loc"
         },
         {
           "id": "B_6",
-          "name": "LU_B6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.6]
+          "name": "LU_B6_loc"
         },
         {
           "id": "B_7",
-          "name": "LU_B7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.6]
+          "name": "LU_B7_loc"
         },
         {
           "id": "B_8",
-          "name": "LU_B8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.6]
+          "name": "LU_B8_loc"
         },
         {
           "id": "B_9",
-          "name": "LU_B9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.6]
+          "name": "LU_B9_loc"
         },
 
         {
           "id": "C_1",
-          "name": "LU_C1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.7]
+          "name": "LU_C1_loc"
         },
         {
           "id": "C_2",
-          "name": "LU_C2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.7]
+          "name": "LU_C2_loc"
         },
         {
           "id": "C_3",
-          "name": "LU_C3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.7]
+          "name": "LU_C3_loc"
         },
         {
           "id": "C_4",
-          "name": "LU_C4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.7]
+          "name": "LU_C4_loc"
         },
         {
           "id": "C_5",
-          "name": "LU_C5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.7]
+          "name": "LU_C5_loc"
         },
         {
           "id": "C_6",
-          "name": "LU_C6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.7]
+          "name": "LU_C6_loc"
         },
         {
           "id": "C_7",
-          "name": "LU_C7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.7]
+          "name": "LU_C7_loc"
         },
         {
           "id": "C_8",
-          "name": "LU_C8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.7]
+          "name": "LU_C8_loc"
         },
         {
           "id": "C_9",
-          "name": "LU_C9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.7]
+          "name": "LU_C9_loc"
         },
 
         {
           "id": "D_1",
-          "name": "LU_D1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.8]
+          "name": "LU_D1_loc"
         },
         {
           "id": "D_2",
-          "name": "LU_D2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.8]
+          "name": "LU_D2_loc"
         },
         {
           "id": "D_3",
-          "name": "LU_D3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.8]
+          "name": "LU_D3_loc"
         },
         {
           "id": "D_4",
-          "name": "LU_D4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.8]
+          "name": "LU_D4_loc"
         },
         {
           "id": "D_5",
-          "name": "LU_D5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.8]
+          "name": "LU_D5_loc"
         },
         {
           "id": "D_6",
-          "name": "LU_D6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.8]
+          "name": "LU_D6_loc"
         },
         {
           "id": "D_7",
-          "name": "LU_D7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.8]
+          "name": "LU_D7_loc"
         },
         {
           "id": "D_8",
-          "name": "LU_D8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.8]
+          "name": "LU_D8_loc"
         },
         {
           "id": "D_9",
-          "name": "LU_D9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.8]
+          "name": "LU_D9_loc"
         },
 
         {
           "id": "E_1",
-          "name": "LU_E1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.9]
+          "name": "LU_E1_loc"
         },
         {
           "id": "E_2",
-          "name": "LU_E2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.9]
+          "name": "LU_E2_loc"
         },
         {
           "id": "E_3",
-          "name": "LU_E3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.9]
+          "name": "LU_E3_loc"
         },
         {
           "id": "E_4",
-          "name": "LU_E4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.9]
+          "name": "LU_E4_loc"
         },
         {
           "id": "E_5",
-          "name": "LU_E5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.9]
+          "name": "LU_E5_loc"
         },
         {
           "id": "E_6",
-          "name": "LU_E6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.9]
+          "name": "LU_E6_loc"
         },
         {
           "id": "E_7",
-          "name": "LU_E7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.9]
+          "name": "LU_E7_loc"
         },
         {
           "id": "E_8",
-          "name": "LU_E8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.9]
+          "name": "LU_E8_loc"
         },
         {
           "id": "E_9",
-          "name": "LU_E9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.9]
+          "name": "LU_E9_loc"
         },
 
         {
           "id": "F_1",
-          "name": "LU_F1_loc",
-          "pt_on_srf_param_UV": [0.0, 1.0]
+          "name": "LU_F1_loc"
         },
         {
           "id": "F_2",
-          "name": "LU_F2_loc",
-          "pt_on_srf_param_UV": [0.125, 1.0]
+          "name": "LU_F2_loc"
         },
         {
           "id": "F_3",
-          "name": "LU_F3_loc",
-          "pt_on_srf_param_UV": [0.25, 1.0]
+          "name": "LU_F3_loc"
         },
         {
           "id": "F_4",
-          "name": "LU_F4_loc",
-          "pt_on_srf_param_UV": [0.375, 1.0]
+          "name": "LU_F4_loc"
         },
         {
           "id": "F_5",
-          "name": "LU_F5_loc",
-          "pt_on_srf_param_UV": [0.5, 1.0]
+          "name": "LU_F5_loc"
         },
         {
           "id": "F_6",
-          "name": "LU_F6_loc",
-          "pt_on_srf_param_UV": [0.625, 1.0]
+          "name": "LU_F6_loc"
         },
         {
           "id": "F_7",
-          "name": "LU_F7_loc",
-          "pt_on_srf_param_UV": [0.75, 1.0]
+          "name": "LU_F7_loc"
         },
         {
           "id": "F_8",
-          "name": "LU_F8_loc",
-          "pt_on_srf_param_UV": [0.875, 1.0]
+          "name": "LU_F8_loc"
         },
         {
           "id": "F_9",
-          "name": "LU_F9_loc",
-          "pt_on_srf_param_UV": [1.0, 1.0]
+          "name": "LU_F9_loc"
         }
       ]
     },
@@ -1396,278 +1234,224 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "LD_A1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.5]
+          "name": "LD_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "LD_A2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.5]
+          "name": "LD_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "LD_A3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.5]
+          "name": "LD_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "LD_A4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.5]
+          "name": "LD_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "LD_A5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.5]
+          "name": "LD_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "LD_A6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.5]
+          "name": "LD_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "LD_A7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.5]
+          "name": "LD_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "LD_A8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.5]
+          "name": "LD_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "LD_A9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.5]
+          "name": "LD_A9_loc"
         },
 
         {
           "id": "B_1",
-          "name": "LD_B1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.4]
+          "name": "LD_B1_loc"
         },
         {
           "id": "B_2",
-          "name": "LD_B2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.4]
+          "name": "LD_B2_loc"
         },
         {
           "id": "B_3",
-          "name": "LD_B3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.4]
+          "name": "LD_B3_loc"
         },
         {
           "id": "B_4",
-          "name": "LD_B4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.4]
+          "name": "LD_B4_loc"
         },
         {
           "id": "B_5",
-          "name": "LD_B5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.4]
+          "name": "LD_B5_loc"
         },
         {
           "id": "B_6",
-          "name": "LD_B6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.4]
+          "name": "LD_B6_loc"
         },
         {
           "id": "B_7",
-          "name": "LD_B7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.4]
+          "name": "LD_B7_loc"
         },
         {
           "id": "B_8",
-          "name": "LD_B8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.4]
+          "name": "LD_B8_loc"
         },
         {
           "id": "B_9",
-          "name": "LD_B9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.4]
+          "name": "LD_B9_loc"
         },
 
         {
           "id": "C_1",
-          "name": "LD_C1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.3]
+          "name": "LD_C1_loc"
         },
         {
           "id": "C_2",
-          "name": "LD_C2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.3]
+          "name": "LD_C2_loc"
         },
         {
           "id": "C_3",
-          "name": "LD_C3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.3]
+          "name": "LD_C3_loc"
         },
         {
           "id": "C_4",
-          "name": "LD_C4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.3]
+          "name": "LD_C4_loc"
         },
         {
           "id": "C_5",
-          "name": "LD_C5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.3]
+          "name": "LD_C5_loc"
         },
         {
           "id": "C_6",
-          "name": "LD_C6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.3]
+          "name": "LD_C6_loc"
         },
         {
           "id": "C_7",
-          "name": "LD_C7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.3]
+          "name": "LD_C7_loc"
         },
         {
           "id": "C_8",
-          "name": "LD_C8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.3]
+          "name": "LD_C8_loc"
         },
         {
           "id": "C_9",
-          "name": "LD_C9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.3]
+          "name": "LD_C9_loc"
         },
 
         {
           "id": "D_1",
-          "name": "LD_D1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.2]
+          "name": "LD_D1_loc"
         },
         {
           "id": "D_2",
-          "name": "LD_D2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.2]
+          "name": "LD_D2_loc"
         },
         {
           "id": "D_3",
-          "name": "LD_D3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.2]
+          "name": "LD_D3_loc"
         },
         {
           "id": "D_4",
-          "name": "LD_D4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.2]
+          "name": "LD_D4_loc"
         },
         {
           "id": "D_5",
-          "name": "LD_D5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.2]
+          "name": "LD_D5_loc"
         },
         {
           "id": "D_6",
-          "name": "LD_D6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.2]
+          "name": "LD_D6_loc"
         },
         {
           "id": "D_7",
-          "name": "LD_D7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.2]
+          "name": "LD_D7_loc"
         },
         {
           "id": "D_8",
-          "name": "LD_D8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.2]
+          "name": "LD_D8_loc"
         },
         {
           "id": "D_9",
-          "name": "LD_D9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.2]
+          "name": "LD_D9_loc"
         },
 
         {
           "id": "E_1",
-          "name": "LD_E1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.1]
+          "name": "LD_E1_loc"
         },
         {
           "id": "E_2",
-          "name": "LD_E2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.1]
+          "name": "LD_E2_loc"
         },
         {
           "id": "E_3",
-          "name": "LD_E3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.1]
+          "name": "LD_E3_loc"
         },
         {
           "id": "E_4",
-          "name": "LD_E4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.1]
+          "name": "LD_E4_loc"
         },
         {
           "id": "E_5",
-          "name": "LD_E5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.1]
+          "name": "LD_E5_loc"
         },
         {
           "id": "E_6",
-          "name": "LD_E6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.1]
+          "name": "LD_E6_loc"
         },
         {
           "id": "E_7",
-          "name": "LD_E7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.1]
+          "name": "LD_E7_loc"
         },
         {
           "id": "E_8",
-          "name": "LD_E8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.1]
+          "name": "LD_E8_loc"
         },
         {
           "id": "E_9",
-          "name": "LD_E9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.1]
+          "name": "LD_E9_loc"
         },
 
         {
           "id": "F_1",
-          "name": "LD_F1_loc",
-          "pt_on_srf_param_UV": [0.0, 0.0]
+          "name": "LD_F1_loc"
         },
         {
           "id": "F_2",
-          "name": "LD_F2_loc",
-          "pt_on_srf_param_UV": [0.125, 0.0]
+          "name": "LD_F2_loc"
         },
         {
           "id": "F_3",
-          "name": "LD_F3_loc",
-          "pt_on_srf_param_UV": [0.25, 0.0]
+          "name": "LD_F3_loc"
         },
         {
           "id": "F_4",
-          "name": "LD_F4_loc",
-          "pt_on_srf_param_UV": [0.375, 0.0]
+          "name": "LD_F4_loc"
         },
         {
           "id": "F_5",
-          "name": "LD_F5_loc",
-          "pt_on_srf_param_UV": [0.5, 0.0]
+          "name": "LD_F5_loc"
         },
         {
           "id": "F_6",
-          "name": "LD_F6_loc",
-          "pt_on_srf_param_UV": [0.625, 0.0]
+          "name": "LD_F6_loc"
         },
         {
           "id": "F_7",
-          "name": "LD_F7_loc",
-          "pt_on_srf_param_UV": [0.75, 0.0]
+          "name": "LD_F7_loc"
         },
         {
           "id": "F_8",
-          "name": "LD_F8_loc",
-          "pt_on_srf_param_UV": [0.875, 0.0]
+          "name": "LD_F8_loc"
         },
         {
           "id": "F_9",
-          "name": "LD_F9_loc",
-          "pt_on_srf_param_UV": [1.0, 0.0]
+          "name": "LD_F9_loc"
         }
       ]
     }
@@ -1867,346 +1651,278 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "M_UD_A1_loc",
-          "pt_on_srf_param_UV": [0.056, 0.8]
+          "name": "M_UD_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "M_UD_A2_loc",
-          "pt_on_srf_param_UV": [0.111, 0.8]
+          "name": "M_UD_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "M_UD_A3_loc",
-          "pt_on_srf_param_UV": [0.167, 0.8]
+          "name": "M_UD_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "M_UD_A4_loc",
-          "pt_on_srf_param_UV": [0.222, 0.8]
+          "name": "M_UD_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "M_UD_A5_loc",
-          "pt_on_srf_param_UV": [0.278, 0.8]
+          "name": "M_UD_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "M_UD_A6_loc",
-          "pt_on_srf_param_UV": [0.333, 0.8]
+          "name": "M_UD_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "M_UD_A7_loc",
-          "pt_on_srf_param_UV": [0.389, 0.8]
+          "name": "M_UD_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "M_UD_A8_loc",
-          "pt_on_srf_param_UV": [0.444, 0.8]
+          "name": "M_UD_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "M_UD_A9_loc",
-          "pt_on_srf_param_UV": [0.500, 0.8]
+          "name": "M_UD_A9_loc"
         },
         {
           "id": "A_10",
-          "name": "M_UD_A10_loc",
-          "pt_on_srf_param_UV": [0.556, 0.8]
+          "name": "M_UD_A10_loc"
         },
         {
           "id": "A_11",
-          "name": "M_UD_A11_loc",
-          "pt_on_srf_param_UV": [0.611, 0.8]
+          "name": "M_UD_A11_loc"
         },
         {
           "id": "A_12",
-          "name": "M_UD_A12_loc",
-          "pt_on_srf_param_UV": [0.667, 0.8]
+          "name": "M_UD_A12_loc"
         },
         {
           "id": "A_13",
-          "name": "M_UD_A13_loc",
-          "pt_on_srf_param_UV": [0.722, 0.8]
+          "name": "M_UD_A13_loc"
         },
         {
           "id": "A_14",
-          "name": "M_UD_A14_loc",
-          "pt_on_srf_param_UV": [0.778, 0.8]
+          "name": "M_UD_A14_loc"
         },
         {
           "id": "A_15",
-          "name": "M_UD_A15_loc",
-          "pt_on_srf_param_UV": [0.833, 0.8]
+          "name": "M_UD_A15_loc"
         },
         {
           "id": "A_16",
-          "name": "M_UD_A16_loc",
-          "pt_on_srf_param_UV": [0.889, 0.8]
+          "name": "M_UD_A16_loc"
         },
         {
           "id": "A_17",
-          "name": "M_UD_A17_loc",
-          "pt_on_srf_param_UV": [0.944, 0.8]
+          "name": "M_UD_A17_loc"
         },
 
         {
           "id": "B_1",
-          "name": "M_UD_B1_loc",
-          "pt_on_srf_param_UV": [0.056, 0.6]
+          "name": "M_UD_B1_loc"
         },
         {
           "id": "B_2",
-          "name": "M_UD_B2_loc",
-          "pt_on_srf_param_UV": [0.111, 0.6]
+          "name": "M_UD_B2_loc"
         },
         {
           "id": "B_3",
-          "name": "M_UD_B3_loc",
-          "pt_on_srf_param_UV": [0.167, 0.6]
+          "name": "M_UD_B3_loc"
         },
         {
           "id": "B_4",
-          "name": "M_UD_B4_loc",
-          "pt_on_srf_param_UV": [0.222, 0.6]
+          "name": "M_UD_B4_loc"
         },
         {
           "id": "B_5",
-          "name": "M_UD_B5_loc",
-          "pt_on_srf_param_UV": [0.278, 0.6]
+          "name": "M_UD_B5_loc"
         },
         {
           "id": "B_6",
-          "name": "M_UD_B6_loc",
-          "pt_on_srf_param_UV": [0.333, 0.6]
+          "name": "M_UD_B6_loc"
         },
         {
           "id": "B_7",
-          "name": "M_UD_B7_loc",
-          "pt_on_srf_param_UV": [0.389, 0.6]
+          "name": "M_UD_B7_loc"
         },
         {
           "id": "B_8",
-          "name": "M_UD_B8_loc",
-          "pt_on_srf_param_UV": [0.444, 0.6]
+          "name": "M_UD_B8_loc"
         },
         {
           "id": "B_9",
-          "name": "M_UD_B9_loc",
-          "pt_on_srf_param_UV": [0.500, 0.6]
+          "name": "M_UD_B9_loc"
         },
         {
           "id": "B_10",
-          "name": "M_UD_B10_loc",
-          "pt_on_srf_param_UV": [0.556, 0.6]
+          "name": "M_UD_B10_loc"
         },
         {
           "id": "B_11",
-          "name": "M_UD_B11_loc",
-          "pt_on_srf_param_UV": [0.611, 0.6]
+          "name": "M_UD_B11_loc"
         },
         {
           "id": "B_12",
-          "name": "M_UD_B12_loc",
-          "pt_on_srf_param_UV": [0.667, 0.6]
+          "name": "M_UD_B12_loc"
         },
         {
           "id": "B_13",
-          "name": "M_UD_B13_loc",
-          "pt_on_srf_param_UV": [0.722, 0.6]
+          "name": "M_UD_B13_loc"
         },
         {
           "id": "B_14",
-          "name": "M_UD_B14_loc",
-          "pt_on_srf_param_UV": [0.778, 0.6]
+          "name": "M_UD_B14_loc"
         },
         {
           "id": "B_15",
-          "name": "M_UD_B15_loc",
-          "pt_on_srf_param_UV": [0.833, 0.6]
+          "name": "M_UD_B15_loc"
         },
         {
           "id": "B_16",
-          "name": "M_UD_B16_loc",
-          "pt_on_srf_param_UV": [0.889, 0.6]
+          "name": "M_UD_B16_loc"
         },
         {
           "id": "B_17",
-          "name": "M_UD_B17_loc",
-          "pt_on_srf_param_UV": [0.944, 0.6]
+          "name": "M_UD_B17_loc"
         },
 
         {
           "id": "C_1",
-          "name": "M_UD_C1_loc",
-          "pt_on_srf_param_UV": [0.056, 0.4]
+          "name": "M_UD_C1_loc"
         },
         {
           "id": "C_2",
-          "name": "M_UD_C2_loc",
-          "pt_on_srf_param_UV": [0.111, 0.4]
+          "name": "M_UD_C2_loc"
         },
         {
           "id": "C_3",
-          "name": "M_UD_C3_loc",
-          "pt_on_srf_param_UV": [0.167, 0.4]
+          "name": "M_UD_C3_loc"
         },
         {
           "id": "C_4",
-          "name": "M_UD_C4_loc",
-          "pt_on_srf_param_UV": [0.222, 0.4]
+          "name": "M_UD_C4_loc"
         },
         {
           "id": "C_5",
-          "name": "M_UD_C5_loc",
-          "pt_on_srf_param_UV": [0.278, 0.4]
+          "name": "M_UD_C5_loc"
         },
         {
           "id": "C_6",
-          "name": "M_UD_C6_loc",
-          "pt_on_srf_param_UV": [0.333, 0.4]
+          "name": "M_UD_C6_loc"
         },
         {
           "id": "C_7",
-          "name": "M_UD_C7_loc",
-          "pt_on_srf_param_UV": [0.389, 0.4]
+          "name": "M_UD_C7_loc"
         },
         {
           "id": "C_8",
-          "name": "M_UD_C8_loc",
-          "pt_on_srf_param_UV": [0.444, 0.4]
+          "name": "M_UD_C8_loc"
         },
         {
           "id": "C_9",
-          "name": "M_UD_C9_loc",
-          "pt_on_srf_param_UV": [0.500, 0.4]
+          "name": "M_UD_C9_loc"
         },
         {
           "id": "C_10",
-          "name": "M_UD_C10_loc",
-          "pt_on_srf_param_UV": [0.556, 0.4]
+          "name": "M_UD_C10_loc"
         },
         {
           "id": "C_11",
-          "name": "M_UD_C11_loc",
-          "pt_on_srf_param_UV": [0.611, 0.4]
+          "name": "M_UD_C11_loc"
         },
         {
           "id": "C_12",
-          "name": "M_UD_C12_loc",
-          "pt_on_srf_param_UV": [0.667, 0.4]
+          "name": "M_UD_C12_loc"
         },
         {
           "id": "C_13",
-          "name": "M_UD_C13_loc",
-          "pt_on_srf_param_UV": [0.722, 0.4]
+          "name": "M_UD_C13_loc"
         },
         {
           "id": "C_14",
-          "name": "M_UD_C14_loc",
-          "pt_on_srf_param_UV": [0.778, 0.4]
+          "name": "M_UD_C14_loc"
         },
         {
           "id": "C_15",
-          "name": "M_UD_C15_loc",
-          "pt_on_srf_param_UV": [0.833, 0.4]
+          "name": "M_UD_C15_loc"
         },
         {
           "id": "C_16",
-          "name": "M_UD_C16_loc",
-          "pt_on_srf_param_UV": [0.889, 0.4]
+          "name": "M_UD_C16_loc"
         },
         {
           "id": "C_17",
-          "name": "M_UD_C17_loc",
-          "pt_on_srf_param_UV": [0.944, 0.4]
+          "name": "M_UD_C17_loc"
         },
 
         {
           "id": "D_1",
-          "name": "M_UD_D1_loc",
-          "pt_on_srf_param_UV": [0.056, 0.2]
+          "name": "M_UD_D1_loc"
         },
         {
           "id": "D_2",
-          "name": "M_UD_D2_loc",
-          "pt_on_srf_param_UV": [0.111, 0.2]
+          "name": "M_UD_D2_loc"
         },
         {
           "id": "D_3",
-          "name": "M_UD_D3_loc",
-          "pt_on_srf_param_UV": [0.167, 0.2]
+          "name": "M_UD_D3_loc"
         },
         {
           "id": "D_4",
-          "name": "M_UD_D4_loc",
-          "pt_on_srf_param_UV": [0.222, 0.2]
+          "name": "M_UD_D4_loc"
         },
         {
           "id": "D_5",
-          "name": "M_UD_D5_loc",
-          "pt_on_srf_param_UV": [0.278, 0.2]
+          "name": "M_UD_D5_loc"
         },
         {
           "id": "D_6",
-          "name": "M_UD_D6_loc",
-          "pt_on_srf_param_UV": [0.333, 0.2]
+          "name": "M_UD_D6_loc"
         },
         {
           "id": "D_7",
-          "name": "M_UD_D7_loc",
-          "pt_on_srf_param_UV": [0.389, 0.2]
+          "name": "M_UD_D7_loc"
         },
         {
           "id": "D_8",
-          "name": "M_UD_D8_loc",
-          "pt_on_srf_param_UV": [0.444, 0.2]
+          "name": "M_UD_D8_loc"
         },
         {
           "id": "D_9",
-          "name": "M_UD_D9_loc",
-          "pt_on_srf_param_UV": [0.500, 0.2]
+          "name": "M_UD_D9_loc"
         },
         {
           "id": "D_10",
-          "name": "M_UD_D10_loc",
-          "pt_on_srf_param_UV": [0.556, 0.2]
+          "name": "M_UD_D10_loc"
         },
         {
           "id": "D_11",
-          "name": "M_UD_D11_loc",
-          "pt_on_srf_param_UV": [0.611, 0.2]
+          "name": "M_UD_D11_loc"
         },
         {
           "id": "D_12",
-          "name": "M_UD_D12_loc",
-          "pt_on_srf_param_UV": [0.667, 0.2]
+          "name": "M_UD_D12_loc"
         },
         {
           "id": "D_13",
-          "name": "M_UD_D13_loc",
-          "pt_on_srf_param_UV": [0.722, 0.2]
+          "name": "M_UD_D13_loc"
         },
         {
           "id": "D_14",
-          "name": "M_UD_D14_loc",
-          "pt_on_srf_param_UV": [0.778, 0.2]
+          "name": "M_UD_D14_loc"
         },
         {
           "id": "D_15",
-          "name": "M_UD_D15_loc",
-          "pt_on_srf_param_UV": [0.833, 0.2]
+          "name": "M_UD_D15_loc"
         },
         {
           "id": "D_16",
-          "name": "M_UD_D16_loc",
-          "pt_on_srf_param_UV": [0.889, 0.2]
+          "name": "M_UD_D16_loc"
         },
         {
           "id": "D_17",
-          "name": "M_UD_D17_loc",
-          "pt_on_srf_param_UV": [0.944, 0.2]
+          "name": "M_UD_D17_loc"
         }
       ]
     },
@@ -2267,68 +1983,55 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "M_FB_A1_loc",
-          "pt_on_srf_param_UV": [1.0, 0.0]
+          "name": "M_FB_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "M_FB_A2_loc",
-          "pt_on_srf_param_UV": [0.917, 0.0]
+          "name": "M_FB_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "M_FB_A3_loc",
-          "pt_on_srf_param_UV": [0.833, 0.0]
+          "name": "M_FB_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "M_FB_A4_loc",
-          "pt_on_srf_param_UV": [0.750, 0.0]
+          "name": "M_FB_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "M_FB_A5_loc",
-          "pt_on_srf_param_UV": [0.667, 0.0]
+          "name": "M_FB_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "M_FB_A6_loc",
-          "pt_on_srf_param_UV": [0.583, 0.0]
+          "name": "M_FB_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "M_FB_A7_loc",
-          "pt_on_srf_param_UV": [0.500, 0.0]
+          "name": "M_FB_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "M_FB_A8_loc",
-          "pt_on_srf_param_UV": [0.417, 0.0]
+          "name": "M_FB_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "M_FB_A9_loc",
-          "pt_on_srf_param_UV": [0.333, 0.0]
+          "name": "M_FB_A9_loc"
         },
         {
           "id": "A_10",
-          "name": "M_FB_A10_loc",
-          "pt_on_srf_param_UV": [0.250, 0.0]
+          "name": "M_FB_A10_loc"
         },
         {
           "id": "A_11",
-          "name": "M_FB_A11_loc",
-          "pt_on_srf_param_UV": [0.167, 0.0]
+          "name": "M_FB_A11_loc"
         },
         {
           "id": "A_12",
-          "name": "M_FB_A12_loc",
-          "pt_on_srf_param_UV": [0.083, 0.0]
+          "name": "M_FB_A12_loc"
         },
         {
           "id": "A_13",
-          "name": "M_FB_A13_loc",
-          "pt_on_srf_param_UV": [0.000, 0.0]
+          "name": "M_FB_A13_loc"
         }
       ]
     }
@@ -2799,58 +2502,47 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "MU_A1_loc",
-          "pt_on_srf_param_UV": [0.204, 0.557]
+          "name": "MU_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "MU_A2_loc",
-          "pt_on_srf_param_UV": [0.214, 0.571]
+          "name": "MU_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "MU_A3_loc",
-          "pt_on_srf_param_UV": [0.286, 0.571]
+          "name": "MU_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "MU_A4_loc",
-          "pt_on_srf_param_UV": [0.357, 0.571]
+          "name": "MU_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "MU_A5_loc",
-          "pt_on_srf_param_UV": [0.429, 0.571]
+          "name": "MU_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "MU_A6_loc",
-          "pt_on_srf_param_UV": [0.5, 0.571]
+          "name": "MU_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "MU_A7_loc",
-          "pt_on_srf_param_UV": [0.571, 0.571]
+          "name": "MU_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "MU_A8_loc",
-          "pt_on_srf_param_UV": [0.643, 0.571]
+          "name": "MU_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "MU_A9_loc",
-          "pt_on_srf_param_UV": [0.714, 0.571]
+          "name": "MU_A9_loc"
         },
         {
           "id": "A_10",
-          "name": "MU_A10_loc",
-          "pt_on_srf_param_UV": [0.786, 0.571]
+          "name": "MU_A10_loc"
         },
         {
           "id": "A_11",
-          "name": "MU_A11_loc",
-          "pt_on_srf_param_UV": [0.796, 0.557]
+          "name": "MU_A11_loc"
         }
       ]
     },
@@ -3007,58 +2699,47 @@
       "locators": [
         {
           "id": "A_1",
-          "name": "MD_A1_loc",
-          "pt_on_srf_param_UV": [0.204, 0.557]
+          "name": "MD_A1_loc"
         },
         {
           "id": "A_2",
-          "name": "MD_A2_loc",
-          "pt_on_srf_param_UV": [0.214, 0.571]
+          "name": "MD_A2_loc"
         },
         {
           "id": "A_3",
-          "name": "MD_A3_loc",
-          "pt_on_srf_param_UV": [0.286, 0.571]
+          "name": "MD_A3_loc"
         },
         {
           "id": "A_4",
-          "name": "MD_A4_loc",
-          "pt_on_srf_param_UV": [0.357, 0.571]
+          "name": "MD_A4_loc"
         },
         {
           "id": "A_5",
-          "name": "MD_A5_loc",
-          "pt_on_srf_param_UV": [0.429, 0.571]
+          "name": "MD_A5_loc"
         },
         {
           "id": "A_6",
-          "name": "MD_A6_loc",
-          "pt_on_srf_param_UV": [0.5, 0.571]
+          "name": "MD_A6_loc"
         },
         {
           "id": "A_7",
-          "name": "MD_A7_loc",
-          "pt_on_srf_param_UV": [0.571, 0.571]
+          "name": "MD_A7_loc"
         },
         {
           "id": "A_8",
-          "name": "MD_A8_loc",
-          "pt_on_srf_param_UV": [0.643, 0.571]
+          "name": "MD_A8_loc"
         },
         {
           "id": "A_9",
-          "name": "MD_A9_loc",
-          "pt_on_srf_param_UV": [0.714, 0.571]
+          "name": "MD_A9_loc"
         },
         {
           "id": "A_10",
-          "name": "MD_A10_loc",
-          "pt_on_srf_param_UV": [0.786, 0.571]
+          "name": "MD_A10_loc"
         },
         {
           "id": "A_11",
-          "name": "MD_A11_loc",
-          "pt_on_srf_param_UV": [0.796, 0.557]
+          "name": "MD_A11_loc"
         }
       ]
     }
@@ -3713,7 +3394,7 @@
       ],
 
       "xform": {
-        "translation": [4.1, 8.5, 0.0],
+        "translation": [-2.458, -1.525, 0.0],
         "rotation": [0.0, 90.0, 0.0],
         "scale": [1, 3.2, 2.9]
       }
@@ -3808,7 +3489,7 @@
       ],
 
       "xform": {
-        "translation": [9.0, 8.5, 0.0],
+        "translation": [2.458, -1.525, 0.0],
         "rotation": [0.0, -90.0, 0.0],
         "scale": [1, 3.5, 2.9]
       }
@@ -3918,7 +3599,186 @@
       },
 
       "locators": [
-
+        {
+          "id": "A_1",
+          "name": "R_A1_loc"
+        },
+        {
+          "id": "A_2",
+          "name": "R_A2_loc"
+        },
+        {
+          "id": "A_3",
+          "name": "R_A3_loc"
+        },
+        {
+          "id": "A_4",
+          "name": "R_A4_loc"
+        },
+        {
+          "id": "A_5",
+          "name": "R_A5_loc"
+        },
+        {
+          "id": "A_6",
+          "name": "R_A6_loc"
+        },
+        {
+          "id": "A_7",
+          "name": "R_A7_loc"
+        },
+        {
+          "id": "A_8",
+          "name": "R_A8_loc"
+        },
+        {
+          "id": "A_9",
+          "name": "R_A9_loc"
+        },
+        {
+          "id": "B_1",
+          "name": "R_B1_loc"
+        },
+        {
+          "id": "B_2",
+          "name": "R_B2_loc"
+        },
+        {
+          "id": "B_3",
+          "name": "R_B3_loc"
+        },
+        {
+          "id": "B_4",
+          "name": "R_B4_loc"
+        },
+        {
+          "id": "B_5",
+          "name": "R_B5_loc"
+        },
+        {
+          "id": "B_6",
+          "name": "R_B6_loc"
+        },
+        {
+          "id": "B_7",
+          "name": "R_B7_loc"
+        },
+        {
+          "id": "B_8",
+          "name": "R_B8_loc"
+        },
+        {
+          "id": "B_9",
+          "name": "R_B9_loc"
+        },
+        {
+          "id": "C_1",
+          "name": "R_C1_loc"
+        },
+        {
+          "id": "C_2",
+          "name": "R_C2_loc"
+        },
+        {
+          "id": "C_3",
+          "name": "R_C3_loc"
+        },
+        {
+          "id": "C_4",
+          "name": "R_C4_loc"
+        },
+        {
+          "id": "C_5",
+          "name": "R_C5_loc"
+        },
+        {
+          "id": "C_6",
+          "name": "R_C6_loc"
+        },
+        {
+          "id": "C_7",
+          "name": "R_C7_loc"
+        },
+        {
+          "id": "C_8",
+          "name": "R_C8_loc"
+        },
+        {
+          "id": "C_9",
+          "name": "R_C9_loc"
+        },
+        {
+          "id": "D_1",
+          "name": "R_D1_loc"
+        },
+        {
+          "id": "D_2",
+          "name": "R_D2_loc"
+        },
+        {
+          "id": "D_3",
+          "name": "R_D3_loc"
+        },
+        {
+          "id": "D_4",
+          "name": "R_D4_loc"
+        },
+        {
+          "id": "D_5",
+          "name": "R_D5_loc"
+        },
+        {
+          "id": "D_6",
+          "name": "R_D6_loc"
+        },
+        {
+          "id": "D_7",
+          "name": "R_D7_loc"
+        },
+        {
+          "id": "D_8",
+          "name": "R_D8_loc"
+        },
+        {
+          "id": "D_9",
+          "name": "R_D9_loc"
+        },
+        {
+          "id": "E_1",
+          "name": "R_E1_loc"
+        },
+        {
+          "id": "E_2",
+          "name": "R_E2_loc"
+        },
+        {
+          "id": "E_3",
+          "name": "R_E3_loc"
+        },
+        {
+          "id": "E_4",
+          "name": "R_E4_loc"
+        },
+        {
+          "id": "E_5",
+          "name": "R_E5_loc"
+        },
+        {
+          "id": "E_6",
+          "name": "R_E6_loc"
+        },
+        {
+          "id": "E_7",
+          "name": "R_E7_loc"
+        },
+        {
+          "id": "E_8",
+          "name": "R_E8_loc"
+        },
+        {
+          "id": "E_9",
+          "name": "R_E9_loc"
+        }
       ]
     },
 
@@ -4017,7 +3877,186 @@
       },
 
       "locators": [
-
+        {
+          "id": "A_1",
+          "name": "L_A1_loc"
+        },
+        {
+          "id": "A_2",
+          "name": "L_A2_loc"
+        },
+        {
+          "id": "A_3",
+          "name": "L_A3_loc"
+        },
+        {
+          "id": "A_4",
+          "name": "L_A4_loc"
+        },
+        {
+          "id": "A_5",
+          "name": "L_A5_loc"
+        },
+        {
+          "id": "A_6",
+          "name": "L_A6_loc"
+        },
+        {
+          "id": "A_7",
+          "name": "L_A7_loc"
+        },
+        {
+          "id": "A_8",
+          "name": "L_A8_loc"
+        },
+        {
+          "id": "A_9",
+          "name": "L_A9_loc"
+        },
+        {
+          "id": "B_1",
+          "name": "L_B1_loc"
+        },
+        {
+          "id": "B_2",
+          "name": "L_B2_loc"
+        },
+        {
+          "id": "B_3",
+          "name": "L_B3_loc"
+        },
+        {
+          "id": "B_4",
+          "name": "L_B4_loc"
+        },
+        {
+          "id": "B_5",
+          "name": "L_B5_loc"
+        },
+        {
+          "id": "B_6",
+          "name": "L_B6_loc"
+        },
+        {
+          "id": "B_7",
+          "name": "L_B7_loc"
+        },
+        {
+          "id": "B_8",
+          "name": "L_B8_loc"
+        },
+        {
+          "id": "B_9",
+          "name": "L_B9_loc"
+        },
+        {
+          "id": "C_1",
+          "name": "L_C1_loc"
+        },
+        {
+          "id": "C_2",
+          "name": "L_C2_loc"
+        },
+        {
+          "id": "C_3",
+          "name": "L_C3_loc"
+        },
+        {
+          "id": "C_4",
+          "name": "L_C4_loc"
+        },
+        {
+          "id": "C_5",
+          "name": "L_C5_loc"
+        },
+        {
+          "id": "C_6",
+          "name": "L_C6_loc"
+        },
+        {
+          "id": "C_7",
+          "name": "L_C7_loc"
+        },
+        {
+          "id": "C_8",
+          "name": "L_C8_loc"
+        },
+        {
+          "id": "C_9",
+          "name": "L_C9_loc"
+        },
+        {
+          "id": "D_1",
+          "name": "L_D1_loc"
+        },
+        {
+          "id": "D_2",
+          "name": "L_D2_loc"
+        },
+        {
+          "id": "D_3",
+          "name": "L_D3_loc"
+        },
+        {
+          "id": "D_4",
+          "name": "L_D4_loc"
+        },
+        {
+          "id": "D_5",
+          "name": "L_D5_loc"
+        },
+        {
+          "id": "D_6",
+          "name": "L_D6_loc"
+        },
+        {
+          "id": "D_7",
+          "name": "L_D7_loc"
+        },
+        {
+          "id": "D_8",
+          "name": "L_D8_loc"
+        },
+        {
+          "id": "D_9",
+          "name": "L_D9_loc"
+        },
+        {
+          "id": "E_1",
+          "name": "L_E1_loc"
+        },
+        {
+          "id": "E_2",
+          "name": "L_E2_loc"
+        },
+        {
+          "id": "E_3",
+          "name": "L_E3_loc"
+        },
+        {
+          "id": "E_4",
+          "name": "L_E4_loc"
+        },
+        {
+          "id": "E_5",
+          "name": "L_E5_loc"
+        },
+        {
+          "id": "E_6",
+          "name": "L_E6_loc"
+        },
+        {
+          "id": "E_7",
+          "name": "L_E7_loc"
+        },
+        {
+          "id": "E_8",
+          "name": "L_E8_loc"
+        },
+        {
+          "id": "E_9",
+          "name": "L_E9_loc"
+        }
       ]
     }
   }

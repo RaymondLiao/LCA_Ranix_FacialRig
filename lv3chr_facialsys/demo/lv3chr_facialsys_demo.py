@@ -41,6 +41,8 @@ from control.zone import eyebrow; reload(eyebrow)
 from control.zone.eyebrow import eyebrowControlZone
 from control.zone import mouth; reload(mouth)
 from control.zone.mouth import mouthControlZone
+from control.zone import nasolabial_cheek; reload(nasolabial_cheek)
+from control.zone.nasolabial_cheek import nasoCheekControlZone
 
 # global variables -----------------------------------------------------------------------------------------------------
 g_displayer_transplane = 'translation_plane'
@@ -737,14 +739,52 @@ def setup_proj_surfaces():
                                                        bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
                                                        bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
+        loc_row_id_list = nasocheek_crvproj_projsrf.get_locator_row_ids()
+
         if controlZoneDirEnum.right in zone_dir:
             g_crv_projsrf_dict['nasocheek_projsrf_RUD'] = nasocheek_crvproj_projsrf
             cmds.parent(nasocheek_crvproj_projsrf.get_name(),
                         hierarchy.nasocheek_projsrf_R_grp.get_group_name())
+
+            for loc_row_id in loc_row_id_list:
+                for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_R_A_grp.get_group_name())
+                    elif 'B' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_R_B_grp.get_group_name())
+                    elif 'C' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_R_C_grp.get_group_name())
+                    elif 'D' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_R_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_R_E_grp.get_group_name())
         elif controlZoneDirEnum.left in zone_dir:
             g_crv_projsrf_dict['nasocheek_projsrf_LUD'] = nasocheek_crvproj_projsrf
             cmds.parent(nasocheek_crvproj_projsrf.get_name(),
                         hierarchy.nasocheek_projsrf_L_grp.get_group_name())
+
+            for loc_row_id in loc_row_id_list:
+                for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                    if 'A' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_L_A_grp.get_group_name())
+                    elif 'B' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_L_B_grp.get_group_name())
+                    elif 'C' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_L_C_grp.get_group_name())
+                    elif 'D' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_L_D_grp.get_group_name())
+                    elif 'E' == loc_row_id:
+                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.nasocheek_projsrf_loc_L_E_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 
@@ -852,6 +892,30 @@ def setup_ctrl_zones():
                                              ctrl_crv_data = ctrl_crv_data,
                                              ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
                                              ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Nasolabial-Cheek Control Zone
+
+    ctrlproj_transplane_LRUD = None
+    ctrlproj_projsrf_LRUD = None
+
+    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
+        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+
+        if controlZoneDirEnum.right in zone_dir:
+            ctrlproj_transplane_LRUD = g_crv_projsrf_dict['nasocheek_transplane_RUD']
+            ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['nasocheek_projsrf_RUD']
+        elif controlZoneDirEnum.left in zone_dir:
+            ctrlproj_transplane_LRUD = g_crv_projsrf_dict['nasocheek_transplane_LUD']
+            ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['nasocheek_projsrf_LUD']
+
+        assert None != ctrlproj_transplane_LRUD
+        assert None != ctrlproj_projsrf_LRUD
+
+        nasocheek_ctrl_zone = nasoCheekControlZone(direction = zone_dir,
+                                                   ctrl_crv_data = ctrl_crv_data,
+                                                   ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
+                                                   ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD)
 
     f_ctrl_crv_data.close()
 

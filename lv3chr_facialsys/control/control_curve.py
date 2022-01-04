@@ -81,7 +81,7 @@ class controlCurve(object):
         for loc_dict in locator_data:
             loc_id = loc_dict['id']
             loc_name = loc_dict['name']
-            loc_param = loc_dict['pt_on_crv_param']
+            # loc_param = loc_dict['pt_on_crv_param']
 
             loc = cmds.spaceLocator(name=name_prefix+'_'+loc_name)[0]
             assert cmds.objExists(loc+'Shape')
@@ -92,7 +92,7 @@ class controlCurve(object):
             cmds.setAttr(loc+'.overrideColor', CTRL_CURVE_LOC_COLOR_INDEX)
 
             pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=name_prefix+'_'+loc_name+'_ptOnCrv')
-            cmds.setAttr(pt_on_crv_info_node+'.parameter', loc_param)
+            cmds.setAttr(pt_on_crv_info_node+'.parameter', loc_id-1)
             cmds.connectAttr(self._nurbs_crv+'.worldSpace[0]', pt_on_crv_info_node+'.inputCurve')
             cmds.connectAttr(pt_on_crv_info_node+'.position', loc+'.translate')
 

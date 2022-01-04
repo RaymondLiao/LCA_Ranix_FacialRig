@@ -70,7 +70,7 @@ def create_locator(name_prefix, id, local_scale, color_id, modifier):
 
     return loc_handle
 
-def create_locator_at_vertex(sel_list, compo_fn_type_id, vtx_id_list, loc_scale, modifier):
+def create_locator_at_vertex(sel_list, compo_fn_type_id, name_prefix, vtx_id_list, loc_scale, modifier):
     '''
     Create locators each on a selected mesh's vertex or a NURBS object's control vertex
     :param sel_list: an instance of the MSelectionList class
@@ -142,7 +142,7 @@ def create_locator_at_vertex(sel_list, compo_fn_type_id, vtx_id_list, loc_scale,
         loc_trans_mat = OpenMaya2.MTransformationMatrix(loc_mat)
         loc_trans = loc_trans_mat.translation(OpenMaya2.MSpace.kWorld)
 
-        loc_handle = create_locator('fm_mask', loc_id, loc_scale, 1, modifier)
+        loc_handle = create_locator(name_prefix, loc_id, loc_scale, 1, modifier)
 
         if loc_handle.isValid():
             loc_node = loc_handle.object()
@@ -161,7 +161,7 @@ compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=True)
 modifier = OpenMaya2.MDagModifier()
 
 if compo_fn_type_id == OpenMaya2.MFn.kMeshVertComponent:
-    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    create_locator_at_vertex(sel_list, compo_fn_type_id, 'fm_Mask', compo_id_list, [0.03, 0.03, 0.03], modifier)
     print("Done! Vertex locator/s created and placed!")
 else:
     print("Please select a vertex")
@@ -172,7 +172,7 @@ compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=False
 modifier = OpenMaya2.MDagModifier()
 
 if compo_fn_type_id == OpenMaya2.MFn.kSurfaceCVComponent:
-    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    create_locator_at_vertex(sel_list, compo_fn_type_id, 'fm_Mask', compo_id_list, [0.03, 0.03, 0.03], modifier)
     print("Done! CV locator/s created and placed!")
 else:
     print("Please select a control vertex")
@@ -183,7 +183,7 @@ compo_fn_type_id, compo_id_list = get_type_and_id(sel_list, single_indexed=True)
 modifier = OpenMaya2.MDagModifier()
 
 if compo_fn_type_id == OpenMaya2.MFn.kCurveCVComponent:
-    create_locator_at_vertex(sel_list, compo_fn_type_id, compo_id_list, [0.1, 0.1, 0.1], modifier)
+    create_locator_at_vertex(sel_list, compo_fn_type_id, 'fm_ProjectPlane', compo_id_list, [0.0, 0.0, 0.2], modifier)
     print("Done! CV locator/s created and placed!")
 else:
     print("Please select a control vertex")

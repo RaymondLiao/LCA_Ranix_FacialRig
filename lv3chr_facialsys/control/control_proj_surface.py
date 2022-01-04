@@ -214,7 +214,7 @@ class controlProjSurface(object):
             loc_row_id = loc_id[0]
             loc_col_id = loc_id[1]
             loc_name = loc_dict['name']
-            loc_param_uv = loc_dict['pt_on_srf_param_UV']
+            # loc_param_uv = loc_dict['pt_on_srf_param_UV']
 
             loc = cmds.spaceLocator(name=name_prefix+'_'+loc_name)[0]
             assert cmds.objExists(loc+'Shape')
@@ -225,8 +225,8 @@ class controlProjSurface(object):
             cmds.setAttr(loc+'.overrideColor', PROJ_SURFACE_LOC_COLOR_INDEX)
 
             pt_on_srf_info_node = cmds.createNode('pointOnSurfaceInfo', name=name_prefix+'_'+loc_name+'_ptOnSrf')
-            cmds.setAttr(pt_on_srf_info_node+'.parameterU', loc_param_uv[0])
-            cmds.setAttr(pt_on_srf_info_node+'.parameterV', loc_param_uv[1])
+            # cmds.setAttr(pt_on_srf_info_node+'.parameterU', loc_param_uv[0])
+            # cmds.setAttr(pt_on_srf_info_node+'.parameterV', loc_param_uv[1])
             cmds.connectAttr(self._nurbs_srf+'.worldSpace[0]', pt_on_srf_info_node+'.inputSurface')
             cmds.connectAttr(pt_on_srf_info_node+'.position', loc+'.translate')
 
