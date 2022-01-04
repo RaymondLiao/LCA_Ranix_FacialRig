@@ -53,3 +53,12 @@ def get_nurbs_crv_CVs():
         nurbs_crv_CVs += '[{0}, {1}, {2}],\n'.format(cv_coord_x, cv_coord_y, cv_coord_z)
 
     return nurbs_crv_CVs
+
+def get_translation():
+    sel_trans = cmds.ls(sl=True)[0]
+
+    sel_trans = cmds.getAttr(sel_trans + '.translate')[0]
+    sel_trans_x = round(float(sel_trans[0]), 3)
+    sel_trans_y = round(float(sel_trans[1]), 3)
+    sel_trans_z = round(float(sel_trans[2]), 3)
+    cmds.warning('[{0}, {1}, {2}],\n'.format(sel_trans_x, sel_trans_y, sel_trans_z))

@@ -112,6 +112,40 @@ class nasoCheekControlZone(controlZone):
 
             self._ctrl_crv_dict[crv_id] = ctrl_crv
 
+        # Create the curves serving as blend-shape targets for the control curves.
+        ctrlcrv_bs_data = self._ctrl_crv_data['nasocheek_control_curve_bs']
+        ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
+
+        for crv_id in ctrl_crv_id_list:
+            dir_ctrlcrv_bs_data = None
+
+            for bs_type in ['original', 'bs_all', 'bs_LR']:
+                if controlZoneDirEnum.right in direction:
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_R_'+crv_id]
+                else:
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_L_'+crv_id]
+
+                dir_ctrlcrv_bs_orig = cmds.curve(degree=ctrlcrv_bs_degree,
+                                                 point=dir_ctrlcrv_bs_data['points'])
+                cmds.xform(dir_ctrlcrv_bs_orig, translation=dir_ctrlcrv_bs_data['xform']['translation'])
+
+                dir_ctrlcrv_bs_orig = cmds.rename(dir_ctrlcrv_bs_orig,
+                                                  self._ctrl_crv_data['nasocheek_ctrlzone_prefix'] +
+                                                  '_' + dir_ctrlcrv_bs_data['name'])
+
+                cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideEnabled', True)
+                if controlZoneDirEnum.right in direction:
+                    cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideColor', COLOR_INDEX_INDIGO)
+                    cmds.parent(dir_ctrlcrv_bs_orig,
+                                hierarchy.nasocheek_ctrlcrv_bs_R_grp.get_group_name())
+                else:
+                    cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideColor', COLOR_INDEX_DARK_RED)
+                    cmds.parent(dir_ctrlcrv_bs_orig,
+                                hierarchy.nasocheek_ctrlcrv_bs_L_grp.get_group_name())
+
+                cmds.toggle(dir_ctrlcrv_bs_orig, controlVertex=True)
+                cmds.select(deselect=True)
+
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
 

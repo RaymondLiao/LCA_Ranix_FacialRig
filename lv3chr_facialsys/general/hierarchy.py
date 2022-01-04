@@ -363,6 +363,7 @@ nasocheek_ctrlzone_prefix = 'fm_nasoCheekProject'
 nasocheek_projsrf_prefix = 'fm_nasoCheekMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
+nasocheek_ctrlcrv_bs_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_bs_grp')
 nasocheek_ctrlzone_loc_R_A_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_A_grp')
 nasocheek_ctrlzone_loc_R_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_B_grp')
 nasocheek_ctrlzone_loc_R_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_C_grp')
@@ -371,6 +372,7 @@ nasocheek_ctrlzone_loc_R_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_
 
 nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
                                      [
+                                         nasocheek_ctrlcrv_bs_R_grp,
                                          nasocheek_ctrlzone_loc_R_A_grp,
                                          nasocheek_ctrlzone_loc_R_B_grp,
                                          nasocheek_ctrlzone_loc_R_C_grp,
@@ -378,6 +380,7 @@ nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
                                          nasocheek_ctrlzone_loc_R_E_grp
                                      ])
 
+nasocheek_ctrlcrv_bs_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_bs_grp')
 nasocheek_ctrlzone_loc_L_A_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_A_grp')
 nasocheek_ctrlzone_loc_L_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_B_grp')
 nasocheek_ctrlzone_loc_L_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_C_grp')
@@ -386,6 +389,7 @@ nasocheek_ctrlzone_loc_L_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_
 
 nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp',
                                      [
+                                         nasocheek_ctrlcrv_bs_L_grp,
                                          nasocheek_ctrlzone_loc_L_A_grp,
                                          nasocheek_ctrlzone_loc_L_B_grp,
                                          nasocheek_ctrlzone_loc_L_C_grp,
