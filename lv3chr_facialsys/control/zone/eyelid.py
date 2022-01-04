@@ -52,7 +52,7 @@ class eyelidControlZone(controlZone):
                                                 ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
                                                 )
 
-        ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E', 'F']
+        ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
         controller_id_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
         if controlZoneDirEnum.right in direction:
             controller_id_list.reverse()
@@ -190,14 +190,14 @@ class eyelidControlZone(controlZone):
         # If the follow controller has not been created, make one.
         if not cmds.objExists(follow_ctrl):
 
-            follow_ctrl = cmds.spaceLocator(name=follow_ctrl_data[follow_ctrl_dir]['name'])[0]
-            cmds.xform(follow_ctrl,
-                       translation=follow_ctrl_data[follow_ctrl_dir]['xform']['translation'])
+            follow_ctrl_crv = cmds.curve(degree=follow_ctrl_data['degree'],
+                                         point=follow_ctrl_data['points'])
 
-            assert cmds.objExists(follow_ctrl + 'Shape')
-            for idx, axis in {0: 'X', 1: 'Y', 2: 'Z'}.items():
-                cmds.setAttr(follow_ctrl + 'Shape.localScale' + axis,
-                             follow_ctrl_data[follow_ctrl_dir]['xform']['scale'][idx])
+            cmds.xform(follow_ctrl_crv,
+                       translation=follow_ctrl_data[follow_ctrl_dir]['xform']['translation'],
+                       scale=follow_ctrl_data[follow_ctrl_dir]['xform']['scale'])
+
+            follow_ctrl_crv = cmds.rename(follow_ctrl_crv, follow_ctrl_data[follow_ctrl_dir]['name'])
 
             follow_data_list = follow_ctrl_data['follow_data']
             for follow_attr, val in follow_data_list.items():
@@ -205,10 +205,7 @@ class eyelidControlZone(controlZone):
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
             cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
-            if 'R' == follow_ctrl_dir:
-                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROLLER_RD_COLOR)
-            elif 'L' == follow_ctrl_dir:
-                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROLLER_LD_COLOR)
+            cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.eyelid_grp.get_group_name())
 

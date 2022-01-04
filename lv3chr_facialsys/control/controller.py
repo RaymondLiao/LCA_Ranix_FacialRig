@@ -63,6 +63,7 @@ class controller(object):
 
         nurbs_crv = cmds.rename(nurbs_crv, name)
 
+        cmds.setAttr(nurbs_crv+'.lineWidth', 2)
         cmds.setAttr(nurbs_crv+'.overrideEnabled', True)
         cmds.setAttr(nurbs_crv+'.overrideColor', color)
 

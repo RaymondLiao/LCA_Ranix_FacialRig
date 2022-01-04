@@ -119,7 +119,7 @@ class nasoCheekControlZone(controlZone):
         for crv_id in ctrl_crv_id_list:
             dir_ctrlcrv_bs_data = None
 
-            for bs_type in ['original', 'bs_all', 'bs_LR']:
+            for bs_type in ['original', 'bs_all', 'bs_LR', 'bs_UD']:
                 if controlZoneDirEnum.right in direction:
                     dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_R_'+crv_id]
                 else:

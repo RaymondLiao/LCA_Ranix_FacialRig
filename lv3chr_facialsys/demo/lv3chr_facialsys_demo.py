@@ -216,7 +216,8 @@ def setup_proj_surfaces():
                                                       translation = eyelid_dir_transplane_data['xform']['translation'],
                                                       rotation = eyelid_dir_transplane_data['xform']['rotation'],
                                                       scale = eyelid_dir_transplane_data['xform']['scale'],
-                                                      mirror = mirror)
+                                                      mirror = mirror,
+                                                      cv_list = eyelid_dir_transplane_data['control_vtx'])
         if controlZoneDirEnum.right in zone_dir and controlZoneDirEnum.up in zone_dir:
             g_crv_projsrf_dict['eyelid_transplane_RU'] = eyelid_crvproj_transplane
             cmds.parent(eyelid_crvproj_transplane.get_name(),
