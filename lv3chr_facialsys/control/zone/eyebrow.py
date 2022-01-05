@@ -240,6 +240,7 @@ class eyebrowControlZone(controlZone):
                                       self._ctrl_crv_bs_dict['left_right_side_up'],
                                       self._ctrl_crv_bs_dict['left_middle_side_up'],
                                       self._ctrl_crv_bs_dict['left_left_side_up'],
+
                                       self._ctrl_crv_bs_dict['right_right_side_left'],
                                       self._ctrl_crv_bs_dict['right_middle_side_left'],
                                       self._ctrl_crv_bs_dict['right_left_side_left'],
@@ -247,6 +248,7 @@ class eyebrowControlZone(controlZone):
                                       self._ctrl_crv_bs_dict['left_right_side_left'],
                                       self._ctrl_crv_bs_dict['left_middle_side_left'],
                                       self._ctrl_crv_bs_dict['left_left_side_left'],
+
                                       self._ctrl_crv_bs_dict['right_right_side_front'],
                                       self._ctrl_crv_bs_dict['right_middle_side_front'],
                                       self._ctrl_crv_bs_dict['right_left_side_front'],
@@ -254,6 +256,7 @@ class eyebrowControlZone(controlZone):
                                       self._ctrl_crv_bs_dict['left_right_side_front'],
                                       self._ctrl_crv_bs_dict['left_middle_side_front'],
                                       self._ctrl_crv_bs_dict['left_left_side_front'],
+
                                       self._ctrl_crv_dict['A'].get_name(),
                                       name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
                                       )[0]

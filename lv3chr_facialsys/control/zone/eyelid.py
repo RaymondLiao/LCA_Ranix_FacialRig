@@ -51,6 +51,13 @@ class eyelidControlZone(controlZone):
                                                 ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
                                                 ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
                                                 )
+        zone_LR = 'right'
+        zone_UD = 'up'
+
+        if controlZoneDirEnum.left in direction:
+            zone_LR = 'left'
+        if controlZoneDirEnum.down in direction:
+            zone_UD = 'down'
 
         ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
         controller_id_list = ['A', 'B', 'C', 'D', 'E']
@@ -173,15 +180,6 @@ class eyelidControlZone(controlZone):
             if 'original' in ctrl_crv_bs_dir or 'front' in ctrl_crv_bs_dir:
                 continue
 
-            dir_ctrlcrv_bs_data = None
-            zone_LR = 'right'
-            zone_UD = 'up'
-
-            if controlZoneDirEnum.left in direction:
-                zone_LR = 'left'
-            if controlZoneDirEnum.down in direction:
-                zone_UD = 'down'
-
             dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR+'_'+ctrl_crv_bs_dir]
 
             bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
@@ -206,6 +204,8 @@ class eyelidControlZone(controlZone):
             elif controlZoneDirEnum.left in direction:
                 cmds.parent(bs_nurbs_crv,
                             hierarchy.eyelid_ctrlcrv_bs_L_grp.get_group_name())
+
+            self._ctrl_crv_bs_dict[ctrl_crv_bs_dir] = bs_nurbs_crv
 
         # Create the control curve follow controllers.
         follow_ctrl_data = self._ctrl_crv_data['eyelid_follow_controller']
@@ -298,6 +298,41 @@ class eyelidControlZone(controlZone):
 
             self._controller_dict[ctrl_id] = rig_controller
 
+        # Drive the eyelid corner controllers by their adjacent ones.
+        corner_driving_R_controller = self._controller_dict['B'].get_name()
+        corner_R_controller = self._controller_dict['A'].get_name()
+
+        cmds.addAttr(corner_driving_R_controller, longName='eyecorner_x_follow', attributeType='float',
+                     defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
+        cmds.addAttr(corner_driving_R_controller, longName='eyecorner_y_follow', attributeType='float',
+                     defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
+
+        corner_R_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_R_controller+'_follow_multiplyDivide')
+
+        cmds.connectAttr(corner_driving_R_controller+'.translateX', corner_R_trans_multi_node+'.input1X')
+        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_x_follow', corner_R_trans_multi_node+'.input2X')
+        cmds.connectAttr(corner_driving_R_controller+'.translateY', corner_R_trans_multi_node+'.input1Y')
+        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_y_follow', corner_R_trans_multi_node+'.input2Y')
+        cmds.connectAttr(corner_R_trans_multi_node+'.outputX', corner_R_controller+'.translateX')
+        cmds.connectAttr(corner_R_trans_multi_node+'.outputY', corner_R_controller+'.translateY')
+
+        corner_driving_L_controller = self._controller_dict['D'].get_name()
+        corner_L_controller = self._controller_dict['E'].get_name()
+
+        cmds.addAttr(corner_driving_L_controller, longName='eyecorner_x_follow', attributeType='float',
+                     defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
+        cmds.addAttr(corner_driving_L_controller, longName='eyecorner_y_follow', attributeType='float',
+                     defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
+
+        corner_L_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_L_controller+'_follow_multiplyDivide')
+
+        cmds.connectAttr(corner_driving_L_controller+'.translateX', corner_L_trans_multi_node+'.input1X')
+        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_x_follow', corner_L_trans_multi_node+'.input2X')
+        cmds.connectAttr(corner_driving_L_controller+'.translateY', corner_L_trans_multi_node+'.input1Y')
+        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_y_follow', corner_L_trans_multi_node+'.input2Y')
+        cmds.connectAttr(corner_L_trans_multi_node+'.outputX', corner_L_controller+'.translateX')
+        cmds.connectAttr(corner_L_trans_multi_node+'.outputY', corner_L_controller+'.translateY')
+
         # # ----------------------------------------------------------------------------------------------------------
         # # Bind the control curves to the corresponding controllers' joints.
 
@@ -309,6 +344,52 @@ class eyelidControlZone(controlZone):
         #
         # skincluster_node = cmds.skinCluster(toSelectedBones=True)
         # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
+
+        # --------------------------------------------------------------------------------------------------------------
+        # Drive the control curves using blend-shape and
+        # five-curves each in the LR and UD directions, as the targets.
+
+        ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict['right_end_up'],
+                                      self._ctrl_crv_bs_dict['right_side_up'],
+                                      self._ctrl_crv_bs_dict['middle_side_up'],
+                                      self._ctrl_crv_bs_dict['left_side_up'],
+                                      self._ctrl_crv_bs_dict['left_end_up'],
+
+                                      self._ctrl_crv_bs_dict['right_end_left'],
+                                      self._ctrl_crv_bs_dict['right_side_left'],
+                                      self._ctrl_crv_bs_dict['middle_side_left'],
+                                      self._ctrl_crv_bs_dict['left_side_left'],
+                                      self._ctrl_crv_bs_dict['left_end_left'],
+
+                                      self._ctrl_crv_dict['A'].get_name(),
+                                      name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
+                                      )[0]
+        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+
+        cmds.connectAttr(self._controller_dict['A'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_end_left'])
+        cmds.connectAttr(self._controller_dict['A'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_end_up'])
+
+        cmds.connectAttr(self._controller_dict['B'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
+        cmds.connectAttr(self._controller_dict['B'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
+
+        cmds.connectAttr(self._controller_dict['C'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_left'])
+        cmds.connectAttr(self._controller_dict['C'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_up'])
+
+        cmds.connectAttr(self._controller_dict['D'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
+        cmds.connectAttr(self._controller_dict['D'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+
+        cmds.connectAttr(self._controller_dict['E'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_end_left'])
+        cmds.connectAttr(self._controller_dict['E'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_end_up'])
 
         # Create blend-shapes to control curves to transit the translations of controllers.
 
