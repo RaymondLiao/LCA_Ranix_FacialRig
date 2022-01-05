@@ -81,10 +81,13 @@ eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_grp',
                                        eyelid_ctrlzone_loc_RD_F_grp
                                    ])
 
+eyelid_ctrlcrv_bs_R_grp = groupTree(eyelid_ctrlzone_prefix + '_R_bs_grp')
+
 eyelid_ctrlzone_R_grp = groupTree(eyelid_ctrlzone_prefix + '_R_grp',
                                   [
                                       eyelid_ctrlzone_RU_grp,
-                                      eyelid_ctrlzone_RD_grp
+                                      eyelid_ctrlzone_RD_grp,
+                                      eyelid_ctrlcrv_bs_R_grp
                                   ])
 
 eyelid_ctrl_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_ctrl_grp')
@@ -126,10 +129,13 @@ eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_grp',
                                        eyelid_ctrlzone_loc_LD_F_grp
                                    ])
 
+eyelid_ctrlcrv_bs_L_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_bs_grp')
+
 eyelid_ctrlzone_L_grp = groupTree(eyelid_ctrlzone_prefix + '_L_grp',
                                   [
                                       eyelid_ctrlzone_LU_grp,
-                                      eyelid_ctrlzone_LD_grp
+                                      eyelid_ctrlzone_LD_grp,
+                                      eyelid_ctrlcrv_bs_L_grp
                                   ])
 
 # projection surface ---------------------------------------------------------------------------------------------------

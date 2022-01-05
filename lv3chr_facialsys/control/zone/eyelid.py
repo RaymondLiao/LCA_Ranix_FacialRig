@@ -169,9 +169,43 @@ class eyelidControlZone(controlZone):
         ctrlcrv_bs_data = self._ctrl_crv_data['eyelid_control_curve_bs']
         ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
 
-        for ctrl_id in controller_id_list:
-            dir_ctrlcrv_bs_data = None
+        for ctrl_crv_bs_dir in G_CTRLCRV_BS_DIR_LIST:
+            if 'original' in ctrl_crv_bs_dir or 'front' in ctrl_crv_bs_dir:
+                continue
 
+            dir_ctrlcrv_bs_data = None
+            zone_LR = 'right'
+            zone_UD = 'up'
+
+            if controlZoneDirEnum.left in direction:
+                zone_LR = 'left'
+            if controlZoneDirEnum.down in direction:
+                zone_UD = 'down'
+
+            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR+'_'+ctrl_crv_bs_dir]
+
+            bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
+                                      point=dir_ctrlcrv_bs_data['points'])
+            cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
+            bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
+                                       self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
+                                       zone_LR[0].upper() + zone_UD[0].upper() + '_' + dir_ctrlcrv_bs_data['name'])
+
+            cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+            if controlZoneDirEnum.left in direction:
+                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+            elif controlZoneDirEnum.right in direction:
+                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+
+            cmds.toggle(bs_nurbs_crv, controlVertex=True)
+            cmds.select(deselect=True)
+
+            if controlZoneDirEnum.right in direction:
+                cmds.parent(bs_nurbs_crv,
+                            hierarchy.eyelid_ctrlcrv_bs_R_grp.get_group_name())
+            elif controlZoneDirEnum.left in direction:
+                cmds.parent(bs_nurbs_crv,
+                            hierarchy.eyelid_ctrlcrv_bs_L_grp.get_group_name())
 
         # Create the control curve follow controllers.
         follow_ctrl_data = self._ctrl_crv_data['eyelid_follow_controller']

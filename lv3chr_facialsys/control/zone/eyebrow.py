@@ -101,118 +101,118 @@ class eyebrowControlZone(controlZone):
 
         cmds.select(deselect=True)
 
-        # Create the controllers.
-        controller_data = self._ctrl_crv_data['eyebrow_controller']
-        controller_degree = controller_data['degree']
-        direction = None
-        controller_points = []
-        controller_color = 0
-
-        for ctrl_id in controller_id_list:
-            if 'R' in ctrl_id:
-                controller_points = controller_data['points_right']
-                direction = controlZoneDirEnum.right
-                controller_color = CONTROL_R_COLOR
-            elif 'M' in ctrl_id:
-                controller_points = controller_data['points_middle']
-                direction = controlZoneDirEnum.middle
-                controller_color = CONTROL_M_COLOR
-            elif 'L' in ctrl_id:
-                controller_points = controller_data['points_left']
-                direction = controlZoneDirEnum.left
-                controller_color = CONTROL_L_COLOR
-
-            dir_ctrl_data = controller_data[direction + '_' + ctrl_id.split('_')[1]]
-            rig_controller = controller(name = self._ctrl_crv_data['eyebrow_ctrlzone_prefix'] + '_' +
-                                               dir_ctrl_data['name'],
-                                        degree = controller_degree,
-                                        color = controller_color,
-                                        points = controller_points,
-                                        translation_ofs = dir_ctrl_data['xform']['translation_ofs'],
-                                        translation = dir_ctrl_data['xform']['translation'],
-                                        lock_trans_axes = controller_data['lock_trans_axes'],
-                                        lock_rot_axes = controller_data['lock_rot_axes'],
-                                        bind_joint_data = controller_data['bind_joint'],
-                                        bind_joint_color = BIND_JOINT_COLOR_INDEX)
-
-            cmds.parent(rig_controller.get_offset_group(),
-                        hierarchy.eyebrow_ctrl_M_grp.get_group_name(),
-                        relative=True)
-
-            self._controller_dict[ctrl_id] = rig_controller
-
-        # --------------------------------------------------------------------------------------------------------------
-        # Bind the control curves to the corresponding controllers' joints.
-        cmds.select(deselect=True)
-        for ctrl_id, ctrl in self._controller_dict.items():
-            ctrl_bind_jnt = ctrl.get_bind_joint()
-            cmds.select(ctrl_bind_jnt, add=True)
-        cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
-
-        skincluster_node = cmds.skinCluster(toSelectedBones=True)
-        cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
-
-        # Create the blendshapes to control curves to transit the translations of controllers.
-        cmds.select(deselect=True)
-        follow_val = 0.5
-
-        for ctrl_crv_id in ctrl_crv_id_list[1:]:
-            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
-            bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
-                                      ctrl_crv.get_name(),
-                                      weight=[0, follow_val])
-            bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
-
-        # Use "closestPointOnSurface" nodes to establish the projecting relationships between
-        # the locators on the control curves and the locators on the projection surfaces.
-
-        for ctrl_crv_id in ctrl_crv_id_list:
-            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
-
-            loc_id_list = ctrl_crv.get_locator_ids()
-            for loc_id in loc_id_list:
-                ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
-
-                # Establish the projecting relationships in the up-down/UD directions.
-                UD_projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
-
-                cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
-                cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
-                                                           ctrlcrv_loc_info[0] + '_srfUD_clsPtOnSrf')
-
-                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_UD_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_UD_transplane_node + '.inPosition')
-
-                pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
-                assert cmds.objExists(pt_on_UD_projsrf_node)
-
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
-
-                if ctrl_crv_id_list[0] in ctrl_crv.get_name():
-                    # Establish the projecting relationships in the front/F direction.
-                    # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
-                    if loc_id <= 2:
-                        continue
-                    if loc_id > len(loc_id_list)-2:
-                        break
-                    F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
-                    if None == F_projsrf_loc_info:
-                        continue
-
-                    cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
-                    cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
-                                                              ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
-
-                    cmds.connectAttr(self._ctrlproj_transplane_LRFB.get_name() + '.worldSpace[0]',
-                                     cls_pt_on_F_transplane_node + '.inputSurface')
-                    cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                     cls_pt_on_F_transplane_node + '.inPosition')
-
-                    pt_on_F_projsrf_node = F_projsrf_loc_info[2]
-                    assert cmds.objExists(pt_on_F_projsrf_node)
-
-                    cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
-                    cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')
+        # # Create the controllers.
+        # controller_data = self._ctrl_crv_data['eyebrow_controller']
+        # controller_degree = controller_data['degree']
+        # direction = None
+        # controller_points = []
+        # controller_color = 0
+        #
+        # for ctrl_id in controller_id_list:
+        #     if 'R' in ctrl_id:
+        #         controller_points = controller_data['points_right']
+        #         direction = controlZoneDirEnum.right
+        #         controller_color = CONTROL_R_COLOR
+        #     elif 'M' in ctrl_id:
+        #         controller_points = controller_data['points_middle']
+        #         direction = controlZoneDirEnum.middle
+        #         controller_color = CONTROL_M_COLOR
+        #     elif 'L' in ctrl_id:
+        #         controller_points = controller_data['points_left']
+        #         direction = controlZoneDirEnum.left
+        #         controller_color = CONTROL_L_COLOR
+        #
+        #     dir_ctrl_data = controller_data[direction + '_' + ctrl_id.split('_')[1]]
+        #     rig_controller = controller(name = self._ctrl_crv_data['eyebrow_ctrlzone_prefix'] + '_' +
+        #                                        dir_ctrl_data['name'],
+        #                                 degree = controller_degree,
+        #                                 color = controller_color,
+        #                                 points = controller_points,
+        #                                 translation_ofs = dir_ctrl_data['xform']['translation_ofs'],
+        #                                 translation = dir_ctrl_data['xform']['translation'],
+        #                                 lock_trans_axes = controller_data['lock_trans_axes'],
+        #                                 lock_rot_axes = controller_data['lock_rot_axes'],
+        #                                 bind_joint_data = controller_data['bind_joint'],
+        #                                 bind_joint_color = BIND_JOINT_COLOR_INDEX)
+        #
+        #     cmds.parent(rig_controller.get_offset_group(),
+        #                 hierarchy.eyebrow_ctrl_M_grp.get_group_name(),
+        #                 relative=True)
+        #
+        #     self._controller_dict[ctrl_id] = rig_controller
+        #
+        # # --------------------------------------------------------------------------------------------------------------
+        # # Bind the control curves to the corresponding controllers' joints.
+        # cmds.select(deselect=True)
+        # for ctrl_id, ctrl in self._controller_dict.items():
+        #     ctrl_bind_jnt = ctrl.get_bind_joint()
+        #     cmds.select(ctrl_bind_jnt, add=True)
+        # cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
+        #
+        # skincluster_node = cmds.skinCluster(toSelectedBones=True)
+        # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
+        #
+        # # Create the blendshapes to control curves to transit the translations of controllers.
+        # cmds.select(deselect=True)
+        # follow_val = 0.5
+        #
+        # for ctrl_crv_id in ctrl_crv_id_list[1:]:
+        #     ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+        #     bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
+        #                               ctrl_crv.get_name(),
+        #                               weight=[0, follow_val])
+        #     bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+        #
+        # # Use "closestPointOnSurface" nodes to establish the projecting relationships between
+        # # the locators on the control curves and the locators on the projection surfaces.
+        #
+        # for ctrl_crv_id in ctrl_crv_id_list:
+        #     ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+        #
+        #     loc_id_list = ctrl_crv.get_locator_ids()
+        #     for loc_id in loc_id_list:
+        #         ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
+        #
+        #         # Establish the projecting relationships in the up-down/UD directions.
+        #         UD_projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
+        #
+        #         cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
+        #         cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
+        #                                                    ctrlcrv_loc_info[0] + '_srfUD_clsPtOnSrf')
+        #
+        #         cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
+        #                          cls_pt_on_UD_transplane_node + '.inputSurface')
+        #         cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+        #                          cls_pt_on_UD_transplane_node + '.inPosition')
+        #
+        #         pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
+        #         assert cmds.objExists(pt_on_UD_projsrf_node)
+        #
+        #         cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
+        #         cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
+        #
+        #         if ctrl_crv_id_list[0] in ctrl_crv.get_name():
+        #             # Establish the projecting relationships in the front/F direction.
+        #             # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
+        #             if loc_id <= 2:
+        #                 continue
+        #             if loc_id > len(loc_id_list)-2:
+        #                 break
+        #             F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
+        #             if None == F_projsrf_loc_info:
+        #                 continue
+        #
+        #             cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
+        #             cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
+        #                                                       ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+        #
+        #             cmds.connectAttr(self._ctrlproj_transplane_LRFB.get_name() + '.worldSpace[0]',
+        #                              cls_pt_on_F_transplane_node + '.inputSurface')
+        #             cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+        #                              cls_pt_on_F_transplane_node + '.inPosition')
+        #
+        #             pt_on_F_projsrf_node = F_projsrf_loc_info[2]
+        #             assert cmds.objExists(pt_on_F_projsrf_node)
+        #
+        #             cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
+        #             cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')
