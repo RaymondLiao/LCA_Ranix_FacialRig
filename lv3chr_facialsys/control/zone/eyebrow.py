@@ -134,36 +134,38 @@ class eyebrowControlZone(controlZone):
                 cmds.parent(bs_nurbs_crv,
                             hierarchy.eyebrow_ctrlcrv_bs_R_grp.get_group_name())
 
-            # Create the control curve follow controllers.
-            follow_ctrl_data = self._ctrl_crv_data['eyebrow_follow_controller']
+                self._ctrl_crv_bs_dict[zone_dir+'_'+ctrl_crv_bs_dir] = bs_nurbs_crv
 
-            follow_ctrl = follow_ctrl_data['M']['name']
+        # Create the control curve follow controllers.
+        follow_ctrl_data = self._ctrl_crv_data['eyebrow_follow_controller']
 
-            # If the follow controller has not been created, make one.
-            if not cmds.objExists(follow_ctrl):
+        follow_ctrl = follow_ctrl_data['M']['name']
 
-                follow_ctrl_crv = cmds.curve(degree=follow_ctrl_data['degree'],
-                                             point=follow_ctrl_data['points'])
+        # If the follow controller has not been created, make one.
+        if not cmds.objExists(follow_ctrl):
 
-                cmds.xform(follow_ctrl_crv,
-                           translation=follow_ctrl_data['M']['xform']['translation'],
-                           scale=follow_ctrl_data['M']['xform']['scale'])
+            follow_ctrl_crv = cmds.curve(degree=follow_ctrl_data['degree'],
+                                         point=follow_ctrl_data['points'])
 
-                follow_ctrl_crv = cmds.rename(follow_ctrl_crv, follow_ctrl_data['M']['name'])
+            cmds.xform(follow_ctrl_crv,
+                       translation=follow_ctrl_data['M']['xform']['translation'],
+                       scale=follow_ctrl_data['M']['xform']['scale'])
 
-                follow_data_list = follow_ctrl_data['follow_data']
-                for follow_attr, val in follow_data_list.items():
-                    cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
-                                 defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
+            follow_ctrl_crv = cmds.rename(follow_ctrl_crv, follow_ctrl_data['M']['name'])
 
-                cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
-                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
+            follow_data_list = follow_ctrl_data['follow_data']
+            for follow_attr, val in follow_data_list.items():
+                cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
+                             defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-                cmds.parent(follow_ctrl, hierarchy.eyebrow_grp.get_group_name())
+            cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
+            cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
 
-                cmds.select(deselect=True)
+            cmds.parent(follow_ctrl, hierarchy.eyebrow_grp.get_group_name())
 
-            self._follow_ctrl = follow_ctrl
+            cmds.select(deselect=True)
+
+        self._follow_ctrl = follow_ctrl
 
         # Create the controllers.
         controller_data = self._ctrl_crv_data['eyebrow_controller']
@@ -226,6 +228,114 @@ class eyebrowControlZone(controlZone):
         #                               ctrl_crv.get_name(),
         #                               weight=[0, follow_val])
         #     bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+
+        # --------------------------------------------------------------------------------------------------------------
+        # Drive the control curves using blend-shape and
+        # five-curves each in the LR and UD directions, as the targets.
+
+        ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict['right_right_side_up'],
+                                      self._ctrl_crv_bs_dict['right_middle_side_up'],
+                                      self._ctrl_crv_bs_dict['right_left_side_up'],
+                                      self._ctrl_crv_bs_dict['middle_middle_side_up'],
+                                      self._ctrl_crv_bs_dict['left_right_side_up'],
+                                      self._ctrl_crv_bs_dict['left_middle_side_up'],
+                                      self._ctrl_crv_bs_dict['left_left_side_up'],
+                                      self._ctrl_crv_bs_dict['right_right_side_left'],
+                                      self._ctrl_crv_bs_dict['right_middle_side_left'],
+                                      self._ctrl_crv_bs_dict['right_left_side_left'],
+                                      self._ctrl_crv_bs_dict['middle_middle_side_left'],
+                                      self._ctrl_crv_bs_dict['left_right_side_left'],
+                                      self._ctrl_crv_bs_dict['left_middle_side_left'],
+                                      self._ctrl_crv_bs_dict['left_left_side_left'],
+                                      self._ctrl_crv_bs_dict['right_right_side_front'],
+                                      self._ctrl_crv_bs_dict['right_middle_side_front'],
+                                      self._ctrl_crv_bs_dict['right_left_side_front'],
+                                      self._ctrl_crv_bs_dict['middle_middle_side_front'],
+                                      self._ctrl_crv_bs_dict['left_right_side_front'],
+                                      self._ctrl_crv_bs_dict['left_middle_side_front'],
+                                      self._ctrl_crv_bs_dict['left_left_side_front'],
+                                      self._ctrl_crv_dict['A'].get_name(),
+                                      name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
+                                      )[0]
+        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+
+        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_left'])
+        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_up'])
+        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_front'])
+
+        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_front'])
+
+        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_left'])
+        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_up'])
+        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_front'])
+
+        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_front'])
+
+        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_left'])
+        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_up'])
+        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_front'])
+
+        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_front'])
+
+        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateX',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_left'])
+        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateY',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_up'])
+        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateZ',
+                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_front'])
+
+        # Create blend-shapes to control curves to transit the translations of controllers.
+
+        cmds.select(deselect=True)
+        eyebrow_follow_B_attr = self._follow_ctrl + '.eyebrow_follow_b'
+        eyebrow_follow_C_attr = self._follow_ctrl + '.eyebrow_follow_c'
+        eyebrow_follow_D_attr = self._follow_ctrl + '.eyebrow_follow_d'
+
+        for ctrl_crv_id in ctrl_crv_id_list[1:]:
+            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+
+            follow_attr = ''
+            follow_val = 0.0
+
+            if 'B' in ctrl_crv_id:
+                follow_attr = eyebrow_follow_B_attr
+            elif 'C' in ctrl_crv_id:
+                follow_attr = eyebrow_follow_C_attr
+            elif 'D' in ctrl_crv_id:
+                follow_attr = eyebrow_follow_D_attr
+
+            assert cmds.objExists(follow_attr)
+            follow_val = cmds.getAttr(follow_attr)
+            bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
+                                      ctrl_crv.get_name(),
+                                      weight=[0, follow_val])
+            bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+
+            cmds.connectAttr(follow_attr, bs_node + '.weight[0]')
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.

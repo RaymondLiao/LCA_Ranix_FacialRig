@@ -70,21 +70,21 @@ class controller(object):
         self._nurbs_crv = nurbs_crv
         cmds.select(deselect=True)
 
-        # Create a joint to bind this controller.
-        bind_jnt_data_keys = bind_joint_data.keys()
-        assert 'suffix' in bind_jnt_data_keys
-        assert 'radius' in bind_jnt_data_keys
-
-        bind_jnt_name = name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
-        bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_joint_data['radius'])
-
-        cmds.setAttr(bind_jnt+'.overrideEnabled', True)
-        cmds.setAttr(bind_jnt+'.overrideColor', bind_joint_color)
-
-        cmds.parent(bind_jnt, self._nurbs_crv)
-        cmds.xform(bind_jnt, translation=[0, 0, 0])
-
-        self._bind_jnt = bind_jnt
+        # # Create a joint to bind this controller.
+        # bind_jnt_data_keys = bind_joint_data.keys()
+        # assert 'suffix' in bind_jnt_data_keys
+        # assert 'radius' in bind_jnt_data_keys
+        #
+        # bind_jnt_name = name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
+        # bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_joint_data['radius'])
+        #
+        # cmds.setAttr(bind_jnt+'.overrideEnabled', True)
+        # cmds.setAttr(bind_jnt+'.overrideColor', bind_joint_color)
+        #
+        # cmds.parent(bind_jnt, self._nurbs_crv)
+        # cmds.xform(bind_jnt, translation=[0, 0, 0])
+        #
+        # self._bind_jnt = bind_jnt
 
     def __repr__(self):
         return NotImplemented

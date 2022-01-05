@@ -2781,9 +2781,9 @@
 
     "follow_data":
     {
-      "eyebrow_follow_a": 0.75,
-      "eyebrow_follow_b": 0.50,
-      "eyebrow_follow_c": 0.25
+      "eyebrow_follow_b": 0.75,
+      "eyebrow_follow_c": 0.50,
+      "eyebrow_follow_d": 0.25
     },
 
     "M": {
