@@ -125,26 +125,84 @@ class nasoCheekControlZone(controlZone):
                 else:
                     dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_L_'+crv_id]
 
-                dir_ctrlcrv_bs_orig = cmds.curve(degree=ctrlcrv_bs_degree,
-                                                 point=dir_ctrlcrv_bs_data['points'])
-                cmds.xform(dir_ctrlcrv_bs_orig, translation=dir_ctrlcrv_bs_data['xform']['translation'])
+                bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
+                                          point=dir_ctrlcrv_bs_data['points'])
+                cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
 
-                dir_ctrlcrv_bs_orig = cmds.rename(dir_ctrlcrv_bs_orig,
-                                                  self._ctrl_crv_data['nasocheek_ctrlzone_prefix'] +
-                                                  '_' + dir_ctrlcrv_bs_data['name'])
+                bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
+                                           self._ctrl_crv_data['nasocheek_ctrlzone_prefix'] +
+                                           '_' + dir_ctrlcrv_bs_data['name'])
 
-                cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideEnabled', True)
+                cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
                 if controlZoneDirEnum.right in direction:
-                    cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideColor', COLOR_INDEX_INDIGO)
-                    cmds.parent(dir_ctrlcrv_bs_orig,
+                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+                    cmds.parent(bs_nurbs_crv,
                                 hierarchy.nasocheek_ctrlcrv_bs_R_grp.get_group_name())
                 else:
-                    cmds.setAttr(dir_ctrlcrv_bs_orig + '.overrideColor', COLOR_INDEX_DARK_RED)
-                    cmds.parent(dir_ctrlcrv_bs_orig,
+                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+                    cmds.parent(bs_nurbs_crv,
                                 hierarchy.nasocheek_ctrlcrv_bs_L_grp.get_group_name())
 
-                cmds.toggle(dir_ctrlcrv_bs_orig, controlVertex=True)
+                cmds.toggle(bs_nurbs_crv, controlVertex=True)
                 cmds.select(deselect=True)
+
+                self._ctrl_crv_bs_dict[bs_type+'_'+crv_id] = bs_nurbs_crv
+
+        # --------------------------------------------------------------------------------------------------------------
+        # Drive the control curves using blend-shape and
+        # five-curves each in the LR and UD directions, as the targets.
+
+        for crv_id in ctrl_crv_id_list:
+            bs_LR_crv = self._ctrl_crv_bs_dict['bs_LR'+'_'+crv_id]
+            bs_UD_crv = self._ctrl_crv_bs_dict['bs_UD'+'_'+crv_id]
+            bs_all_crv = self._ctrl_crv_bs_dict['bs_all'+'_'+crv_id]
+            bs_orig_crv = self._ctrl_crv_bs_dict['original'+'_'+crv_id]
+            proj_crv = self._ctrl_crv_dict[crv_id].get_name()
+
+            bs_all_crv_bs = cmds.blendShape(bs_LR_crv,
+                                            bs_UD_crv,
+
+                                            bs_all_crv,
+
+                                            name=bs_all_crv + '_blendShape'
+                                            )[0]
+            cmds.setAttr(bs_all_crv_bs + '.supportNegativeWeights', True)
+
+            proj_crv_bs = cmds.blendShape(bs_orig_crv,
+                                          bs_all_crv,
+
+                                          proj_crv,
+
+                                          name=proj_crv + '_blendShape'
+                                          )[0]
+            cmds.setAttr(proj_crv_bs+'.'+bs_orig_crv, 1.0)
+            cmds.setAttr(proj_crv_bs+'.'+bs_all_crv, 1.0)
+            cmds.setAttr(proj_crv_bs + '.supportNegativeWeights', True)
+
+            mouth_corner_U_controller = 'fm_mouthProject_RU_ctrl'
+            mouth_corner_D_controller = 'fm_mouthProject_RD_ctrl'
+            zone_dir = 'right'
+            if controlZoneDirEnum.left in direction:
+                mouth_corner_U_controller = 'fm_mouthProject_LU_ctrl'
+                mouth_corner_D_controller = 'fm_mouthProject_LD_ctrl'
+                zone_dir = 'left'
+
+            assert cmds.objExists(mouth_corner_U_controller)
+            assert cmds.objExists(mouth_corner_D_controller)
+
+            mouth_corner_trans_avg_node = cmds.createNode('plusMinusAverage', name='mouth_corner_'+zone_dir+'_avg')
+            cmds.setAttr(mouth_corner_trans_avg_node+'.operation', 3)
+
+            cmds.connectAttr(mouth_corner_U_controller+'.translateX', mouth_corner_trans_avg_node+'.input3D[0].input3Dx')
+            cmds.connectAttr(mouth_corner_U_controller+'.translateY', mouth_corner_trans_avg_node+'.input3D[0].input3Dy')
+            cmds.connectAttr(mouth_corner_U_controller+'.translateZ', mouth_corner_trans_avg_node+'.input3D[0].input3Dz')
+
+            cmds.connectAttr(mouth_corner_D_controller+'.translateX', mouth_corner_trans_avg_node+'.input3D[1].input3Dx')
+            cmds.connectAttr(mouth_corner_D_controller+'.translateY', mouth_corner_trans_avg_node+'.input3D[1].input3Dy')
+            cmds.connectAttr(mouth_corner_D_controller+'.translateZ', mouth_corner_trans_avg_node+'.input3D[1].input3Dz')
+
+            cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', bs_all_crv_bs+'.'+bs_LR_crv)
+            cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', bs_all_crv_bs+'.'+bs_UD_crv)
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
