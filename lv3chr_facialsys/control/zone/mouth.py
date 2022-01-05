@@ -90,13 +90,15 @@ class mouthControlZone(controlZone):
         ctrlcrv_bs_data = self._ctrl_crv_data['mouth_control_curve_bs']
         ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
 
-        for ctrl_crv_bs_dir in ctrl_crv_bs_dir_list:
+        for ctrl_crv_bs_dir in G_CTRLCRV_BS_DIR_LIST:
             dir_ctrlcrv_bs_data = None
             if 'original' == ctrl_crv_bs_dir:
                 if controlZoneDirEnum.up in direction:
-                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['original_up']
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['up_original']
                 elif controlZoneDirEnum.down in direction:
-                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['original_dn']
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data['dn_original']
+            elif 'end' in ctrl_crv_bs_dir:
+                continue
             else:
                 dir_ctrlcrv_bs_data = ctrlcrv_bs_data[ctrl_crv_bs_dir]
 
@@ -196,7 +198,7 @@ class mouthControlZone(controlZone):
                                                    name=self._controller_dict['R'].get_name() + '_trans_multiplyDivide')
         cmds.setAttr(R_ctrl_trans_divide_node+'.operation', 2)  # divide
         cmds.setAttr(R_ctrl_trans_divide_node+'.input2',
-                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
 
         cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
                          R_ctrl_trans_divide_node + '.input1Y')
@@ -218,7 +220,7 @@ class mouthControlZone(controlZone):
                                                    name=self._controller_dict['M'].get_name() + '_trans_multiplyDivide')
         cmds.setAttr(M_ctrl_trans_divide_node+'.operation', 2)  # divide
         cmds.setAttr(M_ctrl_trans_divide_node+'.input2',
-                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
 
         cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
                          M_ctrl_trans_divide_node + '.input1Y')
@@ -239,7 +241,7 @@ class mouthControlZone(controlZone):
                                                    name=self._controller_dict['L'].get_name() + '_trans_multiplyDivide')
         cmds.setAttr(L_ctrl_trans_divide_node+'.operation', 2)  # divide
         cmds.setAttr(L_ctrl_trans_divide_node+'.input2',
-                     ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain, ctrl_crv_bs_drving_gain)
+                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
 
 
         cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',

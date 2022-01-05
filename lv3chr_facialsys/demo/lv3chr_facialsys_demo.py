@@ -197,7 +197,7 @@ def setup_proj_surfaces():
     # Eyelid Facial Zone - Translation Planes
     eyelid_crvproj_transplane_data = control_proj_surface_data['eyelid_translation_plane']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_transplane_data = eyelid_crvproj_transplane_data[zone_dir]
         eyelid_dir_transplane_degree = eyelid_dir_transplane_data['degree']
@@ -238,7 +238,7 @@ def setup_proj_surfaces():
     # Eyelid Facial Zone - Projection Surfaces
     eyelid_crvproj_projsrf_data = control_proj_surface_data['eyelid_projection_surface']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyelid_dir_projsrf_data = eyelid_crvproj_projsrf_data[zone_dir]
         eyelid_dir_projsrf_degree = eyelid_dir_projsrf_data['degree']
@@ -374,7 +374,7 @@ def setup_proj_surfaces():
     # Eyebrow Facial Zone - Translation Planes
     eyebrow_crvproj_transplane_data = control_proj_surface_data['eyebrow_translation_plane']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyebrow_dir_transplane_data = eyebrow_crvproj_transplane_data[zone_dir]
         eyebrow_dir_transplane_degree = eyebrow_dir_transplane_data['degree']
@@ -402,7 +402,7 @@ def setup_proj_surfaces():
     # Eyebrow Facial Zone - Projection Surfaces
     eyebrow_crvproj_projsrf_data = control_proj_surface_data['eyebrow_projection_surface']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir]
         eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
@@ -459,7 +459,7 @@ def setup_proj_surfaces():
     # Mouth Facial Zone - Translation Planes
     mouth_crvproj_transplane_data = control_proj_surface_data['mouth_translation_plane']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         mouth_dir_transplane_data = mouth_crvproj_transplane_data[zone_dir]
         mouth_dir_transplane_degree = mouth_dir_transplane_data['degree']
@@ -488,7 +488,7 @@ def setup_proj_surfaces():
     # Mouth Facial Zone - Projection Surfaces
     mouth_crvproj_projsrf_data = control_proj_surface_data['mouth_projection_surface']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         mouth_dir_projsrf_data = mouth_crvproj_projsrf_data[zone_dir]
         mouth_dir_projsrf_degree = mouth_dir_projsrf_data['degree']
@@ -533,7 +533,7 @@ def setup_proj_surfaces():
     # # Nasolabial Facial Zone - Translation Planes
     # nasolabial_crvproj_transplane_data = control_proj_surface_data['nasolabial_translation_plane']
     #
-    # for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
+    # for dir_dict in G_G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
     #     zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
     #     nasolabial_dir_transplane_data = nasolabial_crvproj_transplane_data[zone_dir]
     #     nasolabial_dir_transplane_degree = nasolabial_dir_transplane_data['degree']
@@ -567,7 +567,7 @@ def setup_proj_surfaces():
     # # Nasolabial Facial Zone - Projection Surfaces
     # nasolabial_crvproj_projsrf_data = control_proj_surface_data['nasolabial_projection_surface']
     #
-    # for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
+    # for dir_dict in G_G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasolabial]:
     #     zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
     #     nasolabial_dir_projsrf_data = nasolabial_crvproj_projsrf_data[zone_dir]
     #     nasolabial_dir_projsrf_degree = nasolabial_dir_projsrf_data['degree']
@@ -606,7 +606,7 @@ def setup_proj_surfaces():
     # # Cheek Facial Zone - Translation Planes
     # cheek_crvproj_transplane_data = control_proj_surface_data['cheek_translation_plane']
     #
-    # for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
+    # for dir_dict in G_G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
     #     zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
     #     cheek_dir_transplane_data = cheek_crvproj_transplane_data[zone_dir]
     #     cheek_dir_transplane_degree = cheek_dir_transplane_data['degree']
@@ -640,7 +640,7 @@ def setup_proj_surfaces():
     # # Cheek Facial Zone - Projection Surfaces
     # cheek_crvproj_projsrf_data = control_proj_surface_data['cheek_projection_surface']
     #
-    # for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
+    # for dir_dict in G_G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.cheek]:
     #     zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
     #     cheek_dir_projsrf_data = cheek_crvproj_projsrf_data[zone_dir]
     #     cheek_dir_projsrf_degree = cheek_dir_projsrf_data['degree']
@@ -679,7 +679,7 @@ def setup_proj_surfaces():
     # Nasolabial-Cheek Facial Zone - Translation Planes
     nasocheek_crvproj_transplane_data = control_proj_surface_data['nasocheek_translation_plane']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir]
         nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
@@ -714,7 +714,7 @@ def setup_proj_surfaces():
     # Nasolabial-Cheek Facial Zone - Projection Surfaces
     nasocheek_crvproj_projsrf_data = control_proj_surface_data['nasocheek_projection_surface']
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
         nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir]
         nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
@@ -811,7 +811,7 @@ def setup_ctrl_zones():
     # ------------------------------------------------------------------------------------------------------------------
     # Eyelid Control Zone
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
         ctrlproj_transplane_LRUD = None
@@ -848,7 +848,7 @@ def setup_ctrl_zones():
     ctrlproj_projsrf_LRUD = None
     ctrlproj_projsrf_LRFB = None
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
         if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
@@ -875,7 +875,7 @@ def setup_ctrl_zones():
     ctrlproj_transplane_LRUD = None
     ctrlproj_projsrf_LRUD = None
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
         if controlZoneDirEnum.up in zone_dir:
@@ -900,7 +900,7 @@ def setup_ctrl_zones():
     ctrlproj_transplane_LRUD = None
     ctrlproj_projsrf_LRUD = None
 
-    for dir_dict in CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
+    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
         if controlZoneDirEnum.right in zone_dir:

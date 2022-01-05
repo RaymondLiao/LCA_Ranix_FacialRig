@@ -47,11 +47,11 @@ def get_enum_value_list(enum_class):
 
 def get_ctrl_zone_dir(zone_dir_dict):
     """ Retrieve the control zone direction components' values stored in the zone sub-dictionary of the
-    "CONTROL_ZONE_DIRECTION_DICT" dictionary, then use "_" separators to concatenate them into this zone's direction.
+    "G_CONTROL_ZONE_DIRECTION_DICT" dictionary, then use "_" separators to concatenate them into this zone's direction.
 
     Note that this function convert the direction combination of "left_right" into "middle".
 
-    :param dir_dict: a sub-dictionary of the "CONTROL_ZONE_DIRECTION_DICT" keyed by
+    :param dir_dict: a sub-dictionary of the "G_CONTROL_ZONE_DIRECTION_DICT" keyed by
     the name of the facial zone, e.g. {"LD":"left_right", "UD":"up_dn", "FB":""}
     :return: a tuple of strings of the facial control zone direction and its abbreviation, e.g. ("middle_up_dn", "LRUD")
     """

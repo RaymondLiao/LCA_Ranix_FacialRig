@@ -25,8 +25,8 @@ class controlZoneEnum(object):
     # cheek = 'cheek'
     nasocheek = 'nasoCheek'
 
-# control_zone_list = [name for name, member in controlZoneEnum.__members__.items()]
-control_zone_list = util.get_enum_value_list(controlZoneEnum)
+# G_CONTROLZONE_LIST = [name for name, member in controlZoneEnum.__members__.items()]
+G_CONTROLZONE_LIST = util.get_enum_value_list(controlZoneEnum)
 
 # @unique
 # class controlZoneDirEnum(Enum):
@@ -46,8 +46,8 @@ class controlZoneDirEnum(object):
     front = 'front'     # abbr: F
     back = 'back'       # abbr: B
 
-# control_zone_dir_list = [name for name, member in controlZoneDirEnum.__members__.items()]
-control_zone_dir_list = util.get_enum_value_list(controlZoneDirEnum)
+# G_CONTROLZONE_DIR_LIST = [name for name, member in controlZoneDirEnum.__members__.items()]
+G_CONTROLZONE_DIR_LIST = util.get_enum_value_list(controlZoneDirEnum)
 
 # @unique
 # class dirDictKeyEnum(Enum):
@@ -56,18 +56,18 @@ class dirDictKeyEnum(object):
     UD = 'UD'
     FB = 'FB'
 
-# dir_dict_key_list = [name for name, member in dirDictKeyEnum.__members__.items()]
-# dir_dict_key_list = util.get_enum_value_list(dirDictKeyEnum)
-dir_dict_key_list = ['LR', 'UD', 'FB']
-
-ctrl_crv_bs_dir_list = ['original',
-                        'right_side_up', 'middle_side_up', 'left_side_up',
-                        'right_side_left', 'middle_side_left', 'left_side_left',
-                        'right_side_front', 'middle_side_front', 'left_side_front']
-ctrl_crv_bs_drving_gain = 1.2
+# G_DIR_DICT_KEY_LIST = [name for name, member in dirDictKeyEnum.__members__.items()]
+# G_DIR_DICT_KEY_LIST = util.get_enum_value_list(dirDictKeyEnum)
+G_DIR_DICT_KEY_LIST = ['LR', 'UD', 'FB']
+G_BLENDSHAPE_TYPE_LIST = ['original', 'bs_all', 'bs_LR', 'bs_UD']
+G_CTRLCRV_BS_DIR_LIST = ['original',
+                         'right_end_up', 'right_side_up', 'middle_side_up', 'left_side_up', 'left_end_up',
+                         'right_end_left', 'right_side_left', 'middle_side_left', 'left_side_left', 'left_end_left',
+                         'right_end_front', 'right_side_front', 'middle_side_front', 'left_side_front', 'left_end_front']
+G_CTRLCRV_BS_DRIVING_GAIN = 1.2
 
 # Empty string means no motion of controllers in these direction for the control zone.
-CONTROL_ZONE_DIRECTION_DICT = {
+G_CONTROL_ZONE_DIRECTION_DICT = {
     controlZoneEnum.eyelid: [
                                 {
                                     dirDictKeyEnum.LR: controlZoneDirEnum.right,
