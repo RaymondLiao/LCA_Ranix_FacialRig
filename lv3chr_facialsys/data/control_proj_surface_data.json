@@ -806,43 +806,6 @@
         {
           "id": "E_9",
           "name": "RU_E9_loc"
-        },
-
-        {
-          "id": "F_1",
-          "name": "RU_F1_loc"
-        },
-        {
-          "id": "F_2",
-          "name": "RU_F2_loc"
-        },
-        {
-          "id": "F_3",
-          "name": "RU_F3_loc"
-        },
-        {
-          "id": "F_4",
-          "name": "RU_F4_loc"
-        },
-        {
-          "id": "F_5",
-          "name": "RU_F5_loc"
-        },
-        {
-          "id": "F_6",
-          "name": "RU_F6_loc"
-        },
-        {
-          "id": "F_7",
-          "name": "RU_F7_loc"
-        },
-        {
-          "id": "F_8",
-          "name": "RU_F8_loc"
-        },
-        {
-          "id": "F_9",
-          "name": "RU_F9_loc"
         }
       ]
     },
@@ -1153,43 +1116,6 @@
         {
           "id": "E_9",
           "name": "RD_E9_loc"
-        },
-
-        {
-          "id": "F_1",
-          "name": "RD_F1_loc"
-        },
-        {
-          "id": "F_2",
-          "name": "RD_F2_loc"
-        },
-        {
-          "id": "F_3",
-          "name": "RD_F3_loc"
-        },
-        {
-          "id": "F_4",
-          "name": "RD_F4_loc"
-        },
-        {
-          "id": "F_5",
-          "name": "RD_F5_loc"
-        },
-        {
-          "id": "F_6",
-          "name": "RD_F6_loc"
-        },
-        {
-          "id": "F_7",
-          "name": "RD_F7_loc"
-        },
-        {
-          "id": "F_8",
-          "name": "RD_F8_loc"
-        },
-        {
-          "id": "F_9",
-          "name": "RD_F9_loc"
         }
       ]
     },
@@ -1500,43 +1426,6 @@
         {
           "id": "E_9",
           "name": "LU_E9_loc"
-        },
-
-        {
-          "id": "F_1",
-          "name": "LU_F1_loc"
-        },
-        {
-          "id": "F_2",
-          "name": "LU_F2_loc"
-        },
-        {
-          "id": "F_3",
-          "name": "LU_F3_loc"
-        },
-        {
-          "id": "F_4",
-          "name": "LU_F4_loc"
-        },
-        {
-          "id": "F_5",
-          "name": "LU_F5_loc"
-        },
-        {
-          "id": "F_6",
-          "name": "LU_F6_loc"
-        },
-        {
-          "id": "F_7",
-          "name": "LU_F7_loc"
-        },
-        {
-          "id": "F_8",
-          "name": "LU_F8_loc"
-        },
-        {
-          "id": "F_9",
-          "name": "LU_F9_loc"
         }
       ]
     },
@@ -1847,43 +1736,6 @@
         {
           "id": "E_9",
           "name": "LD_E9_loc"
-        },
-
-        {
-          "id": "F_1",
-          "name": "LD_F1_loc"
-        },
-        {
-          "id": "F_2",
-          "name": "LD_F2_loc"
-        },
-        {
-          "id": "F_3",
-          "name": "LD_F3_loc"
-        },
-        {
-          "id": "F_4",
-          "name": "LD_F4_loc"
-        },
-        {
-          "id": "F_5",
-          "name": "LD_F5_loc"
-        },
-        {
-          "id": "F_6",
-          "name": "LD_F6_loc"
-        },
-        {
-          "id": "F_7",
-          "name": "LD_F7_loc"
-        },
-        {
-          "id": "F_8",
-          "name": "LD_F8_loc"
-        },
-        {
-          "id": "F_9",
-          "name": "LD_F9_loc"
         }
       ]
     }
