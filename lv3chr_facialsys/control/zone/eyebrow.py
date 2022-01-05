@@ -101,6 +101,72 @@ class eyebrowControlZone(controlZone):
 
         cmds.select(deselect=True)
 
+        # Create the curves serving as blend-shape targets for the control curves.
+        ctrlcrv_bs_data = self._ctrl_crv_data['eyebrow_control_curve_bs']
+        ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
+
+        for ctrl_crv_bs_dir in G_CTRLCRV_BS_DIR_LIST:
+            if 'original' in ctrl_crv_bs_dir or 'end' in ctrl_crv_bs_dir:
+                continue
+
+            for zone_dir in ['right', 'middle', 'left']:
+                if 'middle' == zone_dir and 'middle_side' not in ctrl_crv_bs_dir:
+                    continue
+
+                dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_dir+'_'+ctrl_crv_bs_dir]
+
+                bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
+                                          point=dir_ctrlcrv_bs_data['points'])
+                cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
+                bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
+                                           self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
+                                           zone_dir[0].upper() + '_' + dir_ctrlcrv_bs_data['name'])
+
+                cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+                if controlZoneDirEnum.left in zone_dir:
+                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+                elif controlZoneDirEnum.right in zone_dir:
+                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+                else:
+                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_OLIVE)
+
+                cmds.toggle(bs_nurbs_crv, controlVertex=True)
+                cmds.select(deselect=True)
+
+                cmds.parent(bs_nurbs_crv,
+                            hierarchy.eyebrow_ctrlcrv_bs_R_grp.get_group_name())
+
+            # Create the control curve follow controllers.
+            follow_ctrl_data = self._ctrl_crv_data['eyebrow_follow_controller']
+
+            follow_ctrl = follow_ctrl_data['M']['name']
+
+            # If the follow controller has not been created, make one.
+            if not cmds.objExists(follow_ctrl):
+
+                follow_ctrl_crv = cmds.curve(degree=follow_ctrl_data['degree'],
+                                             point=follow_ctrl_data['points'])
+
+                cmds.xform(follow_ctrl_crv,
+                           translation=follow_ctrl_data['M']['xform']['translation'],
+                           scale=follow_ctrl_data['M']['xform']['scale'])
+
+                follow_ctrl_crv = cmds.rename(follow_ctrl_crv, follow_ctrl_data['M']['name'])
+
+                follow_data_list = follow_ctrl_data['follow_data']
+                for follow_attr, val in follow_data_list.items():
+                    cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
+                                 defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
+
+                cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
+                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
+
+                cmds.parent(follow_ctrl, hierarchy.eyebrow_grp.get_group_name())
+
+                cmds.select(deselect=True)
+
+            self._follow_ctrl = follow_ctrl
+
         # # Create the controllers.
         # controller_data = self._ctrl_crv_data['eyebrow_controller']
         # controller_degree = controller_data['degree']

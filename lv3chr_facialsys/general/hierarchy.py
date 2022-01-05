@@ -234,6 +234,7 @@ eyebrow_projsrf_prefix = 'fm_eyebrowMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
 eyebrow_ctrl_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_ctrl_grp')
+eyebrow_ctrlcrv_bs_R_grp = groupTree(eyebrow_ctrlzone_prefix + '_bs_grp')
 eyebrow_ctrlzone_loc_M_A_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_A_grp')
 eyebrow_ctrlzone_loc_M_B_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_B_grp')
 eyebrow_ctrlzone_loc_M_C_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_C_grp')
@@ -242,6 +243,7 @@ eyebrow_ctrlzone_loc_M_D_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_D_gr
 eyebrow_ctrlzone_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_grp',
                                    [
                                        eyebrow_ctrl_M_grp,
+                                       eyebrow_ctrlcrv_bs_R_grp,
                                        eyebrow_ctrlzone_loc_M_A_grp,
                                        eyebrow_ctrlzone_loc_M_B_grp,
                                        eyebrow_ctrlzone_loc_M_C_grp,
