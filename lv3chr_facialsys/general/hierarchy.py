@@ -256,7 +256,10 @@ eyebrow_projsrf_loc_M_UD_B_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_B_g
 eyebrow_projsrf_loc_M_UD_C_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_C_grp')
 eyebrow_projsrf_loc_M_UD_D_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_UD_D_grp')
 
-eyebrow_projsrf_loc_M_FB_grp = groupTree(eyebrow_projsrf_prefix+'_M_FB_grp')
+eyebrow_projsrf_loc_M_FB_A_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_FB_A_grp')
+eyebrow_projsrf_loc_M_FB_B_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_FB_B_grp')
+eyebrow_projsrf_loc_M_FB_C_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_FB_C_grp')
+eyebrow_projsrf_loc_M_FB_D_grp = groupTree(eyebrow_projsrf_prefix+'_loc_M_FB_D_grp')
 
 eyebrow_projsrf_M_grp = groupTree(eyebrow_projsrf_prefix+'_M_grp',
                                   [
@@ -264,7 +267,11 @@ eyebrow_projsrf_M_grp = groupTree(eyebrow_projsrf_prefix+'_M_grp',
                                       eyebrow_projsrf_loc_M_UD_B_grp,
                                       eyebrow_projsrf_loc_M_UD_C_grp,
                                       eyebrow_projsrf_loc_M_UD_D_grp,
-                                      eyebrow_projsrf_loc_M_FB_grp
+
+                                      eyebrow_projsrf_loc_M_FB_A_grp,
+                                      eyebrow_projsrf_loc_M_FB_B_grp,
+                                      eyebrow_projsrf_loc_M_FB_C_grp,
+                                      eyebrow_projsrf_loc_M_FB_D_grp
                                   ])
 
 # eyebrow zone sub-master group ----------------------------------------------------------------------------------------

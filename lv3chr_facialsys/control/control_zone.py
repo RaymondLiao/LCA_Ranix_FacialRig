@@ -43,12 +43,12 @@ class controlZone(object):
                  zone = controlZoneEnum.eyelid,
                  direction = controlZoneDirEnum.right,
                  ctrl_crv_data = None,
-                 ctrlproj_transplane_LRUD = None,
-                 ctrlproj_transplane_LRFB = None,
-                 ctrlproj_transplane_UDFB = None,
-                 ctrlproj_projsurface_LRUD = None,
-                 ctrlproj_projsurface_LRFB = None,
-                 ctrlproj_projsurface_UDFB = None
+                 ctrlproj_transplane_LRUD       = None,
+                 ctrlproj_transplane_LRFB_list  = [],
+                 ctrlproj_transplane_UDFB_list  = [],
+                 ctrlproj_projsurface_LRUD      = None,
+                 ctrlproj_projsurface_LRFB_list = [],
+                 ctrlproj_projsurface_UDFB_list = []
                  ):
         """
         :param zone: the facial zone this control unit manages
@@ -83,12 +83,12 @@ class controlZone(object):
         self._ctrl_crv_data = ctrl_crv_data
         self._direction = direction
 
-        self._ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD
-        self._ctrlproj_transplane_LRFB = ctrlproj_transplane_LRFB
-        self._ctrlproj_transplane_UDFB = ctrlproj_transplane_UDFB
-        self._ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
-        self._ctrlproj_projsurface_LRFB = ctrlproj_projsurface_LRFB
-        self._ctrlproj_projsurface_UDFB = ctrlproj_projsurface_UDFB
+        self._ctrlproj_transplane_LRUD          = ctrlproj_transplane_LRUD
+        self._ctrlproj_transplane_LRFB_list     = ctrlproj_transplane_LRFB_list
+        self._ctrlproj_transplane_UDFB_list     = ctrlproj_transplane_UDFB_list
+        self._ctrlproj_projsurface_LRUD         = ctrlproj_projsurface_LRUD
+        self._ctrlproj_projsurface_LRFB_list    = ctrlproj_projsurface_LRFB_list
+        self._ctrlproj_projsurface_UDFB_list    = ctrlproj_projsurface_UDFB_list
         # ---------------------------------------------------------------------------------- Member Variable Definitions
 
         assert None != self._ctrl_crv_data

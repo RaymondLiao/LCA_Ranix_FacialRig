@@ -59,30 +59,34 @@ g_crv_projsrf_dict = {
     'eyelid_projsrf_LU'    : None,
     'eyelid_projsrf_LD'    : None,
 
-    'eyebrow_transplane_LRUD' : None,
-    'eyebrow_transplane_LRF'  : None,
-    'eyebrow_projsrf_LRUD'    : None,
-    'eyebrow_projsrf_LRF'     : None,
+    'eyebrow_transplane_LRUD'       : None,
+    'eyebrow_transplane_LRF_list'   : [],
+    'eyebrow_projsrf_LRUD'          : None,
+    'eyebrow_projsrf_LRF_list'      : [],
 
-    'mouth_transplane_LRU': None,
-    'mouth_transplane_LRD': None,
-    'mouth_projsrf_LRU': None,
-    'mouth_projsrf_LRD': None,
+    'mouth_transplane_LRU'  : None,
+    'mouth_transplane_LRD'  : None,
+    'mouth_projsrf_LRU'     : None,
+    'mouth_projsrf_LRD'     : None,
 
-    # 'nasolabial_transplane_RUD' : None,
-    # 'nasolabial_transplane_LUD' : None,
-    # 'nasolabial_projsrf_RUD' : None,
-    # 'nasolabial_projsrf_LUD' : None,
+    # 'nasolabial_transplane_RUD'   : None,
+    # 'nasolabial_transplane_LUD'   : None,
+    # 'nasolabial_projsrf_RUD'      : None,
+    # 'nasolabial_projsrf_LUD'      : None,
     # 
-    # 'cheek_transplane_RUD' : None,
-    # 'cheek_transplane_LUD' : None,
-    # 'cheek_projsrf_RUD' : None,
-    # 'cheek_projsrf_LUD' : None
+    # 'cheek_transplane_RUD'        : None,
+    # 'cheek_transplane_LUD'        : None,
+    # 'cheek_projsrf_RUD'           : None,
+    # 'cheek_projsrf_LUD'           : None
 
-    'nasocheek_transplane_RUD' : None,
-    'nasocheek_transplane_LUD' : None,
-    'nasocheek_projsrf_RUD' : None,
-    'nasocheek_projsrf_LUD' : None
+    'nasocheek_transplane_RUD'      : None,
+    'nasocheek_transplane_RF_list'  : [],
+    'nasocheek_transplane_LUD'      : None,
+    'nasocheek_transplane_LF_list'  : [],
+    'nasocheek_projsrf_RUD'         : None,
+    'nasocheek_projsrf_RF_list'     : [],
+    'nasocheek_projsrf_LUD'         : None,
+    'nasocheek_projsrf_LF_list'     : []
 }
 
 # g_lv3chr_facialsys_demo_run = False
@@ -119,7 +123,7 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['eyelid_transplane_LU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_transplane_LD'].get_name(),
                                  g_crv_projsrf_dict['eyebrow_transplane_LRUD'].get_name(),
-                                 g_crv_projsrf_dict['eyebrow_transplane_LRF'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_transplane_LRF_list'][0].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRU'].get_name(),
                                  g_crv_projsrf_dict['mouth_transplane_LRD'].get_name(),
                                  # g_crv_projsrf_dict['nasolabial_transplane_RUD'].get_name(),
@@ -135,7 +139,10 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['eyelid_projsrf_LU'].get_name(),
                                  g_crv_projsrf_dict['eyelid_projsrf_LD'].get_name(),
                                  g_crv_projsrf_dict['eyebrow_projsrf_LRUD'].get_name(),
-                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF'].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF_list'][0].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF_list'][1].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF_list'][2].get_name(),
+                                 g_crv_projsrf_dict['eyebrow_projsrf_LRF_list'][3].get_name(),
                                  g_crv_projsrf_dict['mouth_projsrf_LRU'].get_name(),
                                  g_crv_projsrf_dict['mouth_projsrf_LRD'].get_name(),
                                  # g_crv_projsrf_dict['nasolabial_projsrf_RUD'].get_name(),
@@ -143,7 +150,15 @@ def lc3chr_facialsys_construct():
                                  # g_crv_projsrf_dict['cheek_projsrf_RUD'].get_name(),
                                  # g_crv_projsrf_dict['cheek_projsrf_LUD'].get_name()
                                  g_crv_projsrf_dict['nasocheek_projsrf_RUD'].get_name(),
-                                 g_crv_projsrf_dict['nasocheek_projsrf_LUD'].get_name()
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][0].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][1].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][2].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][3].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LUD'].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][0].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][1].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][2].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][3].get_name()
                                  )
 
     cmds.setAttr(g_displayer_transplane + '.displayType', 1)    # 1 means Template
@@ -394,40 +409,87 @@ def setup_proj_surfaces():
         if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['eyebrow_transplane_LRUD'] = eyebrow_crvproj_transplane
         elif controlZoneDirEnum.front in zone_dir:
-            g_crv_projsrf_dict['eyebrow_transplane_LRF'] = eyebrow_crvproj_transplane
+            g_crv_projsrf_dict['eyebrow_transplane_LRF_list'].append(eyebrow_crvproj_transplane)
 
         cmds.parent(eyebrow_crvproj_transplane.get_name(),
                     hierarchy.eyebrow_ctrlzone_M_grp.get_group_name())
 
     # Eyebrow Facial Zone - Projection Surfaces
     eyebrow_crvproj_projsrf_data = control_proj_surface_data['eyebrow_projection_surface']
+    front_projsrf_id_list = ['A', 'B', 'C', 'D']
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
-        eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir]
-        eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
-        eyebrow_dir_projsrf_patchesU = eyebrow_dir_projsrf_data['patchesU']
-        eyebrow_dir_projsrf_pathcesV = eyebrow_dir_projsrf_data['patchesV']
+        eyebrow_dir_projsrf_data = {}
+        eyebrow_crvproj_projsrf = None
 
-        eyebrow_crvproj_projsrf = controlProjSurface(name_prefix = eyebrow_crvproj_projsrf_data['name_prefix'],
-                                                     name = eyebrow_dir_projsrf_data['name'],
-                                                     degree = eyebrow_dir_projsrf_degree,
-                                                     patchesU = eyebrow_dir_projsrf_patchesU,
-                                                     patchesV = eyebrow_dir_projsrf_pathcesV,
-                                                     translation = eyebrow_dir_projsrf_data['xform']['translation'],
-                                                     rotation = eyebrow_dir_projsrf_data['xform']['rotation'],
-                                                     scale = eyebrow_dir_projsrf_data['xform']['scale'],
-                                                     cv_list = eyebrow_dir_projsrf_data['control_vtx'],
-                                                     locator_data = eyebrow_dir_projsrf_data['locators'],
-                                                     locator_scale = eyebrow_crvproj_projsrf_data['locator_scale'],
-                                                     bind_joint_data = eyebrow_crvproj_projsrf_data['bind_joint'],
-                                                     bind_joint_color = BIND_JOINT_COLOR_INDEX)
+        if controlZoneDirEnum.front in zone_dir:
+            for front_projsrf_id in front_projsrf_id_list:
+                eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir+'_'+front_projsrf_id]
 
-        loc_row_id_list = eyebrow_crvproj_projsrf.get_locator_row_ids()
+                eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
+                eyebrow_dir_projsrf_patchesU = eyebrow_dir_projsrf_data['patchesU']
+                eyebrow_dir_projsrf_pathcesV = eyebrow_dir_projsrf_data['patchesV']
 
-        if controlZoneDirEnum.up in zone_dir and controlZoneDirEnum.down in zone_dir:
+                eyebrow_crvproj_projsrf = controlProjSurface(name_prefix = eyebrow_crvproj_projsrf_data['name_prefix'],
+                                                             name = eyebrow_dir_projsrf_data['name'],
+                                                             degree = eyebrow_dir_projsrf_degree,
+                                                             patchesU = eyebrow_dir_projsrf_patchesU,
+                                                             patchesV = eyebrow_dir_projsrf_pathcesV,
+                                                             translation = eyebrow_dir_projsrf_data['xform']['translation'],
+                                                             rotation = eyebrow_dir_projsrf_data['xform']['rotation'],
+                                                             scale = eyebrow_dir_projsrf_data['xform']['scale'],
+                                                             cv_list = eyebrow_dir_projsrf_data['control_vtx'],
+                                                             locator_data = eyebrow_dir_projsrf_data['locators'],
+                                                             locator_scale = eyebrow_crvproj_projsrf_data['locator_scale'],
+                                                             bind_joint_data = eyebrow_crvproj_projsrf_data['bind_joint'],
+                                                             bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
+                g_crv_projsrf_dict['eyebrow_projsrf_LRF_list'].append(eyebrow_crvproj_projsrf)
+
+                loc_row_id_list = eyebrow_crvproj_projsrf.get_locator_row_ids()
+                for loc_row_id in loc_row_id_list:
+                    for loc_col_id in eyebrow_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        if 'A' == loc_row_id:
+                            cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.eyebrow_projsrf_loc_M_FB_A_grp.get_group_name())
+                        elif 'B' == loc_row_id:
+                            cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.eyebrow_projsrf_loc_M_FB_B_grp.get_group_name())
+                        elif 'C' == loc_row_id:
+                            cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.eyebrow_projsrf_loc_M_FB_C_grp.get_group_name())
+                        elif 'D' == loc_row_id:
+                            cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.eyebrow_projsrf_loc_M_FB_D_grp.get_group_name())
+
+                cmds.parent(eyebrow_crvproj_projsrf.get_name(),
+                            hierarchy.eyebrow_projsrf_M_grp.get_group_name())
+
+        else:
+            eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir]
+
+            eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
+            eyebrow_dir_projsrf_patchesU = eyebrow_dir_projsrf_data['patchesU']
+            eyebrow_dir_projsrf_pathcesV = eyebrow_dir_projsrf_data['patchesV']
+
+            eyebrow_crvproj_projsrf = controlProjSurface(name_prefix = eyebrow_crvproj_projsrf_data['name_prefix'],
+                                                         name = eyebrow_dir_projsrf_data['name'],
+                                                         degree = eyebrow_dir_projsrf_degree,
+                                                         patchesU = eyebrow_dir_projsrf_patchesU,
+                                                         patchesV = eyebrow_dir_projsrf_pathcesV,
+                                                         translation = eyebrow_dir_projsrf_data['xform']['translation'],
+                                                         rotation = eyebrow_dir_projsrf_data['xform']['rotation'],
+                                                         scale = eyebrow_dir_projsrf_data['xform']['scale'],
+                                                         cv_list = eyebrow_dir_projsrf_data['control_vtx'],
+                                                         locator_data = eyebrow_dir_projsrf_data['locators'],
+                                                         locator_scale = eyebrow_crvproj_projsrf_data['locator_scale'],
+                                                         bind_joint_data = eyebrow_crvproj_projsrf_data['bind_joint'],
+                                                         bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
             g_crv_projsrf_dict['eyebrow_projsrf_LRUD'] = eyebrow_crvproj_projsrf
 
+            loc_row_id_list = eyebrow_crvproj_projsrf.get_locator_row_ids()
             for loc_row_id in loc_row_id_list:
                 for loc_col_id in eyebrow_crvproj_projsrf.get_locator_col_ids(loc_row_id):
                     if 'A' == loc_row_id:
@@ -443,17 +505,8 @@ def setup_proj_surfaces():
                         cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
                                     hierarchy.eyebrow_projsrf_loc_M_UD_D_grp.get_group_name())
 
-        elif controlZoneDirEnum.front in zone_dir:
-            g_crv_projsrf_dict['eyebrow_projsrf_LRF'] = eyebrow_crvproj_projsrf
-
-            for loc_row_id in loc_row_id_list:
-                for loc_col_id in eyebrow_crvproj_projsrf.get_locator_col_ids(loc_row_id):
-                    if 'A' == loc_row_id:
-                        cmds.parent(eyebrow_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.eyebrow_projsrf_loc_M_FB_grp.get_group_name())
-
-        cmds.parent(eyebrow_crvproj_projsrf.get_name(),
-                    hierarchy.eyebrow_projsrf_M_grp.get_group_name())
+            cmds.parent(eyebrow_crvproj_projsrf.get_name(),
+                        hierarchy.eyebrow_projsrf_M_grp.get_group_name())
 
     # ------------------------------------------------------------------------------------------------------------------
     # Mouth Facial Zone - Translation Planes
@@ -681,6 +734,10 @@ def setup_proj_surfaces():
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+
+        if 'front' in zone_dir:
+            continue
+
         nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir]
         nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
         nasocheek_dir_transplane_patchesU = nasocheek_dir_transplane_data['patchesU']
@@ -713,79 +770,116 @@ def setup_proj_surfaces():
 
     # Nasolabial-Cheek Facial Zone - Projection Surfaces
     nasocheek_crvproj_projsrf_data = control_proj_surface_data['nasocheek_projection_surface']
+    front_projsrf_id_list = ['A', 'B', 'C', 'D']
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
-        nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir]
-        nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
-        nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
-        nasocheek_dir_projsrf_patchesV = nasocheek_dir_projsrf_data['patchesV']
-
         mirror = [1, 1, 1]
         if controlZoneDirEnum.right in zone_dir:
             mirror = [-1, 1, 1]
 
-        nasocheek_crvproj_projsrf = controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
-                                                       name = nasocheek_dir_projsrf_data['name'],
-                                                       degree = nasocheek_dir_projsrf_degree,
-                                                       patchesU = nasocheek_dir_projsrf_patchesU,
-                                                       patchesV = nasocheek_dir_projsrf_patchesV,
-                                                       translation = nasocheek_dir_projsrf_data['xform']['translation'],
-                                                       rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
-                                                       scale = nasocheek_dir_projsrf_data['xform']['scale'],
-                                                       mirror = mirror,
-                                                       cv_list = nasocheek_dir_projsrf_data['control_vtx'],
-                                                       locator_data = nasocheek_dir_projsrf_data['locators'],
-                                                       locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
-                                                       bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
-                                                       bind_joint_color = BIND_JOINT_COLOR_INDEX)
+        nasocheek_dir_projsrf_data = {}
+        nasocheek_crvproj_projsrf = None
 
-        loc_row_id_list = nasocheek_crvproj_projsrf.get_locator_row_ids()
+        if controlZoneDirEnum.front in zone_dir:
+            for front_projsrf_id in front_projsrf_id_list:
+                nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir+'_'+front_projsrf_id]
 
-        if controlZoneDirEnum.right in zone_dir:
-            g_crv_projsrf_dict['nasocheek_projsrf_RUD'] = nasocheek_crvproj_projsrf
-            cmds.parent(nasocheek_crvproj_projsrf.get_name(),
-                        hierarchy.nasocheek_projsrf_R_grp.get_group_name())
+                nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
+                nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
+                nasocheek_dir_projsrf_patchesV = nasocheek_dir_projsrf_data['patchesV']
 
-            for loc_row_id in loc_row_id_list:
-                for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
-                    if 'A' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_R_A_grp.get_group_name())
-                    elif 'B' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_R_B_grp.get_group_name())
-                    elif 'C' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_R_C_grp.get_group_name())
-                    elif 'D' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_R_D_grp.get_group_name())
-                    elif 'E' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_R_E_grp.get_group_name())
-        elif controlZoneDirEnum.left in zone_dir:
-            g_crv_projsrf_dict['nasocheek_projsrf_LUD'] = nasocheek_crvproj_projsrf
-            cmds.parent(nasocheek_crvproj_projsrf.get_name(),
-                        hierarchy.nasocheek_projsrf_L_grp.get_group_name())
+                nasocheek_crvproj_projsrf = controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
+                                                               name = nasocheek_dir_projsrf_data['name'],
+                                                               degree = nasocheek_dir_projsrf_degree,
+                                                               patchesU = nasocheek_dir_projsrf_patchesU,
+                                                               patchesV = nasocheek_dir_projsrf_patchesV,
+                                                               translation = nasocheek_dir_projsrf_data['xform']['translation'],
+                                                               rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
+                                                               scale = nasocheek_dir_projsrf_data['xform']['scale'],
+                                                               mirror = mirror,
+                                                               cv_list = nasocheek_dir_projsrf_data['control_vtx'],
+                                                               locator_data = nasocheek_dir_projsrf_data['locators'],
+                                                               locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
+                                                               bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
+                                                               bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
-            for loc_row_id in loc_row_id_list:
-                for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
-                    if 'A' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_L_A_grp.get_group_name())
-                    elif 'B' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_L_B_grp.get_group_name())
-                    elif 'C' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_L_C_grp.get_group_name())
-                    elif 'D' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_L_D_grp.get_group_name())
-                    elif 'E' == loc_row_id:
-                        cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                    hierarchy.nasocheek_projsrf_loc_L_E_grp.get_group_name())
+                if controlZoneDirEnum.right in zone_dir:
+                    g_crv_projsrf_dict['nasocheek_projsrf_RF_list'].append(nasocheek_crvproj_projsrf)
+                    cmds.parent(nasocheek_crvproj_projsrf.get_name(),
+                                hierarchy.nasocheek_projsrf_R_grp.get_group_name())
+                elif controlZoneDirEnum.left in zone_dir:
+                    g_crv_projsrf_dict['nasocheek_projsrf_LF_list'].append(nasocheek_crvproj_projsrf)
+                    cmds.parent(nasocheek_crvproj_projsrf.get_name(),
+                                hierarchy.nasocheek_projsrf_L_grp.get_group_name())
+
+        else:
+            nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir]
+            nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
+            nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
+            nasocheek_dir_projsrf_patchesV = nasocheek_dir_projsrf_data['patchesV']
+
+            nasocheek_crvproj_projsrf = controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
+                                                           name = nasocheek_dir_projsrf_data['name'],
+                                                           degree = nasocheek_dir_projsrf_degree,
+                                                           patchesU = nasocheek_dir_projsrf_patchesU,
+                                                           patchesV = nasocheek_dir_projsrf_patchesV,
+                                                           translation = nasocheek_dir_projsrf_data['xform']['translation'],
+                                                           rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
+                                                           scale = nasocheek_dir_projsrf_data['xform']['scale'],
+                                                           mirror = mirror,
+                                                           cv_list = nasocheek_dir_projsrf_data['control_vtx'],
+                                                           locator_data = nasocheek_dir_projsrf_data['locators'],
+                                                           locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
+                                                           bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
+                                                           bind_joint_color = BIND_JOINT_COLOR_INDEX)
+
+            loc_row_id_list = nasocheek_crvproj_projsrf.get_locator_row_ids()
+
+            if controlZoneDirEnum.right in zone_dir:
+                g_crv_projsrf_dict['nasocheek_projsrf_RUD'] = nasocheek_crvproj_projsrf
+                cmds.parent(nasocheek_crvproj_projsrf.get_name(),
+                            hierarchy.nasocheek_projsrf_R_grp.get_group_name())
+
+                for loc_row_id in loc_row_id_list:
+                    for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        if 'A' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_R_A_grp.get_group_name())
+                        elif 'B' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_R_B_grp.get_group_name())
+                        elif 'C' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_R_C_grp.get_group_name())
+                        elif 'D' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_R_D_grp.get_group_name())
+                        elif 'E' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_R_E_grp.get_group_name())
+            elif controlZoneDirEnum.left in zone_dir:
+                g_crv_projsrf_dict['nasocheek_projsrf_LUD'] = nasocheek_crvproj_projsrf
+                cmds.parent(nasocheek_crvproj_projsrf.get_name(),
+                            hierarchy.nasocheek_projsrf_L_grp.get_group_name())
+
+                for loc_row_id in loc_row_id_list:
+                    for loc_col_id in nasocheek_crvproj_projsrf.get_locator_col_ids(loc_row_id):
+                        if 'A' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_L_A_grp.get_group_name())
+                        elif 'B' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_L_B_grp.get_group_name())
+                        elif 'C' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_L_C_grp.get_group_name())
+                        elif 'D' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_L_D_grp.get_group_name())
+                        elif 'E' == loc_row_id:
+                            cmds.parent(nasocheek_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                        hierarchy.nasocheek_projsrf_loc_L_E_grp.get_group_name())
 
     f_control_proj_surface_data.close()
 
@@ -814,8 +908,8 @@ def setup_ctrl_zones():
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyelid]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
 
-        ctrlproj_transplane_LRUD = None
-        ctrlproj_projsrf_LRUD = None
+        ctrlproj_transplane_LRUD    = None
+        ctrlproj_projsrf_LRUD       = None
 
         if controlZoneDirEnum.right in zone_dir:
             if controlZoneDirEnum.up in zone_dir:
@@ -843,10 +937,10 @@ def setup_ctrl_zones():
     # ------------------------------------------------------------------------------------------------------------------
     # Eyebrow Control Zone
 
-    ctrlproj_transplane_LRUD = None
-    ctrlproj_transplane_LRFB = None
-    ctrlproj_projsrf_LRUD = None
-    ctrlproj_projsrf_LRFB = None
+    ctrlproj_transplane_LRUD        = None
+    ctrlproj_transplane_LRFB_list   = None
+    ctrlproj_projsrf_LRUD           = None
+    ctrlproj_projsrf_LRFB_list      = None
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.eyebrow]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
@@ -857,23 +951,23 @@ def setup_ctrl_zones():
             assert None != ctrlproj_transplane_LRUD
             assert None != ctrlproj_projsrf_LRUD
         elif controlZoneDirEnum.front in zone_dir:
-            ctrlproj_transplane_LRFB = g_crv_projsrf_dict['eyebrow_transplane_LRF']
-            ctrlproj_projsrf_LRFB = g_crv_projsrf_dict['eyebrow_projsrf_LRF']
-            assert None != ctrlproj_transplane_LRFB
-            assert None != ctrlproj_projsrf_LRFB
+            ctrlproj_transplane_LRFB_list = g_crv_projsrf_dict['eyebrow_transplane_LRF_list']
+            ctrlproj_projsrf_LRFB_list = g_crv_projsrf_dict['eyebrow_projsrf_LRF_list']
+            assert len(ctrlproj_transplane_LRFB_list) == 1
+            assert len(ctrlproj_projsrf_LRFB_list) == 4
 
     # Note that the eyebrow facial zone only have one Control Zone, combining the up-down and front directions.
     eyebrow_ctrl_zone = eyebrowControlZone(ctrl_crv_data = ctrl_crv_data,
                                            ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
-                                           ctrlproj_transplane_LRFB = ctrlproj_transplane_LRFB,
+                                           ctrlproj_transplane_LRFB_list = ctrlproj_transplane_LRFB_list,
                                            ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD,
-                                           ctrlproj_projsurface_LRFB = ctrlproj_projsrf_LRFB)
+                                           ctrlproj_projsurface_LRFB_list = ctrlproj_projsrf_LRFB_list)
 
     # ------------------------------------------------------------------------------------------------------------------
     # Mouth Control Zone
 
-    ctrlproj_transplane_LRUD = None
-    ctrlproj_projsrf_LRUD = None
+    ctrlproj_transplane_LRUD    = None
+    ctrlproj_projsrf_LRUD       = None
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.mouth]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
@@ -897,26 +991,36 @@ def setup_ctrl_zones():
     # ------------------------------------------------------------------------------------------------------------------
     # Nasolabial-Cheek Control Zone
 
-    ctrlproj_transplane_LRUD = None
-    ctrlproj_projsrf_LRUD = None
+    ctrlproj_transplane_LRUD    = None
+    ctrlproj_transplane_RF_list = None
+    ctrlproj_transplane_LF_list = None
+    ctrlproj_projsrf_LRUD       = None
+    ctrlproj_projsrf_RF_list    = None
+    ctrlproj_projsrf_LF_list    = None
 
-    for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
-        zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
+    for zone_dir in [controlZoneDirEnum.right, controlZoneDirEnum.left]:
 
         if controlZoneDirEnum.right in zone_dir:
             ctrlproj_transplane_LRUD = g_crv_projsrf_dict['nasocheek_transplane_RUD']
+            ctrlproj_transplane_LRFB_list = g_crv_projsrf_dict['nasocheek_transplane_RF_list']
             ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['nasocheek_projsrf_RUD']
+            ctrlproj_projsrf_LRFB_list = g_crv_projsrf_dict['nasocheek_projsrf_RF_list']
         elif controlZoneDirEnum.left in zone_dir:
             ctrlproj_transplane_LRUD = g_crv_projsrf_dict['nasocheek_transplane_LUD']
+            ctrlproj_transplane_LRFB_list = g_crv_projsrf_dict['nasocheek_transplane_LF_list']
             ctrlproj_projsrf_LRUD = g_crv_projsrf_dict['nasocheek_projsrf_LUD']
+            ctrlproj_projsrf_LRFB_list = g_crv_projsrf_dict['nasocheek_projsrf_LF_list']
 
         assert None != ctrlproj_transplane_LRUD
         assert None != ctrlproj_projsrf_LRUD
+        assert len(ctrlproj_projsrf_LRFB_list) == 4
 
         nasocheek_ctrl_zone = nasoCheekControlZone(direction = zone_dir,
                                                    ctrl_crv_data = ctrl_crv_data,
                                                    ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
-                                                   ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD)
+                                                   ctrlproj_transplane_LRFB_list = ctrlproj_transplane_LRFB_list,
+                                                   ctrlproj_projsurface_LRUD = ctrlproj_projsrf_LRUD,
+                                                   ctrlproj_projsurface_LRFB_list = ctrlproj_projsrf_LRFB_list)
 
     f_ctrl_crv_data.close()
 

@@ -39,8 +39,7 @@ class eyelidControlZone(controlZone):
                  direction = controlZoneDirEnum.right + '_' + controlZoneDirEnum.up,
                  ctrl_crv_data = None,
                  ctrlproj_transplane_LRUD = None,
-                 ctrlproj_projsurface_LRUD = None
-                 ):
+                 ctrlproj_projsurface_LRUD = None):
         """ An Eyelid Control Zone instance's direction attribute may have the value of
             "right_up/RU", "right_dn/RD", "left_up/LU" or "left_dn/LD".
         """
@@ -49,8 +48,7 @@ class eyelidControlZone(controlZone):
                                                 direction = direction,
                                                 ctrl_crv_data = ctrl_crv_data,
                                                 ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
-                                                ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
-                                                )
+                                                ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD)
         ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
         controller_id_list = ['A', 'B', 'C', 'D', 'E']
         if controlZoneDirEnum.right in direction:

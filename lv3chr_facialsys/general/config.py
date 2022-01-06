@@ -145,9 +145,20 @@ G_CONTROL_ZONE_DIRECTION_DICT = {
                                         dirDictKeyEnum.FB: ''
                                     },
                                     {
+                                        dirDictKeyEnum.LR: controlZoneDirEnum.right,
+                                        dirDictKeyEnum.UD: '',
+                                        dirDictKeyEnum.FB: controlZoneDirEnum.front
+                                    },
+
+                                    {
                                         dirDictKeyEnum.LR: controlZoneDirEnum.left,
                                         dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
                                         dirDictKeyEnum.FB: ''
+                                    },
+                                    {
+                                        dirDictKeyEnum.LR: controlZoneDirEnum.left,
+                                        dirDictKeyEnum.UD: '',
+                                        dirDictKeyEnum.FB: controlZoneDirEnum.front
                                     }
                                ]
 }
