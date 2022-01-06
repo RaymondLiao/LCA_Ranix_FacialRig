@@ -151,6 +151,17 @@ class nasoCheekControlZone(controlZone):
         # --------------------------------------------------------------------------------------------------------------
         # Drive the control curves using blend-shape and
         # five-curves each in the LR and UD directions, as the targets.
+        zone_dir = 'right'
+        mouth_corner_U_controller = 'fm_mouthProject_RU_ctrl'
+        mouth_corner_D_controller = 'fm_mouthProject_RD_ctrl'
+
+        if controlZoneDirEnum.left in direction:
+            zone_dir = 'left'
+            mouth_corner_U_controller = 'fm_mouthProject_LU_ctrl'
+            mouth_corner_D_controller = 'fm_mouthProject_LD_ctrl'
+
+        assert cmds.objExists(mouth_corner_U_controller)
+        assert cmds.objExists(mouth_corner_D_controller)
 
         for crv_id in ctrl_crv_id_list:
             bs_LR_crv = self._ctrl_crv_bs_dict['bs_LR'+'_'+crv_id]
@@ -179,18 +190,8 @@ class nasoCheekControlZone(controlZone):
             cmds.setAttr(proj_crv_bs+'.'+bs_all_crv, 1.0)
             cmds.setAttr(proj_crv_bs + '.supportNegativeWeights', True)
 
-            mouth_corner_U_controller = 'fm_mouthProject_RU_ctrl'
-            mouth_corner_D_controller = 'fm_mouthProject_RD_ctrl'
-            zone_dir = 'right'
-            if controlZoneDirEnum.left in direction:
-                mouth_corner_U_controller = 'fm_mouthProject_LU_ctrl'
-                mouth_corner_D_controller = 'fm_mouthProject_LD_ctrl'
-                zone_dir = 'left'
-
-            assert cmds.objExists(mouth_corner_U_controller)
-            assert cmds.objExists(mouth_corner_D_controller)
-
-            mouth_corner_trans_avg_node = cmds.createNode('plusMinusAverage', name='mouth_corner_'+zone_dir+'_avg')
+            mouth_corner_trans_avg_node = cmds.createNode('plusMinusAverage',
+                                                          name='mouth_corner_trans_'+zone_dir+'_'+crv_id+'_avg')
             cmds.setAttr(mouth_corner_trans_avg_node+'.operation', 3)
 
             cmds.connectAttr(mouth_corner_U_controller+'.translateX', mouth_corner_trans_avg_node+'.input3D[0].input3Dx')
@@ -201,7 +202,14 @@ class nasoCheekControlZone(controlZone):
             cmds.connectAttr(mouth_corner_D_controller+'.translateY', mouth_corner_trans_avg_node+'.input3D[1].input3Dy')
             cmds.connectAttr(mouth_corner_D_controller+'.translateZ', mouth_corner_trans_avg_node+'.input3D[1].input3Dz')
 
-            cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', bs_all_crv_bs+'.'+bs_LR_crv)
+            if 'right' == zone_dir:
+                mouth_corner_transx_rev_node = cmds.createNode('multiplyDivide',
+                                                               name='mouth_corner_transX_'+zone_dir+'_'+crv_id+'_rev')
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', mouth_corner_transx_rev_node+'.input1X')
+                cmds.setAttr(mouth_corner_transx_rev_node+'.input2X', -1.0)
+                cmds.connectAttr(mouth_corner_transx_rev_node+'.outputX', bs_all_crv_bs+'.'+bs_LR_crv)
+            else:
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', bs_all_crv_bs+'.'+bs_LR_crv)
             cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', bs_all_crv_bs+'.'+bs_UD_crv)
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between

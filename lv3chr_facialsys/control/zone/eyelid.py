@@ -51,14 +51,6 @@ class eyelidControlZone(controlZone):
                                                 ctrlproj_transplane_LRUD = ctrlproj_transplane_LRUD,
                                                 ctrlproj_projsurface_LRUD = ctrlproj_projsurface_LRUD
                                                 )
-        zone_LR = 'right'
-        zone_UD = 'up'
-
-        if controlZoneDirEnum.left in direction:
-            zone_LR = 'left'
-        if controlZoneDirEnum.down in direction:
-            zone_UD = 'down'
-
         ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
         controller_id_list = ['A', 'B', 'C', 'D', 'E']
         if controlZoneDirEnum.right in direction:
@@ -173,6 +165,14 @@ class eyelidControlZone(controlZone):
         cmds.select(deselect=True)
 
         # Create the curves serving as blend-shape targets for the control curves.
+        zone_LR = 'right'
+        zone_UD = 'up'
+
+        if controlZoneDirEnum.left in direction:
+            zone_LR = 'left'
+        if controlZoneDirEnum.down in direction:
+            zone_UD = 'down'
+
         ctrlcrv_bs_data = self._ctrl_crv_data['eyelid_control_curve_bs']
         ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
 
