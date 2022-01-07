@@ -56,7 +56,7 @@ class nasoCheekControlZone(controlZone):
         assert None != ctrlproj_transplane_LRFB_list and \
             isinstance(ctrlproj_transplane_LRFB_list, list) and True
         assert None != ctrlproj_projsurface_LRFB_list and \
-            isinstance(ctrlproj_projsurface_LRFB_list, list) and 4 == len(ctrlproj_projsurface_LRFB_list)
+            isinstance(ctrlproj_projsurface_LRFB_list, list) and 6 == len(ctrlproj_projsurface_LRFB_list)
 
         ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
 

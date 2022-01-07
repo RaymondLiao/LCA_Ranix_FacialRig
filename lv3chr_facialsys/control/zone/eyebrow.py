@@ -373,28 +373,30 @@ class eyebrowControlZone(controlZone):
                 cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
                 cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
 
-                # if ctrl_crv_id_list[0] in ctrl_crv.get_name():
-                #     # Establish the projecting relationships in the front/F direction.
-                #     # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
-                #     if loc_id <= 2:
-                #         continue
-                #     if loc_id > len(loc_id_list)-2:
-                #         break
-                #     F_projsrf_loc_info = self._ctrlproj_projsurface_LRFB.get_locator_info(ctrl_crv_id, loc_id-2)
-                #     if None == F_projsrf_loc_info:
-                #         continue
-                #
-                #     cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
-                #     cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
-                #                                               ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
-                #
-                #     cmds.connectAttr(self._ctrlproj_transplane_LRFB.get_name() + '.worldSpace[0]',
-                #                      cls_pt_on_F_transplane_node + '.inputSurface')
-                #     cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                #                      cls_pt_on_F_transplane_node + '.inPosition')
-                #
-                #     pt_on_F_projsrf_node = F_projsrf_loc_info[2]
-                #     assert cmds.objExists(pt_on_F_projsrf_node)
-                #
-                #     cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
-                #     cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')
+                # Establish the projecting relationships in the front/F direction.
+                # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
+                front_projsrf_id = ord(ctrl_crv_id)-65
+
+                # if loc_id <= 2:
+                #     continue
+                # if loc_id > len(loc_id_list)-2:
+                #     break
+                F_projsrf_loc_info = \
+                    ctrlproj_projsurface_LRFB_list[front_projsrf_id].get_locator_info(ctrl_crv_id, loc_id)
+                # if None == F_projsrf_loc_info:
+                #     continue
+
+                cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
+                                                          ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+
+                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[0].get_name() + '.worldSpace[0]',
+                                 cls_pt_on_F_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_F_transplane_node + '.inPosition')
+
+                pt_on_F_projsrf_node = F_projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_F_projsrf_node)
+
+                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')

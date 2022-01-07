@@ -131,7 +131,13 @@ def lc3chr_facialsys_construct():
                                  # g_crv_projsrf_dict['cheek_transplane_RUD'].get_name(),
                                  # g_crv_projsrf_dict['cheek_transplane_LUD'].get_name()
                                  g_crv_projsrf_dict['nasocheek_transplane_RUD'].get_name(),
-                                 g_crv_projsrf_dict['nasocheek_transplane_LUD'].get_name()
+                                 g_crv_projsrf_dict['nasocheek_transplane_LUD'].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][0].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][1].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][2].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][3].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][4].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_transplane_LF_list'][5].get_name()
                                  )
     cmds.editDisplayLayerMembers(g_displayer_projsrf,
                                  g_crv_projsrf_dict['eyelid_projsrf_RU'].get_name(),
@@ -154,11 +160,15 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][1].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][2].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][3].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][4].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_RF_list'][5].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_LUD'].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][0].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][1].get_name(),
                                  g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][2].get_name(),
-                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][3].get_name()
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][3].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][4].get_name(),
+                                 g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][5].get_name()
                                  )
 
     cmds.setAttr(g_displayer_transplane + '.displayType', 1)    # 1 means Template
@@ -731,46 +741,78 @@ def setup_proj_surfaces():
     # ------------------------------------------------------------------------------------------------------------------
     # Nasolabial-Cheek Facial Zone - Translation Planes
     nasocheek_crvproj_transplane_data = control_proj_surface_data['nasocheek_translation_plane']
+    front_transplane_id_list = ['A', 'B', 'C', 'D', 'E', 'F']
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
-
-        if 'front' in zone_dir:
-            continue
-
-        nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir]
-        nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
-        nasocheek_dir_transplane_patchesU = nasocheek_dir_transplane_data['patchesU']
-        nasocheek_dir_transplane_patchesV = nasocheek_dir_transplane_data['patchesV']
-
         mirror = [1, 1, 1]
         if controlZoneDirEnum.right in zone_dir:
             mirror = [-1, 1, 1]
 
-        nasocheek_crvproj_transplane = controlTransPlane(name_prefix = nasocheek_crvproj_transplane_data['name_prefix'],
-                                                         name = nasocheek_dir_transplane_data['name'],
-                                                         degree = nasocheek_dir_transplane_degree,
-                                                         patchesU = nasocheek_dir_transplane_patchesU,
-                                                         patchesV = nasocheek_dir_transplane_patchesV,
-                                                         translation = nasocheek_dir_transplane_data['xform']['translation'],
-                                                         rotation = nasocheek_dir_transplane_data['xform']['rotation'],
-                                                         scale = nasocheek_dir_transplane_data['xform']['scale'],
-                                                         mirror = mirror,
-                                                         cv_list = nasocheek_dir_transplane_data['control_vtx'])
+        if controlZoneDirEnum.front in zone_dir:
+            if controlZoneDirEnum.right in zone_dir:
+                continue
 
-        if controlZoneDirEnum.right in zone_dir:
-            g_crv_projsrf_dict['nasocheek_transplane_RUD'] = nasocheek_crvproj_transplane
-            cmds.parent(nasocheek_crvproj_transplane.get_name(),
-                        hierarchy.nasocheek_ctrlzone_R_grp.get_group_name())
-        elif controlZoneDirEnum.left in zone_dir:
-            g_crv_projsrf_dict['nasocheek_transplane_LUD'] = nasocheek_crvproj_transplane
-            cmds.parent(nasocheek_crvproj_transplane.get_name(),
-                        hierarchy.nasocheek_ctrlzone_L_grp.get_group_name())
+            for front_transplane_id in front_transplane_id_list:
+                nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir+'_'+front_transplane_id]
+
+                nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
+                nasocheek_dir_transplane_patchesU = nasocheek_dir_transplane_data['patchesU']
+                nasocheek_dir_transplane_patchesV = nasocheek_dir_transplane_data['patchesV']
+
+                nasocheek_crvproj_transplane = \
+                    controlTransPlane(name_prefix = nasocheek_crvproj_transplane_data['name_prefix'],
+                                      name = nasocheek_dir_transplane_data['name'],
+                                      degree = nasocheek_dir_transplane_degree,
+                                      patchesU = nasocheek_dir_transplane_patchesU,
+                                      patchesV = nasocheek_dir_transplane_patchesV,
+                                      translation = nasocheek_dir_transplane_data['xform']['translation'],
+                                      rotation = nasocheek_dir_transplane_data['xform']['rotation'],
+                                      scale = nasocheek_dir_transplane_data['xform']['scale'],
+                                      mirror = mirror,
+                                      cv_list = nasocheek_dir_transplane_data['control_vtx'])
+
+                if controlZoneDirEnum.right in zone_dir:
+                    g_crv_projsrf_dict['nasocheek_transplane_RF_list'].append(nasocheek_crvproj_transplane)
+                    cmds.parent(nasocheek_crvproj_transplane.get_name(),
+                                hierarchy.nasocheek_ctrlzone_R_grp.get_group_name())
+                elif controlZoneDirEnum.left in zone_dir:
+                    g_crv_projsrf_dict['nasocheek_transplane_LF_list'].append(nasocheek_crvproj_transplane)
+                    cmds.parent(nasocheek_crvproj_transplane.get_name(),
+                                hierarchy.nasocheek_ctrlzone_L_grp.get_group_name())
+
+        else:
+            nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir]
+
+            nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
+            nasocheek_dir_transplane_patchesU = nasocheek_dir_transplane_data['patchesU']
+            nasocheek_dir_transplane_patchesV = nasocheek_dir_transplane_data['patchesV']
+
+            nasocheek_crvproj_transplane = \
+                controlTransPlane(name_prefix = nasocheek_crvproj_transplane_data['name_prefix'],
+                                  name = nasocheek_dir_transplane_data['name'],
+                                  degree = nasocheek_dir_transplane_degree,
+                                  patchesU = nasocheek_dir_transplane_patchesU,
+                                  patchesV = nasocheek_dir_transplane_patchesV,
+                                  translation = nasocheek_dir_transplane_data['xform']['translation'],
+                                  rotation = nasocheek_dir_transplane_data['xform']['rotation'],
+                                  scale = nasocheek_dir_transplane_data['xform']['scale'],
+                                  mirror = mirror,
+                                  cv_list = nasocheek_dir_transplane_data['control_vtx'])
+
+            if controlZoneDirEnum.right in zone_dir:
+                g_crv_projsrf_dict['nasocheek_transplane_RUD'] = nasocheek_crvproj_transplane
+                cmds.parent(nasocheek_crvproj_transplane.get_name(),
+                            hierarchy.nasocheek_ctrlzone_R_grp.get_group_name())
+            elif controlZoneDirEnum.left in zone_dir:
+                g_crv_projsrf_dict['nasocheek_transplane_LUD'] = nasocheek_crvproj_transplane
+                cmds.parent(nasocheek_crvproj_transplane.get_name(),
+                            hierarchy.nasocheek_ctrlzone_L_grp.get_group_name())
 
 
     # Nasolabial-Cheek Facial Zone - Projection Surfaces
     nasocheek_crvproj_projsrf_data = control_proj_surface_data['nasocheek_projection_surface']
-    front_projsrf_id_list = ['A', 'B', 'C', 'D']
+    front_projsrf_id_list = ['A', 'B', 'C', 'D', 'E', 'F']
 
     for dir_dict in G_CONTROL_ZONE_DIRECTION_DICT[controlZoneEnum.nasocheek]:
         zone_dir = util.get_ctrl_zone_dir(dir_dict)[0]
@@ -789,20 +831,21 @@ def setup_proj_surfaces():
                 nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
                 nasocheek_dir_projsrf_patchesV = nasocheek_dir_projsrf_data['patchesV']
 
-                nasocheek_crvproj_projsrf = controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
-                                                               name = nasocheek_dir_projsrf_data['name'],
-                                                               degree = nasocheek_dir_projsrf_degree,
-                                                               patchesU = nasocheek_dir_projsrf_patchesU,
-                                                               patchesV = nasocheek_dir_projsrf_patchesV,
-                                                               translation = nasocheek_dir_projsrf_data['xform']['translation'],
-                                                               rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
-                                                               scale = nasocheek_dir_projsrf_data['xform']['scale'],
-                                                               mirror = mirror,
-                                                               cv_list = nasocheek_dir_projsrf_data['control_vtx'],
-                                                               locator_data = nasocheek_dir_projsrf_data['locators'],
-                                                               locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
-                                                               bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
-                                                               bind_joint_color = BIND_JOINT_COLOR_INDEX)
+                nasocheek_crvproj_projsrf = \
+                    controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
+                                       name = nasocheek_dir_projsrf_data['name'],
+                                       degree = nasocheek_dir_projsrf_degree,
+                                       patchesU = nasocheek_dir_projsrf_patchesU,
+                                       patchesV = nasocheek_dir_projsrf_patchesV,
+                                       translation = nasocheek_dir_projsrf_data['xform']['translation'],
+                                       rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
+                                       scale = nasocheek_dir_projsrf_data['xform']['scale'],
+                                       mirror = mirror,
+                                       cv_list = nasocheek_dir_projsrf_data['control_vtx'],
+                                       locator_data = nasocheek_dir_projsrf_data['locators'],
+                                       locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
+                                       bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
+                                       bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
                 if controlZoneDirEnum.right in zone_dir:
                     g_crv_projsrf_dict['nasocheek_projsrf_RF_list'].append(nasocheek_crvproj_projsrf)
@@ -815,24 +858,26 @@ def setup_proj_surfaces():
 
         else:
             nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir]
+
             nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
             nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
             nasocheek_dir_projsrf_patchesV = nasocheek_dir_projsrf_data['patchesV']
 
-            nasocheek_crvproj_projsrf = controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
-                                                           name = nasocheek_dir_projsrf_data['name'],
-                                                           degree = nasocheek_dir_projsrf_degree,
-                                                           patchesU = nasocheek_dir_projsrf_patchesU,
-                                                           patchesV = nasocheek_dir_projsrf_patchesV,
-                                                           translation = nasocheek_dir_projsrf_data['xform']['translation'],
-                                                           rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
-                                                           scale = nasocheek_dir_projsrf_data['xform']['scale'],
-                                                           mirror = mirror,
-                                                           cv_list = nasocheek_dir_projsrf_data['control_vtx'],
-                                                           locator_data = nasocheek_dir_projsrf_data['locators'],
-                                                           locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
-                                                           bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
-                                                           bind_joint_color = BIND_JOINT_COLOR_INDEX)
+            nasocheek_crvproj_projsrf = \
+                controlProjSurface(name_prefix = nasocheek_crvproj_projsrf_data['name_prefix'],
+                                   name = nasocheek_dir_projsrf_data['name'],
+                                   degree = nasocheek_dir_projsrf_degree,
+                                   patchesU = nasocheek_dir_projsrf_patchesU,
+                                   patchesV = nasocheek_dir_projsrf_patchesV,
+                                   translation = nasocheek_dir_projsrf_data['xform']['translation'],
+                                   rotation = nasocheek_dir_projsrf_data['xform']['rotation'],
+                                   scale = nasocheek_dir_projsrf_data['xform']['scale'],
+                                   mirror = mirror,
+                                   cv_list = nasocheek_dir_projsrf_data['control_vtx'],
+                                   locator_data = nasocheek_dir_projsrf_data['locators'],
+                                   locator_scale = nasocheek_crvproj_projsrf_data['locator_scale'],
+                                   bind_joint_data = nasocheek_crvproj_projsrf_data['bind_joint'],
+                                   bind_joint_color = BIND_JOINT_COLOR_INDEX)
 
             loc_row_id_list = nasocheek_crvproj_projsrf.get_locator_row_ids()
 
@@ -1013,7 +1058,7 @@ def setup_ctrl_zones():
 
         assert None != ctrlproj_transplane_LRUD
         assert None != ctrlproj_projsrf_LRUD
-        assert len(ctrlproj_projsrf_LRFB_list) == 4
+        assert len(ctrlproj_projsrf_LRFB_list) == 6
 
         nasocheek_ctrl_zone = nasoCheekControlZone(direction = zone_dir,
                                                    ctrl_crv_data = ctrl_crv_data,
