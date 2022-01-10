@@ -585,16 +585,33 @@ def setup_proj_surfaces():
 
             for loc_row_id in loc_row_id_list:
                 for loc_col_id in mouth_crvproj_projsrf.get_locator_col_ids(loc_row_id):
-                    cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                hierarchy.mouth_projsrf_loc_MU_A_grp.get_group_name())
+                    if 'A' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MU_A_grp.get_group_name())
+                    elif 'B' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MU_B_grp.get_group_name())
+                    elif 'C' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MU_C_grp.get_group_name())
 
         elif controlZoneDirEnum.down in zone_dir:
             g_crv_projsrf_dict['mouth_projsrf_LRD'] = mouth_crvproj_projsrf
 
             for loc_row_id in loc_row_id_list:
                 for loc_col_id in mouth_crvproj_projsrf.get_locator_col_ids(loc_row_id):
-                    cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
-                                hierarchy.mouth_projsrf_loc_MD_A_grp.get_group_name())
+                    if 'A' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MD_A_grp.get_group_name())
+                    elif 'B' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MD_B_grp.get_group_name())
+                    elif 'C' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MD_C_grp.get_group_name())
+                    elif 'D' == loc_row_id:
+                        cmds.parent(mouth_crvproj_projsrf.get_locator_info(loc_row_id, loc_col_id)[0],
+                                    hierarchy.mouth_projsrf_loc_MD_D_grp.get_group_name())
 
         cmds.parent(mouth_crvproj_projsrf.get_name(), hierarchy.mouth_projsrf_M_grp.get_group_name())
 
