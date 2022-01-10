@@ -59,7 +59,7 @@ class dirDictKeyEnum(object):
 # G_DIR_DICT_KEY_LIST = [name for name, member in dirDictKeyEnum.__members__.items()]
 # G_DIR_DICT_KEY_LIST = util.get_enum_value_list(dirDictKeyEnum)
 G_DIR_DICT_KEY_LIST = ['LR', 'UD', 'FB']
-G_BLENDSHAPE_TYPE_LIST = ['original', 'bs_all', 'bs_LR', 'bs_UD']
+G_BLENDSHAPE_TYPE_LIST = ['original', 'bs_all', 'bs_LR', 'bs_UD', 'bs_FB']
 G_CTRLCRV_BS_DIR_LIST = ['original',
                          'right_end_up', 'right_side_up', 'middle_side_up', 'left_side_up', 'left_end_up',
                          'right_end_left', 'right_side_left', 'middle_side_left', 'left_side_left', 'left_end_left',
@@ -214,4 +214,7 @@ CONTROL_L_COLOR = COLOR_INDEX_LIGHT_RED
 CONTROLLER_LU_COLOR = COLOR_INDEX_LIGHT_RED
 CONTROLLER_LD_COLOR = COLOR_INDEX_LIGHT_RED
 
-BIND_JOINT_COLOR_INDEX = COLOR_INDEX_DARK_WHITE
+BIND_JOINT_LRUD_COLOR_INDEX = COLOR_INDEX_DARK_WHITE
+BIND_JOINT_FB_COLOR_INDEX = COLOR_INDEX_WHITE
+
+G_BIND_JOINT_FB_SCALE_GAIN = 0.6

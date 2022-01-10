@@ -374,17 +374,10 @@ class eyebrowControlZone(controlZone):
                 cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
 
                 # Establish the projecting relationships in the front/F direction.
-                # Note that the eyebrow projection surface in the FB direction has 2 less locators on each side.
-                front_projsrf_id = ord(ctrl_crv_id)-65
+                front_projsrf_id = ord(ctrl_crv_id) - 65
 
-                # if loc_id <= 2:
-                #     continue
-                # if loc_id > len(loc_id_list)-2:
-                #     break
                 F_projsrf_loc_info = \
                     ctrlproj_projsurface_LRFB_list[front_projsrf_id].get_locator_info(ctrl_crv_id, loc_id)
-                # if None == F_projsrf_loc_info:
-                #     continue
 
                 cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,

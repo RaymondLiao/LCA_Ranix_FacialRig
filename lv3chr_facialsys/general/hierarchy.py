@@ -384,6 +384,7 @@ nasocheek_ctrlzone_loc_R_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_
 nasocheek_ctrlzone_loc_R_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_C_grp')
 nasocheek_ctrlzone_loc_R_D_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_D_grp')
 nasocheek_ctrlzone_loc_R_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_E_grp')
+nasocheek_ctrlzone_loc_R_F_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_F_grp')
 
 nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
                                      [
@@ -392,7 +393,8 @@ nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
                                          nasocheek_ctrlzone_loc_R_B_grp,
                                          nasocheek_ctrlzone_loc_R_C_grp,
                                          nasocheek_ctrlzone_loc_R_D_grp,
-                                         nasocheek_ctrlzone_loc_R_E_grp
+                                         nasocheek_ctrlzone_loc_R_E_grp,
+                                         nasocheek_ctrlzone_loc_R_F_grp
                                      ])
 
 nasocheek_ctrlcrv_bs_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_bs_grp')
@@ -401,6 +403,7 @@ nasocheek_ctrlzone_loc_L_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_
 nasocheek_ctrlzone_loc_L_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_C_grp')
 nasocheek_ctrlzone_loc_L_D_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_D_grp')
 nasocheek_ctrlzone_loc_L_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_E_grp')
+nasocheek_ctrlzone_loc_L_F_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_F_grp')
 
 nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp',
                                      [
@@ -409,38 +412,71 @@ nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp',
                                          nasocheek_ctrlzone_loc_L_B_grp,
                                          nasocheek_ctrlzone_loc_L_C_grp,
                                          nasocheek_ctrlzone_loc_L_D_grp,
-                                         nasocheek_ctrlzone_loc_L_E_grp
+                                         nasocheek_ctrlzone_loc_L_E_grp,
+                                         nasocheek_ctrlzone_loc_L_F_grp
                                      ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-nasocheek_projsrf_loc_R_A_grp = groupTree(mouth_projsrf_prefix + '_loc_R_A_grp')
-nasocheek_projsrf_loc_R_B_grp = groupTree(mouth_projsrf_prefix + '_loc_R_B_grp')
-nasocheek_projsrf_loc_R_C_grp = groupTree(mouth_projsrf_prefix + '_loc_R_C_grp')
-nasocheek_projsrf_loc_R_D_grp = groupTree(mouth_projsrf_prefix + '_loc_R_D_grp')
-nasocheek_projsrf_loc_R_E_grp = groupTree(mouth_projsrf_prefix + '_loc_R_E_grp')
+nasocheek_projsrf_loc_R_LR_A_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_A_grp')
+nasocheek_projsrf_loc_R_LR_B_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_B_grp')
+nasocheek_projsrf_loc_R_LR_C_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_C_grp')
+nasocheek_projsrf_loc_R_LR_D_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_D_grp')
+nasocheek_projsrf_loc_R_LR_E_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_E_grp')
+nasocheek_projsrf_loc_R_LR_F_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_F_grp')
+
+nasocheek_projsrf_loc_R_FB_A_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_A_grp')
+nasocheek_projsrf_loc_R_FB_B_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_B_grp')
+nasocheek_projsrf_loc_R_FB_C_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_C_grp')
+nasocheek_projsrf_loc_R_FB_D_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_D_grp')
+nasocheek_projsrf_loc_R_FB_E_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_E_grp')
+nasocheek_projsrf_loc_R_FB_F_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_F_grp')
 
 nasocheek_projsrf_R_grp = groupTree(nasocheek_projsrf_prefix + '_R_grp',
                                     [
-                                        nasocheek_projsrf_loc_R_A_grp,
-                                        nasocheek_projsrf_loc_R_B_grp,
-                                        nasocheek_projsrf_loc_R_C_grp,
-                                        nasocheek_projsrf_loc_R_D_grp,
-                                        nasocheek_projsrf_loc_R_E_grp
+                                        nasocheek_projsrf_loc_R_LR_A_grp,
+                                        nasocheek_projsrf_loc_R_LR_B_grp,
+                                        nasocheek_projsrf_loc_R_LR_C_grp,
+                                        nasocheek_projsrf_loc_R_LR_D_grp,
+                                        nasocheek_projsrf_loc_R_LR_E_grp,
+                                        nasocheek_projsrf_loc_R_LR_F_grp,
+
+                                        nasocheek_projsrf_loc_R_FB_A_grp,
+                                        nasocheek_projsrf_loc_R_FB_B_grp,
+                                        nasocheek_projsrf_loc_R_FB_C_grp,
+                                        nasocheek_projsrf_loc_R_FB_D_grp,
+                                        nasocheek_projsrf_loc_R_FB_E_grp,
+                                        nasocheek_projsrf_loc_R_FB_F_grp
                                     ])
 
-nasocheek_projsrf_loc_L_A_grp = groupTree(mouth_projsrf_prefix + '_loc_L_A_grp')
-nasocheek_projsrf_loc_L_B_grp = groupTree(mouth_projsrf_prefix + '_loc_L_B_grp')
-nasocheek_projsrf_loc_L_C_grp = groupTree(mouth_projsrf_prefix + '_loc_L_C_grp')
-nasocheek_projsrf_loc_L_D_grp = groupTree(mouth_projsrf_prefix + '_loc_L_D_grp')
-nasocheek_projsrf_loc_L_E_grp = groupTree(mouth_projsrf_prefix + '_loc_L_E_grp')
+nasocheek_projsrf_loc_L_LR_A_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_A_grp')
+nasocheek_projsrf_loc_L_LR_B_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_B_grp')
+nasocheek_projsrf_loc_L_LR_C_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_C_grp')
+nasocheek_projsrf_loc_L_LR_D_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_D_grp')
+nasocheek_projsrf_loc_L_LR_E_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_E_grp')
+nasocheek_projsrf_loc_L_LR_F_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_F_grp')
+
+nasocheek_projsrf_loc_L_FB_A_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_A_grp')
+nasocheek_projsrf_loc_L_FB_B_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_B_grp')
+nasocheek_projsrf_loc_L_FB_C_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_C_grp')
+nasocheek_projsrf_loc_L_FB_D_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_D_grp')
+nasocheek_projsrf_loc_L_FB_E_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_E_grp')
+nasocheek_projsrf_loc_L_FB_F_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_F_grp')
 
 nasocheek_projsrf_L_grp = groupTree(nasocheek_projsrf_prefix + '_L_grp',
                                     [
-                                        nasocheek_projsrf_loc_L_A_grp,
-                                        nasocheek_projsrf_loc_L_B_grp,
-                                        nasocheek_projsrf_loc_L_C_grp,
-                                        nasocheek_projsrf_loc_L_D_grp,
-                                        nasocheek_projsrf_loc_L_E_grp
+                                        nasocheek_projsrf_loc_L_LR_A_grp,
+                                        nasocheek_projsrf_loc_L_LR_B_grp,
+                                        nasocheek_projsrf_loc_L_LR_C_grp,
+                                        nasocheek_projsrf_loc_L_LR_D_grp,
+                                        nasocheek_projsrf_loc_L_LR_E_grp,
+                                        nasocheek_projsrf_loc_L_LR_F_grp,
+
+                                        nasocheek_projsrf_loc_L_FB_A_grp,
+                                        nasocheek_projsrf_loc_L_FB_B_grp,
+                                        nasocheek_projsrf_loc_L_FB_C_grp,
+                                        nasocheek_projsrf_loc_L_FB_D_grp,
+                                        nasocheek_projsrf_loc_L_FB_E_grp,
+                                        nasocheek_projsrf_loc_L_FB_F_grp
                                     ])
 
 # nasolabial-cheek zone sub-master group -------------------------------------------------------------------------------

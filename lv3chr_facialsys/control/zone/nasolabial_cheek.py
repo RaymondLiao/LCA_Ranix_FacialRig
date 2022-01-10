@@ -58,7 +58,7 @@ class nasoCheekControlZone(controlZone):
         assert None != ctrlproj_projsurface_LRFB_list and \
             isinstance(ctrlproj_projsurface_LRFB_list, list) and 6 == len(ctrlproj_projsurface_LRFB_list)
 
-        ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E']
+        ctrl_crv_id_list = ['A', 'B', 'C', 'D', 'E', 'F']
 
         # Create the control curves.
         ctrlcrv_data = self._ctrl_crv_data['nasocheek_control_curve']
@@ -97,6 +97,9 @@ class nasoCheekControlZone(controlZone):
                     elif 'E' == crv_id:
                         cmds.parent(loc_name,
                                     hierarchy.nasocheek_ctrlzone_loc_R_E_grp.get_group_name())
+                    elif 'F' == crv_id:
+                        cmds.parent(loc_name,
+                                    hierarchy.nasocheek_ctrlzone_loc_R_F_grp.get_group_name())
 
             elif controlZoneDirEnum.left in direction:
                 cmds.parent(ctrl_crv.get_name(),
@@ -119,6 +122,9 @@ class nasoCheekControlZone(controlZone):
                     elif 'E' == crv_id:
                         cmds.parent(loc_name,
                                     hierarchy.nasocheek_ctrlzone_loc_L_E_grp.get_group_name())
+                    elif 'F' == crv_id:
+                        cmds.parent(loc_name,
+                                    hierarchy.nasocheek_ctrlzone_loc_L_F_grp.get_group_name())
 
             self._ctrl_crv_dict[crv_id] = ctrl_crv
 
@@ -176,12 +182,14 @@ class nasoCheekControlZone(controlZone):
         for crv_id in ctrl_crv_id_list:
             bs_LR_crv = self._ctrl_crv_bs_dict['bs_LR'+'_'+crv_id]
             bs_UD_crv = self._ctrl_crv_bs_dict['bs_UD'+'_'+crv_id]
+            bs_FB_crv = self._ctrl_crv_bs_dict['bs_FB'+'_'+crv_id]
             bs_all_crv = self._ctrl_crv_bs_dict['bs_all'+'_'+crv_id]
             bs_orig_crv = self._ctrl_crv_bs_dict['original'+'_'+crv_id]
             proj_crv = self._ctrl_crv_dict[crv_id].get_name()
 
             bs_all_crv_bs = cmds.blendShape(bs_LR_crv,
                                             bs_UD_crv,
+                                            bs_FB_crv,
 
                                             bs_all_crv,
 
@@ -221,27 +229,52 @@ class nasoCheekControlZone(controlZone):
             else:
                 cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', bs_all_crv_bs+'.'+bs_LR_crv)
             cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', bs_all_crv_bs+'.'+bs_UD_crv)
+            cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dz', bs_all_crv_bs + '.' + bs_FB_crv)
 
-        # # Use "closestPointOnSurface" nodes to establish the projecting relationships between
-        # # the locators on the control curves and the locators on the projection surface.
-        #
-        # for ctrl_crv_id in ctrl_crv_id_list:
-        #     ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
-        #
-        #     for loc_id in ctrl_crv.get_locator_ids():
-        #         ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
-        #         projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
-        #
-        #         cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
-        #         cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0] + '_clsPtOnSrf')
-        #
-        #         cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-        #                          cls_pt_on_transplane_node + '.inputSurface')
-        #         cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-        #                          cls_pt_on_transplane_node + '.inPosition')
-        #
-        #         pt_on_projsrf_node = projsrf_loc_info[2]
-        #         assert cmds.objExists(pt_on_projsrf_node)
-        #
-        #         cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
-        #         cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
+        # Use "closestPointOnSurface" nodes to establish the projecting relationships between
+        # the locators on the control curves and the locators on the projection surface.
+
+        for ctrl_crv_id in ctrl_crv_id_list:
+            ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
+
+            for loc_id in ctrl_crv.get_locator_ids():
+                ctrlcrv_loc_info = ctrl_crv.get_locator_info(loc_id)
+
+                # Establish the projecting relationships in the up-down/UD directions.
+                UD_projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
+
+                cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
+                                                           ctrlcrv_loc_info[0] + '_clsPtOnSrf')
+
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
+                                 cls_pt_on_UD_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_UD_transplane_node + '.inPosition')
+
+                pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_UD_projsrf_node)
+
+                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
+
+                # Establish the projecting relationships in the front/F direction.
+                front_projsrf_id = ord(ctrl_crv_id) - 65
+
+                F_projsrf_loc_info = \
+                    ctrlproj_projsurface_LRFB_list[front_projsrf_id].get_locator_info(ctrl_crv_id, loc_id)
+
+                cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
+                cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
+                                                          ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+
+                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[front_projsrf_id].get_name() + '.worldSpace[0]',
+                                 cls_pt_on_F_transplane_node + '.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
+                                 cls_pt_on_F_transplane_node + '.inPosition')
+
+                pt_on_F_projsrf_node = F_projsrf_loc_info[2]
+                assert cmds.objExists(pt_on_F_projsrf_node)
+
+                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
+                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')

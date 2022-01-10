@@ -238,7 +238,10 @@ class controlProjSurface(object):
             assert 'radius' in bind_jnt_data_keys
 
             bind_jnt_name = name_prefix + '_' + loc_name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
-            bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_joint_data['radius'])
+            bind_jnt_radius = bind_joint_data['radius']
+            if 'FB' in name:
+                bind_jnt_radius *= G_BIND_JOINT_FB_SCALE_GAIN
+            bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_jnt_radius)
 
             cmds.setAttr(bind_jnt+'.overrideEnabled', True)
             cmds.setAttr(bind_jnt+'.overrideColor', bind_joint_color)
