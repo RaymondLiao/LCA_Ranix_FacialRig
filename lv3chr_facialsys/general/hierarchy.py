@@ -288,23 +288,33 @@ mouth_projsrf_prefix = 'fm_mouthMask'
 # translation plane ----------------------------------------------------------------------------------------------------
 mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_ctrl_grp')
 mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_A_grp')
+mouth_ctrlzone_loc_MU_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_B_grp')
+mouth_ctrlzone_loc_MU_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_C_grp')
 mouth_ctrlcrv_bs_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_bs_grp')
 
 mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_grp',
                                   [
                                      mouth_ctrl_MU_grp,
                                      mouth_ctrlzone_loc_MU_A_grp,
+                                     mouth_ctrlzone_loc_MU_B_grp,
+                                     mouth_ctrlzone_loc_MU_C_grp,
                                      mouth_ctrlcrv_bs_MU_grp
                                  ])
 
 mouth_ctrl_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_ctrl_grp')
 mouth_ctrlzone_loc_MD_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_A_grp')
+mouth_ctrlzone_loc_MD_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_B_grp')
+mouth_ctrlzone_loc_MD_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_C_grp')
+mouth_ctrlzone_loc_MD_D_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_D_grp')
 mouth_ctrlcrv_bs_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_bs_grp')
 
 mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_grp',
                                   [
                                       mouth_ctrl_MD_grp,
                                       mouth_ctrlzone_loc_MD_A_grp,
+                                      mouth_ctrlzone_loc_MD_B_grp,
+                                      mouth_ctrlzone_loc_MD_C_grp,
+                                      mouth_ctrlzone_loc_MD_D_grp,
                                       mouth_ctrlcrv_bs_MD_grp
                                   ])
 
