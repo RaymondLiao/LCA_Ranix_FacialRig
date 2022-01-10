@@ -202,9 +202,9 @@ class eyebrowControlZone(controlZone):
                                         translation_ofs = dir_ctrl_data['xform']['translation_ofs'],
                                         translation = dir_ctrl_data['xform']['translation'],
                                         lock_trans_axes = controller_data['lock_trans_axes'],
-                                        lock_rot_axes = controller_data['lock_rot_axes'],
-                                        bind_joint_data = controller_data['bind_joint'],
-                                        bind_joint_color = BIND_JOINT_COLOR_INDEX)
+                                        lock_rot_axes = controller_data['lock_rot_axes'])
+                                        # bind_joint_data = controller_data['bind_joint'],
+                                        # bind_joint_color = BIND_JOINT_LRUD_COLOR_INDEX)
 
             cmds.parent(rig_controller.get_offset_group(),
                         hierarchy.eyebrow_ctrl_M_grp.get_group_name(),

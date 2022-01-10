@@ -33,9 +33,9 @@ class controller(object):
                  translation_ofs = [0, 0, 0],
                  translation = [0, 0, 0],
                  lock_trans_axes = [],
-                 lock_rot_axes = [],
-                 bind_joint_data = {},
-                 bind_joint_color = COLOR_INDEX_DARK_WHITE):
+                 lock_rot_axes = []):
+                 # bind_joint_data = {},
+                 # bind_joint_color = COLOR_INDEX_DARK_WHITE):
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
         # Create a NURBS curve object as the controller UI.
