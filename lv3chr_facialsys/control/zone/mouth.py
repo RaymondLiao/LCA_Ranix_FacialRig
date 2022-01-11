@@ -113,11 +113,11 @@ class mouthControlZone(controlZone):
         cmds.select(deselect=True)
 
         # Create the curves serving as blend-shape targets for the control curves.
-        mside_ctrl_crv_id_list = []
+        ctrl_crv_id_list = []
         if controlZoneDirEnum.up in direction:
-            mside_ctrl_crv_id_list = ['A', 'B', 'C']
+            ctrl_crv_id_list = ['A', 'B', 'C']
         elif controlZoneDirEnum.down in direction:
-            mside_ctrl_crv_id_list = ['A', 'B', 'C', 'D']
+            ctrl_crv_id_list = ['A', 'B', 'C', 'D']
 
         ctrlcrv_bs_data = self._ctrl_crv_data['mouth_control_curve_bs']
         ctrlcrv_bs_degree = ctrlcrv_bs_data['degree']
@@ -125,7 +125,7 @@ class mouthControlZone(controlZone):
         for ctrl_crv_bs_dir in G_CTRLCRV_BS_DIR_LIST:
             dir_ctrlcrv_bs_data = None
             if 'original' == ctrl_crv_bs_dir:
-                for ctrl_crv_id in mside_ctrl_crv_id_list:
+                for ctrl_crv_id in ctrl_crv_id_list:
                     if controlZoneDirEnum.up in direction:
                         dir_ctrlcrv_bs_data = ctrlcrv_bs_data['up_original'+'_'+ctrl_crv_id]
                     elif controlZoneDirEnum.down in direction:
@@ -140,7 +140,7 @@ class mouthControlZone(controlZone):
                 continue
             else:
                 if 'middle_side' in ctrl_crv_bs_dir and 'front' not in ctrl_crv_bs_dir:
-                    for ctrl_crv_id in mside_ctrl_crv_id_list:
+                    for ctrl_crv_id in ctrl_crv_id_list:
                         if controlZoneDirEnum.up in direction:
                             dir_ctrlcrv_bs_data = ctrlcrv_bs_data['up'+'_'+ctrl_crv_bs_dir+'_'+ctrl_crv_id]
                         elif controlZoneDirEnum.down in direction:
@@ -205,94 +205,121 @@ class mouthControlZone(controlZone):
         # --------------------------------------------------------------------------------------------------------------
         # Drive the control curves using blend-shape and
         # three-curves each in the LR, UD and FB directions, as the targets.
-        ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_A'],
-                        self._ctrl_crv_bs_dict['right_side_up'],
-                        self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_A'],
-                        self._ctrl_crv_bs_dict['left_side_up'],
-                        self._ctrl_crv_bs_dict['right_side_left'],
-                        self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_A'],
-                        self._ctrl_crv_bs_dict['left_side_left'],
-                        self._ctrl_crv_bs_dict['right_side_front'],
-                        self._ctrl_crv_bs_dict['middle_side_front'],
-                        self._ctrl_crv_bs_dict['left_side_front'],
-                        self._ctrl_crv_dict['A'].get_name(),
-                        name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
-                        )[0]
-        cmds.setAttr(ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_A'], 1)
-        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
 
-        R_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
-                                                   name=self._controller_dict['R'].get_name() + '_trans_multiplyDivide')
-        cmds.setAttr(R_ctrl_trans_divide_node+'.operation', 2)  # divide
-        cmds.setAttr(R_ctrl_trans_divide_node+'.input2',
-                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
+        for ctrl_crv_id in ctrl_crv_id_list:
+            ctrl_crv_bs = None
+            if 'A' == ctrl_crv_id:
+                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict['right_side_up'],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict['left_side_up'],
+                                self._ctrl_crv_bs_dict['right_side_left'],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict['left_side_left'],
+                                self._ctrl_crv_bs_dict['right_side_front'],
+                                self._ctrl_crv_bs_dict['middle_side_front'],
+                                self._ctrl_crv_bs_dict['left_side_front'],
+                                self._ctrl_crv_dict[ctrl_crv_id].get_name(),
+                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape')[0]
+            else:
+                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_dict[ctrl_crv_id].get_name(),
+                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape',)[0]
+            cmds.setAttr(ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id], 1)
+            cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
 
-        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
-                         R_ctrl_trans_divide_node + '.input1Y')
-        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
+            # Right-Side Mouth Corner Controller
+            R_ctrl_trans_divide_node = self._controller_dict['R'].get_name() + '_trans_multiplyDivide'
+            if not cmds.objExists(R_ctrl_trans_divide_node):
+                R_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                           name=self._controller_dict['R'].get_name() + '_trans_multiplyDivide')
+                cmds.setAttr(R_ctrl_trans_divide_node+'.operation', 2)  # divide
+                cmds.setAttr(R_ctrl_trans_divide_node+'.input2',
+                             G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
 
-        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateX',
-                         R_ctrl_trans_divide_node + '.input1X')
-        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
+                cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
+                                 R_ctrl_trans_divide_node + '.input1Y')
 
-        cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
-                         R_ctrl_trans_divide_node + '.input1Z')
-        cmds.connectAttr(R_ctrl_trans_divide_node + '.outputZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
+                cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateX',
+                                 R_ctrl_trans_divide_node + '.input1X')
 
+                cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
+                                 R_ctrl_trans_divide_node + '.input1Z')
 
-        M_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
-                                                   name=self._controller_dict['M'].get_name() + '_trans_multiplyDivide')
-        cmds.setAttr(M_ctrl_trans_divide_node+'.operation', 2)  # divide
-        cmds.setAttr(M_ctrl_trans_divide_node+'.input2',
-                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
+            if 'A' == ctrl_crv_id:
+                cmds.connectAttr(R_ctrl_trans_divide_node + '.outputY',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
 
-        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
-                         M_ctrl_trans_divide_node + '.input1Y')
-        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_A'])
+                cmds.connectAttr(R_ctrl_trans_divide_node + '.outputX',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
 
-        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateX',
-                         M_ctrl_trans_divide_node + '.input1X')
-        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_A'])
+                cmds.connectAttr(R_ctrl_trans_divide_node + '.outputZ',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
 
-        cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateZ',
-                         M_ctrl_trans_divide_node + '.input1Z')
-        cmds.connectAttr(M_ctrl_trans_divide_node + '.outputZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_front'])
+            # Middle-Side Mouth Controller
+            M_ctrl_trans_divide_node = self._controller_dict['M'].get_name() + '_trans_multiplyDivide'
+            if not cmds.objExists(M_ctrl_trans_divide_node):
+                M_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                           name=self._controller_dict['M'].get_name() + '_trans_multiplyDivide')
+                cmds.setAttr(M_ctrl_trans_divide_node+'.operation', 2)  # divide
+                cmds.setAttr(M_ctrl_trans_divide_node+'.input2',
+                             G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
 
-        L_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
-                                                   name=self._controller_dict['L'].get_name() + '_trans_multiplyDivide')
-        cmds.setAttr(L_ctrl_trans_divide_node+'.operation', 2)  # divide
-        cmds.setAttr(L_ctrl_trans_divide_node+'.input2',
-                     G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
+                cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
+                                 M_ctrl_trans_divide_node + '.input1Y')
 
+                cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateX',
+                                 M_ctrl_trans_divide_node + '.input1X')
 
-        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',
-                         L_ctrl_trans_divide_node + '.input1Y')
-        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+                cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateZ',
+                                 M_ctrl_trans_divide_node + '.input1Z')
+            if 'A' == ctrl_crv_id:
+                cmds.connectAttr(M_ctrl_trans_divide_node + '.outputZ',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_front'])
 
-        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateX',
-                         L_ctrl_trans_divide_node + '.input1X')
-        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
+            cmds.connectAttr(M_ctrl_trans_divide_node + '.outputY',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id])
 
-        cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
-                         L_ctrl_trans_divide_node + '.input1Z')
-        cmds.connectAttr(L_ctrl_trans_divide_node + '.outputZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
+            cmds.connectAttr(M_ctrl_trans_divide_node + '.outputX',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_left_' + ctrl_crv_id])
+
+            # Left-Side Mouth Corner Controller
+            L_ctrl_trans_divide_node = self._controller_dict['L'].get_name() + '_trans_multiplyDivide'
+            if not cmds.objExists(L_ctrl_trans_divide_node):
+                L_ctrl_trans_divide_node = cmds.createNode('multiplyDivide',
+                                                           name=self._controller_dict['L'].get_name() + '_trans_multiplyDivide')
+                cmds.setAttr(L_ctrl_trans_divide_node+'.operation', 2)  # divide
+                cmds.setAttr(L_ctrl_trans_divide_node+'.input2',
+                             G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN, G_CTRLCRV_BS_DRIVING_GAIN)
+
+                cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',
+                                 L_ctrl_trans_divide_node + '.input1Y')
+
+                cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateX',
+                                 L_ctrl_trans_divide_node + '.input1X')
+
+                cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
+                                 L_ctrl_trans_divide_node + '.input1Z')
+
+            if 'A' == ctrl_crv_id:
+                cmds.connectAttr(L_ctrl_trans_divide_node + '.outputY',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+
+                cmds.connectAttr(L_ctrl_trans_divide_node + '.outputX',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
+
+                cmds.connectAttr(L_ctrl_trans_divide_node + '.outputZ',
+                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.
 
         if controlZoneDirEnum.up in direction:
-            mside_ctrl_crv_id_list = ['A', 'B', 'C']
+            ctrl_crv_id_list = ['A', 'B', 'C']
         elif controlZoneDirEnum.down in direction:
-            mside_ctrl_crv_id_list = ['A', 'B', 'C', 'D']
+            ctrl_crv_id_list = ['A', 'B', 'C', 'D']
 
         for ctrl_crv_id in ctrl_crv_id_list:
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
@@ -314,6 +341,7 @@ class mouthControlZone(controlZone):
 
                 cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
                 cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
+
 
     def generate_curve_bs_target(self, zone_dir, bs_dir, bs_degree, bs_data, crv_id=''):
         bs_nurbs_crv = cmds.curve(degree=bs_degree,
