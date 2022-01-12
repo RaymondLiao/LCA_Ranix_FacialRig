@@ -126,10 +126,7 @@ class mouthControlZone(controlZone):
             dir_ctrlcrv_bs_data = None
             if 'original' == ctrl_crv_bs_dir:
                 for ctrl_crv_id in ctrl_crv_id_list:
-                    if controlZoneDirEnum.up in direction:
-                        dir_ctrlcrv_bs_data = ctrlcrv_bs_data['up_original'+'_'+ctrl_crv_id]
-                    elif controlZoneDirEnum.down in direction:
-                        dir_ctrlcrv_bs_data = ctrlcrv_bs_data['dn_original'+'_'+ctrl_crv_id]
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr + '_original_' + ctrl_crv_id]
 
                     self.generate_curve_bs_target(zone_dir = direction,
                                                   bs_dir = ctrl_crv_bs_dir,
@@ -139,12 +136,9 @@ class mouthControlZone(controlZone):
             elif 'end' in ctrl_crv_bs_dir:
                 continue
             else:
-                if 'middle_side' in ctrl_crv_bs_dir and 'front' not in ctrl_crv_bs_dir:
+                if 'front' not in ctrl_crv_bs_dir:
                     for ctrl_crv_id in ctrl_crv_id_list:
-                        if controlZoneDirEnum.up in direction:
-                            dir_ctrlcrv_bs_data = ctrlcrv_bs_data['up'+'_'+ctrl_crv_bs_dir+'_'+ctrl_crv_id]
-                        elif controlZoneDirEnum.down in direction:
-                            dir_ctrlcrv_bs_data = ctrlcrv_bs_data['dn'+'_'+ctrl_crv_bs_dir+'_'+ctrl_crv_id]
+                        dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr + '_'+ctrl_crv_bs_dir + '_' + ctrl_crv_id]
 
                         self.generate_curve_bs_target(zone_dir = direction,
                                                       bs_dir = ctrl_crv_bs_dir,
@@ -181,17 +175,17 @@ class mouthControlZone(controlZone):
                 controller_color = CONTROL_L_COLOR
 
             dir_ctrl_data = controller_data[direction]
-            rig_controller = controller(name=self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
+            rig_controller = controller(name = self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
                                              dir_ctrl_data['name'],
-                                        degree=controller_degree,
-                                        color=controller_color,
-                                        points=controller_points,
-                                        translation_ofs=dir_ctrl_data['xform']['translation_ofs'],
-                                        translation=dir_ctrl_data['xform']['translation'],
-                                        lock_trans_axes=controller_data['lock_trans_axes'],
-                                        lock_rot_axes=controller_data['lock_rot_axes'])
-                                        # bind_joint_data=controller_data['bind_joint'],
-                                        # bind_joint_color=BIND_JOINT_LRUD_COLOR_INDEX)
+                                        degree = controller_degree,
+                                        color = controller_color,
+                                        points = controller_points,
+                                        translation_ofs = dir_ctrl_data['xform']['translation_ofs'],
+                                        translation = dir_ctrl_data['xform']['translation'],
+                                        lock_trans_axes = controller_data['lock_trans_axes'],
+                                        lock_rot_axes = controller_data['lock_rot_axes'])
+                                        # bind_joint_data = controller_data['bind_joint'],
+                                        # bind_joint_color = BIND_JOINT_LRUD_COLOR_INDEX)
 
             if controlZoneDirEnum.up in direction:
                 cmds.parent(rig_controller.get_offset_group(),
@@ -209,13 +203,13 @@ class mouthControlZone(controlZone):
         for ctrl_crv_id in ctrl_crv_id_list:
             ctrl_crv_bs = None
             if 'A' == ctrl_crv_id:
-                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
-                                self._ctrl_crv_bs_dict['right_side_up'],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
-                                self._ctrl_crv_bs_dict['left_side_up'],
-                                self._ctrl_crv_bs_dict['right_side_left'],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
-                                self._ctrl_crv_bs_dict['left_side_left'],
+                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr + '_original_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_left_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id],
                                 self._ctrl_crv_bs_dict['right_side_front'],
                                 self._ctrl_crv_bs_dict['middle_side_front'],
                                 self._ctrl_crv_bs_dict['left_side_front'],
@@ -223,10 +217,14 @@ class mouthControlZone(controlZone):
                                 name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape')[0]
             else:
                 ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id],
                                 self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr +'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id],
                                 self._ctrl_crv_dict[ctrl_crv_id].get_name(),
-                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape',)[0]
+                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape')[0]
             cmds.setAttr(ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id], 1)
             cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
 
@@ -248,13 +246,13 @@ class mouthControlZone(controlZone):
                 cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
                                  R_ctrl_trans_divide_node + '.input1Z')
 
+            cmds.connectAttr(R_ctrl_trans_divide_node + '.outputY',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id])
+
+            cmds.connectAttr(R_ctrl_trans_divide_node + '.outputX',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id])
+
             if 'A' == ctrl_crv_id:
-                cmds.connectAttr(R_ctrl_trans_divide_node + '.outputY',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
-
-                cmds.connectAttr(R_ctrl_trans_divide_node + '.outputX',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
-
                 cmds.connectAttr(R_ctrl_trans_divide_node + '.outputZ',
                                  ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
 
@@ -303,13 +301,14 @@ class mouthControlZone(controlZone):
                 cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
                                  L_ctrl_trans_divide_node + '.input1Z')
 
+
+            cmds.connectAttr(L_ctrl_trans_divide_node + '.outputY',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id])
+
+            cmds.connectAttr(L_ctrl_trans_divide_node + '.outputX',
+                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id])
+
             if 'A' == ctrl_crv_id:
-                cmds.connectAttr(L_ctrl_trans_divide_node + '.outputY',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
-
-                cmds.connectAttr(L_ctrl_trans_divide_node + '.outputX',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
-
                 cmds.connectAttr(L_ctrl_trans_divide_node + '.outputZ',
                                  ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
 
@@ -374,7 +373,7 @@ class mouthControlZone(controlZone):
             cmds.parent(bs_nurbs_crv,
                         hierarchy.mouth_ctrlcrv_bs_MD_grp.get_group_name())
 
-        if ('original' == bs_dir) or ('middle_side' in bs_dir and 'front' not in bs_dir):
-            self._ctrl_crv_bs_dict[zone_dir_abbr+'_'+bs_dir+'_'+crv_id] = bs_nurbs_crv
-        else:
+        if 'front' in bs_dir:
             self._ctrl_crv_bs_dict[bs_dir] = bs_nurbs_crv
+        else:
+            self._ctrl_crv_bs_dict[zone_dir_abbr + '_' + bs_dir + '_' + crv_id] = bs_nurbs_crv
