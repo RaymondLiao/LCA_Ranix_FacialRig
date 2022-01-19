@@ -64,7 +64,7 @@ G_CTRLCRV_BS_DIR_LIST = ['original',
                          'right_end_up', 'right_side_up', 'middle_side_up', 'left_side_up', 'left_end_up',
                          'right_end_left', 'right_side_left', 'middle_side_left', 'left_side_left', 'left_end_left',
                          'right_end_front', 'right_side_front', 'middle_side_front', 'left_side_front', 'left_end_front']
-G_CTRLCRV_BS_DRIVING_GAIN = 1.2
+G_CTRLCRV_BS_DRIVING_GAIN = 1.0
 
 # Empty string means no motion of controllers in these direction for the control zone.
 G_CONTROL_ZONE_DIRECTION_DICT = {
