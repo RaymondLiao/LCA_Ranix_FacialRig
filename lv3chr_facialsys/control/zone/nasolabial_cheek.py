@@ -146,7 +146,7 @@ class nasoCheekControlZone(controlZone):
                 cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
 
                 bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                           self._ctrl_crv_data['nasocheek_ctrlzone_prefix']  + 
+                                           self._ctrl_crv_data['nasocheek_ctrlzone_prefix'] +
                                            '_' + dir_ctrlcrv_bs_data['name'])
 
                 cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
@@ -304,7 +304,14 @@ class nasoCheekControlZone(controlZone):
                     cmds.connectAttr(cheek_follow_multi_node + '.outputX', bs_all_crv_bs + '.' + bs_LR_crv)
                 else:
                     cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dx', bs_all_crv_bs + '.' + bs_LR_crv)
-            cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dy', bs_all_crv_bs + '.' + bs_UD_crv)
+
+            if '' != cheek_follow_attr:
+                cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dy', cheek_follow_multi_node + '.input1Y')
+                cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node + '.input2Y')
+                cmds.connectAttr(cheek_follow_multi_node + '.outputY', bs_all_crv_bs + '.' + bs_UD_crv)
+            else:
+                cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dy', bs_all_crv_bs + '.' + bs_UD_crv)
+
             cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dz', bs_all_crv_bs + '.' + bs_FB_crv)
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
