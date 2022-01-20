@@ -178,13 +178,13 @@ class eyelidControlZone(controlZone):
             if 'original' in ctrl_crv_bs_dir or 'front' in ctrl_crv_bs_dir:
                 continue
 
-            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR+'_'+ctrl_crv_bs_dir]
+            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR + '_' + ctrl_crv_bs_dir]
 
             bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
                                       point=dir_ctrlcrv_bs_data['points'])
             cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
             bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                       self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
+                                       self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_'  + 
                                        zone_LR[0].upper() + zone_UD[0].upper() + '_' + dir_ctrlcrv_bs_data['name'])
 
             cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
@@ -265,7 +265,7 @@ class eyelidControlZone(controlZone):
 
         for ctrl_id in controller_id_list:
             dir_ctrl_data = controller_data[direction + '_' + ctrl_id]
-            rig_controller = controller(name = self._ctrl_crv_data['eyelid_ctrlzone_prefix'] + '_' +
+            rig_controller = controller(name = self._ctrl_crv_data['eyelid_ctrlzone_prefix'] + '_'  + 
                                                dir_ctrl_data['name'],
                                         degree = controller_degree,
                                         color = controller_color,
@@ -305,14 +305,14 @@ class eyelidControlZone(controlZone):
         cmds.addAttr(corner_driving_R_controller, longName='eyecorner_y_follow', attributeType='float',
                      defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
 
-        corner_R_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_R_controller+'_follow_multiplyDivide')
+        corner_R_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_R_controller + '_follow_multiplyDivide')
 
-        cmds.connectAttr(corner_driving_R_controller+'.translateX', corner_R_trans_multi_node+'.input1X')
-        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_x_follow', corner_R_trans_multi_node+'.input2X')
-        cmds.connectAttr(corner_driving_R_controller+'.translateY', corner_R_trans_multi_node+'.input1Y')
-        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_y_follow', corner_R_trans_multi_node+'.input2Y')
-        cmds.connectAttr(corner_R_trans_multi_node+'.outputX', corner_R_controller+'.translateX')
-        cmds.connectAttr(corner_R_trans_multi_node+'.outputY', corner_R_controller+'.translateY')
+        cmds.connectAttr(corner_driving_R_controller + '.translateX', corner_R_trans_multi_node + '.input1X')
+        cmds.connectAttr(corner_driving_R_controller + '.eyecorner_x_follow', corner_R_trans_multi_node + '.input2X')
+        cmds.connectAttr(corner_driving_R_controller + '.translateY', corner_R_trans_multi_node + '.input1Y')
+        cmds.connectAttr(corner_driving_R_controller + '.eyecorner_y_follow', corner_R_trans_multi_node + '.input2Y')
+        cmds.connectAttr(corner_R_trans_multi_node + '.outputX', corner_R_controller + '.translateX')
+        cmds.connectAttr(corner_R_trans_multi_node + '.outputY', corner_R_controller + '.translateY')
 
         corner_driving_L_controller = self._controller_dict['D'].get_name()
         corner_L_controller = self._controller_dict['E'].get_name()
@@ -322,14 +322,14 @@ class eyelidControlZone(controlZone):
         cmds.addAttr(corner_driving_L_controller, longName='eyecorner_y_follow', attributeType='float',
                      defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
 
-        corner_L_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_L_controller+'_follow_multiplyDivide')
+        corner_L_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_L_controller + '_follow_multiplyDivide')
 
-        cmds.connectAttr(corner_driving_L_controller+'.translateX', corner_L_trans_multi_node+'.input1X')
-        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_x_follow', corner_L_trans_multi_node+'.input2X')
-        cmds.connectAttr(corner_driving_L_controller+'.translateY', corner_L_trans_multi_node+'.input1Y')
-        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_y_follow', corner_L_trans_multi_node+'.input2Y')
-        cmds.connectAttr(corner_L_trans_multi_node+'.outputX', corner_L_controller+'.translateX')
-        cmds.connectAttr(corner_L_trans_multi_node+'.outputY', corner_L_controller+'.translateY')
+        cmds.connectAttr(corner_driving_L_controller + '.translateX', corner_L_trans_multi_node + '.input1X')
+        cmds.connectAttr(corner_driving_L_controller + '.eyecorner_x_follow', corner_L_trans_multi_node + '.input2X')
+        cmds.connectAttr(corner_driving_L_controller + '.translateY', corner_L_trans_multi_node + '.input1Y')
+        cmds.connectAttr(corner_driving_L_controller + '.eyecorner_y_follow', corner_L_trans_multi_node + '.input2Y')
+        cmds.connectAttr(corner_L_trans_multi_node + '.outputX', corner_L_controller + '.translateX')
+        cmds.connectAttr(corner_L_trans_multi_node + '.outputY', corner_L_controller + '.translateY')
 
         # # ----------------------------------------------------------------------------------------------------------
         # # Bind the control curves to the corresponding controllers' joints.
