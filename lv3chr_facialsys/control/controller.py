@@ -75,7 +75,7 @@ class controller(object):
         # assert 'suffix' in bind_jnt_data_keys
         # assert 'radius' in bind_jnt_data_keys
         #
-        # bind_jnt_name = name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
+        # bind_jnt_name = name.rsplit('_', 1)[0]+'_'+bind_joint_data['suffix']
         # bind_jnt = cmds.joint(name=bind_jnt_name, radius=bind_joint_data['radius'])
         #
         # cmds.setAttr(bind_jnt+'.overrideEnabled', True)

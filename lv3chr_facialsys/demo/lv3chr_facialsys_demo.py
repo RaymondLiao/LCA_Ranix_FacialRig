@@ -177,8 +177,8 @@ def lc3chr_facialsys_construct():
                                  g_crv_projsrf_dict['nasocheek_projsrf_LF_list'][5].get_name()
                                  )
 
-    cmds.setAttr(g_displayer_transplane + '.displayType', 1)    # 1 means Template
-    cmds.setAttr(g_displayer_projsrf + '.displayType', 2)       # 2 means Reference
+    cmds.setAttr(g_displayer_transplane+'.displayType', 1)    # 1 means Template
+    cmds.setAttr(g_displayer_projsrf+'.displayType', 2)       # 2 means Reference
 
     # Toggle on the "Wireframe on Shaded" for the current model panel.
     visible_panel_list = cmds.getPanel(visiblePanels=True)
@@ -202,11 +202,11 @@ def setup_proj_surfaces():
     global g_crv_projsrf_dict
 
     proj_srf_shader = cmds.shadingNode('lambert', asShader=True, name=PROJ_SRF_SHADER)
-    cmds.setAttr(proj_srf_shader + '.color', 1.0, 1.0, 0.5, type='double3')
-    # cmds.setAttr(proj_srf_shader + '.transparency', 0.85, 0.85, 0.85, type='double3')
-    proj_srf_shader_SG = cmds.sets(name=proj_srf_shader + '_SG',
+    cmds.setAttr(proj_srf_shader+'.color', 1.0, 1.0, 0.5, type='double3')
+    # cmds.setAttr(proj_srf_shader+'.transparency', 0.85, 0.85, 0.85, type='double3')
+    proj_srf_shader_SG = cmds.sets(name=proj_srf_shader+'_SG',
                                    renderable=True, empty=True,)
-    cmds.connectAttr(proj_srf_shader + '.outColor', proj_srf_shader_SG + '.surfaceShader', force=True)
+    cmds.connectAttr(proj_srf_shader+'.outColor', proj_srf_shader_SG+'.surfaceShader', force=True)
 
     # Load the curve projection planes' data from the JSON document.
     root_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
@@ -215,7 +215,7 @@ def setup_proj_surfaces():
     control_proj_surface_data = {}
     try:
         # print('lv3 character facial module root path: {}'.format(root_path))
-        f_control_proj_surface_data = open(root_path + '/data/control_proj_surface_data.json', 'r')
+        f_control_proj_surface_data = open(root_path+'/data/control_proj_surface_data.json', 'r')
         control_proj_surface_data = json.load(f_control_proj_surface_data)
     except:
         f_control_proj_surface_data.close()
@@ -441,7 +441,7 @@ def setup_proj_surfaces():
 
         if controlZoneDirEnum.front in zone_dir:
             for front_projsrf_id in front_projsrf_id_list:
-                eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir + '_' + front_projsrf_id]
+                eyebrow_dir_projsrf_data = eyebrow_crvproj_projsrf_data[zone_dir+'_'+front_projsrf_id]
 
                 eyebrow_dir_projsrf_degree = eyebrow_dir_projsrf_data['degree']
                 eyebrow_dir_projsrf_patchesU = eyebrow_dir_projsrf_data['patchesU']
@@ -775,7 +775,7 @@ def setup_proj_surfaces():
         if controlZoneDirEnum.front in zone_dir:
 
             for front_transplane_id in front_transplane_id_list:
-                nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir + '_' + front_transplane_id]
+                nasocheek_dir_transplane_data = nasocheek_crvproj_transplane_data[zone_dir+'_'+front_transplane_id]
 
                 nasocheek_dir_transplane_degree = nasocheek_dir_transplane_data['degree']
                 nasocheek_dir_transplane_patchesU = nasocheek_dir_transplane_data['patchesU']
@@ -846,7 +846,7 @@ def setup_proj_surfaces():
 
         if controlZoneDirEnum.front in zone_dir:
             for front_projsrf_id in front_projsrf_id_list:
-                nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir + '_' + front_projsrf_id]
+                nasocheek_dir_projsrf_data = nasocheek_crvproj_projsrf_data[zone_dir+'_'+front_projsrf_id]
 
                 nasocheek_dir_projsrf_degree = nasocheek_dir_projsrf_data['degree']
                 nasocheek_dir_projsrf_patchesU = nasocheek_dir_projsrf_data['patchesU']
@@ -1010,7 +1010,7 @@ def setup_ctrl_zones():
     f_ctrl_crv_data = None
     ctrl_crv_data = {}
     try:
-        f_ctrl_crv_data = open(root_path + '/data/control_crv_data.json', 'r')
+        f_ctrl_crv_data = open(root_path+'/data/control_crv_data.json', 'r')
         ctrl_crv_data = json.load(f_ctrl_crv_data)
     except:
         f_ctrl_crv_data.close()

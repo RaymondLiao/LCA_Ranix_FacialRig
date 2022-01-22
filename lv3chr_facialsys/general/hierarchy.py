@@ -43,15 +43,15 @@ eyelid_ctrlzone_prefix = 'fm_eyelidProject'
 eyelid_projsrf_prefix = 'fm_eyelidMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
-eyelid_ctrl_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_ctrl_grp')
-eyelid_ctrlzone_loc_RU_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_A_grp')
-eyelid_ctrlzone_loc_RU_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_B_grp')
-eyelid_ctrlzone_loc_RU_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_C_grp')
-eyelid_ctrlzone_loc_RU_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_D_grp')
-eyelid_ctrlzone_loc_RU_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_E_grp')
-eyelid_ctrlzone_loc_RU_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RU_F_grp')
+eyelid_ctrl_RU_grp = groupTree(eyelid_ctrlzone_prefix+'_RU_ctrl_grp')
+eyelid_ctrlzone_loc_RU_A_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_A_grp')
+eyelid_ctrlzone_loc_RU_B_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_B_grp')
+eyelid_ctrlzone_loc_RU_C_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_C_grp')
+eyelid_ctrlzone_loc_RU_D_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_D_grp')
+eyelid_ctrlzone_loc_RU_E_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_E_grp')
+eyelid_ctrlzone_loc_RU_F_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RU_F_grp')
 
-eyelid_ctrlzone_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_grp',
+eyelid_ctrlzone_RU_grp = groupTree(eyelid_ctrlzone_prefix+'_RU_grp',
                                    [
                                        eyelid_ctrl_RU_grp,
                                        eyelid_ctrlzone_loc_RU_A_grp,
@@ -62,15 +62,15 @@ eyelid_ctrlzone_RU_grp = groupTree(eyelid_ctrlzone_prefix + '_RU_grp',
                                        eyelid_ctrlzone_loc_RU_F_grp
                                    ])
 
-eyelid_ctrl_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_ctrl_grp')
-eyelid_ctrlzone_loc_RD_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_A_grp')
-eyelid_ctrlzone_loc_RD_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_B_grp')
-eyelid_ctrlzone_loc_RD_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_C_grp')
-eyelid_ctrlzone_loc_RD_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_D_grp')
-eyelid_ctrlzone_loc_RD_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_E_grp')
-eyelid_ctrlzone_loc_RD_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_RD_F_grp')
+eyelid_ctrl_RD_grp = groupTree(eyelid_ctrlzone_prefix+'_RD_ctrl_grp')
+eyelid_ctrlzone_loc_RD_A_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_A_grp')
+eyelid_ctrlzone_loc_RD_B_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_B_grp')
+eyelid_ctrlzone_loc_RD_C_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_C_grp')
+eyelid_ctrlzone_loc_RD_D_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_D_grp')
+eyelid_ctrlzone_loc_RD_E_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_E_grp')
+eyelid_ctrlzone_loc_RD_F_grp = groupTree(eyelid_ctrlzone_prefix+'Point_RD_F_grp')
 
-eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_grp',
+eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix+'_RD_grp',
                                    [
                                        eyelid_ctrl_RD_grp,
                                        eyelid_ctrlzone_loc_RD_A_grp,
@@ -81,25 +81,25 @@ eyelid_ctrlzone_RD_grp = groupTree(eyelid_ctrlzone_prefix + '_RD_grp',
                                        eyelid_ctrlzone_loc_RD_F_grp
                                    ])
 
-eyelid_ctrlcrv_bs_R_grp = groupTree(eyelid_ctrlzone_prefix + '_R_bs_grp')
+eyelid_ctrlcrv_bs_R_grp = groupTree(eyelid_ctrlzone_prefix+'_R_bs_grp')
 
-eyelid_ctrlzone_R_grp = groupTree(eyelid_ctrlzone_prefix + '_R_grp',
+eyelid_ctrlzone_R_grp = groupTree(eyelid_ctrlzone_prefix+'_R_grp',
                                   [
                                       eyelid_ctrlzone_RU_grp,
                                       eyelid_ctrlzone_RD_grp,
                                       eyelid_ctrlcrv_bs_R_grp
                                   ])
 
-eyelid_ctrl_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_ctrl_grp')
-eyelid_ctrlzone_loc_LU_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_A_grp')
-eyelid_ctrlzone_loc_LU_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_B_grp')
-eyelid_ctrlzone_loc_LU_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_C_grp')
-eyelid_ctrlzone_loc_LU_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_D_grp')
-eyelid_ctrlzone_loc_LU_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_E_grp')
-eyelid_ctrlzone_loc_LU_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LU_F_grp')
+eyelid_ctrl_LU_grp = groupTree(eyelid_ctrlzone_prefix+'_LU_ctrl_grp')
+eyelid_ctrlzone_loc_LU_A_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_A_grp')
+eyelid_ctrlzone_loc_LU_B_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_B_grp')
+eyelid_ctrlzone_loc_LU_C_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_C_grp')
+eyelid_ctrlzone_loc_LU_D_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_D_grp')
+eyelid_ctrlzone_loc_LU_E_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_E_grp')
+eyelid_ctrlzone_loc_LU_F_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LU_F_grp')
 
 
-eyelid_ctrlzone_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_grp',
+eyelid_ctrlzone_LU_grp = groupTree(eyelid_ctrlzone_prefix+'_LU_grp',
                                    [
                                        eyelid_ctrl_LU_grp,
                                        eyelid_ctrlzone_loc_LU_A_grp,
@@ -110,15 +110,15 @@ eyelid_ctrlzone_LU_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_grp',
                                        eyelid_ctrlzone_loc_LU_F_grp
                                    ])
 
-eyelid_ctrl_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_ctrl_grp')
-eyelid_ctrlzone_loc_LD_A_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_A_grp')
-eyelid_ctrlzone_loc_LD_B_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_B_grp')
-eyelid_ctrlzone_loc_LD_C_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_C_grp')
-eyelid_ctrlzone_loc_LD_D_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_D_grp')
-eyelid_ctrlzone_loc_LD_E_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_E_grp')
-eyelid_ctrlzone_loc_LD_F_grp = groupTree(eyelid_ctrlzone_prefix + 'Point_LD_F_grp')
+eyelid_ctrl_LD_grp = groupTree(eyelid_ctrlzone_prefix+'_LD_ctrl_grp')
+eyelid_ctrlzone_loc_LD_A_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_A_grp')
+eyelid_ctrlzone_loc_LD_B_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_B_grp')
+eyelid_ctrlzone_loc_LD_C_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_C_grp')
+eyelid_ctrlzone_loc_LD_D_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_D_grp')
+eyelid_ctrlzone_loc_LD_E_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_E_grp')
+eyelid_ctrlzone_loc_LD_F_grp = groupTree(eyelid_ctrlzone_prefix+'Point_LD_F_grp')
 
-eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_grp',
+eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix+'_LD_grp',
                                    [
                                        eyelid_ctrl_LD_grp,
                                        eyelid_ctrlzone_loc_LD_A_grp,
@@ -129,9 +129,9 @@ eyelid_ctrlzone_LD_grp = groupTree(eyelid_ctrlzone_prefix + '_LD_grp',
                                        eyelid_ctrlzone_loc_LD_F_grp
                                    ])
 
-eyelid_ctrlcrv_bs_L_grp = groupTree(eyelid_ctrlzone_prefix + '_LU_bs_grp')
+eyelid_ctrlcrv_bs_L_grp = groupTree(eyelid_ctrlzone_prefix+'_LU_bs_grp')
 
-eyelid_ctrlzone_L_grp = groupTree(eyelid_ctrlzone_prefix + '_L_grp',
+eyelid_ctrlzone_L_grp = groupTree(eyelid_ctrlzone_prefix+'_L_grp',
                                   [
                                       eyelid_ctrlzone_LU_grp,
                                       eyelid_ctrlzone_LD_grp,
@@ -233,14 +233,14 @@ eyebrow_ctrlzone_prefix = 'fm_eyebrowProject'
 eyebrow_projsrf_prefix = 'fm_eyebrowMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
-eyebrow_ctrl_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_ctrl_grp')
-eyebrow_ctrlcrv_bs_R_grp = groupTree(eyebrow_ctrlzone_prefix + '_bs_grp')
-eyebrow_ctrlzone_loc_M_A_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_A_grp')
-eyebrow_ctrlzone_loc_M_B_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_B_grp')
-eyebrow_ctrlzone_loc_M_C_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_C_grp')
-eyebrow_ctrlzone_loc_M_D_grp = groupTree(eyebrow_ctrlzone_prefix + 'Point_M_D_grp')
+eyebrow_ctrl_M_grp = groupTree(eyebrow_ctrlzone_prefix+'_M_ctrl_grp')
+eyebrow_ctrlcrv_bs_R_grp = groupTree(eyebrow_ctrlzone_prefix+'_bs_grp')
+eyebrow_ctrlzone_loc_M_A_grp = groupTree(eyebrow_ctrlzone_prefix+'Point_M_A_grp')
+eyebrow_ctrlzone_loc_M_B_grp = groupTree(eyebrow_ctrlzone_prefix+'Point_M_B_grp')
+eyebrow_ctrlzone_loc_M_C_grp = groupTree(eyebrow_ctrlzone_prefix+'Point_M_C_grp')
+eyebrow_ctrlzone_loc_M_D_grp = groupTree(eyebrow_ctrlzone_prefix+'Point_M_D_grp')
 
-eyebrow_ctrlzone_M_grp = groupTree(eyebrow_ctrlzone_prefix + '_M_grp',
+eyebrow_ctrlzone_M_grp = groupTree(eyebrow_ctrlzone_prefix+'_M_grp',
                                    [
                                        eyebrow_ctrl_M_grp,
                                        eyebrow_ctrlcrv_bs_R_grp,
@@ -286,13 +286,13 @@ mouth_ctrlzone_prefix = 'fm_mouthProject'
 mouth_projsrf_prefix = 'fm_mouthMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
-mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_ctrl_grp')
-mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_A_grp')
-mouth_ctrlzone_loc_MU_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_B_grp')
-mouth_ctrlzone_loc_MU_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MU_C_grp')
-mouth_ctrlcrv_bs_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_bs_grp')
+mouth_ctrl_MU_grp = groupTree(mouth_ctrlzone_prefix+'_MU_ctrl_grp')
+mouth_ctrlzone_loc_MU_A_grp = groupTree(mouth_ctrlzone_prefix+'Point_MU_A_grp')
+mouth_ctrlzone_loc_MU_B_grp = groupTree(mouth_ctrlzone_prefix+'Point_MU_B_grp')
+mouth_ctrlzone_loc_MU_C_grp = groupTree(mouth_ctrlzone_prefix+'Point_MU_C_grp')
+mouth_ctrlcrv_bs_MU_grp = groupTree(mouth_ctrlzone_prefix+'_MU_bs_grp')
 
-mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_grp',
+mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix+'_MU_grp',
                                   [
                                      mouth_ctrl_MU_grp,
                                      mouth_ctrlzone_loc_MU_A_grp,
@@ -301,14 +301,14 @@ mouth_ctrlzone_MU_grp = groupTree(mouth_ctrlzone_prefix + '_MU_grp',
                                      mouth_ctrlcrv_bs_MU_grp
                                  ])
 
-mouth_ctrl_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_ctrl_grp')
-mouth_ctrlzone_loc_MD_A_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_A_grp')
-mouth_ctrlzone_loc_MD_B_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_B_grp')
-mouth_ctrlzone_loc_MD_C_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_C_grp')
-mouth_ctrlzone_loc_MD_D_grp = groupTree(mouth_ctrlzone_prefix + 'Point_MD_D_grp')
-mouth_ctrlcrv_bs_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_bs_grp')
+mouth_ctrl_MD_grp = groupTree(mouth_ctrlzone_prefix+'_MD_ctrl_grp')
+mouth_ctrlzone_loc_MD_A_grp = groupTree(mouth_ctrlzone_prefix+'Point_MD_A_grp')
+mouth_ctrlzone_loc_MD_B_grp = groupTree(mouth_ctrlzone_prefix+'Point_MD_B_grp')
+mouth_ctrlzone_loc_MD_C_grp = groupTree(mouth_ctrlzone_prefix+'Point_MD_C_grp')
+mouth_ctrlzone_loc_MD_D_grp = groupTree(mouth_ctrlzone_prefix+'Point_MD_D_grp')
+mouth_ctrlcrv_bs_MD_grp = groupTree(mouth_ctrlzone_prefix+'_MD_bs_grp')
 
-mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_grp',
+mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix+'_MD_grp',
                                   [
                                       mouth_ctrl_MD_grp,
                                       mouth_ctrlzone_loc_MD_A_grp,
@@ -318,23 +318,23 @@ mouth_ctrlzone_MD_grp = groupTree(mouth_ctrlzone_prefix + '_MD_grp',
                                       mouth_ctrlcrv_bs_MD_grp
                                   ])
 
-mouth_ctrlzone_M_grp = groupTree(mouth_ctrlzone_prefix + '_M_grp',
+mouth_ctrlzone_M_grp = groupTree(mouth_ctrlzone_prefix+'_M_grp',
                                  [
                                    mouth_ctrlzone_MU_grp,
                                    mouth_ctrlzone_MD_grp,
                                  ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-mouth_projsrf_loc_MU_A_grp = groupTree(mouth_projsrf_prefix + '_loc_MU_A_grp')
-mouth_projsrf_loc_MU_B_grp = groupTree(mouth_projsrf_prefix + '_loc_MU_B_grp')
-mouth_projsrf_loc_MU_C_grp = groupTree(mouth_projsrf_prefix + '_loc_MU_C_grp')
+mouth_projsrf_loc_MU_A_grp = groupTree(mouth_projsrf_prefix+'_loc_MU_A_grp')
+mouth_projsrf_loc_MU_B_grp = groupTree(mouth_projsrf_prefix+'_loc_MU_B_grp')
+mouth_projsrf_loc_MU_C_grp = groupTree(mouth_projsrf_prefix+'_loc_MU_C_grp')
 
-mouth_projsrf_loc_MD_A_grp = groupTree(mouth_projsrf_prefix + '_loc_MD_A_grp')
-mouth_projsrf_loc_MD_B_grp = groupTree(mouth_projsrf_prefix + '_loc_MD_B_grp')
-mouth_projsrf_loc_MD_C_grp = groupTree(mouth_projsrf_prefix + '_loc_MD_C_grp')
-mouth_projsrf_loc_MD_D_grp = groupTree(mouth_projsrf_prefix + '_loc_MD_D_grp')
+mouth_projsrf_loc_MD_A_grp = groupTree(mouth_projsrf_prefix+'_loc_MD_A_grp')
+mouth_projsrf_loc_MD_B_grp = groupTree(mouth_projsrf_prefix+'_loc_MD_B_grp')
+mouth_projsrf_loc_MD_C_grp = groupTree(mouth_projsrf_prefix+'_loc_MD_C_grp')
+mouth_projsrf_loc_MD_D_grp = groupTree(mouth_projsrf_prefix+'_loc_MD_D_grp')
 
-mouth_projsrf_M_grp = groupTree(mouth_projsrf_prefix + '_M_grp',
+mouth_projsrf_M_grp = groupTree(mouth_projsrf_prefix+'_M_grp',
                                 [
                                     mouth_projsrf_loc_MU_A_grp,
                                     mouth_projsrf_loc_MU_B_grp,
@@ -358,12 +358,12 @@ mouth_grp = groupTree('mouth_grp',
 # nasolabial_projsrf_prefix = 'fm_nasolabialMask'
 #
 # # translation plane ----------------------------------------------------------------------------------------------------
-# nasolabial_ctrlzone_R_grp = groupTree(nasolabial_ctrlzone_prefix + '_R_grp')
-# nasolabial_ctrlzone_L_grp = groupTree(nasolabial_ctrlzone_prefix + '_L_grp')
+# nasolabial_ctrlzone_R_grp = groupTree(nasolabial_ctrlzone_prefix+'_R_grp')
+# nasolabial_ctrlzone_L_grp = groupTree(nasolabial_ctrlzone_prefix+'_L_grp')
 #
 # # projection surface ---------------------------------------------------------------------------------------------------
-# nasolabial_projsrf_R_grp = groupTree(nasolabial_projsrf_prefix + '_R_grp')
-# nasolabial_projsrf_L_grp = groupTree(nasolabial_projsrf_prefix + '_L_grp')
+# nasolabial_projsrf_R_grp = groupTree(nasolabial_projsrf_prefix+'_R_grp')
+# nasolabial_projsrf_L_grp = groupTree(nasolabial_projsrf_prefix+'_L_grp')
 #
 # # nasolabial zone sub-master group -------------------------------------------------------------------------------------
 # nasolabial_grp = groupTree('nasolabial_grp',
@@ -379,12 +379,12 @@ mouth_grp = groupTree('mouth_grp',
 # cheek_projsrf_prefix = 'fm_cheekMask'
 #
 # # translation plane ----------------------------------------------------------------------------------------------------
-# cheek_ctrlzone_R_grp = groupTree(cheek_ctrlzone_prefix + '_R_grp')
-# cheek_ctrlzone_L_grp = groupTree(cheek_ctrlzone_prefix + '_L_grp')
+# cheek_ctrlzone_R_grp = groupTree(cheek_ctrlzone_prefix+'_R_grp')
+# cheek_ctrlzone_L_grp = groupTree(cheek_ctrlzone_prefix+'_L_grp')
 #
 # # projection surface ---------------------------------------------------------------------------------------------------
-# cheek_projsrf_R_grp = groupTree(cheek_projsrf_prefix + '_R_grp')
-# cheek_projsrf_L_grp = groupTree(cheek_projsrf_prefix + '_L_grp')
+# cheek_projsrf_R_grp = groupTree(cheek_projsrf_prefix+'_R_grp')
+# cheek_projsrf_L_grp = groupTree(cheek_projsrf_prefix+'_L_grp')
 #
 # # cheek zone sub-master group ------------------------------------------------------------------------------------------
 # cheek_grp = groupTree('cheek_grp',
@@ -400,15 +400,15 @@ nasocheek_ctrlzone_prefix = 'fm_nasoCheekProject'
 nasocheek_projsrf_prefix = 'fm_nasoCheekMask'
 
 # translation plane ----------------------------------------------------------------------------------------------------
-nasocheek_ctrlcrv_bs_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_bs_grp')
-nasocheek_ctrlzone_loc_R_A_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_A_grp')
-nasocheek_ctrlzone_loc_R_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_B_grp')
-nasocheek_ctrlzone_loc_R_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_C_grp')
-nasocheek_ctrlzone_loc_R_D_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_D_grp')
-nasocheek_ctrlzone_loc_R_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_E_grp')
-nasocheek_ctrlzone_loc_R_F_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_R_F_grp')
+nasocheek_ctrlcrv_bs_R_grp = groupTree(nasocheek_ctrlzone_prefix+'_R_bs_grp')
+nasocheek_ctrlzone_loc_R_A_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_A_grp')
+nasocheek_ctrlzone_loc_R_B_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_B_grp')
+nasocheek_ctrlzone_loc_R_C_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_C_grp')
+nasocheek_ctrlzone_loc_R_D_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_D_grp')
+nasocheek_ctrlzone_loc_R_E_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_E_grp')
+nasocheek_ctrlzone_loc_R_F_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_R_F_grp')
 
-nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
+nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix+'_R_grp',
                                      [
                                          nasocheek_ctrlcrv_bs_R_grp,
                                          nasocheek_ctrlzone_loc_R_A_grp,
@@ -419,15 +419,15 @@ nasocheek_ctrlzone_R_grp = groupTree(nasocheek_ctrlzone_prefix + '_R_grp',
                                          nasocheek_ctrlzone_loc_R_F_grp
                                      ])
 
-nasocheek_ctrlcrv_bs_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_bs_grp')
-nasocheek_ctrlzone_loc_L_A_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_A_grp')
-nasocheek_ctrlzone_loc_L_B_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_B_grp')
-nasocheek_ctrlzone_loc_L_C_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_C_grp')
-nasocheek_ctrlzone_loc_L_D_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_D_grp')
-nasocheek_ctrlzone_loc_L_E_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_E_grp')
-nasocheek_ctrlzone_loc_L_F_grp = groupTree(nasocheek_ctrlzone_prefix + 'Point_L_F_grp')
+nasocheek_ctrlcrv_bs_L_grp = groupTree(nasocheek_ctrlzone_prefix+'_L_bs_grp')
+nasocheek_ctrlzone_loc_L_A_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_A_grp')
+nasocheek_ctrlzone_loc_L_B_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_B_grp')
+nasocheek_ctrlzone_loc_L_C_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_C_grp')
+nasocheek_ctrlzone_loc_L_D_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_D_grp')
+nasocheek_ctrlzone_loc_L_E_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_E_grp')
+nasocheek_ctrlzone_loc_L_F_grp = groupTree(nasocheek_ctrlzone_prefix+'Point_L_F_grp')
 
-nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp',
+nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix+'_L_grp',
                                      [
                                          nasocheek_ctrlcrv_bs_L_grp,
                                          nasocheek_ctrlzone_loc_L_A_grp,
@@ -439,21 +439,21 @@ nasocheek_ctrlzone_L_grp = groupTree(nasocheek_ctrlzone_prefix + '_L_grp',
                                      ])
 
 # projection surface ---------------------------------------------------------------------------------------------------
-nasocheek_projsrf_loc_R_LR_A_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_A_grp')
-nasocheek_projsrf_loc_R_LR_B_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_B_grp')
-nasocheek_projsrf_loc_R_LR_C_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_C_grp')
-nasocheek_projsrf_loc_R_LR_D_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_D_grp')
-nasocheek_projsrf_loc_R_LR_E_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_E_grp')
-nasocheek_projsrf_loc_R_LR_F_grp = groupTree(mouth_projsrf_prefix + '_loc_R_LR_F_grp')
+nasocheek_projsrf_loc_R_LR_A_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_A_grp')
+nasocheek_projsrf_loc_R_LR_B_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_B_grp')
+nasocheek_projsrf_loc_R_LR_C_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_C_grp')
+nasocheek_projsrf_loc_R_LR_D_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_D_grp')
+nasocheek_projsrf_loc_R_LR_E_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_E_grp')
+nasocheek_projsrf_loc_R_LR_F_grp = groupTree(mouth_projsrf_prefix+'_loc_R_LR_F_grp')
 
-nasocheek_projsrf_loc_R_FB_A_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_A_grp')
-nasocheek_projsrf_loc_R_FB_B_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_B_grp')
-nasocheek_projsrf_loc_R_FB_C_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_C_grp')
-nasocheek_projsrf_loc_R_FB_D_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_D_grp')
-nasocheek_projsrf_loc_R_FB_E_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_E_grp')
-nasocheek_projsrf_loc_R_FB_F_grp = groupTree(mouth_projsrf_prefix + '_loc_R_FB_F_grp')
+nasocheek_projsrf_loc_R_FB_A_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_A_grp')
+nasocheek_projsrf_loc_R_FB_B_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_B_grp')
+nasocheek_projsrf_loc_R_FB_C_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_C_grp')
+nasocheek_projsrf_loc_R_FB_D_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_D_grp')
+nasocheek_projsrf_loc_R_FB_E_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_E_grp')
+nasocheek_projsrf_loc_R_FB_F_grp = groupTree(mouth_projsrf_prefix+'_loc_R_FB_F_grp')
 
-nasocheek_projsrf_R_grp = groupTree(nasocheek_projsrf_prefix + '_R_grp',
+nasocheek_projsrf_R_grp = groupTree(nasocheek_projsrf_prefix+'_R_grp',
                                     [
                                         nasocheek_projsrf_loc_R_LR_A_grp,
                                         nasocheek_projsrf_loc_R_LR_B_grp,
@@ -470,21 +470,21 @@ nasocheek_projsrf_R_grp = groupTree(nasocheek_projsrf_prefix + '_R_grp',
                                         nasocheek_projsrf_loc_R_FB_F_grp
                                     ])
 
-nasocheek_projsrf_loc_L_LR_A_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_A_grp')
-nasocheek_projsrf_loc_L_LR_B_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_B_grp')
-nasocheek_projsrf_loc_L_LR_C_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_C_grp')
-nasocheek_projsrf_loc_L_LR_D_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_D_grp')
-nasocheek_projsrf_loc_L_LR_E_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_E_grp')
-nasocheek_projsrf_loc_L_LR_F_grp = groupTree(mouth_projsrf_prefix + '_loc_L_LR_F_grp')
+nasocheek_projsrf_loc_L_LR_A_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_A_grp')
+nasocheek_projsrf_loc_L_LR_B_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_B_grp')
+nasocheek_projsrf_loc_L_LR_C_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_C_grp')
+nasocheek_projsrf_loc_L_LR_D_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_D_grp')
+nasocheek_projsrf_loc_L_LR_E_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_E_grp')
+nasocheek_projsrf_loc_L_LR_F_grp = groupTree(mouth_projsrf_prefix+'_loc_L_LR_F_grp')
 
-nasocheek_projsrf_loc_L_FB_A_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_A_grp')
-nasocheek_projsrf_loc_L_FB_B_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_B_grp')
-nasocheek_projsrf_loc_L_FB_C_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_C_grp')
-nasocheek_projsrf_loc_L_FB_D_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_D_grp')
-nasocheek_projsrf_loc_L_FB_E_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_E_grp')
-nasocheek_projsrf_loc_L_FB_F_grp = groupTree(mouth_projsrf_prefix + '_loc_L_FB_F_grp')
+nasocheek_projsrf_loc_L_FB_A_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_A_grp')
+nasocheek_projsrf_loc_L_FB_B_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_B_grp')
+nasocheek_projsrf_loc_L_FB_C_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_C_grp')
+nasocheek_projsrf_loc_L_FB_D_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_D_grp')
+nasocheek_projsrf_loc_L_FB_E_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_E_grp')
+nasocheek_projsrf_loc_L_FB_F_grp = groupTree(mouth_projsrf_prefix+'_loc_L_FB_F_grp')
 
-nasocheek_projsrf_L_grp = groupTree(nasocheek_projsrf_prefix + '_L_grp',
+nasocheek_projsrf_L_grp = groupTree(nasocheek_projsrf_prefix+'_L_grp',
                                     [
                                         nasocheek_projsrf_loc_L_LR_A_grp,
                                         nasocheek_projsrf_loc_L_LR_B_grp,

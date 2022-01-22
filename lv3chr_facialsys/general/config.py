@@ -91,24 +91,24 @@ G_CONTROL_ZONE_DIRECTION_DICT = {
                             ],
     controlZoneEnum.eyebrow: [
                                 {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
-                                    dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left+'_'+controlZoneDirEnum.right,
+                                    dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
                                     dirDictKeyEnum.FB: ''
                                 },
                                 {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left+'_'+controlZoneDirEnum.right,
                                     dirDictKeyEnum.UD: '',
                                     dirDictKeyEnum.FB: controlZoneDirEnum.front
                                 }
                              ],
     controlZoneEnum.mouth:  [
                                 {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left+'_'+controlZoneDirEnum.right,
                                     dirDictKeyEnum.UD: controlZoneDirEnum.up,
                                     dirDictKeyEnum.FB: ''
                                 },
                                 {
-                                    dirDictKeyEnum.LR: controlZoneDirEnum.left + '_' + controlZoneDirEnum.right,
+                                    dirDictKeyEnum.LR: controlZoneDirEnum.left+'_'+controlZoneDirEnum.right,
                                     dirDictKeyEnum.UD: controlZoneDirEnum.down,
                                     dirDictKeyEnum.FB: ''
                                 }
@@ -116,31 +116,31 @@ G_CONTROL_ZONE_DIRECTION_DICT = {
     # controlZoneEnum.nasolabial: [
     #                                 {
     #                                     dirDictKeyEnum.LR: controlZoneDirEnum.right,
-    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
     #                                     dirDictKeyEnum.FB: ''
     #                                 },
     #                                 {
     #                                     dirDictKeyEnum.LR: controlZoneDirEnum.left,
-    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                     dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
     #                                     dirDictKeyEnum.FB: ''
     #                                 }
     #                             ],
     # controlZoneEnum.cheek: [
     #                             {
     #                                 dirDictKeyEnum.LR: controlZoneDirEnum.right,
-    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
     #                                 dirDictKeyEnum.FB: ''
     #                             },
     #                             {
     #                                 dirDictKeyEnum.LR: controlZoneDirEnum.left,
-    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+    #                                 dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
     #                                 dirDictKeyEnum.FB: ''
     #                             }
     #                        ]
     controlZoneEnum.nasocheek: [
                                     {
                                         dirDictKeyEnum.LR: controlZoneDirEnum.right,
-                                        dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                                        dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
                                         dirDictKeyEnum.FB: ''
                                     },
                                     {
@@ -151,7 +151,7 @@ G_CONTROL_ZONE_DIRECTION_DICT = {
 
                                     {
                                         dirDictKeyEnum.LR: controlZoneDirEnum.left,
-                                        dirDictKeyEnum.UD: controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                                        dirDictKeyEnum.UD: controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
                                         dirDictKeyEnum.FB: ''
                                     },
                                     {

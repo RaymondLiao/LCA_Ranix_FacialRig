@@ -60,7 +60,7 @@ def get_ctrl_zone_dir(zone_dir_dict):
     dir_abbr = ''
 
     for dir_key in ['LR', 'UD', 'FB']:
-        dir_whole += ('_' + zone_dir_dict[dir_key])
+        dir_whole += ('_'+zone_dir_dict[dir_key])
 
     # Remove the leading and trailing '_'s, and those extra adjacent ones.
     dir_whole = dir_whole.strip('_').replace('__', '_')

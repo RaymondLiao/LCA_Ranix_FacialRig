@@ -35,7 +35,7 @@ class controlTransPlane(object):
                  cv_list = []):
         """
         :param cv_list: A list of CV coordinates for the NURBS plane to construct;
-                        Note that the maximum length of this list is (patchesU+1)*(patchesV+1).
+                        Note that the maximum length of this list is (patchesU+1) * (patchesV+1).
         """
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ class controlTransPlane(object):
         self._nurbs_srf = None
         # ---------------------------------------------------------------------------------- Member Variable Definitions
 
-        assert len(cv_list) <= (patchesU + 1) * (patchesV + 1)
+        assert len(cv_list) <= (patchesU+1) * (patchesV+1)
 
         self._nurbs_srf = cmds.nurbsPlane(degree=self._degree,
                                           patchesU=self._patchesU,
@@ -65,7 +65,7 @@ class controlTransPlane(object):
 
                 # print('cv_coord: ({},{}) : {}'.format(idx_u, idx_v, cv_coord))
                 assert len(cv_coord) == 3
-                cmds.setAttr(self._nurbs_srf + '.cv[{}][{}]'.format(idx_u, idx_v),
+                cmds.setAttr(self._nurbs_srf+'.cv[{}][{}]'.format(idx_u, idx_v),
                              cv_coord[0], cv_coord[1], cv_coord[2])
 
         cmds.xform(self._nurbs_srf,
@@ -146,7 +146,7 @@ class controlProjSurface(object):
                  bind_joint_color = COLOR_INDEX_DARK_WHITE):
         """
         :param cv_list: A list of CV coordinates for the NURBS plane to construct;
-                        Note that the maximum length of this list is (patchesU+1)*(patchesV+1).
+                        Note that the maximum length of this list is (patchesU+1) * (patchesV+1).
         """
 
         # Member Variable Definitions ----------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ class controlProjSurface(object):
 
                 # print('cv_coord: ({},{}) : {}'.format(idx_u, idx_v, cv_coord))
                 assert len(cv_coord) == 3
-                cmds.setAttr(self._nurbs_srf + '.cv[{}][{}]'.format(idx_u, idx_v),
+                cmds.setAttr(self._nurbs_srf+'.cv[{}][{}]'.format(idx_u, idx_v),
                              cv_coord[0], cv_coord[1], cv_coord[2])
 
         cmds.xform(self._nurbs_srf,
@@ -237,7 +237,7 @@ class controlProjSurface(object):
             assert 'suffix' in bind_jnt_data_keys
             assert 'radius' in bind_jnt_data_keys
 
-            bind_jnt_name = name_prefix + '_' + loc_name.rsplit('_', 1)[0] + '_' + bind_joint_data['suffix']
+            bind_jnt_name = name_prefix+'_'+loc_name.rsplit('_', 1)[0]+'_'+bind_joint_data['suffix']
             bind_jnt_radius = bind_joint_data['radius']
             if 'FB' in name:
                 bind_jnt_radius *= G_BIND_JOINT_FB_SCALE_GAIN

@@ -95,7 +95,7 @@ def create_locator_at_vertex(sel_list, compo_fn_type_id, name_prefix, vtx_id_lis
             vtx_pt = mesh_fn.getPoint(vtx_id, OpenMaya2.MSpace.kObject)
 
             vtx_pos = vtx_pt
-            loc_id = str(vtx_id + 1)
+            loc_id = str(vtx_id+1)
 
         elif OpenMaya2.MFn.kSurfaceCVComponent == compo_fn_type_id:
             # Get control vertex's position
@@ -106,10 +106,10 @@ def create_locator_at_vertex(sel_list, compo_fn_type_id, name_prefix, vtx_id_lis
             # Compose the locator's ID
             loc_id_row_list = list(string.ascii_uppercase)
             loc_id_row = loc_id_row_list[vtx_id[0]]
-            loc_id_col = str(vtx_id[1] + 1)
+            loc_id_col = str(vtx_id[1]+1)
 
             vtx_pos = cv_pos
-            loc_id = loc_id_row + loc_id_col
+            loc_id = loc_id_row+loc_id_col
 
         elif OpenMaya2.MFn.kCurveCVComponent == compo_fn_type_id:
             # Get control vertex's position
@@ -118,7 +118,7 @@ def create_locator_at_vertex(sel_list, compo_fn_type_id, name_prefix, vtx_id_lis
             cv_pos = nbs_crv_fn.cvPosition(vtx_id, OpenMaya2.MSpace.kObject)
 
             vtx_pos = cv_pos
-            loc_id = str(vtx_id + 1)
+            loc_id = str(vtx_id+1)
 
         geo_node = sel_list.getDependNode(0)
         geo_node_fn = OpenMaya2.MFnDependencyNode(geo_node)
@@ -199,8 +199,8 @@ def create_joint_at_locator():
         loc_name = loc_trans.split('|')[-1]
         bind_jnt = cmds.joint(name=loc_name.replace('loc', 'bind'), radius=0.5)
 
-        cmds.setAttr(bind_jnt + '.overrideEnabled', True)
-        cmds.setAttr(bind_jnt + '.overrideColor', 3)
+        cmds.setAttr(bind_jnt+'.overrideEnabled', True)
+        cmds.setAttr(bind_jnt+'.overrideColor', 3)
         cmds.parent(bind_jnt, loc_trans)
         cmds.xform(bind_jnt, translation=[0, 0, 0])
 
@@ -219,8 +219,8 @@ def connect_locators():
     UD_dir = 'U'
     LR_dir = 'L'
 
-    control_crv = prefix + '_' + zone + crv_loc_prefix + \
-                  '_M' + UD_dir + '_' + alphabet_idx + '_curveShape'
+    control_crv = prefix+'_'+zone+crv_loc_prefix+\
+                  '_M'+UD_dir+'_'+alphabet_idx+'_curveShape'
     cmds.warning('control curve: {}'.format(control_crv))
     assert cmds.objExists(control_crv)
 
@@ -240,8 +240,8 @@ def connect_locators():
             if 'M' == LR_dir and idx > 1:
                 continue
 
-            loc_on_crv = prefix + '_' + zone + crv_loc_prefix + \
-                         '_' + LR_dir + UD_dir + '_' + alphabet_idx + str(idx) + '_loc'
+            loc_on_crv = prefix+'_'+zone+crv_loc_prefix+\
+                         '_'+LR_dir+UD_dir+'_'+alphabet_idx+str(idx)+'_loc'
             cmds.warning('locator on curve: {}'.format(loc_on_crv))
             assert cmds.objExists(loc_on_crv)
             loc_on_crv_list.append(loc_on_crv)
@@ -258,28 +258,28 @@ def connect_locators():
             continue
 
         loc_param += 1
-        pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=loc_on_crv + '_ptOnCrv')
-        cmds.setAttr(pt_on_crv_info_node + '.parameter', loc_param)
-        cmds.connectAttr(control_crv + '.worldSpace[0]', pt_on_crv_info_node + '.inputCurve')
-        cmds.connectAttr(pt_on_crv_info_node + '.position', loc_on_crv + '.translate')
+        pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=loc_on_crv+'_ptOnCrv')
+        cmds.setAttr(pt_on_crv_info_node+'.parameter', loc_param)
+        cmds.connectAttr(control_crv+'.worldSpace[0]', pt_on_crv_info_node+'.inputCurve')
+        cmds.connectAttr(pt_on_crv_info_node+'.position', loc_on_crv+'.translate')
 
-        loc_on_crv_shape = loc_on_crv + 'Shape'
+        loc_on_crv_shape = loc_on_crv+'Shape'
         assert cmds.objExists(loc_on_crv_shape)
 
         cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
-        cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, loc_on_crv + '_clsPtOnSrf')
+        cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, loc_on_crv+'_clsPtOnSrf')
 
-        cmds.connectAttr(trans_plane + '.worldSpace[0]',
-                         cls_pt_on_transplane_node + '.inputSurface')
-        cmds.connectAttr(loc_on_crv_shape + '.worldPosition[0]',
-                         cls_pt_on_transplane_node + '.inPosition')
+        cmds.connectAttr(trans_plane+'.worldSpace[0]',
+                         cls_pt_on_transplane_node+'.inputSurface')
+        cmds.connectAttr(loc_on_crv_shape+'.worldPosition[0]',
+                         cls_pt_on_transplane_node+'.inPosition')
 
 
         pt_on_projsrf_node = cmds.createNode('pointOnSurfaceInfo', name=loc_on_srf+'_ptOnSrf')
-        cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
-        cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
-        cmds.connectAttr(proj_srf + '.worldSpace[0]', pt_on_projsrf_node + '.inputSurface')
-        cmds.connectAttr(pt_on_projsrf_node + '.position', loc_on_srf + '.translate')
+        cmds.connectAttr(cls_pt_on_transplane_node+'.parameterU', pt_on_projsrf_node+'.parameterU')
+        cmds.connectAttr(cls_pt_on_transplane_node+'.parameterV', pt_on_projsrf_node+'.parameterV')
+        cmds.connectAttr(proj_srf+'.worldSpace[0]', pt_on_projsrf_node+'.inputSurface')
+        cmds.connectAttr(pt_on_projsrf_node+'.position', loc_on_srf+'.translate')
 
 def connect_locators_2():
     prefix = 'fm'
@@ -293,12 +293,12 @@ def connect_locators_2():
     LRUDFB_dir = 'FB'
     zone_dir = 'L'
 
-    control_crv = prefix + '_' + zone + crv_loc_prefix + \
-                  '_' + zone_dir + '_' + alphabet_idx + '_projShape'
+    control_crv = prefix+'_'+zone+crv_loc_prefix+\
+                  '_'+zone_dir+'_'+alphabet_idx+'_projShape'
     cmds.warning('control curve: {}'.format(control_crv))
     assert cmds.objExists(control_crv)
-    trans_plane = prefix + '_' + zone + crv_loc_prefix + 'Plane_' + zone_dir + '_' + LRUDFB_dir + '_' + alphabet_idx + '_nbs'
-    proj_srf = prefix + '_' + zone + srf_loc_prefix + '_' + zone_dir + '_' + LRUDFB_dir + '_' + alphabet_idx + '_nbs'
+    trans_plane = prefix+'_'+zone+crv_loc_prefix+'Plane_'+zone_dir+'_'+LRUDFB_dir+'_'+alphabet_idx+'_nbs'
+    proj_srf = prefix+'_'+zone+srf_loc_prefix+'_'+zone_dir+'_'+LRUDFB_dir+'_'+alphabet_idx+'_nbs'
     cmds.warning('translation plane: {}'.format(trans_plane))
     assert cmds.objExists(trans_plane)
     cmds.warning('projection surface: {}'.format(proj_srf))
@@ -309,16 +309,16 @@ def connect_locators_2():
     for idx in range(idx_count):
         idx = idx + 1
 
-        loc_on_crv = prefix + '_' + zone + crv_loc_prefix + \
-                     '_' + zone_dir + '_' + alphabet_idx + str(idx) + '_loc'
+        loc_on_crv = prefix+'_'+zone+crv_loc_prefix+\
+                     '_'+zone_dir+'_'+alphabet_idx+str(idx)+'_loc'
         cmds.warning('locator on curve: {}'.format(loc_on_crv))
         assert cmds.objExists(loc_on_crv)
         loc_on_crv_list.append(loc_on_crv)
 
     loc_param = -1
     for loc_on_crv in loc_on_crv_list:
-        loc_on_srf = loc_on_crv.split(crv_loc_prefix + '_' + zone_dir)[0] + crv_loc_prefix + '_' + zone_dir + \
-                     '_' + LRUDFB_dir + loc_on_crv.split(crv_loc_prefix + '_' + zone_dir)[1]
+        loc_on_srf = loc_on_crv.split(crv_loc_prefix+'_'+zone_dir)[0]+crv_loc_prefix+'_'+zone_dir+\
+                     '_'+LRUDFB_dir+loc_on_crv.split(crv_loc_prefix+'_'+zone_dir)[1]
         loc_on_srf = loc_on_srf.replace(crv_loc_prefix, srf_loc_prefix)
         cmds.warning('locator on surface: {}'.format(loc_on_srf))
         if not cmds.objExists(loc_on_srf):
@@ -326,24 +326,24 @@ def connect_locators_2():
             continue
 
         loc_param += 1
-        pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=loc_on_crv + '_ptOnCrv')
-        cmds.setAttr(pt_on_crv_info_node + '.parameter', loc_param)
-        cmds.connectAttr(control_crv + '.worldSpace[0]', pt_on_crv_info_node + '.inputCurve')
-        cmds.connectAttr(pt_on_crv_info_node + '.position', loc_on_crv + '.translate')
+        pt_on_crv_info_node = cmds.createNode('pointOnCurveInfo', name=loc_on_crv+'_ptOnCrv')
+        cmds.setAttr(pt_on_crv_info_node+'.parameter', loc_param)
+        cmds.connectAttr(control_crv+'.worldSpace[0]', pt_on_crv_info_node+'.inputCurve')
+        cmds.connectAttr(pt_on_crv_info_node+'.position', loc_on_crv+'.translate')
 
-        loc_on_crv_shape = loc_on_crv + 'Shape'
+        loc_on_crv_shape = loc_on_crv+'Shape'
         assert cmds.objExists(loc_on_crv_shape)
 
         cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
-        cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, loc_on_crv + '_clsPtOnSrf')
+        cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, loc_on_crv+'_clsPtOnSrf')
 
-        cmds.connectAttr(trans_plane + '.worldSpace[0]',
-                         cls_pt_on_transplane_node + '.inputSurface')
-        cmds.connectAttr(loc_on_crv_shape + '.worldPosition[0]',
-                         cls_pt_on_transplane_node + '.inPosition')
+        cmds.connectAttr(trans_plane+'.worldSpace[0]',
+                         cls_pt_on_transplane_node+'.inputSurface')
+        cmds.connectAttr(loc_on_crv_shape+'.worldPosition[0]',
+                         cls_pt_on_transplane_node+'.inPosition')
 
-        pt_on_projsrf_node = cmds.createNode('pointOnSurfaceInfo', name=loc_on_srf + '_ptOnSrf')
-        cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
-        cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
-        cmds.connectAttr(proj_srf + '.worldSpace[0]', pt_on_projsrf_node + '.inputSurface')
-        cmds.connectAttr(pt_on_projsrf_node + '.position', loc_on_srf + '.translate')
+        pt_on_projsrf_node = cmds.createNode('pointOnSurfaceInfo', name=loc_on_srf+'_ptOnSrf')
+        cmds.connectAttr(cls_pt_on_transplane_node+'.parameterU', pt_on_projsrf_node+'.parameterU')
+        cmds.connectAttr(cls_pt_on_transplane_node+'.parameterV', pt_on_projsrf_node+'.parameterV')
+        cmds.connectAttr(proj_srf+'.worldSpace[0]', pt_on_projsrf_node+'.inputSurface')
+        cmds.connectAttr(pt_on_projsrf_node+'.position', loc_on_srf+'.translate')

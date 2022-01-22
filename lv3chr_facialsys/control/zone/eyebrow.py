@@ -72,7 +72,7 @@ class eyebrowControlZone(controlZone):
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
-            dir_ctrlcrv_data = ctrlcrv_data[controlZoneDirEnum.middle + '_' + crv_id]
+            dir_ctrlcrv_data = ctrlcrv_data[controlZoneDirEnum.middle+'_'+crv_id]
             ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['eyebrow_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
                                     degree = ctrlcrv_degree,
@@ -122,16 +122,16 @@ class eyebrowControlZone(controlZone):
                                           point=dir_ctrlcrv_bs_data['points'])
                 cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
                 bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                           self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' +
-                                           zone_dir[0].upper() + '_' + dir_ctrlcrv_bs_data['name'])
+                                           self._ctrl_crv_data['mouth_ctrlzone_prefix']+'_'+
+                                           zone_dir[0].upper()+'_'+dir_ctrlcrv_bs_data['name'])
 
-                cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+                cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)
                 if controlZoneDirEnum.left in zone_dir:
-                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+                    cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_DARK_RED)
                 elif controlZoneDirEnum.right in zone_dir:
-                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+                    cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
                 else:
-                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_OLIVE)
+                    cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_OLIVE)
 
                 cmds.toggle(bs_nurbs_crv, controlVertex=True)
                 cmds.select(deselect=True)
@@ -163,8 +163,8 @@ class eyebrowControlZone(controlZone):
                 cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-            cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
-            cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
+            cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
+            cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_M_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.eyebrow_grp.get_group_name())
 
@@ -193,8 +193,8 @@ class eyebrowControlZone(controlZone):
                 direction = controlZoneDirEnum.left
                 controller_color = CONTROL_L_COLOR
 
-            dir_ctrl_data = controller_data[direction + '_' + ctrl_id.split('_')[1]]
-            rig_controller = controller(name = self._ctrl_crv_data['eyebrow_ctrlzone_prefix'] + '_' +
+            dir_ctrl_data = controller_data[direction+'_'+ctrl_id.split('_')[1]]
+            rig_controller = controller(name = self._ctrl_crv_data['eyebrow_ctrlzone_prefix']+'_'+
                                                dir_ctrl_data['name'],
                                         degree = controller_degree,
                                         color = controller_color,
@@ -221,7 +221,7 @@ class eyebrowControlZone(controlZone):
         # cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
         #
         # skincluster_node = cmds.skinCluster(toSelectedBones=True)
-        # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
+        # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name()+'_skinCluster')
         #
         # # Create the blendshapes to control curves to transit the translations of controllers.
         # cmds.select(deselect=True)
@@ -232,7 +232,7 @@ class eyebrowControlZone(controlZone):
         #     bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
         #                               ctrl_crv.get_name(),
         #                               weight=[0, follow_val])
-        #     bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+        #     bs_node = cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
 
         # --------------------------------------------------------------------------------------------------------------
         # Drive the control curves using blend-shape and
@@ -263,65 +263,65 @@ class eyebrowControlZone(controlZone):
                                       self._ctrl_crv_bs_dict['left_left_side_front'],
 
                                       self._ctrl_crv_dict['A'].get_name(),
-                                      name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
+                                      name = self._ctrl_crv_dict['A'].get_name()+'_blendShape'
                                       )[0]
-        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+        cmds.setAttr(ctrl_crv_bs+'.supportNegativeWeights', True)
 
-        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_left'])
-        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_up'])
-        cmds.connectAttr(self._controller_dict['R_A'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_right_side_front'])
+        cmds.connectAttr(self._controller_dict['R_A'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_right_side_left'])
+        cmds.connectAttr(self._controller_dict['R_A'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_right_side_up'])
+        cmds.connectAttr(self._controller_dict['R_A'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_right_side_front'])
 
-        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_left'])
-        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_up'])
-        cmds.connectAttr(self._controller_dict['R_B'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_middle_side_front'])
+        cmds.connectAttr(self._controller_dict['R_B'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['R_B'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['R_B'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_middle_side_front'])
 
-        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_left'])
-        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_up'])
-        cmds.connectAttr(self._controller_dict['R_C'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_left_side_front'])
+        cmds.connectAttr(self._controller_dict['R_C'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_left_side_left'])
+        cmds.connectAttr(self._controller_dict['R_C'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_left_side_up'])
+        cmds.connectAttr(self._controller_dict['R_C'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_left_side_front'])
 
-        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_left'])
-        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_up'])
-        cmds.connectAttr(self._controller_dict['M_A'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_middle_side_front'])
+        cmds.connectAttr(self._controller_dict['M_A'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['M_A'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['M_A'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_middle_side_front'])
 
-        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_left'])
-        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_up'])
-        cmds.connectAttr(self._controller_dict['L_A'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_right_side_front'])
+        cmds.connectAttr(self._controller_dict['L_A'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_right_side_left'])
+        cmds.connectAttr(self._controller_dict['L_A'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_right_side_up'])
+        cmds.connectAttr(self._controller_dict['L_A'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_right_side_front'])
 
-        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_left'])
-        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_up'])
-        cmds.connectAttr(self._controller_dict['L_B'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_middle_side_front'])
+        cmds.connectAttr(self._controller_dict['L_B'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_middle_side_left'])
+        cmds.connectAttr(self._controller_dict['L_B'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_middle_side_up'])
+        cmds.connectAttr(self._controller_dict['L_B'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_middle_side_front'])
 
-        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_left'])
-        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_up'])
-        cmds.connectAttr(self._controller_dict['L_C'].get_name() + '.translateZ',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_left_side_front'])
+        cmds.connectAttr(self._controller_dict['L_C'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_left_side_left'])
+        cmds.connectAttr(self._controller_dict['L_C'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_left_side_up'])
+        cmds.connectAttr(self._controller_dict['L_C'].get_name()+'.translateZ',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_left_side_front'])
 
         # Create blend-shapes to control curves to transit the translations of controllers.
 
         cmds.select(deselect=True)
-        eyebrow_follow_B_attr = self._follow_ctrl + '.eyebrow_follow_b'
-        eyebrow_follow_C_attr = self._follow_ctrl + '.eyebrow_follow_c'
-        eyebrow_follow_D_attr = self._follow_ctrl + '.eyebrow_follow_d'
+        eyebrow_follow_B_attr = self._follow_ctrl+'.eyebrow_follow_b'
+        eyebrow_follow_C_attr = self._follow_ctrl+'.eyebrow_follow_c'
+        eyebrow_follow_D_attr = self._follow_ctrl+'.eyebrow_follow_d'
 
         for ctrl_crv_id in ctrl_crv_id_list[1:]:
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
@@ -341,9 +341,9 @@ class eyebrowControlZone(controlZone):
             bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
                                       ctrl_crv.get_name(),
                                       weight=[0, follow_val])
-            bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+            bs_node = cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
 
-            cmds.connectAttr(follow_attr, bs_node + '.weight[0]')
+            cmds.connectAttr(follow_attr, bs_node+'.weight[0]')
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.
@@ -360,18 +360,18 @@ class eyebrowControlZone(controlZone):
 
                 cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
-                                                           ctrlcrv_loc_info[0] + '_srfUD_clsPtOnSrf')
+                                                           ctrlcrv_loc_info[0]+'_srfUD_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_UD_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_UD_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name()+'.worldSpace[0]',
+                                 cls_pt_on_UD_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_UD_transplane_node+'.inPosition')
 
                 pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_UD_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node+'.parameterU', pt_on_UD_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node+'.parameterV', pt_on_UD_projsrf_node+'.parameterV')
 
                 # Establish the projecting relationships in the front/F direction.
                 front_projsrf_id = ord(ctrl_crv_id) - 65
@@ -381,15 +381,15 @@ class eyebrowControlZone(controlZone):
 
                 cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
-                                                          ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+                                                          ctrlcrv_loc_info[0]+'_srfF_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[0].get_name() + '.worldSpace[0]',
-                                 cls_pt_on_F_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_F_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[0].get_name()+'.worldSpace[0]',
+                                 cls_pt_on_F_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_F_transplane_node+'.inPosition')
 
                 pt_on_F_projsrf_node = F_projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_F_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterU', pt_on_F_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterV', pt_on_F_projsrf_node+'.parameterV')

@@ -33,7 +33,7 @@ class mouthControlZone(controlZone):
     """
 
     def __init__(self,
-                 direction=controlZoneDirEnum.middle + '_' + controlZoneDirEnum.up,
+                 direction=controlZoneDirEnum.middle+'_'+controlZoneDirEnum.up,
                  ctrl_crv_data = None,
                  ctrlproj_transplane_LRUD = None,
                  ctrlproj_projsurface_LRUD = None):
@@ -60,7 +60,7 @@ class mouthControlZone(controlZone):
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
-            dir_ctrlcrv_data = ctrlcrv_data[direction + '_' + crv_id]
+            dir_ctrlcrv_data = ctrlcrv_data[direction+'_'+crv_id]
             ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['mouth_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
                                     degree = ctrlcrv_degree,
@@ -126,7 +126,7 @@ class mouthControlZone(controlZone):
             dir_ctrlcrv_bs_data = None
             if 'original' == ctrl_crv_bs_dir:
                 for ctrl_crv_id in ctrl_crv_id_list:
-                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr + '_original_' + ctrl_crv_id]
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr+'_original_'+ctrl_crv_id]
 
                     self.generate_curve_bs_target(zone_dir = direction,
                                                   bs_dir = ctrl_crv_bs_dir,
@@ -138,7 +138,7 @@ class mouthControlZone(controlZone):
             else:
                 if 'front' not in ctrl_crv_bs_dir:
                     for ctrl_crv_id in ctrl_crv_id_list:
-                        dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr + '_' + ctrl_crv_bs_dir + '_' + ctrl_crv_id]
+                        dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_UD_abbr+'_'+ctrl_crv_bs_dir+'_'+ctrl_crv_id]
 
                         self.generate_curve_bs_target(zone_dir = direction,
                                                       bs_dir = ctrl_crv_bs_dir,
@@ -173,8 +173,8 @@ class mouthControlZone(controlZone):
                 cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-            cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
-            cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
+            cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
+            cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_M_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.mouth_grp.get_group_name())
             cmds.select(deselect=True)
@@ -190,20 +190,20 @@ class mouthControlZone(controlZone):
 
         for ctrl_dir in controller_dir_list:
             if 'R' == ctrl_dir:
-                controller_points = controller_data['points_right_' + direction_UD]
-                direction = 'right_' + direction_UD
+                controller_points = controller_data['points_right_'+direction_UD]
+                direction = 'right_'+direction_UD
                 controller_color = CONTROL_R_COLOR
             elif 'M' == ctrl_dir:
-                controller_points = controller_data['points_middle_' + direction_UD]
-                direction = 'middle_' + direction_UD
+                controller_points = controller_data['points_middle_'+direction_UD]
+                direction = 'middle_'+direction_UD
                 controller_color = CONTROL_M_COLOR
             elif 'L' == ctrl_dir:
-                controller_points = controller_data['points_left_' + direction_UD]
-                direction = 'left_' + direction_UD
+                controller_points = controller_data['points_left_'+direction_UD]
+                direction = 'left_'+direction_UD
                 controller_color = CONTROL_L_COLOR
 
             dir_ctrl_data = controller_data[direction]
-            rig_controller = controller(name = self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_' + 
+            rig_controller = controller(name = self._ctrl_crv_data['mouth_ctrlzone_prefix']+'_'+
                                              dir_ctrl_data['name'],
                                         degree = controller_degree,
                                         color = controller_color,
@@ -228,11 +228,11 @@ class mouthControlZone(controlZone):
         # Drive the control curves using blend-shape and
         # three-curves each in the LR, UD and FB directions, as the targets.
 
-        lip_up_follow_B_attr = self._follow_ctrl + '.lip_up_follow_b'
-        lip_up_follow_C_attr = self._follow_ctrl + '.lip_up_follow_c'
-        lip_dn_follow_B_attr = self._follow_ctrl + '.lip_dn_follow_b'
-        lip_dn_follow_C_attr = self._follow_ctrl + '.lip_dn_follow_c'
-        lip_dn_follow_D_attr = self._follow_ctrl + '.lip_dn_follow_d'
+        lip_up_follow_B_attr = self._follow_ctrl+'.lip_up_follow_b'
+        lip_up_follow_C_attr = self._follow_ctrl+'.lip_up_follow_c'
+        lip_dn_follow_B_attr = self._follow_ctrl+'.lip_dn_follow_b'
+        lip_dn_follow_C_attr = self._follow_ctrl+'.lip_dn_follow_c'
+        lip_dn_follow_D_attr = self._follow_ctrl+'.lip_dn_follow_d'
 
         for ctrl_crv_id in ctrl_crv_id_list:
             lip_follow_attr = ''
@@ -255,75 +255,75 @@ class mouthControlZone(controlZone):
                 assert cmds.objExists(lip_follow_attr)
 
                 lip_follow_multi_node = cmds.createNode('multiplyDivide',
-                                                        name=lip_follow_attr.split('.')[1] + '_multiplyDivide')
-                cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY', lip_follow_multi_node + '.input1Y')
-                cmds.connectAttr(lip_follow_attr, lip_follow_multi_node + '.input2Y')
+                                                        name=lip_follow_attr.split('.')[1]+'_multiplyDivide')
+                cmds.connectAttr(self._controller_dict['M'].get_name()+'.translateY', lip_follow_multi_node+'.input1Y')
+                cmds.connectAttr(lip_follow_attr, lip_follow_multi_node+'.input2Y')
 
             ctrl_crv_bs = None
             if 'A' == ctrl_crv_id:
-                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr + '_original_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_left_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id],
+                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_left_'+ctrl_crv_id],
                                 # self._ctrl_crv_bs_dict['right_side_front'],
                                 # self._ctrl_crv_bs_dict['middle_side_front'],
                                 # self._ctrl_crv_bs_dict['left_side_front'],
                                 self._ctrl_crv_dict[ctrl_crv_id].get_name(),
-                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape')[0]
+                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name()+'_blendShape')[0]
             else:
-                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr + '_original_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_left_' + ctrl_crv_id],
-                                self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id],
+                ctrl_crv_bs = cmds.blendShape(self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_up_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id],
+                                self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_left_'+ctrl_crv_id],
                                 self._ctrl_crv_dict[ctrl_crv_id].get_name(),
-                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name() + '_blendShape')[0]
-            cmds.setAttr(ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_original_' + ctrl_crv_id], 1)
-            cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+                                name = self._ctrl_crv_dict[ctrl_crv_id].get_name()+'_blendShape')[0]
+            cmds.setAttr(ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_original_'+ctrl_crv_id], 1)
+            cmds.setAttr(ctrl_crv_bs+'.supportNegativeWeights', True)
 
             # Right-Side Mouth Corner Controller
-            cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateX',
-                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_left_' + ctrl_crv_id])
+            cmds.connectAttr(self._controller_dict['R'].get_name()+'.translateX',
+                             ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_left_'+ctrl_crv_id])
 
 
-            cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateY',
-                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_right_side_up_' + ctrl_crv_id])
+            cmds.connectAttr(self._controller_dict['R'].get_name()+'.translateY',
+                             ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_right_side_up_'+ctrl_crv_id])
 
             # if 'A' == ctrl_crv_id:
-            #     cmds.connectAttr(self._controller_dict['R'].get_name() + '.translateZ',
-            #                      ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_front'])
+            #     cmds.connectAttr(self._controller_dict['R'].get_name()+'.translateZ',
+            #                      ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_side_front'])
 
             # Middle-Side Mouth Controller
-            cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateX',
-                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_left_' + ctrl_crv_id])
+            cmds.connectAttr(self._controller_dict['M'].get_name()+'.translateX',
+                             ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_left_'+ctrl_crv_id])
 
             if '' != lip_follow_attr:
-                cmds.connectAttr(lip_follow_multi_node + '.outputY',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id])
+                cmds.connectAttr(lip_follow_multi_node+'.outputY',
+                                 ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id])
             else:
-                cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateY',
-                                 ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_middle_side_up_' + ctrl_crv_id])
+                cmds.connectAttr(self._controller_dict['M'].get_name()+'.translateY',
+                                 ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_middle_side_up_'+ctrl_crv_id])
 
             # if 'A' == ctrl_crv_id:
-            #     cmds.connectAttr(self._controller_dict['M'].get_name() + '.translateZ',
-            #                      ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_front'])
+            #     cmds.connectAttr(self._controller_dict['M'].get_name()+'.translateZ',
+            #                      ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_side_front'])
 
 
             # Left-Side Mouth Corner Controller
-            cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateX',
-                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_left_' + ctrl_crv_id])
+            cmds.connectAttr(self._controller_dict['L'].get_name()+'.translateX',
+                             ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_left_'+ctrl_crv_id])
 
-            cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateY',
-                             ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict[zone_UD_abbr + '_left_side_up_' + ctrl_crv_id])
+            cmds.connectAttr(self._controller_dict['L'].get_name()+'.translateY',
+                             ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict[zone_UD_abbr+'_left_side_up_'+ctrl_crv_id])
 
             # if 'A' == ctrl_crv_id:
-            #     cmds.connectAttr(self._controller_dict['L'].get_name() + '.translateZ',
-            #                      ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_front'])
+            #     cmds.connectAttr(self._controller_dict['L'].get_name()+'.translateZ',
+            #                      ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_side_front'])
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surfaces.
@@ -341,18 +341,18 @@ class mouthControlZone(controlZone):
                 projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
 
                 cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
-                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0] + '_clsPtOnSrf')
+                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0]+'_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name()+'.worldSpace[0]',
+                                 cls_pt_on_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_transplane_node+'.inPosition')
 
                 pt_on_projsrf_node = projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_transplane_node+'.parameterU', pt_on_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_transplane_node+'.parameterV', pt_on_projsrf_node+'.parameterV')
 
 
     def generate_curve_bs_target(self, zone_dir, bs_dir, bs_degree, bs_data, crv_id=''):
@@ -363,16 +363,16 @@ class mouthControlZone(controlZone):
         if controlZoneDirEnum.down in zone_dir:
             direction_abbr = 'MD'
         bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                   self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_'  + 
-                                   direction_abbr + '_' + bs_data['name'])
+                                   self._ctrl_crv_data['mouth_ctrlzone_prefix']+'_'+
+                                   direction_abbr+'_'+bs_data['name'])
 
-        cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+        cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)
         if 'middle' in bs_dir or 'orig' in bs_dir:
-            cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_OLIVE)
+            cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_OLIVE)
         elif 'left' in bs_dir:
-            cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+            cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_DARK_RED)
         elif 'right' in bs_dir:
-            cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+            cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
 
         cmds.toggle(bs_nurbs_crv, controlVertex=True)
         cmds.select(deselect=True)
@@ -389,4 +389,4 @@ class mouthControlZone(controlZone):
         if 'front' in bs_dir:
             self._ctrl_crv_bs_dict[bs_dir] = bs_nurbs_crv
         else:
-            self._ctrl_crv_bs_dict[zone_dir_abbr + '_' + bs_dir + '_' + crv_id] = bs_nurbs_crv
+            self._ctrl_crv_bs_dict[zone_dir_abbr+'_'+bs_dir+'_'+crv_id] = bs_nurbs_crv

@@ -1,7 +1,7 @@
 #
 # Copyright (c) 2021 Light Chaser Animation Studios. All Rights Reserved.
 #
-# File Name: control.zone.cheek.py
+# File Name: control.zone.nasolabial_cheek.py
 # Author: Sheng (Raymond) Liao
 # Date: December 2021
 #
@@ -33,7 +33,7 @@ class nasoCheekControlZone(controlZone):
     """
 
     def __init__(self,
-                 direction=controlZoneDirEnum.right + '_' + controlZoneDirEnum.up + '_' + controlZoneDirEnum.down,
+                 direction=controlZoneDirEnum.right+'_'+controlZoneDirEnum.up+'_'+controlZoneDirEnum.down,
                  ctrl_crv_data = None,
                  ctrlproj_transplane_LRUD       = None,
                  ctrlproj_transplane_LRFB_list  = [],
@@ -65,7 +65,7 @@ class nasoCheekControlZone(controlZone):
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
-            dir_ctrlcrv_data = ctrlcrv_data[direction.split('_')[0] + '_' + crv_id]
+            dir_ctrlcrv_data = ctrlcrv_data[direction.split('_')[0]+'_'+crv_id]
             ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['nasocheek_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
                                     degree = ctrlcrv_degree,
@@ -137,32 +137,32 @@ class nasoCheekControlZone(controlZone):
 
             for bs_type in G_BLENDSHAPE_TYPE_LIST:
                 if controlZoneDirEnum.right in direction:
-                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type + '_R_' + crv_id]
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_R_'+crv_id]
                 else:
-                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type + '_L_' + crv_id]
+                    dir_ctrlcrv_bs_data = ctrlcrv_bs_data[bs_type+'_L_'+crv_id]
 
                 bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
                                           point=dir_ctrlcrv_bs_data['points'])
                 cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
 
                 bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                           self._ctrl_crv_data['nasocheek_ctrlzone_prefix'] +
-                                           '_' + dir_ctrlcrv_bs_data['name'])
+                                           self._ctrl_crv_data['nasocheek_ctrlzone_prefix']+
+                                           '_'+dir_ctrlcrv_bs_data['name'])
 
-                cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+                cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)
                 if controlZoneDirEnum.right in direction:
-                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+                    cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
                     cmds.parent(bs_nurbs_crv,
                                 hierarchy.nasocheek_ctrlcrv_bs_R_grp.get_group_name())
                 else:
-                    cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+                    cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_DARK_RED)
                     cmds.parent(bs_nurbs_crv,
                                 hierarchy.nasocheek_ctrlcrv_bs_L_grp.get_group_name())
 
                 cmds.toggle(bs_nurbs_crv, controlVertex=True)
                 cmds.select(deselect=True)
 
-                self._ctrl_crv_bs_dict[bs_type + '_' + crv_id] = bs_nurbs_crv
+                self._ctrl_crv_bs_dict[bs_type+'_'+crv_id] = bs_nurbs_crv
 
         # Create the control curve follow controllers.
         follow_ctrl_data = self._ctrl_crv_data['nasocheek_follow_controller']
@@ -190,11 +190,11 @@ class nasoCheekControlZone(controlZone):
                 cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-            cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
+            cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
             if 'R' == follow_ctrl_dir:
-                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_R_COLOR)
+                cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_R_COLOR)
             elif 'L' == follow_ctrl_dir:
-                cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_L_COLOR)
+                cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_L_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.nasocheek_grp.get_group_name())
 
@@ -217,11 +217,11 @@ class nasoCheekControlZone(controlZone):
         assert cmds.objExists(mouth_corner_U_controller)
         assert cmds.objExists(mouth_corner_D_controller)
 
-        cheek_follow_B_attr = self._follow_ctrl + '.cheek_follow_b'
-        cheek_follow_C_attr = self._follow_ctrl + '.cheek_follow_c'
-        cheek_follow_D_attr = self._follow_ctrl + '.cheek_follow_d'
-        cheek_follow_E_attr = self._follow_ctrl + '.cheek_follow_e'
-        cheek_follow_F_attr = self._follow_ctrl + '.cheek_follow_f'
+        cheek_follow_B_attr = self._follow_ctrl+'.cheek_follow_b'
+        cheek_follow_C_attr = self._follow_ctrl+'.cheek_follow_c'
+        cheek_follow_D_attr = self._follow_ctrl+'.cheek_follow_d'
+        cheek_follow_E_attr = self._follow_ctrl+'.cheek_follow_e'
+        cheek_follow_F_attr = self._follow_ctrl+'.cheek_follow_f'
 
         for crv_id in ctrl_crv_id_list:
             cheek_follow_attr = ''
@@ -242,14 +242,14 @@ class nasoCheekControlZone(controlZone):
                 assert cmds.objExists(cheek_follow_attr)
 
                 cheek_follow_multi_node = cmds.createNode('multiplyDivide',
-                                                          name=cheek_follow_attr.split('.')[1] + 
-                                                               '_' + follow_ctrl_dir + '_multiplyDivide')
+                                                          name=cheek_follow_attr.split('.')[1]+
+                                                               '_'+follow_ctrl_dir+'_multiplyDivide')
 
-            bs_LR_crv = self._ctrl_crv_bs_dict['bs_LR' + '_' + crv_id]
-            bs_UD_crv = self._ctrl_crv_bs_dict['bs_UD' + '_' + crv_id]
-            bs_FB_crv = self._ctrl_crv_bs_dict['bs_FB' + '_' + crv_id]
-            bs_all_crv = self._ctrl_crv_bs_dict['bs_all' + '_' + crv_id]
-            bs_orig_crv = self._ctrl_crv_bs_dict['original' + '_' + crv_id]
+            bs_LR_crv = self._ctrl_crv_bs_dict['bs_LR'+'_'+crv_id]
+            bs_UD_crv = self._ctrl_crv_bs_dict['bs_UD'+'_'+crv_id]
+            bs_FB_crv = self._ctrl_crv_bs_dict['bs_FB'+'_'+crv_id]
+            bs_all_crv = self._ctrl_crv_bs_dict['bs_all'+'_'+crv_id]
+            bs_orig_crv = self._ctrl_crv_bs_dict['original'+'_'+crv_id]
             proj_crv = self._ctrl_crv_dict[crv_id].get_name()
 
             bs_all_crv_bs = cmds.blendShape(bs_LR_crv,
@@ -258,61 +258,61 @@ class nasoCheekControlZone(controlZone):
 
                                             bs_all_crv,
 
-                                            name=bs_all_crv + '_blendShape'
+                                            name=bs_all_crv+'_blendShape'
                                             )[0]
-            cmds.setAttr(bs_all_crv_bs + '.supportNegativeWeights', True)
+            cmds.setAttr(bs_all_crv_bs+'.supportNegativeWeights', True)
 
             proj_crv_bs = cmds.blendShape(bs_orig_crv,
                                           bs_all_crv,
 
                                           proj_crv,
 
-                                          name=proj_crv + '_blendShape'
+                                          name=proj_crv+'_blendShape'
                                           )[0]
-            cmds.setAttr(proj_crv_bs + '.' + bs_orig_crv, 1.0)
-            cmds.setAttr(proj_crv_bs + '.' + bs_all_crv, 1.0)
-            cmds.setAttr(proj_crv_bs + '.supportNegativeWeights', True)
+            cmds.setAttr(proj_crv_bs+'.'+bs_orig_crv, 1.0)
+            cmds.setAttr(proj_crv_bs+'.'+bs_all_crv, 1.0)
+            cmds.setAttr(proj_crv_bs+'.supportNegativeWeights', True)
 
             mouth_corner_trans_avg_node = cmds.createNode('plusMinusAverage',
-                                                          name='mouth_corner_trans_' + zone_dir + '_' + crv_id + '_avg')
-            cmds.setAttr(mouth_corner_trans_avg_node + '.operation', 3)
+                                                          name='mouth_corner_trans_'+zone_dir+'_'+crv_id+'_avg')
+            cmds.setAttr(mouth_corner_trans_avg_node+'.operation', 3)
 
-            cmds.connectAttr(mouth_corner_U_controller + '.translateX', mouth_corner_trans_avg_node + '.input3D[0].input3Dx')
-            cmds.connectAttr(mouth_corner_U_controller + '.translateY', mouth_corner_trans_avg_node + '.input3D[0].input3Dy')
-            cmds.connectAttr(mouth_corner_U_controller + '.translateZ', mouth_corner_trans_avg_node + '.input3D[0].input3Dz')
+            cmds.connectAttr(mouth_corner_U_controller+'.translateX', mouth_corner_trans_avg_node+'.input3D[0].input3Dx')
+            cmds.connectAttr(mouth_corner_U_controller+'.translateY', mouth_corner_trans_avg_node+'.input3D[0].input3Dy')
+            cmds.connectAttr(mouth_corner_U_controller+'.translateZ', mouth_corner_trans_avg_node+'.input3D[0].input3Dz')
 
-            cmds.connectAttr(mouth_corner_D_controller + '.translateX', mouth_corner_trans_avg_node + '.input3D[1].input3Dx')
-            cmds.connectAttr(mouth_corner_D_controller + '.translateY', mouth_corner_trans_avg_node + '.input3D[1].input3Dy')
-            cmds.connectAttr(mouth_corner_D_controller + '.translateZ', mouth_corner_trans_avg_node + '.input3D[1].input3Dz')
+            cmds.connectAttr(mouth_corner_D_controller+'.translateX', mouth_corner_trans_avg_node+'.input3D[1].input3Dx')
+            cmds.connectAttr(mouth_corner_D_controller+'.translateY', mouth_corner_trans_avg_node+'.input3D[1].input3Dy')
+            cmds.connectAttr(mouth_corner_D_controller+'.translateZ', mouth_corner_trans_avg_node+'.input3D[1].input3Dz')
 
             if 'right' == zone_dir:
                 mouth_corner_transx_rev_node = cmds.createNode('multiplyDivide',
-                                                               name='mouth_corner_transX_' + zone_dir + '_' + crv_id + '_rev')
-                cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dx', mouth_corner_transx_rev_node + '.input1X')
-                cmds.setAttr(mouth_corner_transx_rev_node + '.input2X', -1.0)
+                                                               name='mouth_corner_transX_'+zone_dir+'_'+crv_id+'_rev')
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', mouth_corner_transx_rev_node+'.input1X')
+                cmds.setAttr(mouth_corner_transx_rev_node+'.input2X', -1.0)
 
                 if '' != cheek_follow_attr:
-                    cmds.connectAttr(mouth_corner_transx_rev_node + '.outputX', cheek_follow_multi_node + '.input1X')
-                    cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node + '.input2X')
-                    cmds.connectAttr(cheek_follow_multi_node + '.outputX', bs_all_crv_bs + '.' + bs_LR_crv)
+                    cmds.connectAttr(mouth_corner_transx_rev_node+'.outputX', cheek_follow_multi_node+'.input1X')
+                    cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node+'.input2X')
+                    cmds.connectAttr(cheek_follow_multi_node+'.outputX', bs_all_crv_bs+'.'+bs_LR_crv)
                 else:
-                    cmds.connectAttr(mouth_corner_transx_rev_node + '.outputX', bs_all_crv_bs + '.' + bs_LR_crv)
+                    cmds.connectAttr(mouth_corner_transx_rev_node+'.outputX', bs_all_crv_bs+'.'+bs_LR_crv)
             else:
                 if '' != cheek_follow_attr:
-                    cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dx', cheek_follow_multi_node + '.input1X')
-                    cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node + '.input2X')
-                    cmds.connectAttr(cheek_follow_multi_node + '.outputX', bs_all_crv_bs + '.' + bs_LR_crv)
+                    cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', cheek_follow_multi_node+'.input1X')
+                    cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node+'.input2X')
+                    cmds.connectAttr(cheek_follow_multi_node+'.outputX', bs_all_crv_bs+'.'+bs_LR_crv)
                 else:
-                    cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dx', bs_all_crv_bs + '.' + bs_LR_crv)
+                    cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dx', bs_all_crv_bs+'.'+bs_LR_crv)
 
             if '' != cheek_follow_attr:
-                cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dy', cheek_follow_multi_node + '.input1Y')
-                cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node + '.input2Y')
-                cmds.connectAttr(cheek_follow_multi_node + '.outputY', bs_all_crv_bs + '.' + bs_UD_crv)
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', cheek_follow_multi_node+'.input1Y')
+                cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node+'.input2Y')
+                cmds.connectAttr(cheek_follow_multi_node+'.outputY', bs_all_crv_bs+'.'+bs_UD_crv)
             else:
-                cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dy', bs_all_crv_bs + '.' + bs_UD_crv)
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', bs_all_crv_bs+'.'+bs_UD_crv)
 
-            cmds.connectAttr(mouth_corner_trans_avg_node + '.output3Dz', bs_all_crv_bs + '.' + bs_FB_crv)
+            cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dz', bs_all_crv_bs+'.'+bs_FB_crv)
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
@@ -328,18 +328,18 @@ class nasoCheekControlZone(controlZone):
 
                 cls_pt_on_UD_transplane_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_UD_transplane_node = cmds.rename(cls_pt_on_UD_transplane_node,
-                                                           ctrlcrv_loc_info[0] + '_clsPtOnSrf')
+                                                           ctrlcrv_loc_info[0]+'_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_UD_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_UD_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name()+'.worldSpace[0]',
+                                 cls_pt_on_UD_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_UD_transplane_node+'.inPosition')
 
                 pt_on_UD_projsrf_node = UD_projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_UD_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterU', pt_on_UD_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_UD_transplane_node + '.parameterV', pt_on_UD_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node+'.parameterU', pt_on_UD_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_UD_transplane_node+'.parameterV', pt_on_UD_projsrf_node+'.parameterV')
 
                 # Establish the projecting relationships in the front/F direction.
                 front_projsrf_id = ord(ctrl_crv_id) - 65
@@ -349,15 +349,15 @@ class nasoCheekControlZone(controlZone):
 
                 cls_pt_on_F_transplane_node = cmds.createNode('closestPointOnSurface')
                 cls_pt_on_F_transplane_node = cmds.rename(cls_pt_on_F_transplane_node,
-                                                          ctrlcrv_loc_info[0] + '_srfF_clsPtOnSrf')
+                                                          ctrlcrv_loc_info[0]+'_srfF_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[front_projsrf_id].get_name() + '.worldSpace[0]',
-                                 cls_pt_on_F_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_F_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRFB_list[front_projsrf_id].get_name()+'.worldSpace[0]',
+                                 cls_pt_on_F_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_F_transplane_node+'.inPosition')
 
                 pt_on_F_projsrf_node = F_projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_F_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterU', pt_on_F_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_F_transplane_node + '.parameterV', pt_on_F_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterU', pt_on_F_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterV', pt_on_F_projsrf_node+'.parameterV')

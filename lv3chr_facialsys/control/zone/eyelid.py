@@ -36,7 +36,7 @@ class eyelidControlZone(controlZone):
     """
 
     def __init__(self,
-                 direction = controlZoneDirEnum.right + '_' + controlZoneDirEnum.up,
+                 direction = controlZoneDirEnum.right+'_'+controlZoneDirEnum.up,
                  ctrl_crv_data = None,
                  ctrlproj_transplane_LRUD = None,
                  ctrlproj_projsurface_LRUD = None):
@@ -59,7 +59,7 @@ class eyelidControlZone(controlZone):
         ctrlcrv_degree = ctrlcrv_data['degree']
 
         for crv_id in ctrl_crv_id_list:
-            dir_ctrlcrv_data = ctrlcrv_data[direction + '_' + crv_id]
+            dir_ctrlcrv_data = ctrlcrv_data[direction+'_'+crv_id]
             ctrl_crv = controlCurve(name_prefix = self._ctrl_crv_data['eyelid_ctrlzone_prefix'],
                                     name = dir_ctrlcrv_data['name'],
                                     degree = ctrlcrv_degree,
@@ -178,20 +178,20 @@ class eyelidControlZone(controlZone):
             if 'original' in ctrl_crv_bs_dir or 'front' in ctrl_crv_bs_dir:
                 continue
 
-            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR + '_' + ctrl_crv_bs_dir]
+            dir_ctrlcrv_bs_data = ctrlcrv_bs_data[zone_LR+'_'+ctrl_crv_bs_dir]
 
             bs_nurbs_crv = cmds.curve(degree=ctrlcrv_bs_degree,
                                       point=dir_ctrlcrv_bs_data['points'])
             cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
             bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                       self._ctrl_crv_data['mouth_ctrlzone_prefix'] + '_'  + 
-                                       zone_LR[0].upper() + zone_UD[0].upper() + '_' + dir_ctrlcrv_bs_data['name'])
+                                       self._ctrl_crv_data['mouth_ctrlzone_prefix']+'_'+
+                                       zone_LR[0].upper()+zone_UD[0].upper()+'_'+dir_ctrlcrv_bs_data['name'])
 
-            cmds.setAttr(bs_nurbs_crv + '.overrideEnabled', True)
+            cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)
             if controlZoneDirEnum.left in direction:
-                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_DARK_RED)
+                cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_DARK_RED)
             elif controlZoneDirEnum.right in direction:
-                cmds.setAttr(bs_nurbs_crv + '.overrideColor', COLOR_INDEX_INDIGO)
+                cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
 
             cmds.toggle(bs_nurbs_crv, controlVertex=True)
             cmds.select(deselect=True)
@@ -232,8 +232,8 @@ class eyelidControlZone(controlZone):
                 cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
-            cmds.setAttr(follow_ctrl + '.overrideEnabled', True)
-            cmds.setAttr(follow_ctrl + '.overrideColor', CONTROL_M_COLOR)
+            cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
+            cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_M_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.eyelid_grp.get_group_name())
 
@@ -264,8 +264,8 @@ class eyelidControlZone(controlZone):
                 controller_color = CONTROLLER_LD_COLOR
 
         for ctrl_id in controller_id_list:
-            dir_ctrl_data = controller_data[direction + '_' + ctrl_id]
-            rig_controller = controller(name = self._ctrl_crv_data['eyelid_ctrlzone_prefix'] + '_'  + 
+            dir_ctrl_data = controller_data[direction+'_'+ctrl_id]
+            rig_controller = controller(name = self._ctrl_crv_data['eyelid_ctrlzone_prefix']+'_'+
                                                dir_ctrl_data['name'],
                                         degree = controller_degree,
                                         color = controller_color,
@@ -305,14 +305,14 @@ class eyelidControlZone(controlZone):
         cmds.addAttr(corner_driving_R_controller, longName='eyecorner_y_follow', attributeType='float',
                      defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
 
-        corner_R_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_R_controller + '_follow_multiplyDivide')
+        corner_R_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_R_controller+'_follow_multiplyDivide')
 
-        cmds.connectAttr(corner_driving_R_controller + '.translateX', corner_R_trans_multi_node + '.input1X')
-        cmds.connectAttr(corner_driving_R_controller + '.eyecorner_x_follow', corner_R_trans_multi_node + '.input2X')
-        cmds.connectAttr(corner_driving_R_controller + '.translateY', corner_R_trans_multi_node + '.input1Y')
-        cmds.connectAttr(corner_driving_R_controller + '.eyecorner_y_follow', corner_R_trans_multi_node + '.input2Y')
-        cmds.connectAttr(corner_R_trans_multi_node + '.outputX', corner_R_controller + '.translateX')
-        cmds.connectAttr(corner_R_trans_multi_node + '.outputY', corner_R_controller + '.translateY')
+        cmds.connectAttr(corner_driving_R_controller+'.translateX', corner_R_trans_multi_node+'.input1X')
+        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_x_follow', corner_R_trans_multi_node+'.input2X')
+        cmds.connectAttr(corner_driving_R_controller+'.translateY', corner_R_trans_multi_node+'.input1Y')
+        cmds.connectAttr(corner_driving_R_controller+'.eyecorner_y_follow', corner_R_trans_multi_node+'.input2Y')
+        cmds.connectAttr(corner_R_trans_multi_node+'.outputX', corner_R_controller+'.translateX')
+        cmds.connectAttr(corner_R_trans_multi_node+'.outputY', corner_R_controller+'.translateY')
 
         corner_driving_L_controller = self._controller_dict['D'].get_name()
         corner_L_controller = self._controller_dict['E'].get_name()
@@ -322,14 +322,14 @@ class eyelidControlZone(controlZone):
         cmds.addAttr(corner_driving_L_controller, longName='eyecorner_y_follow', attributeType='float',
                      defaultValue=0.25, minValue=0.0, maxValue=1.0, keyable=True)
 
-        corner_L_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_L_controller + '_follow_multiplyDivide')
+        corner_L_trans_multi_node = cmds.createNode('multiplyDivide', name=corner_L_controller+'_follow_multiplyDivide')
 
-        cmds.connectAttr(corner_driving_L_controller + '.translateX', corner_L_trans_multi_node + '.input1X')
-        cmds.connectAttr(corner_driving_L_controller + '.eyecorner_x_follow', corner_L_trans_multi_node + '.input2X')
-        cmds.connectAttr(corner_driving_L_controller + '.translateY', corner_L_trans_multi_node + '.input1Y')
-        cmds.connectAttr(corner_driving_L_controller + '.eyecorner_y_follow', corner_L_trans_multi_node + '.input2Y')
-        cmds.connectAttr(corner_L_trans_multi_node + '.outputX', corner_L_controller + '.translateX')
-        cmds.connectAttr(corner_L_trans_multi_node + '.outputY', corner_L_controller + '.translateY')
+        cmds.connectAttr(corner_driving_L_controller+'.translateX', corner_L_trans_multi_node+'.input1X')
+        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_x_follow', corner_L_trans_multi_node+'.input2X')
+        cmds.connectAttr(corner_driving_L_controller+'.translateY', corner_L_trans_multi_node+'.input1Y')
+        cmds.connectAttr(corner_driving_L_controller+'.eyecorner_y_follow', corner_L_trans_multi_node+'.input2Y')
+        cmds.connectAttr(corner_L_trans_multi_node+'.outputX', corner_L_controller+'.translateX')
+        cmds.connectAttr(corner_L_trans_multi_node+'.outputY', corner_L_controller+'.translateY')
 
         # # ----------------------------------------------------------------------------------------------------------
         # # Bind the control curves to the corresponding controllers' joints.
@@ -341,7 +341,7 @@ class eyelidControlZone(controlZone):
         # cmds.select(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(), add=True)
         #
         # skincluster_node = cmds.skinCluster(toSelectedBones=True)
-        # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name() + '_skinCluster')
+        # cmds.rename(skincluster_node, self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name()+'_skinCluster')
 
         # --------------------------------------------------------------------------------------------------------------
         # Drive the control curves using blend-shape and
@@ -360,34 +360,34 @@ class eyelidControlZone(controlZone):
                                       self._ctrl_crv_bs_dict['left_end_left'],
 
                                       self._ctrl_crv_dict['A'].get_name(),
-                                      name = self._ctrl_crv_dict['A'].get_name() + '_blendShape'
+                                      name = self._ctrl_crv_dict['A'].get_name()+'_blendShape'
                                       )[0]
-        cmds.setAttr(ctrl_crv_bs + '.supportNegativeWeights', True)
+        cmds.setAttr(ctrl_crv_bs+'.supportNegativeWeights', True)
 
-        cmds.connectAttr(self._controller_dict['A'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_end_left'])
-        cmds.connectAttr(self._controller_dict['A'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_end_up'])
+        cmds.connectAttr(self._controller_dict['A'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_end_left'])
+        cmds.connectAttr(self._controller_dict['A'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_end_up'])
 
-        cmds.connectAttr(self._controller_dict['B'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_left'])
-        cmds.connectAttr(self._controller_dict['B'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['right_side_up'])
+        cmds.connectAttr(self._controller_dict['B'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_side_left'])
+        cmds.connectAttr(self._controller_dict['B'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['right_side_up'])
 
-        cmds.connectAttr(self._controller_dict['C'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_left'])
-        cmds.connectAttr(self._controller_dict['C'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['middle_side_up'])
+        cmds.connectAttr(self._controller_dict['C'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_side_left'])
+        cmds.connectAttr(self._controller_dict['C'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['middle_side_up'])
 
-        cmds.connectAttr(self._controller_dict['D'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_left'])
-        cmds.connectAttr(self._controller_dict['D'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_side_up'])
+        cmds.connectAttr(self._controller_dict['D'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_side_left'])
+        cmds.connectAttr(self._controller_dict['D'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_side_up'])
 
-        cmds.connectAttr(self._controller_dict['E'].get_name() + '.translateX',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_end_left'])
-        cmds.connectAttr(self._controller_dict['E'].get_name() + '.translateY',
-                         ctrl_crv_bs + '.' + self._ctrl_crv_bs_dict['left_end_up'])
+        cmds.connectAttr(self._controller_dict['E'].get_name()+'.translateX',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_end_left'])
+        cmds.connectAttr(self._controller_dict['E'].get_name()+'.translateY',
+                         ctrl_crv_bs+'.'+self._ctrl_crv_bs_dict['left_end_up'])
 
         # Create blend-shapes to control curves to transit the translations of controllers.
 
@@ -399,17 +399,17 @@ class eyelidControlZone(controlZone):
         eyelid_follow_F_attr = ''
 
         if controlZoneDirEnum.up in direction:
-            eyelid_follow_B_attr = self._follow_ctrl + '.eyelid_up_follow_b'
-            eyelid_follow_C_attr = self._follow_ctrl + '.eyelid_up_follow_c'
-            eyelid_follow_D_attr = self._follow_ctrl + '.eyelid_up_follow_d'
-            eyelid_follow_E_attr = self._follow_ctrl + '.eyelid_up_follow_e'
-            eyelid_follow_F_attr = self._follow_ctrl + '.eyelid_up_follow_f'
+            eyelid_follow_B_attr = self._follow_ctrl+'.eyelid_up_follow_b'
+            eyelid_follow_C_attr = self._follow_ctrl+'.eyelid_up_follow_c'
+            eyelid_follow_D_attr = self._follow_ctrl+'.eyelid_up_follow_d'
+            eyelid_follow_E_attr = self._follow_ctrl+'.eyelid_up_follow_e'
+            eyelid_follow_F_attr = self._follow_ctrl+'.eyelid_up_follow_f'
         elif controlZoneDirEnum.down in direction:
-            eyelid_follow_B_attr = self._follow_ctrl + '.eyelid_dn_follow_b'
-            eyelid_follow_C_attr = self._follow_ctrl + '.eyelid_dn_follow_c'
-            eyelid_follow_D_attr = self._follow_ctrl + '.eyelid_dn_follow_d'
-            eyelid_follow_E_attr = self._follow_ctrl + '.eyelid_dn_follow_e'
-            eyelid_follow_F_attr = self._follow_ctrl + '.eyelid_dn_follow_f'
+            eyelid_follow_B_attr = self._follow_ctrl+'.eyelid_dn_follow_b'
+            eyelid_follow_C_attr = self._follow_ctrl+'.eyelid_dn_follow_c'
+            eyelid_follow_D_attr = self._follow_ctrl+'.eyelid_dn_follow_d'
+            eyelid_follow_E_attr = self._follow_ctrl+'.eyelid_dn_follow_e'
+            eyelid_follow_F_attr = self._follow_ctrl+'.eyelid_dn_follow_f'
 
         for ctrl_crv_id in ctrl_crv_id_list[1:]:
             ctrl_crv = self._ctrl_crv_dict[ctrl_crv_id]
@@ -433,9 +433,9 @@ class eyelidControlZone(controlZone):
             bs_node = cmds.blendShape(self._ctrl_crv_dict[ctrl_crv_id_list[0]].get_name(),
                                       ctrl_crv.get_name(),
                                       weight=[0, follow_val])
-            bs_node = cmds.rename(bs_node, ctrl_crv.get_name() + '_bs')
+            bs_node = cmds.rename(bs_node, ctrl_crv.get_name()+'_bs')
 
-            cmds.connectAttr(follow_attr, bs_node + '.weight[0]')
+            cmds.connectAttr(follow_attr, bs_node+'.weight[0]')
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
@@ -448,15 +448,15 @@ class eyelidControlZone(controlZone):
                 projsrf_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(ctrl_crv_id, loc_id)
 
                 cls_pt_on_transplane_node = cmds.createNode('closestPointOnSurface')
-                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0] + '_clsPtOnSrf')
+                cls_pt_on_transplane_node = cmds.rename(cls_pt_on_transplane_node, ctrlcrv_loc_info[0]+'_clsPtOnSrf')
 
-                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name() + '.worldSpace[0]',
-                                 cls_pt_on_transplane_node + '.inputSurface')
-                cmds.connectAttr(ctrlcrv_loc_info[0] + 'Shape.worldPosition[0]',
-                                 cls_pt_on_transplane_node + '.inPosition')
+                cmds.connectAttr(self._ctrlproj_transplane_LRUD.get_name()+'.worldSpace[0]',
+                                 cls_pt_on_transplane_node+'.inputSurface')
+                cmds.connectAttr(ctrlcrv_loc_info[0]+'Shape.worldPosition[0]',
+                                 cls_pt_on_transplane_node+'.inPosition')
 
                 pt_on_projsrf_node = projsrf_loc_info[2]
                 assert cmds.objExists(pt_on_projsrf_node)
 
-                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterU', pt_on_projsrf_node + '.parameterU')
-                cmds.connectAttr(cls_pt_on_transplane_node + '.parameterV', pt_on_projsrf_node + '.parameterV')
+                cmds.connectAttr(cls_pt_on_transplane_node+'.parameterU', pt_on_projsrf_node+'.parameterU')
+                cmds.connectAttr(cls_pt_on_transplane_node+'.parameterV', pt_on_projsrf_node+'.parameterV')
