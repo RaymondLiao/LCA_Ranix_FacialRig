@@ -233,7 +233,10 @@ class eyelidControlZone(controlZone):
                              defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
 
             cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
-            cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_M_COLOR)
+            if 'R' == follow_ctrl_dir:
+                cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_R_COLOR)
+            elif 'L' == follow_ctrl_dir:
+                cmds.setAttr(follow_ctrl+'.overrideColor', CONTROL_L_COLOR)
 
             cmds.parent(follow_ctrl, hierarchy.eyelid_grp.get_group_name())
 

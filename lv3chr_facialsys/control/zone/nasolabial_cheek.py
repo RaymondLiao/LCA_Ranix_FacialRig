@@ -312,7 +312,12 @@ class nasoCheekControlZone(controlZone):
             else:
                 cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dy', bs_all_crv_bs+'.'+bs_UD_crv)
 
-            cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dz', bs_all_crv_bs+'.'+bs_FB_crv)
+            if '' != cheek_follow_attr:
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dz', cheek_follow_multi_node+'.input1Z')
+                cmds.connectAttr(cheek_follow_attr, cheek_follow_multi_node+'.input2Z')
+                cmds.connectAttr(cheek_follow_multi_node+'.outputZ', bs_all_crv_bs+'.'+bs_FB_crv)
+            else:
+                cmds.connectAttr(mouth_corner_trans_avg_node+'.output3Dz', bs_all_crv_bs+'.'+bs_FB_crv)
 
         # Use "closestPointOnSurface" nodes to establish the projecting relationships between
         # the locators on the control curves and the locators on the projection surface.
