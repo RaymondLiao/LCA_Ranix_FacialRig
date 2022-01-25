@@ -393,3 +393,28 @@ class eyebrowControlZone(controlZone):
 
                 cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterU', pt_on_F_projsrf_node+'.parameterU')
                 cmds.connectAttr(cls_pt_on_F_transplane_node+'.parameterV', pt_on_F_projsrf_node+'.parameterV')
+
+        # Bind the projection surfaces in the front-back direction to the
+        # corresponding joint chain on the projection surface in the left-right direction.
+        projsrf_FB_span_U = ctrlproj_projsurface_LRFB_list[0]._patchesU
+
+        projsrf_FB_ids = ctrl_crv_id_list
+        projsrf_LRUD_jnt_row_ids = self._ctrlproj_projsurface_LRUD.get_locator_row_ids()
+        assert len(projsrf_FB_ids) == len(projsrf_LRUD_jnt_row_ids)
+
+        for projsrf_FB_id in projsrf_FB_ids:
+            projsrf_FB = ctrlproj_projsurface_LRFB_list[projsrf_FB_ids.index(projsrf_FB_id)].get_name()
+            LR_jnt_list = []
+            for LR_jnt_id in range(0, projsrf_FB_span_U+1):
+                LR_loc_info = self._ctrlproj_projsurface_LRUD.get_locator_info(projsrf_FB_id, LR_jnt_id+1)
+                LR_jnt_list.append(LR_loc_info[1])
+
+            projsrf_FB_skinCluster = cmds.skinCluster(LR_jnt_list, projsrf_FB,
+                                                      toSelectedBones=True, name=projsrf_FB+'_skinCluster')
+            for vtx_id in range(projsrf_FB_span_U, -1):
+                vtx_1 = '{}.vtx[0,{}]'.format(projsrf_FB, vtx_id)
+                vtx_2 = '{}.vtx[1,{}]'.format(projsrf_FB, vtx_id)
+                jnt = LR_jnt_list[projsrf_FB_span_U-vtx_id]
+
+                cmds.skinPercent(projsrf_FB_skinCluster, vtx_1, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)
+                cmds.skinPercent(projsrf_FB_skinCluster, vtx_2, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)
