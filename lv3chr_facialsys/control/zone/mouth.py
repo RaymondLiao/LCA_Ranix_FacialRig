@@ -369,10 +369,11 @@ class mouthControlZone(controlZone):
         cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)
         if 'middle' in bs_dir or 'orig' in bs_dir:
             cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_OLIVE)
+        elif 'right' in bs_dir: # right-side blend-shape targets' names also include the to 'left' movement direction,
+                                # so we test the 'right' word including condition first.
+            cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
         elif 'left' in bs_dir:
             cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_DARK_RED)
-        elif 'right' in bs_dir:
-            cmds.setAttr(bs_nurbs_crv+'.overrideColor', COLOR_INDEX_INDIGO)
 
         cmds.toggle(bs_nurbs_crv, controlVertex=True)
         cmds.select(deselect=True)
