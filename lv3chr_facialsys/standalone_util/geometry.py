@@ -110,3 +110,30 @@ def copy_transform(translation=True, rotation=True, scale=False, delete_source=F
 
     if delete_source:
         cmds.delete(src_transform)
+
+
+def copy_curve_CVs(transform_offset=(0.0, 0.0, 0.0)):
+    sel_transform_list = cmds.ls(sl=True)
+    sel_curve_shape_list = []
+    for sel_transform in sel_transform_list:
+        sel_curve_shape = cmds.listRelatives(sel_transform, shapes=True)[0]
+        if 'nurbsCurve' != cmds.objectType(sel_curve_shape):
+            cmds.error('Must select NURBS curves to copy control vertices coordinates.')
+            return
+        sel_curve_shape_list.append(sel_curve_shape)
+
+    src_curve_shape = sel_curve_shape_list[0]
+    src_cv_count = cmds.getAttr(src_curve_shape+'.spans') + 1
+
+    tar_curve_shape_list = sel_curve_shape_list[1:]
+    for tar_curve_shape in tar_curve_shape_list:
+        tar_cv_count = cmds.getAttr(tar_curve_shape+'.spans') + 1
+        if tar_cv_count != src_cv_count:
+            cmds.error('The target NURBS curves must have the same number of CVs with the source NURBS curve')
+            return
+
+        for cv_id in range(src_cv_count):
+            src_cv = [sum(item) for item in zip(cmds.getAttr(src_curve_shape+'.cv[{}]'.format(cv_id))[0], transform_offset)]
+            #cmds.warning('source_cv[{}]: {}'.format(cv_id, src_cv))
+            #cmds.warning('target_cv[{}]: {}'.format(cv_id, cmds.getAttr(tar_curve_shape+'.cv[{}]'.format(cv_id))))
+            cmds.setAttr(tar_curve_shape+'.cv[{}]'.format(cv_id), src_cv[0], src_cv[1], src_cv[2])
