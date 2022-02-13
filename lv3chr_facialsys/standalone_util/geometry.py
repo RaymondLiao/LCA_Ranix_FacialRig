@@ -56,14 +56,57 @@ def get_nurbs_crv_CVs():
     return nurbs_crv_CVs
 
 def get_translation_string():
-    sel_trans = cmds.ls(sl=True)[0]
+    sel_transform = cmds.ls(sl=True)[0]
 
-    sel_trans = cmds.getAttr(sel_trans+'.translate')[0]
-    sel_trans_x = round(float(sel_trans[0]), 3)
-    sel_trans_y = round(float(sel_trans[1]), 3)
-    sel_trans_z = round(float(sel_trans[2]), 3)
+    sel_translation = cmds.getAttr(sel_transform+'.translate')[0]
+    sel_translation_x = round(float(sel_translation[0]), 3)
+    sel_translation_y = round(float(sel_translation[1]), 3)
+    sel_translation_z = round(float(sel_translation[2]), 3)
 
-    sel_trans_str = '[{0}, {1}, {2}],\n'.format(sel_trans_x, sel_trans_y, sel_trans_z)
-    cmds.warning(sel_trans_str)
+    sel_translation_str = '[{0}, {1}, {2}], \n'.format(sel_translation_x, sel_translation_y, sel_translation_z)
+    cmds.warning(sel_translation_str)
+    return sel_translation_str
 
-    return sel_trans_str
+def copy_transform(translation=True, rotation=True, scale=False, delete_source=False):
+    '''
+    Copy the firstly selected transform node's data to the secondly selected one.
+    :param translation: Copy the translation data
+    :param rotation: Copy the rotation data
+    :param scale: Copy the scale data
+    :param delete_source: If delete the source transform node after copy its information
+    :return: None
+    '''
+    sel_transforms = cmds.ls(sl=True)
+
+    if len(sel_transforms) < 2:
+        cmds.error('Must select a target transform node to copy the transform to.')
+        return
+
+    src_transform = sel_transforms[0]
+
+    src_translation = cmds.getAttr(src_transform+'.translate')[0]
+    src_translation_x = src_translation[0]
+    src_translation_y = src_translation[1]
+    src_translation_z = src_translation[2]
+
+    src_rotation = cmds.getAttr(src_transform+'.rotate')[0]
+    src_rotation_x = src_rotation[0]
+    src_rotation_y = src_rotation[1]
+    src_rotation_z = src_rotation[2]
+
+    src_scale = cmds.getAttr(src_transform+'.scale')[0]
+    src_scale_x = src_scale[0]
+    src_scale_y = src_scale[1]
+    src_scale_z = src_scale[2]
+
+    tar_transform_list = sel_transforms[1:]
+    for tar_transform in tar_transform_list:
+        if translation:
+            cmds.setAttr(tar_transform+'.translate', src_translation_x, src_translation_y, src_translation_z)
+        if rotation:
+            cmds.setAttr(tar_transform+'.rotate', src_rotation_x, src_rotation_y, src_rotation_z)
+        if scale:
+            cmds.setAttr(tar_transform+'.scale', src_scale_x, src_scale_y, src_scale_z)
+
+    if delete_source:
+        cmds.delete(src_transform)
