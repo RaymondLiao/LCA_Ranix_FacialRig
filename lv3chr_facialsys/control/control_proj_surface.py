@@ -85,6 +85,9 @@ class controlTransPlane(object):
         # cmds.toggle(self._nurbs_srf, template=True)
         cmds.select(deselect=True)
 
+        # Delete the construction history.
+        cmds.delete(self._nurbs_srf, constructionHistory=True)
+
     def __repr__(self):
         return NotImplemented
 
@@ -207,6 +210,9 @@ class controlProjSurface(object):
         cmds.setAttr(self._nurbs_srf+'.overrideEnabled', True)
         cmds.setAttr(self._nurbs_srf+'.overrideColor', PROJ_SURFACE_COLOR_INDEX)
         cmds.toggle(self._nurbs_srf, controlVertex=True)
+
+        # Delete the construction history.
+        cmds.delete(self._nurbs_srf, constructionHistory=True)
 
         # Create the locator belongs to this projection surface, then use pointOnSurface
         for loc_dict in locator_data:

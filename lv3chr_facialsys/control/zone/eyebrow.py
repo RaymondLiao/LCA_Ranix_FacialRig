@@ -410,11 +410,14 @@ class eyebrowControlZone(controlZone):
                 LR_jnt_list.append(LR_loc_info[1])
 
             projsrf_FB_skinCluster = cmds.skinCluster(LR_jnt_list, projsrf_FB,
-                                                      toSelectedBones=True, name=projsrf_FB+'_skinCluster')
-            for vtx_id in range(projsrf_FB_span_U, -1):
-                vtx_1 = '{}.vtx[{},0]'.format(projsrf_FB, vtx_id)
-                vtx_2 = '{}.vtx[{},1]'.format(projsrf_FB, vtx_id)
+                                                      toSelectedBones=True,
+                                                      maximumInfluences=1,
+                                                      name=projsrf_FB+'_skinCluster')[0]
+
+            for vtx_id in range(projsrf_FB_span_U, -1, -1):
+                cv_1 = '{}.cv[{}][0]'.format(projsrf_FB, vtx_id)
+                cv_2 = '{}.cv[{}][1]'.format(projsrf_FB, vtx_id)
                 jnt = LR_jnt_list[projsrf_FB_span_U-vtx_id]
 
-                cmds.skinPercent(projsrf_FB_skinCluster, vtx_1, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)
-                cmds.skinPercent(projsrf_FB_skinCluster, vtx_2, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)
+                cmds.skinPercent(projsrf_FB_skinCluster, cv_1, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)
+                cmds.skinPercent(projsrf_FB_skinCluster, cv_2, transformValue=[(jnt, 1.0)], zeroRemainingInfluences=True)

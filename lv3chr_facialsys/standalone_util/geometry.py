@@ -12,6 +12,8 @@ A module to query geometry information
 
 import maya.cmds as cmds
 
+g_float_precision = 8
+
 def get_nurbs_srf_CVs():
     """
     :return: a string containing the control vertices' coordinates of a selected NURBS surface
@@ -27,15 +29,15 @@ def get_nurbs_srf_CVs():
     for idx_u in range(nurbs_srf_spanU+1):
         for idx_v in range(nurbs_srf_spanV+1):
             cv_coord = cmds.getAttr(nurbs_srf+'.cv[{0}][{1}]'.format(idx_u, idx_v))[0]
-            cv_coord_x = round(float(cv_coord[0]), 3)
-            cv_coord_y = round(float(cv_coord[1]), 3)
-            cv_coord_z = round(float(cv_coord[2]), 3)
-            nurbs_srf_CVs += '{{"{0},{1}": [{2:.3f}, {3}, {4}]}},\n'.format(idx_u, idx_v,
+            cv_coord_x = round(float(cv_coord[0]), g_float_precision)
+            cv_coord_y = round(float(cv_coord[1]), g_float_precision)
+            cv_coord_z = round(float(cv_coord[2]), g_float_precision)
+            nurbs_srf_CVs += '{{"{0},{1}": [{2:.8f}, {3}, {4}]}},\n'.format(idx_u, idx_v,
                                                                           cv_coord_x, cv_coord_y, cv_coord_z)
         nurbs_srf_CVs += '\n'
 
     nurbs_srf_CVs = nurbs_srf_CVs[:-3]  # Get rid of the trailing two '\n' and a ','
-    # cmds.warning(nurbs_srf_CVs)
+    cmds.warning(nurbs_srf_CVs)
 
     return nurbs_srf_CVs
 
@@ -47,25 +49,48 @@ def get_nurbs_crv_CVs():
 
     for idx in range(nurbs_crv_span+1):
         cv_coord = cmds.getAttr(nurbs_crv+'.cv[{}]'.format(idx))[0]
-        cv_coord_x = round(float(cv_coord[0]), 3)
-        cv_coord_y = round(float(cv_coord[1]), 3)
-        cv_coord_z = round(float(cv_coord[2]), 3)
+        cv_coord_x = round(float(cv_coord[0]), g_float_precision)
+        cv_coord_y = round(float(cv_coord[1]), g_float_precision)
+        cv_coord_z = round(float(cv_coord[2]), g_float_precision)
         nurbs_crv_CVs += '[{0}, {1}, {2}],\n'.format(cv_coord_x, cv_coord_y, cv_coord_z)
 
     cmds.warning(nurbs_crv_CVs)
     return nurbs_crv_CVs
 
-def get_translation_string():
+def get_transform_string():
     sel_transform = cmds.ls(sl=True)[0]
 
     sel_translation = cmds.getAttr(sel_transform+'.translate')[0]
-    sel_translation_x = round(float(sel_translation[0]), 3)
-    sel_translation_y = round(float(sel_translation[1]), 3)
-    sel_translation_z = round(float(sel_translation[2]), 3)
+    sel_translation_x = round(float(sel_translation[0]), g_float_precision)
+    sel_translation_y = round(float(sel_translation[1]), g_float_precision)
+    sel_translation_z = round(float(sel_translation[2]), g_float_precision)
 
-    sel_translation_str = '[{0}, {1}, {2}], \n'.format(sel_translation_x, sel_translation_y, sel_translation_z)
-    cmds.warning(sel_translation_str)
-    return sel_translation_str
+    sel_translation_str = '"translation": [{0}, {1}, {2}],\n'.format(
+        sel_translation_x, sel_translation_y, sel_translation_z
+    )
+
+    sel_rotation = cmds.getAttr(sel_transform+'.rotate')[0]
+    sel_rotation_x = round(float(sel_rotation[0]), g_float_precision)
+    sel_rotation_y = round(float(sel_rotation[1]), g_float_precision)
+    sel_rotation_z = round(float(sel_rotation[2]), g_float_precision)
+
+    sel_rotation_str = '"rotation": [{0}, {1}, {2}],\n'.format(
+        sel_rotation_x,sel_rotation_y, sel_rotation_z
+    )
+
+    sel_scale = cmds.getAttr(sel_transform+'.scale')[0]
+    sel_scale_x = round(float(sel_scale[0]), g_float_precision)
+    sel_scale_y = round(float(sel_scale[1]), g_float_precision)
+    sel_scale_z = round(float(sel_scale[2]), g_float_precision)
+
+    sel_scale_str = '"scale": [{0}, {1}, {2}]\n'.format(
+        sel_scale_x, sel_scale_y, sel_scale_z
+    )
+
+    sel_transform_str = sel_translation_str + sel_rotation_str + sel_scale_str
+    cmds.warning(sel_transform_str)
+
+    return sel_transform_str
 
 def copy_transform(translation=True, rotation=True, scale=False, delete_source=False):
     '''
@@ -112,7 +137,7 @@ def copy_transform(translation=True, rotation=True, scale=False, delete_source=F
         cmds.delete(src_transform)
 
 
-def copy_curve_CVs(transform_offset=(0.0, 0.0, 0.0)):
+def copy_curve_CVs(transform_offset=(0.0, 0.0, 0.0), axis_x=True, axis_y=True, axis_z=True):
     sel_transform_list = cmds.ls(sl=True)
     sel_curve_shape_list = []
     for sel_transform in sel_transform_list:
@@ -136,4 +161,45 @@ def copy_curve_CVs(transform_offset=(0.0, 0.0, 0.0)):
             src_cv = [sum(item) for item in zip(cmds.getAttr(src_curve_shape+'.cv[{}]'.format(cv_id))[0], transform_offset)]
             #cmds.warning('source_cv[{}]: {}'.format(cv_id, src_cv))
             #cmds.warning('target_cv[{}]: {}'.format(cv_id, cmds.getAttr(tar_curve_shape+'.cv[{}]'.format(cv_id))))
-            cmds.setAttr(tar_curve_shape+'.cv[{}]'.format(cv_id), src_cv[0], src_cv[1], src_cv[2])
+            tar_cv = list(cmds.getAttr(tar_curve_shape+'.cv[{}]'.format(cv_id))[0])
+            if axis_x:
+                tar_cv[0] = src_cv[0]
+            if axis_y:
+                tar_cv[1] = src_cv[1]
+            if axis_z:
+                tar_cv[2] = src_cv[2]
+
+            cmds.setAttr(tar_curve_shape+'.cv[{}]'.format(cv_id), tar_cv[0], tar_cv[1], tar_cv[2])
+
+def flatten_NURBS_surface(axis='y', make_plane=False):
+    srf_transform = cmds.ls(sl=True)[0]
+    srf_shape = cmds.listRelatives(srf_transform, shapes=True)[0]
+    srf_span_U = cmds.getAttr(srf_shape+'.spansU')
+    srf_span_V = cmds.getAttr(srf_shape+'.spansV')
+    base_coord = cmds.getAttr(srf_shape + '.cv[0][0]')
+    for cv_U_id in range(0, srf_span_U+1):
+        row_base_coord = list(cmds.getAttr(srf_shape+'.cv[{}][0]'.format(cv_U_id))[0])
+        for cv_V_id in range(1, srf_span_V+1):
+            ori_coord = list(cmds.getAttr(srf_shape + '.cv[{}][{}]'.format(cv_U_id, cv_V_id))[0])
+
+            if make_plane:
+                if 'x' == axis:
+                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
+                        cv_U_id, cv_V_id), base_coord[0], ori_coord[1], ori_coord[2])
+                elif 'y' == axis:
+                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
+                        cv_U_id, cv_V_id), ori_coord[0], base_coord[0], ori_coord[2])
+                elif 'z' == axis:
+                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
+                        cv_U_id, cv_V_id), ori_coord[0], ori_coord[1], base_coord[0])
+            else:
+                flat_coord = ori_coord
+                if 'x' == axis:
+                    flat_coord[0] = row_base_coord[0]
+                elif 'y' == axis:
+                    flat_coord[1] = row_base_coord[1]
+                elif 'z' == axis:
+                    flat_coord[2] = row_base_coord[2]
+
+                cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(
+                    cv_U_id, cv_V_id), flat_coord[0], flat_coord[1], flat_coord[2])
