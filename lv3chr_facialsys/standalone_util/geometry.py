@@ -171,35 +171,65 @@ def copy_curve_CVs(transform_offset=(0.0, 0.0, 0.0), axis_x=True, axis_y=True, a
 
             cmds.setAttr(tar_curve_shape+'.cv[{}]'.format(cv_id), tar_cv[0], tar_cv[1], tar_cv[2])
 
-def flatten_NURBS_surface(axis='y', make_plane=False):
+def flatten_NURBS_surface(axis='y', flip_UV=False, reverse_dir=False, make_plane=False):
     srf_transform = cmds.ls(sl=True)[0]
     srf_shape = cmds.listRelatives(srf_transform, shapes=True)[0]
     srf_span_U = cmds.getAttr(srf_shape+'.spansU')
     srf_span_V = cmds.getAttr(srf_shape+'.spansV')
     base_coord = cmds.getAttr(srf_shape + '.cv[0][0]')
-    for cv_U_id in range(0, srf_span_U+1):
-        row_base_coord = list(cmds.getAttr(srf_shape+'.cv[{}][0]'.format(cv_U_id))[0])
-        for cv_V_id in range(1, srf_span_V+1):
-            ori_coord = list(cmds.getAttr(srf_shape + '.cv[{}][{}]'.format(cv_U_id, cv_V_id))[0])
+
+    cv_span_row = srf_span_U
+    cv_span_col = srf_span_V
+    if flip_UV:
+        cv_span_row = srf_span_V
+        cv_span_col = srf_span_U
+
+    # cv_col_iter_start = 1
+    # cv_col_iter_end = cv_span_col
+    # if reverse_dir:
+    #     cv_col_iter_start = 0
+    #     cv_col_iter_end = cv_span_col-1
+
+    for cv_row_id in range(0, cv_span_row+1):
+        row_base_coord = base_coord
+        if reverse_dir:
+            if flip_UV:
+                row_base_coord = list(cmds.getAttr(srf_shape+'.cv[{}][{}]'.format(cv_span_col, cv_row_id))[0])
+            else:
+                row_base_coord = list(cmds.getAttr(srf_shape+'.cv[{}][{}]'.format(cv_row_id, cv_span_col))[0])
+        else:
+            if flip_UV:
+                row_base_coord = list(cmds.getAttr(srf_shape+'.cv[0][{}]'.format(cv_row_id))[0])
+            else:
+                row_base_coord = list(cmds.getAttr(srf_shape+'.cv[{}][0]'.format(cv_row_id))[0])
+
+        for cv_col_id in range(0, cv_span_col+1):
+            cv_U_id = cv_row_id
+            cv_V_id = cv_col_id
+            if flip_UV:
+                cv_U_id = cv_col_id
+                cv_V_id = cv_row_id
+
+            cv_orig_coord = list(cmds.getAttr(srf_shape+'.cv[{}][{}]'.format(cv_U_id, cv_V_id))[0])
 
             if make_plane:
                 if 'x' == axis:
-                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
-                        cv_U_id, cv_V_id), base_coord[0], ori_coord[1], ori_coord[2])
+                    cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(cv_U_id, cv_V_id),
+                                 base_coord[0], cv_orig_coord[1], cv_orig_coord[2])
                 elif 'y' == axis:
-                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
-                        cv_U_id, cv_V_id), ori_coord[0], base_coord[0], ori_coord[2])
+                    cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(cv_U_id, cv_V_id),
+                                 cv_orig_coord[0], base_coord[1], cv_orig_coord[2])
                 elif 'z' == axis:
-                    cmds.setAttr(srf_shape + '.cv[{}][{}]'.format(
-                        cv_U_id, cv_V_id), ori_coord[0], ori_coord[1], base_coord[0])
+                    cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(cv_U_id, cv_V_id),
+                                 cv_orig_coord[0], cv_orig_coord[1], base_coord[2])
             else:
-                flat_coord = ori_coord
+                cv_flat_coord = cv_orig_coord
                 if 'x' == axis:
-                    flat_coord[0] = row_base_coord[0]
+                    cv_flat_coord[0] = row_base_coord[0]
                 elif 'y' == axis:
-                    flat_coord[1] = row_base_coord[1]
+                    cv_flat_coord[1] = row_base_coord[1]
                 elif 'z' == axis:
-                    flat_coord[2] = row_base_coord[2]
+                    cv_flat_coord[2] = row_base_coord[2]
 
-                cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(
-                    cv_U_id, cv_V_id), flat_coord[0], flat_coord[1], flat_coord[2])
+                cmds.setAttr(srf_shape+'.cv[{}][{}]'.format(cv_U_id, cv_V_id),
+                             cv_flat_coord[0], cv_flat_coord[1], cv_flat_coord[2])
