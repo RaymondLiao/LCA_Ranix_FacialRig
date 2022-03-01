@@ -227,10 +227,10 @@ class eyelidControlZone(controlZone):
 
             follow_ctrl_crv = cmds.rename(follow_ctrl_crv, follow_ctrl_data[follow_ctrl_dir]['name'])
 
-            follow_data_list = follow_ctrl_data['follow_data']
-            for follow_attr, val in follow_data_list.items():
+            follow_data_dict = follow_ctrl_data['follow_data']
+            for follow_attr in sorted(follow_data_dict):
                 cmds.addAttr(follow_ctrl, longName=follow_attr, attributeType='float',
-                             defaultValue=val, minValue=0.0, maxValue=1.0, keyable=True)
+                             defaultValue=follow_data_dict[follow_attr], minValue=0.0, maxValue=1.0, keyable=True)
 
             cmds.setAttr(follow_ctrl+'.overrideEnabled', True)
             if 'R' == follow_ctrl_dir:

@@ -4308,12 +4308,19 @@
 
     "follow_data":
     {
-      "lip_up_follow_b": 0.6,
-      "lip_up_follow_c": 0.5,
+      "lip_up_follow_b": 0.687,
+      "lip_up_follow_c": 0.55,
 
-      "lip_dn_follow_b": 1.0,
-      "lip_dn_follow_c": 0.75,
-      "lip_dn_follow_d": 0.25
+      "lip_dn_follow_b": 0.8,
+      "lip_dn_follow_c": 0.62,
+      "lip_dn_follow_d": 0.25,
+
+      "corner_up_follow_b": 0.79,
+      "corner_up_follow_c": 0.45,
+
+      "corner_dn_follow_b": 1.0,
+      "corner_dn_follow_c": 0.74,
+      "corner_dn_follow_d": 0.45
     },
 
     "M": {
