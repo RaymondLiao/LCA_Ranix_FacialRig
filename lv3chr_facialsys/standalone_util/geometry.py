@@ -28,12 +28,12 @@ def get_nurbs_srf_CVs():
 
     for idx_u in range(nurbs_srf_spanU+1):
         for idx_v in range(nurbs_srf_spanV+1):
-            cv_coord = cmds.getAttr(nurbs_srf+'.cv[{0}][{1}]'.format(idx_u, idx_v))[0]
+            cv_coord = cmds.pointPosition(nurbs_srf+'.cv[{0}][{1}]'.format(idx_u, idx_v))[0]
             cv_coord_x = round(float(cv_coord[0]), g_float_precision)
             cv_coord_y = round(float(cv_coord[1]), g_float_precision)
             cv_coord_z = round(float(cv_coord[2]), g_float_precision)
-            nurbs_srf_CVs += '{{"{0},{1}": [{2:.8f}, {3}, {4}]}},\n'.format(idx_u, idx_v,
-                                                                          cv_coord_x, cv_coord_y, cv_coord_z)
+            nurbs_srf_CVs += '{{"{0},{1}": [{2:.8f}, {3:.8f}, {4:.8f}]}},\n'.format(idx_u, idx_v,
+                                                                                    cv_coord_x, cv_coord_y, cv_coord_z)
         nurbs_srf_CVs += '\n'
 
     nurbs_srf_CVs = nurbs_srf_CVs[:-3]  # Get rid of the trailing two '\n' and a ','
