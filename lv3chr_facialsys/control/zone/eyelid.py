@@ -184,7 +184,7 @@ class eyelidControlZone(controlZone):
                                       point=dir_ctrlcrv_bs_data['points'])
             cmds.xform(bs_nurbs_crv, translation=dir_ctrlcrv_bs_data['xform']['translation'])
             bs_nurbs_crv = cmds.rename(bs_nurbs_crv,
-                                       self._ctrl_crv_data['mouth_ctrlzone_prefix']+'_'+
+                                       self._ctrl_crv_data['eyelid_ctrlzone_prefix']+'_'+
                                        zone_LR[0].upper()+zone_UD[0].upper()+'_'+dir_ctrlcrv_bs_data['name'])
 
             cmds.setAttr(bs_nurbs_crv+'.overrideEnabled', True)

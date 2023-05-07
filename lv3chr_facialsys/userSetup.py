@@ -1,6 +1,6 @@
 import sys
 
-is_lca_machine = True
+is_lca_machine = False
 
 lcrig_lv3chr_facialsys_dir = "D:/Raymond/Programming/LCA/LCA_Ranix_FacialRig/lv3chr_facialsys"
 if is_lca_machine:
